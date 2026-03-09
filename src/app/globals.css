@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------------------------------------------------------------
+   BG3 Honor Companion — Global Styles
+   ---------------------------------------------------------------- */
+
+@layer base {
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0f;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a3a;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a52;
+  }
+
+  /* Selection color */
+  ::selection {
+    background: rgba(201, 168, 76, 0.3);
+    color: #e4cc7a;
+  }
+}
+
+@layer components {
+  /* Prose overrides for MDX content */
+  .prose-gold {
+    --tw-prose-headings: #c9a84c;
+    --tw-prose-links: #4d94ff;
+    --tw-prose-bold: #e4cc7a;
+    --tw-prose-code: #c9a84c;
+    --tw-prose-hr: #2a2a3a;
+  }
+
+  .prose-gold h2 {
+    font-family: "Cinzel", serif;
+    border-bottom: 1px solid #2a2a3a;
+    padding-bottom: 0.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .prose-gold h3 {
+    font-family: "Cinzel", serif;
+    color: #e4cc7a;
+  }
+
+  .prose-gold p {
+    font-family: "Lora", serif;
+    color: #b0b0c0;
+  }
+
+  .prose-gold strong {
+    color: #e4cc7a;
+  }
+
+  .prose-gold a {
+    color: #4d94ff;
+    text-decoration: underline;
+    text-decoration-color: rgba(77, 148, 255, 0.3);
+    transition: all 150ms ease;
+  }
+
+  .prose-gold a:hover {
+    text-decoration-color: #4d94ff;
+  }
+
+  .prose-gold code {
+    background: #1c1c28;
+    padding: 0.15em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.85em;
+  }
+
+  .prose-gold li {
+    font-family: "Lora", serif;
+    color: #b0b0c0;
+  }
+
+  .prose-gold ol > li::marker {
+    color: #c9a84c;
+  }
+
+  .prose-gold ul > li::marker {
+    color: #7a6530;
+  }
+}

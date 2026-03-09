@@ -60,11 +60,11 @@ const RARITY_COLORS: Record<Rarity, { border: string; glow: string; text: string
 };
 
 const RARITY_LABELS: Record<Rarity, string> = {
-  common: "Common",
-  uncommon: "Uncommon",
+  common: "Commun",
+  uncommon: "Inhabituel",
   rare: "Rare",
-  very_rare: "Very Rare",
-  legendary: "Legendary",
+  very_rare: "Très Rare",
+  legendary: "Légendaire",
 };
 
 // ---------------------------------------------------------------------------

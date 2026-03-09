@@ -3,53 +3,55 @@
 @tailwind utilities;
 
 /* ----------------------------------------------------------------
-   BG3 Honor Companion — Global Styles
+   BG3 Honor Companion — Styles Globaux
+   Palette : #111520 (fond) / #d4af37 (or) / #8b0000 (sang)
    ---------------------------------------------------------------- */
 
 @layer base {
-  /* Scrollbar styling */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0a0a0f;
+    background: #111520;
   }
   ::-webkit-scrollbar-thumb {
-    background: #2a2a3a;
+    background: #2a3048;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #3a3a52;
+    background: #3a4262;
   }
 
-  /* Selection color */
   ::selection {
-    background: rgba(201, 168, 76, 0.3);
-    color: #e4cc7a;
+    background: rgba(212, 175, 55, 0.3);
+    color: #e8cc6e;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
   }
 }
 
 @layer components {
-  /* Prose overrides for MDX content */
   .prose-gold {
-    --tw-prose-headings: #c9a84c;
+    --tw-prose-headings: #d4af37;
     --tw-prose-links: #4d94ff;
-    --tw-prose-bold: #e4cc7a;
-    --tw-prose-code: #c9a84c;
-    --tw-prose-hr: #2a2a3a;
+    --tw-prose-bold: #e8cc6e;
+    --tw-prose-code: #d4af37;
+    --tw-prose-hr: #2a3048;
   }
 
   .prose-gold h2 {
     font-family: "Cinzel", serif;
-    border-bottom: 1px solid #2a2a3a;
+    border-bottom: 1px solid #2a3048;
     padding-bottom: 0.5rem;
     margin-top: 2.5rem;
   }
 
   .prose-gold h3 {
     font-family: "Cinzel", serif;
-    color: #e4cc7a;
+    color: #e8cc6e;
   }
 
   .prose-gold p {
@@ -58,7 +60,7 @@
   }
 
   .prose-gold strong {
-    color: #e4cc7a;
+    color: #e8cc6e;
   }
 
   .prose-gold a {
@@ -73,7 +75,7 @@
   }
 
   .prose-gold code {
-    background: #1c1c28;
+    background: #1c2133;
     padding: 0.15em 0.4em;
     border-radius: 0.25rem;
     font-size: 0.85em;
@@ -85,7 +87,7 @@
   }
 
   .prose-gold ol > li::marker {
-    color: #c9a84c;
+    color: #d4af37;
   }
 
   .prose-gold ul > li::marker {

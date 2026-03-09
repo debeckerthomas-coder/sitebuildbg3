@@ -26,7 +26,7 @@ const SEVERITY_STYLES = {
     border: "border-yellow-500/50",
     bg: "bg-yellow-950/20",
     icon: "⚠️",
-    label: "Warning",
+    label: "Danger",
     labelColor: "text-yellow-400",
     animation: "",
   },
@@ -34,7 +34,7 @@ const SEVERITY_STYLES = {
     border: "border-blood/60",
     bg: "bg-blood-dark/20",
     icon: "💀",
-    label: "LETHAL",
+    label: "LÉTAL",
     labelColor: "text-blood-light",
     animation: "animate-pulse-danger",
   },
@@ -87,7 +87,7 @@ function MechanicCard({ mechanic, index }: MechanicCardProps) {
       <div className="space-y-2">
         <div>
           <p className="text-xs font-data text-gray-400 uppercase tracking-wider mb-1">
-            Threat
+            Menace
           </p>
           <p className="text-sm font-body text-gray-200 leading-relaxed">
             {mechanic.description}
@@ -97,7 +97,7 @@ function MechanicCard({ mechanic, index }: MechanicCardProps) {
         {/* Counterplay — visually distinct */}
         <div className="bg-abyss/60 rounded px-3 py-2 border border-gold-dark/30">
           <p className="text-xs font-data text-gold uppercase tracking-wider mb-1">
-            Counterplay
+            Contre-mesure
           </p>
           <p className="text-sm font-body text-gold-light leading-relaxed">
             {mechanic.counterplay}
@@ -122,7 +122,7 @@ export function EmergencyMatrix({ bossId }: EmergencyMatrixProps) {
   if (!boss) {
     return (
       <div className="text-sm text-gray-500 font-data">
-        Boss &quot;{bossId}&quot; not found.
+        Boss &quot;{bossId}&quot; introuvable.
       </div>
     );
   }
@@ -140,11 +140,11 @@ export function EmergencyMatrix({ bossId }: EmergencyMatrixProps) {
         <div className="w-1 h-8 rounded-full bg-blood" />
         <div>
           <h3 className="font-display text-base text-blood-light">
-            Emergency Matrix — {boss.name}
+            Matrice d&apos;Urgence — {boss.name}
           </h3>
           <p className="text-xs font-data text-gray-400">
-            {sortedMechanics.filter((m) => m.severity === "lethal").length} lethal
-            mechanic(s) detected
+            {sortedMechanics.filter((m) => m.severity === "lethal").length} mécanique(s)
+            létale(s) détectée(s)
           </p>
         </div>
       </div>

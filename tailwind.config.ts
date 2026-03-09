@@ -10,31 +10,28 @@ const config: Config = {
     extend: {
       // ----------------------------------------------------------------
       // BG3 Dark Fantasy Color Palette
+      // Fond #111520, Or #d4af37, Rouge sang #8b0000
       // ----------------------------------------------------------------
       colors: {
-        // Primary background tones
         abyss: {
-          DEFAULT: "#0a0a0f",
-          50: "#16161f",
-          100: "#1c1c28",
-          200: "#252535",
-          300: "#2e2e42",
+          DEFAULT: "#111520",
+          50: "#171b29",
+          100: "#1c2133",
+          200: "#252b3d",
+          300: "#2e354a",
         },
-        // Gold accent (BG3 signature)
         gold: {
-          DEFAULT: "#c9a84c",
-          light: "#e4cc7a",
-          dark: "#8b6914",
+          DEFAULT: "#d4af37",
+          light: "#e8cc6e",
+          dark: "#9b7e1e",
           muted: "#7a6530",
         },
-        // Blood red for danger / Honor Mode
         blood: {
-          DEFAULT: "#8b1a1a",
+          DEFAULT: "#8b0000",
           light: "#c43c3c",
-          dark: "#5c0e0e",
+          dark: "#5c0000",
           glow: "#ff3333",
         },
-        // Rarity colors (exact BG3 match)
         rarity: {
           common: "#9d9d9d",
           uncommon: "#3fbf3f",
@@ -42,7 +39,6 @@ const config: Config = {
           very_rare: "#b366ff",
           legendary: "#ff8c00",
         },
-        // Damage type accent colors
         dmg: {
           fire: "#ff6633",
           cold: "#66ccff",
@@ -58,37 +54,30 @@ const config: Config = {
           piercing: "#cccccc",
           slashing: "#cccccc",
         },
-        // UI semantic
         surface: {
-          DEFAULT: "#12121a",
-          raised: "#1a1a26",
-          overlay: "#22222e",
+          DEFAULT: "#151a28",
+          raised: "#1c2236",
+          overlay: "#242a3e",
         },
         border: {
-          DEFAULT: "#2a2a3a",
-          hover: "#3a3a52",
-          active: "#c9a84c",
+          DEFAULT: "#2a3048",
+          hover: "#3a4262",
+          active: "#d4af37",
         },
       },
 
-      // ----------------------------------------------------------------
-      // Typography — Dark Fantasy + Data-Dense
-      // ----------------------------------------------------------------
       fontFamily: {
-        display: ["Cinzel", "serif"],         // Titles, boss names
-        body: ["Lora", "serif"],              // Narrative text
-        data: ["Inter", "sans-serif"],        // Stats, numbers, UI
-        mono: ["JetBrains Mono", "monospace"],// Code, dice notation
+        display: ["Cinzel", "serif"],
+        body: ["Lora", "serif"],
+        data: ["Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
 
-      // ----------------------------------------------------------------
-      // Custom Animations
-      // ----------------------------------------------------------------
       keyframes: {
         "pulse-danger": {
           "0%, 100%": {
-            borderColor: "#8b1a1a",
-            boxShadow: "0 0 8px 0 rgba(139, 26, 26, 0.3)",
+            borderColor: "#8b0000",
+            boxShadow: "0 0 8px 0 rgba(139, 0, 0, 0.3)",
           },
           "50%": {
             borderColor: "#c43c3c",
@@ -130,9 +119,6 @@ const config: Config = {
         "progress-fill": "progress-fill 0.8s ease-out forwards",
       },
 
-      // ----------------------------------------------------------------
-      // Spacing & Sizing
-      // ----------------------------------------------------------------
       borderRadius: {
         card: "0.5rem",
       },

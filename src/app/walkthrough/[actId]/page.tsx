@@ -1,12 +1,11 @@
 // ============================================================================
-// Walkthrough Page — Server-rendered MDX with custom components
+// Walkthrough Page — Server Component that passes serialized MDX to client
 // ============================================================================
 
 import { notFound } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { getWalkthrough, getWalkthroughSlugs } from "@/lib/mdx";
-import { mdxComponents } from "@/components/mdx/MDXComponents";
 import { TableOfContentsWrapper } from "./TableOfContentsWrapper";
+import { MDXRenderer } from "./MDXRenderer";
 
 interface PageProps {
   params: Promise<{ actId: string }>;
@@ -21,7 +20,7 @@ export default async function WalkthroughPage({ params }: PageProps) {
 
   let walkthrough;
   try {
-    walkthrough = getWalkthrough(actId);
+    walkthrough = await getWalkthrough(actId);
   } catch {
     notFound();
   }
@@ -40,10 +39,7 @@ export default async function WalkthroughPage({ params }: PageProps) {
           {walkthrough.meta.description}
         </p>
 
-        <MDXRemote
-          source={walkthrough.source}
-          components={mdxComponents}
-        />
+        <MDXRenderer source={walkthrough.mdxSource} />
       </article>
 
       {/* Sidebar ToC */}

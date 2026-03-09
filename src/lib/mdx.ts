@@ -1,11 +1,12 @@
 // ============================================================================
-// MDX Configuration — Loads .mdx files and provides component map
-// Uses next-mdx-remote for server-side rendering of MDX content
+// MDX Configuration — Loads .mdx files with next-mdx-remote v4
 // ============================================================================
 
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 import type { WalkthroughMeta } from "@/types";
 
 const CONTENT_DIR = path.join(process.cwd(), "src/content/walkthroughs");
@@ -22,19 +23,22 @@ export function getWalkthroughSlugs(): string[] {
 }
 
 /**
- * Load a single walkthrough by slug.
- * Returns the raw MDX source and parsed frontmatter.
+ * Load and serialize a single walkthrough by slug.
  */
-export function getWalkthrough(slug: string): {
-  source: string;
+export async function getWalkthrough(slug: string): Promise<{
+  mdxSource: MDXRemoteSerializeResult;
   meta: WalkthroughMeta;
-} {
+}> {
   const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { content, data } = matter(fileContent);
 
+  const mdxSource = await serialize(content, {
+    parseFrontmatter: false,
+  });
+
   return {
-    source: content,
+    mdxSource,
     meta: data as WalkthroughMeta,
   };
 }

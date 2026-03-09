@@ -14,10 +14,10 @@ import { getAllBuildsTierS, type BuildTierS } from "@/data/builds/tier-s";
 
 const ROLE_COLORS: Record<string, string> = {
   "Tueur de Boss Monocible": "text-blood-light bg-blood/20",
-  "Contrôleur de Foule Supreme": "text-purple-400 bg-purple-500/20",
-  "DPS à distance explosif": "text-orange-400 bg-orange-500/20",
-  "DPS AoE Radiant & Contrôle": "text-yellow-400 bg-yellow-500/20",
-  "Dégâts Monocibles Magiques Maximum": "text-blue-400 bg-blue-500/20",
+  "DPS Distance & Contrôle de Foule": "text-purple-400 bg-purple-500/20",
+  "Dégâts à Distance & Prône": "text-orange-400 bg-orange-500/20",
+  "Soutien & Debuff Radiant": "text-yellow-400 bg-yellow-500/20",
+  "Dégâts Magiques AoE Maximum": "text-blue-400 bg-blue-500/20",
   "DPS Burst & Support Polyvalent": "text-gold bg-gold/20",
   "Tank Burst avec Aura de Protection": "text-green-400 bg-green-500/20",
   "DPS Magique Soutenu à Distance": "text-red-400 bg-red-500/20",

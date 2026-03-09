@@ -53,7 +53,7 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
     coreRole: "Tueur de Boss Monocible",
     keyMechanic:
       "Élixir de Force de Géant des Collines (FOR 21) + Don Bagarreur des Tavernes (double mod. FOR aux jets d'attaque et dégâts à mains nues). Attaques bonus du Moine + Actions bonus supplémentaires du Voleur = 5-6 attaques par tour.",
-    stats: { STR: 16, DEX: 14, CON: 14, INT: 8, WIS: 16, CHA: 8 },
+    stats: { STR: 8, DEX: 16, CON: 16, INT: 8, WIS: 16, CHA: 8 },
     featProgression: [
       { level: 4, feat: "Bagarreur des Tavernes", reason: "Double le mod. de Force sur les attaques et dégâts à mains nues. Le cœur du build." },
       { level: 8, feat: "Alerte", reason: "+5 initiative. Avec le d4 de BG3, quasiment garanti de jouer premier." },
@@ -77,7 +77,7 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
     id: "barde_controleur",
     name: "Le Barde Contrôleur",
     classes: "10 Barde Collège des Épées / 1 Guerrier / 1 Magicien",
-    coreRole: "Contrôleur de Foule Supreme",
+    coreRole: "DPS Distance & Contrôle de Foule",
     keyMechanic:
       "Casque d'Acuité Arcanique + Anneau du Gredin Mystique. Chaque sort de contrôle applique Acuité Arcanique (-1 JdS par charge, cumul -7). Après 2 tours, les ennemis échouent automatiquement tous leurs jets de sauvegarde.",
     stats: { STR: 8, DEX: 14, CON: 14, INT: 12, WIS: 10, CHA: 17 },
@@ -104,7 +104,7 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
     id: "throwzerker",
     name: "Le Lanceur Fou (Throwzerker)",
     classes: "5 Barbare Berserker / 4 Roublard Voleur / 3 Guerrier Champion",
-    coreRole: "DPS à distance explosif",
+    coreRole: "Dégâts à Distance & Prône",
     keyMechanic:
       "Bagarreur des Tavernes + Rage du Berserker + Attaque bonus du Voleur. Lance des armes de retour (Nyrulna, Hache de Retour +2) depuis les hauteurs pour des dégâts doublés par la gravité. 4-5 lancers par tour avec double Action Bonus.",
     stats: { STR: 17, DEX: 14, CON: 14, INT: 8, WIS: 10, CHA: 12 },
@@ -130,10 +130,10 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
   {
     id: "clerc_irradiation",
     name: "Le Clerc Orbes d'Irradiation",
-    classes: "11 Clerc Domaine de la Lumière / 1 Clerc Domaine de la Tempête",
-    coreRole: "DPS AoE Radiant & Contrôle",
+    classes: "11 Clerc Domaine de la Lumière / 1 Ensorceleur Tempête",
+    coreRole: "Soutien & Debuff Radiant",
     keyMechanic:
-      "Cumul des debuffs radiants via Gardien Spirituel + Explosion Lumineuse + Orbe d'Irradiation. Chaque source de dégâts radiants applique l'Aveuglement. Un ennemi aveuglé a le Désavantage à tout — contrôle permanent via les dégâts.",
+      "Cumul d'Orbes d'Irradiation via l'Armure Lumineuse pour aveugler les ennemis. Gardien Spirituel + Explosion Lumineuse appliquent l'Aveuglement en AoE. Un ennemi aveuglé a le Désavantage à tout — contrôle permanent via les dégâts radiants.",
     stats: { STR: 14, DEX: 10, CON: 14, INT: 8, WIS: 17, CHA: 12 },
     featProgression: [
       { level: 4, feat: "+1 SAG (17→18) + Résistant (CON)", reason: "Augmente le DD des sorts. Résistant CON pour les JdS de Concentration." },
@@ -156,10 +156,10 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
   {
     id: "nuke_tempete",
     name: "Le Nuke Tempête",
-    classes: "10 Ensorceleur Âme Draconique (Foudre) / 2 Clerc Domaine de la Tempête",
-    coreRole: "Dégâts Monocibles Magiques Maximum",
+    classes: "10 Ensorceleur Tempête / 2 Clerc Domaine de la Tempête",
+    coreRole: "Dégâts Magiques AoE Maximum",
     keyMechanic:
-      "Conduit Divin (Tempête) = max dégâts foudre/tonnerre 1×/court repos. Ensorceleur Draconique (Foudre) +CHA aux dégâts de foudre. Mouiller l'ennemi avec Création d'Eau avant = vulnérabilité foudre (dégâts ×2). Un Appel de la Foudre upcasté fait 60+ dégâts en un sort.",
+      "Création d'Eau + Éclair + Conduit Divin = Dégâts Foudre Maximisés doublés. Le Conduit Divin (Tempête) maximise les dés foudre/tonnerre 1×/court repos. Mouiller l'ennemi avec Création d'Eau = vulnérabilité foudre (×2). Un Appel de la Foudre upcasté fait 60+ dégâts en un sort.",
     stats: { STR: 8, DEX: 14, CON: 14, INT: 10, WIS: 13, CHA: 17 },
     featProgression: [
       { level: 4, feat: "Initié Élémentaire (Foudre)", reason: "Résistance foudre + 1d4 bonus foudre sur les sorts." },
@@ -236,7 +236,7 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
   {
     id: "fire_sorlock",
     name: "La Mitrailleuse de Feu (Fire Sorlock)",
-    classes: "11 Ensorceleur Draconique (Feu) / 1 Occultiste",
+    classes: "11 Ensorceleur Draconique (Feu) / 1 Occultiste Félon",
     coreRole: "DPS Magique Soutenu à Distance",
     keyMechanic:
       "Rayon Ardent (Scorching Ray) upcasté + Chapeau d'Acuité + Métamagie (Incantation Rapide). Chaque rayon applique +CHA aux dégâts (Draconique Feu) et touche séparément → Acuité Arcanique sur chaque hit. Décharge Occulte en tour de magie entre les sorts payants pour un DPS illimité.",
@@ -263,7 +263,7 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
   {
     id: "gloom_assassin",
     name: "L'Alpha Strike (Gloom Assassin)",
-    classes: "5 Rôdeur Traqueur Sombre / 4 Roublard Assassin / 3 Guerrier Champion",
+    classes: "5 Rôdeur Traqueur Sombre / 4 Roublard Assassin / 3 Guerrier Maître de Guerre",
     coreRole: "Élimination Surprise Tour 1",
     keyMechanic:
       "Initiative de Traqueur Sombre (Avantage au Tour 1 si pas vu) + Assassinat du Roublard (critique garanti contre les ennemis Surpris) + Surge d'Action du Guerrier. Au Tour 1 : 4-5 attaques, toutes en critique garanti, avec Attaque Sournoise empilée. Un boss peut perdre 50-80% de ses PV avant de jouer.",
@@ -288,6 +288,9 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
 // ---------------------------------------------------------------------------
 // API d'accès
 // ---------------------------------------------------------------------------
+
+/** Alias demandé par l'architecture — même référence que BUILDS_TIER_S */
+export const tierSBuilds: readonly BuildTierS[] = BUILDS_TIER_S;
 
 export function getBuildTierS(id: string): BuildTierS | undefined {
   return BUILDS_TIER_S.find((b) => b.id === id);

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function HomePage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-16 text-center space-y-8">
@@ -13,7 +15,7 @@ export default function HomePage() {
       </div>
 
       <div className="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-        <a
+        <Link
           href="/walkthrough/act3-walkthrough"
           className="group rounded-card border border-border bg-surface-raised p-6 hover:border-gold/40 transition-all duration-200"
         >
@@ -24,9 +26,9 @@ export default function HomePage() {
           <p className="text-xs font-data text-gray-500 mt-1">
             Step-by-step guides with interactive checklists
           </p>
-        </a>
+        </Link>
 
-        <a
+        <Link
           href="/dice"
           className="group rounded-card border border-border bg-surface-raised p-6 hover:border-gold/40 transition-all duration-200"
         >
@@ -37,9 +39,9 @@ export default function HomePage() {
           <p className="text-xs font-data text-gray-500 mt-1">
             Roll with advantage, karmic dice, and exact probabilities
           </p>
-        </a>
+        </Link>
 
-        <a
+        <Link
           href="/bosses/netherbrain"
           className="group rounded-card border border-border bg-surface-raised p-6 hover:border-blood/40 transition-all duration-200"
         >
@@ -50,7 +52,7 @@ export default function HomePage() {
           <p className="text-xs font-data text-gray-500 mt-1">
             Emergency matrices and lethal mechanic breakdowns
           </p>
-        </a>
+        </Link>
       </div>
     </div>
   );

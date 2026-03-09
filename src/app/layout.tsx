@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
           href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
           rel="stylesheet"
@@ -41,24 +43,24 @@ export default function RootLayout({
               </h1>
             </div>
             <nav className="flex items-center gap-6">
-              <a
+              <Link
                 href="/"
                 className="text-xs font-data text-gray-400 hover:text-gold transition-colors"
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/walkthrough/act3-walkthrough"
                 className="text-xs font-data text-gray-400 hover:text-gold transition-colors"
               >
                 Walkthrough
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/dice"
                 className="text-xs font-data text-gray-400 hover:text-gold transition-colors"
               >
                 Dice
-              </a>
+              </Link>
             </nav>
           </div>
         </header>

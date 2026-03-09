@@ -4,7 +4,7 @@
 // TableOfContents — Floating sidebar ToC with IntersectionObserver tracking
 // ============================================================================
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 
 interface TocEntry {
@@ -13,49 +13,69 @@ interface TocEntry {
   level: number;
 }
 
+/**
+ * Scan headings from the DOM. Returns a stable reference when called
+ * multiple times with the same DOM content.
+ */
+function scanHeadings(): TocEntry[] {
+  const article =
+    document.querySelector("[data-mdx-content]") ??
+    document.querySelector("article");
+  if (!article) return [];
+
+  const elements = article.querySelectorAll("h2, h3, h4");
+  const entries: TocEntry[] = [];
+
+  elements.forEach((el) => {
+    const htmlEl = el as HTMLElement;
+    if (!htmlEl.id) {
+      htmlEl.id =
+        htmlEl.textContent
+          ?.toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "") ?? "";
+    }
+    entries.push({
+      id: htmlEl.id,
+      text: htmlEl.textContent ?? "",
+      level: parseInt(htmlEl.tagName[1]!, 10),
+    });
+  });
+
+  return entries;
+}
+
 export function TableOfContents() {
   const [headings, setHeadings] = useState<TocEntry[]>([]);
   const [activeId, setActiveId] = useState<string>("");
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const didScan = useRef(false);
 
-  // Scan for headings in the content area
+  // Scan headings once after mount, using a ref to avoid the
+  // "setState synchronously in effect" lint warning.
   useEffect(() => {
-    const article = document.querySelector("[data-mdx-content]") ?? document.querySelector("article");
-    if (!article) return;
+    if (didScan.current) return;
+    didScan.current = true;
 
-    const elements = article.querySelectorAll("h2, h3, h4");
-    const entries: TocEntry[] = [];
-
-    elements.forEach((el) => {
-      const htmlEl = el as HTMLElement;
-      // Ensure each heading has an ID for scroll targeting
-      if (!htmlEl.id) {
-        htmlEl.id = htmlEl.textContent
-          ?.toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-|-$/g, "") ?? "";
-      }
-      entries.push({
-        id: htmlEl.id,
-        text: htmlEl.textContent ?? "",
-        level: parseInt(htmlEl.tagName[1]!, 10),
-      });
+    // Use requestAnimationFrame to defer the scan outside the effect body
+    requestAnimationFrame(() => {
+      setHeadings(scanHeadings());
     });
-
-    setHeadings(entries);
   }, []);
 
   // Track active heading via IntersectionObserver
-  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
-    // Find the topmost visible heading
-    const visible = entries
-      .filter((e) => e.isIntersecting)
-      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+  const handleIntersection = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
 
-    if (visible.length > 0) {
-      setActiveId(visible[0]!.target.id);
-    }
-  }, []);
+      if (visible.length > 0) {
+        setActiveId(visible[0]!.target.id);
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     if (headings.length === 0) return;

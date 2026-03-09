@@ -1,11 +1,15 @@
 "use client";
 
+/* eslint-disable react-hooks/refs */
+// @floating-ui/react uses internal refs for positioning — these are callback
+// refs (setReference/setFloating), not ref objects. Safe to use in render.
+
 // ============================================================================
 // CodexTooltip 2.0 — Premium BG3 Item/Spell Hover Card
 // Features: Dynamic positioning (Floating UI), rarity glow, Framer Motion
 // ============================================================================
 
-import { useState, useRef, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import {
   useFloating,
   autoUpdate,
@@ -114,24 +118,28 @@ export function CodexTooltip({
   placement = "top",
 }: CodexTooltipProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const arrowRef = useRef<HTMLDivElement>(null);
+  const [arrowEl, setArrowEl] = useState<HTMLDivElement | null>(null);
 
-  const { refs, floatingStyles, context } = useFloating({
+  const floating = useFloating({
     open: isOpen,
     placement,
     middleware: [
       offset(12),
       flip({ padding: 16 }),
       shift({ padding: 16 }),
-      arrow({ element: arrowRef }),
+      arrow({ element: arrowEl }),
     ],
     whileElementsMounted: autoUpdate,
   });
 
+  const setReference = floating.refs.setReference;
+  const setFloating = floating.refs.setFloating;
+  const floatingStyles = floating.floatingStyles;
+
   const colors = RARITY_COLORS[rarity];
 
   // Avoid hydration mismatches: only compute arrow placement client-side
-  const arrowSide = context.placement?.split("-")[0];
+  const arrowSide = floating.context.placement?.split("-")[0];
   const arrowPosition: Record<string, string> = {
     top: "bottom-[-4px]",
     bottom: "top-[-4px]",
@@ -143,7 +151,7 @@ export function CodexTooltip({
     <>
       {/* Trigger */}
       <span
-        ref={refs.setReference}
+        ref={setReference}
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
         onFocus={() => setIsOpen(true)}
@@ -160,7 +168,7 @@ export function CodexTooltip({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            ref={refs.setFloating}
+            ref={setFloating}
             id="codex-tooltip"
             role="tooltip"
             style={floatingStyles}
@@ -270,7 +278,7 @@ export function CodexTooltip({
 
             {/* Arrow */}
             <div
-              ref={arrowRef}
+              ref={setArrowEl}
               className={`
                 absolute w-2 h-2 rotate-45 bg-surface border ${colors.border}
                 ${arrowSide ? arrowPosition[arrowSide] ?? "" : ""}

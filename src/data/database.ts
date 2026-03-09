@@ -149,7 +149,109 @@ export const CODEX: Record<string, CodexEntry> = {
     tags: ["armure-lourde", "légendaire", "acte-3", "feu"],
   },
 
-  // ===== SORTS =====
+  // ===== OBJETS (Acte 1 — Route Pacifique) =====
+
+  epee_flammes_eternelles: {
+    id: "epee_flammes_eternelles",
+    name: "Épée de Flammes Éternelles",
+    type: "objet",
+    rarity: "uncommon",
+    description:
+      "Épée à deux mains enveloppée de flammes magiques. Volée au Commandant Zhalk sur le Nautiloïde, c'est la meilleure arme de l'Acte 1.",
+    stats: [
+      { label: "Dégâts", value: "2d6 tranchants + 1d4 feu" },
+      { label: "Emplacement", value: "Deux mains" },
+      { label: "Localisation", value: "Nautiloïde — Cdt. Zhalk" },
+    ],
+    iconUrl: "/assets/icons/everburn_blade.webp",
+    tags: ["épée-à-deux-mains", "inhabituel", "acte-1", "feu", "nautiloïde"],
+  },
+
+  elixir_geant_collines: {
+    id: "elixir_geant_collines",
+    name: "Élixir de Force de Géant des Collines",
+    type: "objet",
+    rarity: "uncommon",
+    description:
+      "Fixe la Force à 21 jusqu'au prochain Long Repos. Empilable avec d'autres buffs, ce qui permet aux classes non-martiales de frapper aussi fort qu'un Barbare. Disponible chez Tatie Ethel via le Vendor Refresh.",
+    stats: [
+      { label: "Effet", value: "Force → 21" },
+      { label: "Durée", value: "Jusqu'au Long Repos" },
+      { label: "Source", value: "Tatie Ethel (Vendor Refresh)" },
+    ],
+    iconUrl: "/assets/icons/elixir_giant.webp",
+    tags: ["consommable", "inhabituel", "acte-1", "force", "élixir"],
+  },
+
+  etincelle_electrique: {
+    id: "etincelle_electrique",
+    name: "Étincelle Électrique",
+    type: "objet",
+    rarity: "uncommon",
+    description:
+      "Bâton qui octroie le tour de magie Éclair de Sorcière et le sort Aiguille de Sorcière. Excellent pour les lanceurs de sorts en début de partie.",
+    stats: [
+      { label: "Dégâts", value: "1d6 contondants" },
+      { label: "Sort octroyé", value: "Éclair de Sorcière, Aiguille de Sorcière" },
+      { label: "Localisation", value: "Camp Gobelin — Marchand" },
+    ],
+    iconUrl: "/assets/icons/lightning_spark.webp",
+    tags: ["bâton", "inhabituel", "acte-1", "foudre"],
+  },
+
+  ombrecoeur: {
+    id: "ombrecoeur",
+    name: "Ombrecœur",
+    type: "objet",
+    rarity: "rare",
+    description:
+      "Masse +1 accordée par Shar à Shadowheart. Inflige 1d6 dégâts nécrotiques supplémentaires contre les ennemis non protégés par la lumière. Essentielle pour l'Acte 2.",
+    stats: [
+      { label: "Dégâts", value: "1d6+1 contondants + 1d6 nécrotique" },
+      { label: "Enchantement", value: "+1" },
+      { label: "Passif", value: "Bonus nécrotique hors lumière" },
+    ],
+    iconUrl: "/assets/icons/shadowheart_mace.webp",
+    tags: ["masse", "rare", "acte-1", "nécrotique", "shadowheart"],
+  },
+
+  // ===== SORTS (Acte 1) =====
+
+  injonction: {
+    id: "injonction",
+    name: "Injonction",
+    type: "sort",
+    rarity: "common",
+    description:
+      "Sort de niveau 1. Ordonne à une cible de Fuir, s'Approcher, S'arrêter, Lâcher son arme, ou Tomber à terre. 'Lâcher' force un ennemi à laisser tomber son arme — crucial pour voler l'Épée de Flammes Éternelles sur le Nautiloïde.",
+    stats: [
+      { label: "Niveau", value: "1" },
+      { label: "JdS", value: "Sagesse" },
+      { label: "Options", value: "Fuir, Approcher, Arrêter, Lâcher, Terre" },
+      { label: "Portée", value: "18m" },
+    ],
+    iconUrl: "/assets/icons/command.webp",
+    tags: ["enchantement", "clerc", "contrôle", "acte-1"],
+  },
+
+  fletrir: {
+    id: "fletrir",
+    name: "Flétrissure",
+    type: "sort",
+    rarity: "rare",
+    description:
+      "Sort de niveau 4. Draine l'énergie vitale de la cible, infligeant 8d8 dégâts nécrotiques (JdS CON pour moitié). Les plantes et les créatures aquatiques subissent le maximum de dégâts.",
+    stats: [
+      { label: "Niveau", value: "4" },
+      { label: "Dégâts", value: "8d8 nécrotique" },
+      { label: "JdS", value: "Constitution (moitié)" },
+      { label: "Spécial", value: "Dégâts max vs plantes" },
+    ],
+    iconUrl: "/assets/icons/blight.webp",
+    tags: ["nécromancie", "occultiste", "dégâts", "nécrotique"],
+  },
+
+  // ===== SORTS (existants) =====
   divine_smite: {
     id: "divine_smite",
     name: "Châtiment Divin",

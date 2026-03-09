@@ -36,100 +36,148 @@ const ACTE_1: PlaythroughActe = {
   titre: "Acte 1 — Survie",
   sousTitre: "Du Nautiloïde au Bosquet des Druides",
   description:
-    "L'Acte 1 est le plus dangereux en Mode Honneur : vos personnages sont fragiles, les ressources limitées, et chaque combat peut tourner au désastre. L'objectif est d'atteindre le Niveau 4 avec un minimum de risques.",
+    "L'Acte 1 est le plus dangereux en Mode Honneur : vos personnages sont fragiles, les ressources limitées, et chaque combat peut tourner au désastre. L'objectif est d'atteindre le Niveau 4 avec un minimum de risques en suivant la Route Pacifique.",
 
   sections: [
+    // ===== SECTION 1 : LE CRASH & L'ÉCONOMIE =====
     {
-      id: "route_pacifique_niveau_4",
-      titre: "Route Pacifique vers le Niveau 4",
+      id: "crash_et_economie",
+      titre: "Le Crash & L'Économie",
       description:
-        "Maximisez votre XP sans combats dangereux. Cette route évite les rencontres mortelles jusqu'à ce que vous ayez votre don de niveau 4.",
+        "Les premières minutes déterminent votre économie de tout l'Acte 1. L'Épée de Flammes Éternelles est la meilleure arme disponible jusqu'à la Forge Adamantine — ne la manquez pas.",
       etapes: [
         {
-          id: "s1_nautiloide",
-          label: "Nautiloïde : Piller le Commandant Zhalk",
+          id: "s1_injonction_lacher",
+          label: "Nautiloïde : Lancer Injonction (Lâcher) sur le Commandant Zhalk",
           description:
-            "Utilisez Shadowheart pour lancer Injonction sur le diable combattant Zhalk, puis achevez Zhalk avec votre personnage. Pillez la Lame Toujours Ardente avant le crash.",
+            "Dès que le combat commence sur le Nautiloïde, utilisez Shadowheart pour lancer Injonction : Lâcher sur le Commandant Zhalk. Il lâche son Épée de Flammes Éternelles. Ramassez-la IMMÉDIATEMENT avec votre personnage principal. C'est la meilleure arme de tout l'Acte 1 (2d6 tranchants + 1d4 feu).",
           type: "butin",
-          codexRefs: ["everburn_blade"],
+          codexRefs: ["injonction", "epee_flammes_eternelles"],
           critique: true,
         },
         {
-          id: "s1_plage",
+          id: "s1_crash_survie",
+          label: "Survivre au Crash — Ne PAS combattre le Démon",
+          description:
+            "Après avoir récupéré l'épée, courez directement vers le Transponder. Le diable Cambion combat Zhalk — laissez-les se battre entre eux. Interagir avec le Transponder termine la séquence du Nautiloïde. Chaque tour passé en combat est un risque inutile.",
+          type: "avertissement",
+          critique: true,
+        },
+        {
+          id: "s1_plage_recrutement",
           label: "Plage : Recruter Shadowheart et Astarion",
           description:
-            "Recrutez Shadowheart (pod dans le Nautiloïde ou sur la plage) et Astarion (embuscade sur le chemin). Astarion peut être autorisé à boire votre sang une fois sans danger.",
+            "Sur la plage du crash, recrutez Shadowheart (si pas déjà fait dans le pod du Nautiloïde) et trouvez Astarion sur le chemin nord. Astarion est le meilleur DPS à distance grâce à sa Dextérité de 17. Autorisez-le à boire votre sang UNE FOIS pour son bonus d'approbation.",
           type: "companion",
         },
         {
-          id: "s1_exploration_cote",
-          label: "Longer la côte : XP passif",
+          id: "s1_premier_repos",
+          label: "Premier Long Repos — Préparer l'économie",
           description:
-            "Explorez la côte en évitant les combats. Chaque coffre, chaque interaction rapporte de l'XP. Trouvez le parchemin de Rayon Ardent dans la grotte des pêcheurs.",
+            "Faites un Long Repos dès que possible. Vous recevez l'événement de camp avec le Rêve du Tadpole. Vendez tout le loot du Nautiloïde pour accumuler de l'or. Ne dépensez RIEN encore — gardez votre or pour le Vendor Refresh de Tatie Ethel.",
           type: "objectif",
         },
+      ],
+    },
+
+    // ===== SECTION 2 : L'ABUS DU VENDOR REFRESH =====
+    {
+      id: "vendor_refresh",
+      titre: "L'Abus du Vendor Refresh",
+      description:
+        "Le Vendor Refresh est la mécanique la plus puissante de l'Acte 1. Chaque Long Repos régénère le stock des marchands. Tatie Ethel vend des Élixirs de Force de Géant des Collines — avec assez d'or et de repos, vous pouvez en accumuler un stock qui rend n'importe quel personnage viable en mêlée.",
+      etapes: [
         {
-          id: "s1_bosquet",
-          label: "Arriver au Bosquet des Druides",
+          id: "s1_ethel_marche",
+          label: "Trouver Tatie Ethel au Bosquet des Druides",
           description:
-            "Parlez à Zevlor et acceptez de l'aider. NE PAS entrer dans le Bosquet par la porte secrète — utilisez l'entrée principale pour les dialogues d'XP.",
-          type: "objectif",
+            "Tatie Ethel apparaît au Bosquet des Druides déguisée en vieille herboriste. Son inventaire contient l'Élixir de Force de Géant des Collines (Force → 21 jusqu'au Long Repos). C'est l'objet le plus broken de l'Acte 1 : il transforme n'importe quel personnage en machine de guerre.",
+          type: "marchand",
+          codexRefs: ["elixir_geant_collines"],
           critique: true,
         },
         {
-          id: "s1_karlach",
-          label: "Recruter Karlach",
+          id: "s1_vendor_refresh_boucle",
+          label: "Boucle Vendor Refresh : Repos → Acheter → Repos",
           description:
-            "Dirigez-vous vers le Chemin Élevé. Trouvez Karlach près de la rivière. NE PAS l'attaquer — elle est essentielle pour la forge de Dammon. Parlez-lui d'abord.",
-          type: "companion",
+            "Après chaque Long Repos, le stock de Tatie Ethel se régénère. Achetez TOUS ses Élixirs de Force de Géant des Collines à chaque visite. Avec 3-4 cycles de Long Repos, vous accumulez un stock suffisant pour tout l'Acte 1. Chaque Élixir dure un Long Repos complet.",
+          type: "secret",
+          codexRefs: ["elixir_geant_collines"],
+        },
+        {
+          id: "s1_marchands_bosquet",
+          label: "Autres marchands essentiels du Bosquet",
+          description:
+            "Arron (Bosquet) : Parchemins de Hâte, Potions de Soin Supérieures, Flèches +1. Dammon : réparations de Karlach et consommables de forgeron. Le Vendor Refresh s'applique à TOUS les marchands — profitez-en pour stocker les ressources critiques.",
+          type: "marchand",
+          codexRefs: ["haste"],
+        },
+      ],
+    },
+
+    // ===== SECTION 3 : LA TOURNÉE D'EXPLORATION =====
+    {
+      id: "tournee_exploration",
+      titre: "La Tournée d'Exploration",
+      description:
+        "Avec l'Épée de Flammes Éternelles et les Élixirs de Force, vous êtes maintenant équipé pour explorer en sécurité. L'objectif : maximiser l'XP via les dialogues et l'exploration pour atteindre le Niveau 4 AVANT d'engager un combat sérieux.",
+      etapes: [
+        {
+          id: "s1_village_devaste",
+          label: "Village Dévasté : Exploration complète",
+          description:
+            "Le Village Dévasté est la première zone ouverte. Parlez à Zevlor pour lancer la quête principale. Recrutez Wyll qui entraîne les enfants tieffelins. Trouvez Karlach au nord-est près de la rivière — elle est ESSENTIELLE pour Dammon à l'Acte 2. NE COMBATTEZ PAS les gnolls au Chemin Élevé avant le Niveau 4.",
+          type: "objectif",
           codexRefs: ["flail_of_ages"],
           critique: true,
         },
         {
-          id: "s1_wyll",
-          label: "Recruter Wyll au Bosquet",
+          id: "s1_gale_recrutement",
+          label: "Recruter Gale au Portail Ancien",
           description:
-            "Wyll entraîne les enfants tieffelins. Parlez-lui pour le recruter. Il apporte des sorts d'Occultiste utiles pour le début de partie.",
+            "Gale est piégé dans un portail dimensionnel au nord du Village Dévasté. Réussissez les jets de dialogue pour le libérer. Il apporte Contresort et des sorts de contrôle essentiels pour le Mode Honneur. Nourrissez-le avec des objets magiques inutiles pour maintenir son approbation.",
           type: "companion",
+          codexRefs: ["counterspell"],
+        },
+        {
+          id: "s1_repos_waukeen",
+          label: "Repos de Waukeen : Reconnaissance et butin",
+          description:
+            "Le Repos de Waukeen est un avant-poste marchand sur la route nord. Anders et ses « paladins » sont en réalité des serviteurs de Zariel — vous pouvez les combattre pour de l'XP et du bon loot, ou les éviter diplomatiquement. Vérifiez CHAQUE coffre et caisse pour l'XP de découverte.",
+          type: "objectif",
+        },
+        {
+          id: "s1_camp_gobelin",
+          label: "Camp Gobelin : Approche 100% diplomatique",
+          description:
+            "Le Camp Gobelin est accessible PAR DIALOGUE. Utilisez le Charisme ou les pouvoirs du Tadpole pour entrer sans combat. Parlez à Ragzlin, infiltrez le temple. Vous pouvez éliminer les 3 chefs gobelins UN PAR UN en les isolant dans des zones privées. Chaque chef tué = XP massif sans combat ouvert.",
+          type: "objectif",
+        },
+        {
+          id: "s1_ombreterre",
+          label: "Ombreterre : Forge Adamantine (optionnel mais recommandé)",
+          description:
+            "L'Ombreterre est accessible via le trou dans le temple du Camp Gobelin. La Forge Adamantine permet de forger un Clibanion en Adamantine (CA 18, anti-critique, -1 dégâts). Le boss Grym est vulnérable à la lave — utilisez le mécanisme central. Avec l'Élixir de Force + Épée de Flammes Éternelles, ce combat est gérable au Niveau 4.",
+          type: "combat",
+          codexRefs: ["epee_flammes_eternelles", "elixir_geant_collines"],
         },
         {
           id: "s1_sauver_dammon",
-          label: "Sauver Dammon pendant l'attaque gobeline",
+          label: "AVERTISSEMENT : Sauver Dammon à tout prix",
           description:
-            "Si les gobelins attaquent le Bosquet, Dammon peut mourir. Protégez-le en priorité — il est INDISPENSABLE pour le Fléau des Âges à l'Acte 2. Sans Dammon, votre chaîne de failsafe s'effondre.",
+            "Si les gobelins attaquent le Bosquet (quête des Tieffelins), Dammon peut MOURIR. Protégez-le en priorité absolue — il est INDISPENSABLE pour forger le Fléau des Âges à l'Acte 2. Sans Dammon, votre chaîne de failsafe d'armes s'effondre. Si vous avez éliminé les 3 chefs gobelins, l'attaque n'a pas lieu.",
           type: "avertissement",
           codexRefs: ["flail_of_ages"],
           critique: true,
         },
         {
-          id: "s1_marchands",
-          label: "Acheter les consommables essentiels",
+          id: "s1_niveau_4_check",
+          label: "Checkpoint : Vérifier Niveau 4 + Don",
           description:
-            "Chez Arron (Bosquet) : Parchemins de Hâte, Potions de vitesse, Flèches +1. Chez Dammon : réparer l'équipement de Karlach. Chez Boney : Bénédiction de Boney (huile sacrée).",
-          type: "marchand",
-          codexRefs: ["haste"],
-        },
-        {
-          id: "s1_ourse_hibou",
-          label: "Combat optionnel : l'Ourse-Hibou",
-          description:
-            "Le combat contre l'Ourse-Hibou au nid nécessite de gérer l'invocation du compagnon. Si vous avez le niveau 4 avec GWM, c'est faisable. Sinon, PASSEZ — vous pouvez y revenir plus tard.",
-          type: "combat",
-          codexRefs: ["great_weapon_master"],
-        },
-        {
-          id: "s1_goblin_camp",
-          label: "Le Camp Gobelin : Approche diplomatique",
-          description:
-            "Utilisez votre Charisme pour passer les portes sans combat. Parlez à Ragzlin, trouvez le Hobgobelin pour l'Acte 2. Vous pouvez éliminer les 3 chefs gobelins un par un en les isolant.",
+            "Avant de quitter l'Acte 1, assurez-vous que TOUS vos personnages sont Niveau 4. Prenez Maître des Armes à Deux Mains (GWM) sur votre Paladin, ou le Don Alerte sur votre caster. C'est le seuil de puissance minimum pour survivre à l'Acte 2.",
           type: "objectif",
-        },
-        {
-          id: "s1_forge_adamantine",
-          label: "Forge Adamantine (optionnel mais recommandé)",
-          description:
-            "Grymforge est accessible via les Terres Obscures. Forgez un Clibanion en Adamantine (CA 18, anti-critique, -1 dégâts). Le boss Grym est vulnérable à la lave — utilisez le mécanisme.",
-          type: "combat",
+          codexRefs: ["great_weapon_master"],
+          critique: true,
         },
       ],
     },

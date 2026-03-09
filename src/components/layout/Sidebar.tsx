@@ -47,6 +47,7 @@ const NAV_ITEMS: readonly NavItem[] = [
     icon: "🔧",
     children: [
       { label: "Simulateur de Dés", href: "/outils/des", icon: "🎲" },
+      { label: "Initiative (d4)", href: "/outils/initiative", icon: "⚡" },
       { label: "Simulateur de Combat", href: "/outils/combat", icon: "💥" },
     ],
   },

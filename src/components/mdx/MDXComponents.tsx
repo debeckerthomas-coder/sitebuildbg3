@@ -9,6 +9,7 @@ import { SpellTooltip } from "./SpellTooltip";
 import { Checklist } from "./Checklist";
 import { Failsafe } from "./Failsafe";
 import { EmergencyMatrix } from "@/components/combat/EmergencyMatrix";
+import { FailsafeCard } from "@/components/cards/FailsafeCard";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -21,6 +22,7 @@ import type { MDXComponentMap } from "@/types";
  * <Checklist category="item" act={2} />
  * <Failsafe slot="main_hand" buildId="honour_paladin" />
  * <EmergencyMatrix bossId="netherbrain" />
+ * <FailsafeCard missing="Objet raté" fallback="Plan B" condition="..." />
  */
 export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType<any>> = {
   BossCard,
@@ -29,4 +31,5 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   Checklist,
   Failsafe,
   EmergencyMatrix,
+  FailsafeCard,
 };

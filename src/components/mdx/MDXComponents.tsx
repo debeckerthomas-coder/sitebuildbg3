@@ -1,8 +1,6 @@
-"use client";
-
 // ============================================================================
-// MDX Component Map — Maps custom tags to React components
-// This is passed to MDXRemote to enable rich interactive content
+// MDX Component Map — Server-compatible map referencing client components
+// NO "use client" here — this is imported by the RSC MDXRemote
 // ============================================================================
 
 import { BossCard } from "./BossCard";

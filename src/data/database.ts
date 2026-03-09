@@ -561,6 +561,123 @@ export const CODEX: Record<string, CodexEntry> = {
     tags: ["évocation", "lumière", "protection", "acte-2"],
   },
 
+  // ===== OBJETS (Acte 3 — Endgame) =====
+
+  anneau_regeneration: {
+    id: "anneau_regeneration",
+    name: "Anneau de Régénération",
+    type: "objet",
+    rarity: "very_rare",
+    description:
+      "Régénère 1d4 PV au début de chaque tour. Se cumule avec le Heaume de Baldur pour une régénération massive. Disponible au Magasin des Sorcelleries.",
+    stats: [
+      { label: "Régénération", value: "1d4 PV/tour" },
+      { label: "Source", value: "Magasin des Sorcelleries — Ville Basse" },
+    ],
+    iconUrl: "/assets/icons/ring_regen.webp",
+    tags: ["anneau", "très-rare", "acte-3", "régénération"],
+  },
+
+  heritage_maitres: {
+    id: "heritage_maitres",
+    name: "Héritage des Maîtres",
+    type: "objet",
+    rarity: "very_rare",
+    description:
+      "Gants qui confèrent +2 aux jets d'attaque et de dégâts avec les armes. Achetables chez Dammon à la Forge des Neuf (s'il a survécu).",
+    stats: [
+      { label: "Bonus attaque", value: "+2" },
+      { label: "Bonus dégâts", value: "+2" },
+      { label: "Source", value: "Dammon — Forge des Neuf (Acte 3)" },
+    ],
+    iconUrl: "/assets/icons/legacy_masters.webp",
+    tags: ["gants", "très-rare", "acte-3", "dégâts"],
+  },
+
+  globe_invulnerabilite: {
+    id: "globe_invulnerabilite",
+    name: "Globe d'Invulnérabilité",
+    type: "sort",
+    rarity: "legendary",
+    description:
+      "Sort de niveau 6. Crée une barrière immobile qui annule tout sort de niveau 5 ou inférieur dans la zone. Contre obligatoire pour Stormheart Nova d'Ansur et les AoE de Raphaël.",
+    stats: [
+      { label: "Niveau", value: "6" },
+      { label: "Zone", value: "Sphère 3m" },
+      { label: "Concentration", value: "Oui" },
+      { label: "Effet", value: "Immunité sorts ≤ niv. 5" },
+    ],
+    iconUrl: "/assets/icons/globe_invuln.webp",
+    tags: ["abjuration", "protection", "acte-3", "boss"],
+  },
+
+  delivrance_maledictions: {
+    id: "delivrance_maledictions",
+    name: "Délivrance des Malédictions",
+    type: "sort",
+    rarity: "uncommon",
+    description:
+      "Sort de niveau 3. Purge toutes les malédictions d'une créature. Contre OBLIGATOIRE du Marquage Tyrannique de Gortash (~110 dégâts de force = mort instantanée si non purgé).",
+    stats: [
+      { label: "Niveau", value: "3" },
+      { label: "Action", value: "Action" },
+      { label: "Portée", value: "Contact" },
+      { label: "Effet", value: "Purge toutes les malédictions" },
+    ],
+    iconUrl: "/assets/icons/remove_curse.webp",
+    tags: ["abjuration", "purge", "acte-3", "gortash"],
+  },
+
+  immobilisation_personne: {
+    id: "immobilisation_personne",
+    name: "Immobilisation de Personne",
+    type: "sort",
+    rarity: "uncommon",
+    description:
+      "Sort de niveau 2. Paralyse un humanoïde (JdS SAG). La cible paralysée est automatiquement critiquée en mêlée. Fonctionne sur Gortash (humanoïde).",
+    stats: [
+      { label: "Niveau", value: "2" },
+      { label: "JdS", value: "Sagesse" },
+      { label: "Concentration", value: "Oui" },
+      { label: "Spécial", value: "Critiques automatiques en mêlée" },
+    ],
+    iconUrl: "/assets/icons/hold_person.webp",
+    tags: ["enchantement", "contrôle", "paralysie", "humanoïde"],
+  },
+
+  projectile_magique: {
+    id: "projectile_magique",
+    name: "Projectile Magique",
+    type: "sort",
+    rarity: "common",
+    description:
+      "Sort de niveau 1. Projette 3 missiles qui touchent automatiquement (pas de jet d'attaque). Upcasté au niveau 5-6, génère assez de missiles pour briser les 12 charges d'Implacable d'Orin en une action.",
+    stats: [
+      { label: "Niveau", value: "1+" },
+      { label: "Dégâts", value: "1d4+1 force × 3 (base)" },
+      { label: "Touche", value: "Automatique (pas de JdA)" },
+      { label: "Upcast", value: "+1 missile/niveau" },
+    ],
+    iconUrl: "/assets/icons/magic_missile.webp",
+    tags: ["évocation", "force", "auto-touche", "acte-3", "orin"],
+  },
+
+  casque_acuite_arcanique: {
+    id: "casque_acuite_arcanique",
+    name: "Casque d'Acuité Arcanique",
+    type: "objet",
+    rarity: "very_rare",
+    description:
+      "Casque qui applique Acuité Arcanique sur les cibles touchées par des sorts de contrôle. La cible subit -1 aux JdS par charge (cumul jusqu'à -7). Rend les sorts de contrôle quasi-imparables.",
+    stats: [
+      { label: "Effet", value: "Acuité Arcanique (-1 JdS/charge)" },
+      { label: "Cumul max", value: "7 charges" },
+      { label: "Localisation", value: "Grymforge — Acte 1" },
+    ],
+    iconUrl: "/assets/icons/arcane_acuity.webp",
+    tags: ["casque", "très-rare", "contrôle", "acuité"],
+  },
+
   shield_of_faith: {
     id: "shield_of_faith",
     name: "Bouclier de la Foi",

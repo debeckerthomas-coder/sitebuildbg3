@@ -73,22 +73,31 @@ export const BOSSES: Record<string, Boss> = {
     ],
     mechanics: [
       {
-        id: "retributive_immunity",
-        name: "Retributive Immunity",
+        id: "immunite_retributive_honneur",
+        name: "Immunité Rétributive — Mécanique Mode Honneur",
         severity: "lethal",
         description:
-          "In Phase 2, every melee hit you land triggers 2d8 psychic damage BACK to the attacker. This is NOT a reaction — it triggers on EVERY hit.",
+          "EXCLUSIF MODE HONNEUR : à la fin de chaque round, le Cerveau devient totalement immunisé à TOUS les types de dégâts qu'il a subis durant ce round, pour le round suivant. Mélanger tous les types au Tour 1 = 0 dégât au Tour 2.",
         counterplay:
-          "Use ranged attacks, spells, or Throw builds. If you must melee, ensure Temp HP / Death Ward are active. Blade Ward halves the retributive damage.",
+          "Segmentez vos dégâts ! Tour 1 = Magique (Foudre, Froid, Force). Tour 2 = Martial (Radiant, Contondant, Tranchant). Alternez. Un seul personnage avec le mauvais type ruine le tour suivant.",
+      },
+      {
+        id: "retributive_melee",
+        name: "Dégâts Rétributifs Mêlée (Phase 2)",
+        severity: "lethal",
+        description:
+          "En dessous de 50% PV, chaque attaque de mêlée renvoie 2d8 psychiques à l'attaquant. Ce n'est PAS une réaction — ça se déclenche sur CHAQUE hit.",
+        counterplay:
+          "Passez en attaques à distance : sorts, Décharge Occulte, lancers d'arme. Si vous devez frapper en mêlée, Protection contre la Mort + PV temporaires obligatoires.",
       },
       {
         id: "dominate_save",
-        name: "Dominate — WIS Save DC 20",
+        name: "Domination — JdS SAG DC 20",
         severity: "lethal",
         description:
-          "A dominated ally with Great Weapon Master can one-shot your squishiest character.",
+          "Un allié dominé avec Maître des Armes à Deux Mains peut one-shot votre personnage le plus fragile en un coup.",
         counterplay:
-          "Cast Freedom of Movement pre-fight. Keep WIS save boosters: Aura of Protection (Paladin 6), Ring of Protection, Cloak of Protection.",
+          "Lancez Liberté de Mouvement avant le combat. Aura de Protection du Paladin 6 (+CHA aux JdS), Anneau de Protection, Cape de Protection pour maximiser les JdS de Sagesse.",
       },
     ],
     loot: [],
@@ -346,6 +355,240 @@ export const BOSSES: Record<string, Boss> = {
     ],
     loot: [],
     tags: ["boss-majeur", "myrkul", "mort-vivant", "acte-2"],
+  },
+
+  gortash: {
+    id: "gortash",
+    name: "Gortash, Élu de Baine",
+    icon: "/icons/bosses/gortash.webp",
+    act: 3,
+    location: "Forteresse de Wyrm's Rock — Salle du Trône",
+    hitPoints: 250,
+    armourClass: 19,
+    initiativeBonus: 3,
+    abilities: {
+      strength: 16,
+      dexterity: 16,
+      constitution: 18,
+      intelligence: 18,
+      wisdom: 14,
+      charisma: 16,
+    },
+    phases: [
+      {
+        name: "Phase Unique — Élu de Baine",
+        description:
+          "Gortash est un combattant polyvalent avec des capacités divines de Baine. Sa mécanique Mode Honneur, Marquage Tyrannique, peut tuer instantanément.",
+        actions: [
+          {
+            name: "Marquage Tyrannique (Mode Honneur)",
+            description:
+              "Marque une cible. Après 2 tours, la malédiction se déclenche et inflige ~110 dégâts de force. Mort instantanée si non purgée.",
+            damage: "~110 force",
+            isLegendary: true,
+          },
+          {
+            name: "Attaques Multiples",
+            description:
+              "3 attaques avec son marteau de guerre +3. +11 au toucher, 1d8+6 contondants chacune.",
+            damage: "1d8+6 bludgeoning ×3",
+            isLegendary: false,
+          },
+        ],
+        immunities: ["poison"],
+        resistances: ["necrotic"],
+      },
+    ],
+    mechanics: [
+      {
+        id: "marquage_tyrannique",
+        name: "Marquage Tyrannique — Mort Différée",
+        severity: "lethal",
+        description:
+          "Mécanique Mode Honneur exclusive. Gortash marque un personnage — après 2 tours, la malédiction explose pour ~110 dégâts de force. Mort instantanée sur la plupart des personnages.",
+        counterplay:
+          "Préparez Délivrance des Malédictions (Remove Curse) sur votre Clerc. Purgez le debuff IMMÉDIATEMENT après le marquage. Gardez votre Clerc hors de portée de Gortash pour qu'il ne soit pas stun/silence.",
+      },
+      {
+        id: "gortash_humanoide",
+        name: "Humanoïde — Vulnérable au Contrôle",
+        severity: "info",
+        description:
+          "Gortash est un humanoïde, pas un monstre. Les sorts réservés aux humanoïdes fonctionnent sur lui.",
+        counterplay:
+          "Immobilisation de Personne garantit des critiques automatiques en mêlée. Combinez avec Châtiment Divin pour un burst dévastateur. La paralysie dure 1 tour minimum.",
+      },
+    ],
+    loot: [],
+    tags: ["élu", "baine", "humanoïde", "acte-3"],
+  },
+
+  orin: {
+    id: "orin",
+    name: "Orin, Élue de Bhaal",
+    icon: "/icons/bosses/orin.webp",
+    act: 3,
+    location: "Temple de Bhaal — Égouts",
+    hitPoints: 200,
+    armourClass: 17,
+    initiativeBonus: 4,
+    abilities: {
+      strength: 20,
+      dexterity: 18,
+      constitution: 16,
+      intelligence: 12,
+      wisdom: 10,
+      charisma: 16,
+    },
+    phases: [
+      {
+        name: "Phase 1 — Orin Humaine",
+        description:
+          "Orin combat sous forme humaine avec des attaques de dague empoisonnées et des invocations de cultistes.",
+        actions: [
+          {
+            name: "Attaques Multiples (Dague de Bhaal)",
+            description:
+              "4 attaques de mêlée. +12 au toucher, 1d4+5 perforants + 2d6 poison chacune.",
+            damage: "1d4+5 piercing + 2d6 poison ×4",
+            isLegendary: false,
+          },
+        ],
+        immunities: ["poison"],
+      },
+      {
+        name: "Phase 2 — Forme d'Écorcheur (Slayer)",
+        hpThreshold: 50,
+        description:
+          "Orin se transforme en Écorcheur. Active la mécanique Mode Honneur 'Implacable' avec 12 charges qui réduisent chaque attaque à 1 dégât.",
+        actions: [
+          {
+            name: "Griffes de l'Écorcheur",
+            description:
+              "3 attaques de mêlée. +14 au toucher, 2d8+6 tranchants chacune. Ignore les résistances.",
+            damage: "2d8+6 slashing ×3",
+            isLegendary: false,
+          },
+          {
+            name: "Implacable (Mode Honneur)",
+            description:
+              "12 charges. Chaque attaque subie réduit les dégâts à 1 et consomme 1 charge. Tant qu'il reste des charges, Orin est quasi-invulnérable.",
+            isLegendary: true,
+          },
+        ],
+        immunities: ["poison", "psychic"],
+      },
+    ],
+    mechanics: [
+      {
+        id: "implacable",
+        name: "Implacable — 12 Charges d'Invulnérabilité",
+        severity: "lethal",
+        description:
+          "En Phase 2 (Écorcheur), Orin active Implacable : 12 charges qui réduisent chaque attaque reçue à 1 dégât. Si vous frappez normalement, il faut 12 tours pour les épuiser — bien trop long.",
+        counterplay:
+          "Lancez Projectile Magique upcasté (niveau 5 = 7 missiles, niveau 6 = 8 missiles). Chaque missile compte comme une attaque séparée et consomme 1 charge. Deux castings de Projectile Magique niv. 5 = 14 charges brûlées. ENSUITE votre DPS principal frappe normalement.",
+      },
+    ],
+    loot: [],
+    tags: ["élue", "bhaal", "écorcheur", "acte-3"],
+  },
+
+  raphael: {
+    id: "raphael",
+    name: "Raphaël, Archidiable",
+    icon: "/icons/bosses/raphael.webp",
+    act: 3,
+    location: "Maison de l'Espoir (House of Hope)",
+    hitPoints: 666,
+    armourClass: 20,
+    initiativeBonus: 3,
+    abilities: {
+      strength: 24,
+      dexterity: 16,
+      constitution: 24,
+      intelligence: 22,
+      wisdom: 18,
+      charisma: 26,
+    },
+    phases: [
+      {
+        name: "Phase 1 — Forme Humanoïde",
+        description:
+          "Raphaël sous forme cambion. Accompagné de sbires démoniaques et de 4 Piliers d'Âmes qui le renforcent.",
+        actions: [
+          {
+            name: "Flammes Infernales (AoE)",
+            description:
+              "AoE massive. 8d6 dégâts de feu (JdS DEX DC 19 pour moitié). Zone persistante de 3 tours.",
+            damage: "8d6 fire",
+            isLegendary: false,
+          },
+          {
+            name: "Contresort (Réaction)",
+            description:
+              "Raphaël peut Contresort vos sorts. Il a +8 au jet de Contresort, rendant vos sorts de niveau 4+ vulnérables.",
+            isLegendary: false,
+          },
+        ],
+        resistances: ["fire"],
+      },
+      {
+        name: "Phase 2 — Forme Archidiable",
+        hpThreshold: 50,
+        description:
+          "Raphaël se transforme en Archidiable. Gagne 2 Actions Légendaires par tour et des immunités supplémentaires.",
+        actions: [
+          {
+            name: "Souffle Infernal (Action Légendaire)",
+            description:
+              "Cône. 10d8 dégâts de feu (JdS DEX DC 20). Peut toucher toute l'équipe si regroupée.",
+            damage: "10d8 fire",
+            isLegendary: true,
+          },
+          {
+            name: "Multiattaque (3 attaques)",
+            description:
+              "3 attaques griffes/morsure. +14 au toucher, 2d10+7 chacune.",
+            damage: "2d10+7 ×3",
+            isLegendary: false,
+          },
+        ],
+        immunities: ["fire", "poison"],
+        resistances: ["bludgeoning", "piercing", "slashing"],
+      },
+    ],
+    mechanics: [
+      {
+        id: "piliers_ames",
+        name: "Piliers d'Âmes — Buff Permanent",
+        severity: "warning",
+        description:
+          "4 Piliers d'Âmes renforcent Raphaël (+2 CA, régénération 20 PV/tour, résistance à tous les dégâts). Tant qu'un pilier est debout, Raphaël est quasi-imbattable.",
+        counterplay:
+          "Détruisez les 4 Piliers d'Âmes au Tour 1 en priorité absolue. Chaque pilier a ~40 PV. Utilisez des AoE (Boule de Feu, Éclair) pour en détruire plusieurs à la fois.",
+      },
+      {
+        id: "renvoi_radiant",
+        name: "Renvoi de Dégâts Radiants — Piège",
+        severity: "lethal",
+        description:
+          "NE TAPEZ JAMAIS les sbires de Raphaël avec des dégâts Radiants. Les démons renvoient les dégâts de feu doublés en retour. Un Châtiment Divin sur un sbire = 4d8 feu renvoyés sur l'attaquant.",
+        counterplay:
+          "Réservez les dégâts radiants pour Raphaël UNIQUEMENT. Contre les sbires, utilisez des dégâts physiques ou de froid. Informez toute l'équipe AVANT le combat.",
+      },
+      {
+        id: "globe_obligatoire",
+        name: "Globe d'Invulnérabilité — Obligatoire",
+        severity: "warning",
+        description:
+          "Les AoE de feu de Raphaël (8d6 à 10d8) peuvent wipe l'équipe. Sans protection magique, les personnages en robe meurent en 1-2 AoE.",
+        counterplay:
+          "Globe d'Invulnérabilité annule toutes ses AoE de niveau 5 ou moins. Gardez-le pour les phases critiques. Résistance au feu (sort ou équipement) comme backup.",
+      },
+    ],
+    loot: ["helldusk_armour"],
+    tags: ["archidiable", "cambion", "maison-espoir", "acte-3"],
   },
 };
 

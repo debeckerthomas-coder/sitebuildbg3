@@ -363,82 +363,177 @@ const ACTE_2: PlaythroughActe = {
 
 const ACTE_3: PlaythroughActe = {
   acte: 3,
-  titre: "Acte 3 — La Porte de Baldur",
-  sousTitre: "Endgame et la Confrontation Finale",
+  titre: "Acte 3 — La Porte de Baldur & Le Cerveau Vénérable",
+  sousTitre: "Endgame, les Élus, et la Confrontation Finale",
   description:
-    "L'Acte 3 est le plus riche en contenu et en équipement légendaire. La priorité : vaincre Ansur (Pourfendeuse + Heaume), puis Raphaël (Armure Infernale), puis le Cerveau Ancien.",
+    "L'Acte 3 est le plus long et le plus libre. L'objectif est d'atteindre le Niveau 12 rapidement avant d'affronter les Élus restants. Attention : presque tous les combats de boss ici sont des « Tueurs de Run ».",
 
   sections: [
+    // ===== SECTION 1 : RIVINGTON & EXPLORATION =====
     {
-      id: "preparation_endgame",
-      titre: "Préparation Endgame",
+      id: "rivington_exploration",
+      titre: "Rivington & Exploration (Priorité Niveau 12)",
       description:
-        "Récupérez l'équipement légendaire avant le combat final.",
+        "Explorez Rivington et la Ville Basse pour accumuler XP et équipement légendaire AVANT d'affronter les boss. Chaque objet récupéré ici change radicalement vos chances de survie.",
       etapes: [
         {
-          id: "s3_ansur",
-          label: "Voie du Wyrm — Vaincre Ansur",
+          id: "s3_cirque_akabi",
+          label: "Cirque de la Fin des Jours — Nyrulna & Bénédiction de Boney",
           description:
-            "Ansur est un dragon mort-vivant avec Nova Cœurtempête (10d8 foudre AoE). Quand il s'envole et charge, TOUT LE GROUPE doit se mettre à couvert derrière les piliers ou utiliser Globe d'Invulnérabilité. Contresort NE FONCTIONNE PAS — c'est une capacité, pas un sort.",
-          type: "combat",
-          codexRefs: ["baldurans_giantslayer", "helmet_of_balduran", "counterspell"],
-          critique: true,
-        },
-        {
-          id: "s3_raphael",
-          label: "Maison de l'Espoir — Vaincre Raphaël",
-          description:
-            "Entrez via le portail de Helsik. Raphaël a des Actions Légendaires et peut lancer Contresort. Stratégie : concentrez-le avec le Châtiment Divin avant qu'il ne se transforme. L'Armure Infernale est la récompense.",
-          type: "combat",
-          codexRefs: ["helldusk_armour", "divine_smite"],
-          critique: true,
-        },
-        {
-          id: "s3_markoheshkir",
-          label: "Tour de Ramazith — Markoheshkir",
-          description:
-            "Montez la tour de Ramazith au sommet de la Sorcellerie. Le bâton légendaire est sur un piédestal protégé. Résolvez le puzzle pour l'obtenir sans combat.",
-          type: "butin",
-          codexRefs: ["markoheshkir"],
-        },
-        {
-          id: "s3_nyrulna",
-          label: "Cirque d'Akabi — Nyrulna",
-          description:
-            "Le djinn Akabi truque sa roue. Utilisez des sorts de vol ou de perception pour repérer la triche. Volez la roue et gagnez Nyrulna — le meilleur trident de lancer du jeu.",
+            "Achetez la Bénédiction de Boney (~5000 PO, buff permanent). Volez l'anneau du Génie Akabi pour être téléporté dans la jungle et récupérer le trident légendaire Nyrulna. Akabi truque sa roue — utilisez Perception ou Détection de la Magie pour repérer la triche.",
           type: "secret",
           codexRefs: ["nyrulna"],
         },
+        {
+          id: "s3_sorcelleries",
+          label: "Magasin des Sorcelleries — Markoheshkir",
+          description:
+            "Achetez l'Anneau de Régénération au rez-de-chaussée. Infiltrez la Chambre Forte (Sorcerous Vault) via le bureau de Tolna pour récupérer le bâton légendaire Markoheshkir — VITAL pour vos mages. Résolvez le puzzle du piédestal pour l'obtenir sans combat.",
+          type: "butin",
+          codexRefs: ["markoheshkir", "anneau_regeneration"],
+          critique: true,
+        },
+        {
+          id: "s3_forge_neuf",
+          label: "Forge des Neuf — Héritage des Maîtres",
+          description:
+            "Achetez les gants Héritage des Maîtres chez Dammon (s'il a survécu depuis l'Acte 1). +2 aux jets d'attaque ET de dégâts avec toutes les armes. Si Dammon est mort, ces gants sont PERDUS définitivement.",
+          type: "marchand",
+          codexRefs: ["heritage_maitres"],
+        },
       ],
     },
+
+    // ===== SECTION 2 : GORTASH & LE TRÔNE DE FER =====
     {
-      id: "bataille_finale",
-      titre: "La Bataille Finale — Le Cerveau Ancien",
+      id: "economie_gortash",
+      titre: "L'Économie des Actions de Gortash (Fonderie & Trône de Fer)",
       description:
-        "Le combat final contre le Cerveau Ancien (Netherbrain). Deux phases, des mécaniques létales.",
+        "Ne combattez JAMAIS Gortash au moment de son couronnement. Préparez-vous en sabotant sa Fonderie et en sauvant les prisonniers du Trône de Fer d'abord.",
+      etapes: [
+        {
+          id: "s3_fonderie",
+          label: "Fonderie de la Garde d'Acier — Titan (~350 PV)",
+          description:
+            "Désactivez les robots de la Fonderie avant de combattre le Titan de la Garde d'Acier. Le Titan est vulnérable à la Foudre. BRISEZ son bouclier défensif IMMÉDIATEMENT sous peine de wipe total — il devient invulnérable tant que le bouclier est actif.",
+          type: "combat",
+          critique: true,
+        },
+        {
+          id: "s3_trone_fer",
+          label: "Trône de Fer — Sauvetage chronométré (5 tours !)",
+          description:
+            "Sauvetage chronométré en 5 tours en Mode Honneur. Utilisez Pas Brumeux, Hâte et des Potions de Vitesse pour traverser les cellules. Protégez le Duc Gardecorbeau avec Sanctuaire dès sa libération. Si Mizora invoque ses araignées explosives, NE LES ATTAQUEZ PAS — elles explosent en chaîne.",
+          type: "objectif",
+          codexRefs: ["pas_brumeux", "haste", "sanctuary"],
+          critique: true,
+        },
+      ],
+    },
+
+    // ===== SECTION 3 : LES ÉLUS =====
+    {
+      id: "les_elus",
+      titre: "Les Élus : Gortash & Orin",
+      description:
+        "Les deux Élus restants sont des combats de boss avec des mécaniques Mode Honneur exclusives. Préparez les contre-sorts SPÉCIFIQUES avant d'engager.",
+      etapes: [
+        {
+          id: "s3_gortash_boss",
+          label: "Gortash (Élu de Baine) — Marquage Tyrannique",
+          description:
+            "Mécanique Honneur exclusive : Marquage Tyrannique. La malédiction frappe à ~110 dégâts de force = Mort instantanée si non purgée. CONTRE ABSOLU : préparez Délivrance des Malédictions sur votre Clerc. Gortash est humanoïde → Immobilisation de Personne fonctionne pour garantir des critiques.",
+          type: "combat",
+          codexRefs: ["delivrance_maledictions", "immobilisation_personne"],
+          critique: true,
+        },
+        {
+          id: "s3_orin_boss",
+          label: "Orin (Élue de Bhaal) — Implacable (12 charges)",
+          description:
+            "Phase Écorcheur (Slayer). Mécanique Honneur : Implacable avec 12 charges — réduit chaque attaque à 1 dégât. CONTRE ABSOLU : lancez Projectile Magique upcasté (niv. 5 ou 6) pour briser ses 12 boucliers en une seule action (chaque missile = 1 charge). ENSUITE votre DPS principal frappe normalement.",
+          type: "combat",
+          codexRefs: ["projectile_magique"],
+          critique: true,
+        },
+      ],
+    },
+
+    // ===== SECTION 4 : BOSS OPTIONNELS =====
+    {
+      id: "boss_optionnels",
+      titre: "Boss Optionnels (Danger Extrême)",
+      description:
+        "Ces boss sont optionnels mais donnent le meilleur équipement du jeu. Chacun a une mécanique qui peut wipe instantanément votre groupe si vous n'êtes pas préparé.",
+      etapes: [
+        {
+          id: "s3_raphael_boss",
+          label: "Raphaël (Maison de l'Espoir) — 666 PV, 2 Actions Légendaires",
+          description:
+            "Entrez via le portail de Helsik. NE TAPEZ JAMAIS ses sbires avec des dégâts Radiants — ils renvoient les dégâts de feu doublés. Détruisez les 4 Piliers d'Âmes au Tour 1 pour affaiblir Raphaël. Globe d'Invulnérabilité est OBLIGATOIRE contre ses AoE. L'Armure Infernale est la récompense.",
+          type: "combat",
+          codexRefs: ["helldusk_armour", "globe_invulnerabilite"],
+          critique: true,
+        },
+        {
+          id: "s3_ansur_boss",
+          label: "Ansur le Dragon — 600 PV, Nova Cœurtempête",
+          description:
+            "Nova Cœurtempête = 10d8 foudre AoE = one-shot de toute l'équipe. Quand Ansur s'envole et charge, Globe d'Invulnérabilité ou mort. Contresort NE FONCTIONNE PAS — c'est une capacité, pas un sort. La Pourfendeuse de Géant de Baldur et le Heaume de Baldur sont les récompenses.",
+          type: "combat",
+          codexRefs: ["baldurans_giantslayer", "helmet_of_balduran", "globe_invulnerabilite"],
+          critique: true,
+        },
+      ],
+    },
+
+    // ===== SECTION 5 : COMBAT FINAL =====
+    {
+      id: "combat_final_netherbrain",
+      titre: "Le Combat Final : Cerveau Vénérable (Netherbrain)",
+      description:
+        "Point de non-retour : le Bassin Morphique. Le Cerveau Vénérable a une mécanique Mode Honneur exclusive qui rend le combat radicalement différent du mode normal.",
       etapes: [
         {
           id: "s3_preparation_finale",
-          label: "Préparation avant le Cerveau Ancien",
+          label: "Préparation FINALE — Point de non-retour",
           description:
-            "Équipez toute l'équipe en légendaire. Buff pré-combat : Hâte, Protection contre la Mort, Liberté de Mouvement. Positionnez l'Aura de Protection du Paladin au centre du groupe.",
+            "Équipez toute l'équipe en légendaire. Buffs pré-combat OBLIGATOIRES : Hâte, Protection contre la Mort, Liberté de Mouvement, PV temporaires. Positionnez l'Aura de Protection du Paladin au centre du groupe. Préparez des sources de dégâts VARIÉES (voir mécanique Immunité Rétributive).",
           type: "objectif",
           codexRefs: ["haste"],
+          critique: true,
         },
         {
-          id: "s3_netherbrain_p1",
-          label: "Phase 1 — Assaut de la Couronne",
+          id: "s3_netherbrain_immunite",
+          label: "MÉCANIQUE HONNEUR : Immunité Rétributive (LÉTAL)",
           description:
-            "Le Cerveau Ancien lance Explosion Psychique (4d10, JdS INT DC 18) et peut Dominer vos alliés (JdS SAG DC 20). Un allié dominé avec GWM peut one-shot votre soigneur. Gardez Liberté de Mouvement active.",
+            "Mécanique exclusive Mode Honneur : à la fin de chaque round, le Cerveau devient totalement IMMUNISÉ à TOUS les types de dégâts qu'il a subis durant ce round, pour le round suivant. Si vous mélangez tous vos types de dégâts au Tour 1, vous ne ferez ZÉRO dégât au Tour 2.",
+          type: "avertissement",
+          critique: true,
+        },
+        {
+          id: "s3_netherbrain_strategie",
+          label: "CONTRE ABSOLU : Segmentation des types de dégâts",
+          description:
+            "Tour 1 = Dégâts Magiques Purs UNIQUEMENT (Foudre, Froid, Force, Psychique). Tour 2 = Dégâts Martiaux UNIQUEMENT (Radiant, Contondant, Tranchant, Perforant). Alternez à chaque tour. Coordonnez votre équipe — un seul personnage qui attaque avec le mauvais type ruine le tour suivant pour TOUT LE GROUPE.",
+          type: "combat",
+          codexRefs: ["eldritch_blast"],
+          critique: true,
+        },
+        {
+          id: "s3_netherbrain_domination",
+          label: "Phase 1 : Domination — Protégez vos alliés GWM",
+          description:
+            "Le Cerveau peut Dominer vos alliés (JdS SAG DC 20). Un allié dominé avec GWM peut one-shot votre soigneur en un coup. Gardez Liberté de Mouvement sur vos DPS mêlée. L'Aura de Protection du Paladin (+5 aux JdS) est votre meilleure défense.",
           type: "combat",
           codexRefs: ["great_weapon_master"],
           critique: true,
         },
         {
-          id: "s3_netherbrain_p2",
-          label: "Phase 2 — Immunité Rétributive (LÉTAL)",
+          id: "s3_netherbrain_retributive",
+          label: "Phase 2 : Dégâts Rétributifs Mêlée",
           description:
-            "En dessous de 50% PV, CHAQUE attaque de mêlée vous renvoie 2d8 dégâts psychiques. C'est la cause n°1 de mort en Mode Honneur. PASSEZ EN DISTANCE : sorts, Décharge Occulte, lancer d'arme. Si vous devez frapper en mêlée, assurez Protection contre la Mort + PV temporaires.",
+            "En dessous de 50% PV, chaque attaque de mêlée vous renvoie 2d8 dégâts psychiques. C'est la cause n°1 de mort en fin de combat. PASSEZ EN DISTANCE : Décharge Occulte, sorts, lancers d'arme. Si vous devez frapper en mêlée, assurez Protection contre la Mort + PV temporaires.",
           type: "avertissement",
           codexRefs: ["eldritch_blast"],
           critique: true,

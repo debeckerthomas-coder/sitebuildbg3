@@ -30,6 +30,7 @@ const NAV_ITEMS: readonly NavItem[] = [
     label: "Tier List Builds",
     icon: "⚔️",
     children: [
+      { label: "Tous les Builds (9)", href: "/builds", icon: "📊" },
       { label: "Le Lockadin", href: "/builds/lockadin", icon: "🗡️" },
     ],
   },

@@ -372,6 +372,195 @@ export const CODEX: Record<string, CodexEntry> = {
     tags: ["abjuration", "protection", "clerc"],
   },
 
+  // ===== OBJETS (Acte 2 — Terres Maudites) =====
+
+  hallebarde_vigilance: {
+    id: "hallebarde_vigilance",
+    name: "Hallebarde de Vigilance",
+    type: "objet",
+    rarity: "very_rare",
+    description:
+      "Hallebarde +2 qui confère l'Avantage aux jets d'initiative et empêche d'être Surpris. Achetable chez Roah Moonglow dans les Tours de Hautelune.",
+    stats: [
+      { label: "Dégâts", value: "1d10+2 tranchants" },
+      { label: "Enchantement", value: "+2" },
+      { label: "Passif", value: "Avantage à l'initiative, anti-Surprise" },
+      { label: "Source", value: "Roah Moonglow — Tours de Hautelune" },
+    ],
+    iconUrl: "/assets/icons/halberd_vigilance.webp",
+    tags: ["hallebarde", "très-rare", "acte-2", "initiative"],
+  },
+
+  sang_de_lathandre: {
+    id: "sang_de_lathandre",
+    name: "Le Sang de Lathandre",
+    type: "objet",
+    rarity: "legendary",
+    description:
+      "Masse légendaire bénie par Lathandre. Inflige des dégâts radiants supplémentaires et aveugle les Morts-vivants à proximité. Essentielle contre l'Apôtre de Myrkul pour désactiver ses attaques de zone.",
+    stats: [
+      { label: "Dégâts", value: "1d6+3 contondants + 1d6 radiant" },
+      { label: "Enchantement", value: "+3" },
+      { label: "Passif", value: "Aura aveuglante (Morts-vivants, 6m)" },
+      { label: "Capacité", value: "Bouclier Solaire (1×/long repos)" },
+      { label: "Localisation", value: "Monastère de Rosymorn — Acte 2" },
+    ],
+    iconUrl: "/assets/icons/blood_of_lathander.webp",
+    tags: ["masse", "légendaire", "acte-2", "radiant", "anti-mort-vivant"],
+  },
+
+  lanterne_lunaire: {
+    id: "lanterne_lunaire",
+    name: "Lanterne Lunaire",
+    type: "objet",
+    rarity: "rare",
+    description:
+      "Lanterne enchantée qui protège contre la malédiction d'ombre des Terres Maudites. Contient une Pixie prisonnière — la libérer octroie une bénédiction permanente à tout le groupe.",
+    stats: [
+      { label: "Effet", value: "Protection contre la Malédiction d'Ombre" },
+      { label: "Spécial", value: "Libérer la Pixie = immunité permanente" },
+      { label: "Source", value: "Convoi de Kar'niss / Tours de Hautelune" },
+    ],
+    iconUrl: "/assets/icons/moonlantern.webp",
+    tags: ["lumière", "rare", "acte-2", "protection"],
+  },
+
+  gants_maitre_armes: {
+    id: "gants_maitre_armes",
+    name: "Gants du Maître d'Armes",
+    type: "objet",
+    rarity: "very_rare",
+    description:
+      "Confèrent la maîtrise de TOUTES les armes. Idéal pour les lanceurs de sorts qui veulent utiliser des armes martiales sans multiclassage.",
+    stats: [
+      { label: "Effet", value: "Maîtrise de toutes les armes" },
+      { label: "Source", value: "Araj Oblodra — Tours de Hautelune" },
+    ],
+    iconUrl: "/assets/icons/gloves_weapon_master.webp",
+    tags: ["gants", "très-rare", "acte-2", "maîtrise"],
+  },
+
+  // ===== SORTS (Acte 2 — Combat) =====
+
+  silence: {
+    id: "silence",
+    name: "Silence",
+    type: "sort",
+    rarity: "uncommon",
+    description:
+      "Crée une sphère de silence de 6m de rayon. Aucun sort à composante verbale ne peut être lancé dans la zone. Essentiel contre les lanceurs de sorts comme Balthazar.",
+    stats: [
+      { label: "Niveau", value: "2" },
+      { label: "Zone", value: "Sphère 6m" },
+      { label: "Concentration", value: "Oui" },
+      { label: "Effet", value: "Bloque les sorts verbaux" },
+    ],
+    iconUrl: "/assets/icons/silence.webp",
+    tags: ["illusion", "contrôle", "anti-mage", "acte-2"],
+  },
+
+  tenebres: {
+    id: "tenebres",
+    name: "Ténèbres",
+    type: "sort",
+    rarity: "uncommon",
+    description:
+      "Crée une sphère d'obscurité magique de 4,5m de rayon. Les créatures non-aveugles à l'intérieur sont Aveuglées. Contre l'Apôtre de Myrkul, désactive ses attaques de zone dévastatrices.",
+    stats: [
+      { label: "Niveau", value: "2" },
+      { label: "Zone", value: "Sphère 4,5m" },
+      { label: "Concentration", value: "Oui" },
+      { label: "Effet", value: "Aveuglement dans la zone" },
+    ],
+    iconUrl: "/assets/icons/darkness.webp",
+    tags: ["évocation", "contrôle", "aveuglement", "acte-2"],
+  },
+
+  invisibilite: {
+    id: "invisibilite",
+    name: "Invisibilité",
+    type: "sort",
+    rarity: "uncommon",
+    description:
+      "Rend une créature invisible jusqu'à ce qu'elle attaque ou lance un sort. Permet le repositionnement tactique avant un combat crucial.",
+    stats: [
+      { label: "Niveau", value: "2" },
+      { label: "Concentration", value: "Oui" },
+      { label: "Durée", value: "10 tours" },
+      { label: "Effet", value: "Invisible (fin si attaque/sort)" },
+    ],
+    iconUrl: "/assets/icons/invisibility.webp",
+    tags: ["illusion", "furtivité", "repositionnement"],
+  },
+
+  cecite: {
+    id: "cecite",
+    name: "Cécité",
+    type: "sort",
+    rarity: "uncommon",
+    description:
+      "Aveugle une créature (JdS CON). La créature aveuglée a le Désavantage aux attaques et les attaques contre elle ont l'Avantage. Crucial contre l'Apôtre de Myrkul.",
+    stats: [
+      { label: "Niveau", value: "2" },
+      { label: "JdS", value: "Constitution" },
+      { label: "Durée", value: "10 tours" },
+      { label: "Pas de Concentration", value: "Oui" },
+    ],
+    iconUrl: "/assets/icons/blindness.webp",
+    tags: ["nécromancie", "contrôle", "aveuglement"],
+  },
+
+  pas_brumeux: {
+    id: "pas_brumeux",
+    name: "Pas Brumeux",
+    type: "sort",
+    rarity: "uncommon",
+    description:
+      "Téléportation courte (18m) en Action Bonus. Permet de repositionner instantanément un personnage hors de danger ou sur une position tactique.",
+    stats: [
+      { label: "Niveau", value: "2" },
+      { label: "Action", value: "Action Bonus" },
+      { label: "Portée", value: "18m" },
+      { label: "Effet", value: "Téléportation" },
+    ],
+    iconUrl: "/assets/icons/misty_step.webp",
+    tags: ["conjonction", "mobilité", "action-bonus"],
+  },
+
+  doigt_de_mort: {
+    id: "doigt_de_mort",
+    name: "Doigt de Mort",
+    type: "sort",
+    rarity: "legendary",
+    description:
+      "Sort de niveau 7. Inflige 7d8+30 dégâts nécrotiques (JdS CON pour moitié). Si la cible meurt, elle se relève en zombie sous votre contrôle. Utilisé par l'Apôtre de Myrkul en Mode Honneur.",
+    stats: [
+      { label: "Niveau", value: "7" },
+      { label: "Dégâts", value: "7d8+30 nécrotique" },
+      { label: "JdS", value: "Constitution (moitié)" },
+      { label: "Spécial", value: "Zombie si la cible meurt" },
+    ],
+    iconUrl: "/assets/icons/finger_of_death.webp",
+    tags: ["nécromancie", "dégâts", "nécrotique", "mort-vivant"],
+  },
+
+  lumiere_du_jour: {
+    id: "lumiere_du_jour",
+    name: "Lumière du Jour",
+    type: "sort",
+    rarity: "rare",
+    description:
+      "Crée une sphère de lumière vive de 18m de rayon. Dissipe toute obscurité magique de niveau 3 ou inférieur. Plan B contre la malédiction d'ombre si la Lanterne Lunaire est perdue.",
+    stats: [
+      { label: "Niveau", value: "3" },
+      { label: "Zone", value: "Sphère 18m" },
+      { label: "Durée", value: "10 tours" },
+      { label: "Spécial", value: "Dissipe l'obscurité magique" },
+    ],
+    iconUrl: "/assets/icons/daylight.webp",
+    tags: ["évocation", "lumière", "protection", "acte-2"],
+  },
+
   shield_of_faith: {
     id: "shield_of_faith",
     name: "Bouclier de la Foi",

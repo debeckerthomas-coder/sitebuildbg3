@@ -190,72 +190,167 @@ const ACTE_1: PlaythroughActe = {
 
 const ACTE_2: PlaythroughActe = {
   acte: 2,
-  titre: "Acte 2 — Les Terres Maudites",
-  sousTitre: "Les Ombres de l'Auberge de la Dernière Lumière",
+  titre: "Acte 2 — Les Terres Maudites par l'Ombre",
+  sousTitre: "L'Avatar de la Mort & Le Piège de Balthazar",
   description:
-    "L'Acte 2 est centré sur les Terres Maudites par l'Ombre. La lumière est votre ressource la plus précieuse. Protéger l'Auberge de la Dernière Lumière est critique — si Isobel tombe, l'auberge est détruite et de nombreux PNJ meurent.",
+    "L'Acte 2 punit l'impréparation. Le positionnement et la gestion de la lumière sont primordiaux. Ne rushez jamais les combats principaux. L'Apôtre de Myrkul est le combat le plus mortel du jeu — préparez-vous ou mourrez.",
 
   sections: [
+    // ===== SECTION 1 : SURVIE ET INFILTRATION =====
     {
-      id: "derniere_lumiere",
-      titre: "Auberge de la Dernière Lumière",
+      id: "survie_infiltration",
+      titre: "Survie et Infiltration (Tours de Hautelune)",
       description:
-        "Hub central de l'Acte 2. Protéger Isobel est la priorité absolue.",
+        "Votre première priorité est de sécuriser la protection contre la malédiction d'ombre. Sans la Lanterne Lunaire ou la Bénédiction de la Pixie, vos personnages meurent automatiquement dans les Terres Maudites.",
       etapes: [
         {
-          id: "s2_isobel",
-          label: "Défendre Isobel pendant l'attaque",
+          id: "s2_benediction_pixie",
+          label: "Obtenir la Bénédiction de la Pixie (PRIORITÉ ABSOLUE)",
           description:
-            "Marcus et les Shadows attaquent l'auberge. Si Isobel tombe, la protection lumineuse s'effondre, TOUS les PNJ de l'auberge meurent, y compris Dammon. Protégez Isobel à tout prix : Sanctuaire, Bouclier de la Foi.",
+            "Tendez une embuscade au convoi de Kar'niss (le Drider) avec les Ménestrels. Tuez Kar'niss en priorité et pillez la Lanterne Lunaire. Libérez la Pixie piégée à l'intérieur — elle octroie une immunité PERMANENTE à la malédiction d'ombre pour tout le groupe. C'est la meilleure option possible.",
+          type: "butin",
+          codexRefs: ["lanterne_lunaire"],
+          critique: true,
+        },
+        {
+          id: "s2_failsafe_lanterne",
+          label: "FAILSAFE : Si Kar'niss s'échappe",
+          description:
+            "Si vous ratez le convoi de Kar'niss, foncez à l'Auberge de l'Ultime Lueur. Buffez-vous avec le sort Lumière du Jour pour une protection temporaire. Infiltrez ensuite les Tours de Hautelune pacifiquement pour voler la Lanterne dans la chambre de Balthazar.",
+          type: "avertissement",
+          codexRefs: ["lumiere_du_jour", "lanterne_lunaire"],
+        },
+        {
+          id: "s2_isobel_defense",
+          label: "Défendre Isobel à l'Auberge de l'Ultime Lueur",
+          description:
+            "Marcus et les Ombres attaquent l'auberge. Si Isobel tombe, la protection lumineuse s'effondre — TOUS les PNJ meurent, y compris Dammon. Protégez Isobel à tout prix : Sanctuaire en Action Bonus, puis Bouclier de la Foi pour +2 CA.",
           type: "combat",
           codexRefs: ["sanctuary", "shield_of_faith"],
           critique: true,
         },
         {
-          id: "s2_dammon_forge",
+          id: "s2_marchands_hautelune",
+          label: "Marchands de Hautelune — Achats AVANT l'assaut",
+          description:
+            "AVANT de déclencher l'assaut sur les Tours, infiltrez pacifiquement. Achetez la Hallebarde de Vigilance chez Roah Moonglow (Avantage à l'initiative + anti-Surprise). Chez Araj Oblodra : les Gants du Maître d'Armes (maîtrise de toutes les armes). Ces objets disparaissent après l'assaut.",
+          type: "marchand",
+          codexRefs: ["hallebarde_vigilance", "gants_maitre_armes"],
+          critique: true,
+        },
+        {
+          id: "s2_dammon_fer",
           label: "Donner le Fer Infernal à Dammon",
           description:
-            "Dammon est à l'auberge SI il a survécu à l'Acte 1. Donnez-lui le Fer Infernal pour les améliorations de Karlach. C'est aussi le chemin vers le Fléau des Âges.",
+            "Dammon est à l'auberge SI il a survécu à l'Acte 1. Donnez-lui le Fer Infernal pour les améliorations de Karlach et pour forger le Fléau des Âges. Sans Dammon, cette chaîne d'équipement est PERDUE.",
           type: "objectif",
           codexRefs: ["flail_of_ages"],
           critique: true,
         },
         {
-          id: "s2_equipement",
-          label: "Équipement de mi-jeu",
+          id: "s2_sang_lathandre",
+          label: "Récupérer le Sang de Lathandre (Monastère de Rosymorn)",
           description:
-            "Achetez les améliorations à l'auberge. Le Bouclier +2 chez Dammon, les potions de résistance chez Mattis. Préparez la résistance à la Foudre pour Ansur (Acte 3).",
-          type: "marchand",
+            "Le Sang de Lathandre est une masse légendaire au Monastère de Rosymorn. Son aura aveugle les Morts-vivants à 6m — c'est l'arme ESSENTIELLE contre l'Apôtre de Myrkul. Le porteur doit rester au corps-à-corps pour aveugler le boss passivement. Résolvez le puzzle des vitraux pour l'obtenir.",
+          type: "butin",
+          codexRefs: ["sang_de_lathandre"],
+          critique: true,
         },
       ],
     },
+
+    // ===== SECTION 2 : LE PIÈGE DE BALTHAZAR =====
     {
-      id: "temple_de_shar",
-      titre: "Le Temple de Shar et la Nightsong",
+      id: "piege_balthazar",
+      titre: "Le Piège de Balthazar (Gantelet de Shar)",
       description:
-        "Le donjon majeur de l'Acte 2. La décision sur la Nightsong est irréversible.",
+        "Le Gantelet de Shar contient 3 épreuves et le combat contre Balthazar. Le LIEU du combat est plus important que votre stratégie — un mauvais emplacement = Game Over instantané.",
       etapes: [
         {
-          id: "s2_gauntlet",
-          label: "Épreuves du Gant de Shar",
+          id: "s2_epreuves_shar",
+          label: "Épreuves du Gantelet de Shar",
           description:
-            "Trois épreuves : Foi, Perspicacité, et Fortitude. Shadowheart peut utiliser les autels de Shar pour des bonus. Gardez vos emplacements de sort pour les pièges.",
+            "Trois épreuves : Foi (marcher dans le noir), Perspicacité (puzzle de portes), et Fortitude (combat contre les ombres). Shadowheart peut utiliser les autels de Shar pour des bonus. Gardez vos emplacements de sort pour le combat de Balthazar.",
           type: "objectif",
+        },
+        {
+          id: "s2_balthazar_lieu",
+          label: "AVERTISSEMENT : Ne JAMAIS combattre Balthazar dans la Prison",
+          description:
+            "Ne combattez JAMAIS Balthazar dans la prison de Chantsenuit (Gisombre). Ses sbires morts-vivants vous POUSSERONT dans le vide — Game Over instantané en Mode Honneur, aucun jet de sauvegarde possible. C'est le piège le plus dangereux de l'Acte 2.",
+          type: "avertissement",
+          critique: true,
+        },
+        {
+          id: "s2_balthazar_strategie",
+          label: "Stratégie Honneur : Balthazar dans son Laboratoire",
+          description:
+            "Attaquez Balthazar dans son laboratoire au sein du Gantelet de Shar. FERMEZ LA PORTE derrière vous pour empêcher les renforts. Lancez Silence sur Balthazar au Tour 1 — il ne peut plus lancer de sorts. Éliminez son Golem de Chair avec des dégâts de feu (vulnérabilité). Sans sorts et sans Golem, Balthazar est inoffensif.",
+          type: "combat",
+          codexRefs: ["silence"],
+          critique: true,
         },
         {
           id: "s2_nightsong",
           label: "Libérer la Nightsong (Dame Aylin)",
           description:
-            "CHOIX CRITIQUE : Libérer Dame Aylin active la quête de la Nightsong et donne une alliée puissante pour le combat final. La tuer rompt le pacte de Shadowheart mais détruit un allié clé.",
+            "CHOIX CRITIQUE : Libérer Dame Aylin donne une alliée puissante pour le combat final et active la rédemption de Shadowheart. La tuer rompt le pacte de Shadowheart mais DÉTRUIT un allié clé pour la Phase 1 de l'Apôtre. LIBÉREZ-LA.",
           type: "objectif",
           critique: true,
         },
+      ],
+    },
+
+    // ===== SECTION 3 : BOSS MAJEUR — L'APÔTRE DE MYRKUL =====
+    {
+      id: "apotre_myrkul",
+      titre: "BOSS MAJEUR : L'Apôtre de Myrkul (Combat Tueur de Run)",
+      description:
+        "Le combat le plus dangereux du jeu. L'Aura de Frisson Osseux empêche toute guérison — un personnage tombé est mort DÉFINITIVEMENT. Préparez-vous méticuleusement ou acceptez de perdre votre run.",
+      etapes: [
         {
-          id: "s2_ketheric",
-          label: "Combat Boss : Ketheric Thorm",
+          id: "s2_myrkul_preparation",
+          label: "Préparation OBLIGATOIRE avant le combat",
           description:
-            "Ketheric est invulnérable tant que la Nightsong est emprisonnée. Après sa libération, il perd son immortalité. Phase 2 dans le Sanctuaire de la Lune — préparez la résistance aux dégâts nécrotiques.",
+            "Élixirs de Résistance à la Nécromancie pour TOUS les personnages. Sorts à préparer : Ténèbres (ou Brouillard), Pas Brumeux, Invisibilité, Cécité. Le Sang de Lathandre DOIT être équipé. Protection contre la Mort sur vos personnages fragiles. PV temporaires via Héroïsme ou Armure de Mage.",
+          type: "objectif",
+          codexRefs: ["tenebres", "pas_brumeux", "invisibilite", "cecite", "sang_de_lathandre"],
+          critique: true,
+        },
+        {
+          id: "s2_myrkul_phase1",
+          label: "Phase 1 (Ketheric) : Tuer le Flagelleur Mental au Tour 1",
+          description:
+            "Lancez Invisibilité sur votre personnage le plus mobile (Moine ou Voleur) AVANT de déclencher le dialogue. Positionnez-le derrière Dame Aylin. Quand le combat commence : tuez le Flagelleur Mental au Tour 1 en PRIORITÉ ABSOLUE (il peut stun toute l'équipe). Libérez Aylin à la fin du Tour 1 pour qu'elle combatte avec vous.",
           type: "combat",
+          codexRefs: ["invisibilite"],
+          critique: true,
+        },
+        {
+          id: "s2_myrkul_phase2_regard",
+          label: "Phase 2 : Regard des Morts — Espacement obligatoire",
+          description:
+            "L'Apôtre de Myrkul riposte automatiquement avec Regard des Morts quand il est attaqué : 3d8 nécrotique + Effrayé 2 tours, SANS jet de sauvegarde. Gardez vos personnages ESPACÉS d'au moins 4m pour éviter que l'état Effrayé ne provoque une fuite en chaîne. Les attaques à distance sont préférables.",
+          type: "avertissement",
+          codexRefs: ["sang_de_lathandre"],
+          critique: true,
+        },
+        {
+          id: "s2_myrkul_aura",
+          label: "MÉCANIQUE MORTELLE : Aura de Frisson Osseux",
+          description:
+            "Tout personnage sur la plateforme de Myrkul NE PEUT PAS être soigné et ne peut pas être réanimé s'il tombe à 0 PV. C'est la cause n°1 de Game Over en Mode Honneur sur ce combat. BUFFEZ AVANT D'ENGAGER : Protection contre la Mort, PV temporaires, Élixirs de Résistance Nécrotique.",
+          type: "avertissement",
+          critique: true,
+        },
+        {
+          id: "s2_myrkul_contre",
+          label: "CONTRE ABSOLU : Ténèbres + Sang de Lathandre",
+          description:
+            "Lancez Ténèbres ou Cécité directement sur l'Apôtre. S'il est aveuglé, il ne peut PAS utiliser ses attaques de zone dévastatrices ni cibler vos mages. Le porteur du Sang de Lathandre doit rester au corps-à-corps pour l'aveugler passivement. Tuez les Néchromites AVANT qu'ils n'atteignent le boss — sans eux, l'Apôtre ne peut pas lancer Doigt de Mort.",
+          type: "combat",
+          codexRefs: ["tenebres", "cecite", "sang_de_lathandre", "doigt_de_mort"],
+          critique: true,
         },
       ],
     },

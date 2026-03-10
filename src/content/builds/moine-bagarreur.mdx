@@ -1,0 +1,45 @@
+---
+title: "Le Moine Bagarreur — Guide Complet"
+buildId: moine_bagarreur
+description: "Le build monocible le plus dévastateur du Mode Honneur. Philosophie, progression, et simulation de dégâts."
+---
+
+## Philosophie du Build
+
+Le Moine Bagarreur repose sur un principe simple mais redoutable : **maximiser le nombre d'attaques par tour tout en gonflant chaque frappe avec le modificateur de Force doublé**. Grâce à l'<CodexTooltipById id="elixir_geant_collines" text="Élixir de Force de Géant des Collines" />, votre Force passe à 21, ce qui signifie un modificateur de +5… doublé à +10 par le don Bagarreur des Tavernes sur chaque attaque à mains nues.
+
+Le résultat ? Avec 5 à 6 attaques par tour (Attaque Supplémentaire du Moine + Rafale de Coups + Action Bonus du Voleur), chaque round inflige entre **60 et 80 dégâts** de manière constante, sans consommer aucune ressource rechargeable.
+
+## Progression Clé
+
+La montée en puissance se fait en trois paliers critiques. Le plus important est le niveau 4 :
+
+<SingleStepTracker stepId="moine_feat" label="Niveau 4 : Prendre le don Bagarreur des Tavernes" />
+
+C'est le moment où le build « s'active ». Avant ce don, vous êtes un moine standard. Après, chaque attaque à mains nues ajoute votre modificateur de Force **deux fois** aux dégâts.
+
+<SingleStepTracker stepId="moine_elixir" label="Obtenir l'Élixir de Force de Géant des Collines (Marchands Acte 1)" />
+
+<SingleStepTracker stepId="moine_multiclass" label="Niveau 9 : Multiclasser en Roublard (Voleur) pour la 2e Action Bonus" />
+
+## Simulation de Dégâts
+
+Voici le breakdown mathématique d'une Rafale de Coups complète avec le build en ligne :
+
+<CombatLogMDX base="1d6" statModifier={5} tavernBrawler={5} label="Simuler une Rafale de Coups (Sans arme)" />
+
+Chaque coup de la rafale inflige en moyenne **13.5 dégâts**. Avec 5 attaques par tour, cela représente **67.5 dégâts moyens par round** — sans compter les effets de Paume Ouverte (Prône, Repousser, Empêcher les réactions).
+
+## Plans de Secours
+
+Si vous ratez l'objet clé du build, voici le plan B :
+
+<FailsafeCard missing="Gants d'Étincelle Infernale" fallback="Gants de la Force des Cieux" condition="Si les Gants d'Étincelle ne sont pas trouvés dans les coffres de la Forge d'Adamantine" />
+
+<FailsafeCard missing="Gants d'Habilité (FOR 23)" fallback="Élixir de Force de Géant des Collines (FOR 21)" condition="Si les gants ne sont pas volés au Sous-sol du Bosquet à l'Acte 1" />
+
+## Conseils Mode Honneur
+
+> **Ne gaspillez jamais votre Étourdissement** sur des ennemis mineurs. Gardez-le exclusivement pour les boss et les cibles prioritaires. En Mode Honneur, un Étourdissement raté sur un boss peut signifier un wipe — visez les cibles à faible SAG.
+
+> Le **positionnement est crucial** : restez toujours à portée de mêlée du boss principal, mais évitez les zones d'AoE ennemies. Le Pas Chassé du Moine (Disengage gratuit) vous permet de vous repositionner sans provoquer d'attaques d'opportunité.

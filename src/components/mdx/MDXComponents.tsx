@@ -10,6 +10,9 @@ import { Checklist } from "./Checklist";
 import { Failsafe } from "./Failsafe";
 import { EmergencyMatrix } from "@/components/combat/EmergencyMatrix";
 import { FailsafeCard } from "@/components/cards/FailsafeCard";
+import { CodexTooltipById } from "./CodexTooltipById";
+import { SingleStepTracker } from "./SingleStepTracker";
+import { CombatLogMDX } from "./CombatLogMDX";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -23,6 +26,9 @@ import type { MDXComponentMap } from "@/types";
  * <Failsafe slot="main_hand" buildId="honour_paladin" />
  * <EmergencyMatrix bossId="netherbrain" />
  * <FailsafeCard missing="Objet raté" fallback="Plan B" condition="..." />
+ * <CodexTooltipById id="elixir_geant_collines" text="Élixir de Force" />
+ * <SingleStepTracker stepId="moine_feat" label="Niveau 4 : Prendre le don" />
+ * <CombatLogMDX base="1d6" statModifier={5} label="Simuler une attaque" />
  */
 export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType<any>> = {
   BossCard,
@@ -32,4 +38,7 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   Failsafe,
   EmergencyMatrix,
   FailsafeCard,
+  CodexTooltipById,
+  SingleStepTracker,
+  CombatLogMDX,
 };

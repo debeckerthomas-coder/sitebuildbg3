@@ -1,0 +1,181 @@
+---
+title: "Acte 3 : La Porte de Baldur & Les Élus"
+act: 3
+slug: "acte-3"
+description: "L'Endgame Mode Honneur. Trois Élus, un Archidiable, et le Cerveau Vénérable. Aucune marge d'erreur."
+order: 3
+---
+
+## Atteindre le Niveau 12 — AVANT Tout Boss Majeur
+
+L'Acte 3 est un piège. La ville de Baldur's Gate regorge de quêtes et d'exploration, mais aussi de **combats impossibles si vous n'êtes pas au niveau maximum**. La première règle :
+
+> **NE DÉCLENCHEZ AUCUN combat de boss avant d'être Niveau 12 sur tout le groupe.** Chaque boss de l'Acte 3 a des mécaniques Mode Honneur qui présupposent un groupe au plafond de puissance.
+
+### Route d'XP Optimale (Sans Combat)
+
+<SingleStepTracker stepId="acte3_xp_rivington" label="Explorer Rivington complètement — PNJ, marchands, quêtes secondaires (~8000 XP)" />
+
+<SingleStepTracker stepId="acte3_xp_vault" label="Sorcerous Vault (Chambre Forte Ensorcelée) — Puzzles + loot Tier S (~5000 XP)" />
+
+<SingleStepTracker stepId="acte3_xp_graveyard" label="Cimetière de Baldur's Gate — Quêtes nécromantiques (~3000 XP)" />
+
+<SingleStepTracker stepId="acte3_xp_undercity" label="Sous-Cité — Exploration + marchands cachés (~4000 XP)" />
+
+<SingleStepTracker stepId="acte3_level12" label="Confirmer : TOUT le groupe est Niveau 12" />
+
+### Équipement Endgame
+
+Avant d'engager les boss, vérifiez votre équipement. C'est le moment de finaliser vos builds.
+
+<SingleStepTracker stepId="acte3_equip_markoheshkir" label="Markoheshkir récupéré (Tour de Ramazith — sort de télékinésie)" />
+
+<SingleStepTracker stepId="acte3_equip_nyrulna" label="Nyrulna récupérée (Cirque d'Akabi — Roue de la Fortune)" />
+
+<FailsafeCard missing="Markoheshkir (Tour de Ramazith non complétée)" fallback="Bâton de Tonnerres et Éclairs +2 — disponible chez le marchand de la Sous-Cité" condition="Si le puzzle de la Tour n'est pas résolu ou si Lorroakan est hostile" />
+
+<FailsafeCard missing="Nyrulna (Cirque d'Akabi raté)" fallback="Hache de Retour +2 forgée par Dammon à l'Acte 2" condition="Si le djinn est tué ou si le lancer est raté" />
+
+---
+
+## Les Élus — Ordre de Combat Recommandé
+
+L'ordre dans lequel vous affrontez les Élus **compte**. Voici la séquence optimale :
+
+<SingleStepTracker stepId="acte3_ordre_gortash" label="1er : Gortash (le plus simple, teste votre préparation)" />
+
+<SingleStepTracker stepId="acte3_ordre_orin" label="2e : Orin (nécessite Projectile Magique préparé)" />
+
+<SingleStepTracker stepId="acte3_ordre_raphael" label="3e : Raphaël (OPTIONNEL — le plus dur, mais donne l'Armure Infernale)" />
+
+---
+
+## BOSS : Gortash, Élu de Baine (250 PV)
+
+Gortash est le boss le plus « propre » de l'Acte 3 — un seul ennemi, une seule mécanique mortelle. C'est le test parfait pour valider que votre groupe est prêt pour la suite.
+
+<BossCard id="gortash" />
+
+<EmergencyMatrix bossId="gortash" />
+
+### Stratégie Détaillée
+
+**Le Marquage Tyrannique** est la seule chose qui peut vous tuer ici. Gortash marque un personnage au Tour 1, et au Tour 3, la malédiction explose pour **~110 dégâts de force**. C'est un one-shot sur 95% des personnages.
+
+<SingleStepTracker stepId="acte3_gortash_prep" label="Préparer Délivrance des Malédictions sur le Clerc AVANT le combat" />
+
+La solution est simple : <CodexTooltipById id="delivrance_maledictions" text="Délivrance des Malédictions" /> purge le Marquage instantanément. Lancez-le **dès que** le debuff apparaît — pas au tour suivant, pas quand c'est « pratique ». Immédiatement.
+
+Ensuite, exploitez sa vulnérabilité : Gortash est un **humanoïde**. <CodexTooltipById id="immobilisation_personne" text="Immobilisation de Personne" /> le paralyse, garantissant des **critiques automatiques en mêlée**. Combinez avec un Châtiment Divin niveau 4+ pour un burst de 100+ dégâts en un coup.
+
+<SingleStepTracker stepId="acte3_gortash_immo" label="Lancer Immobilisation de Personne dès que le Marquage est purgé" />
+
+<SingleStepTracker stepId="acte3_gortash_kill" label="Achever Gortash en 2-3 tours" />
+
+---
+
+## BOSS : Orin la Rouge, Élue de Bhaal (200 PV → Forme d'Écorcheur)
+
+Orin est un piège cognitif. Sa Phase 1 est triviale — quelques dagues empoisonnées, des cultistes mineurs. Le vrai combat commence quand elle se transforme en **Écorcheur** à 50% PV.
+
+<BossCard id="orin" />
+
+<EmergencyMatrix bossId="orin" />
+
+### La Mécanique « Implacable » — 12 Charges d'Invulnérabilité
+
+En Phase 2, Orin active **Implacable** : chaque attaque qu'elle reçoit est réduite à **1 dégât** et consomme 1 charge. Elle a **12 charges**. Si vous frappez normalement, il faut 12 attaques juste pour épuiser les charges — pendant ce temps, ses Griffes de l'Écorcheur (2d8+6 × 3) vous déchirent.
+
+> **LA SOLUTION : Projectile Magique.** Chaque missile de <CodexTooltipById id="projectile_magique" text="Projectile Magique" /> compte comme une **attaque séparée**. Un Projectile Magique upcasté au **niveau 5 = 7 missiles = 7 charges brûlées d'un seul sort**. Deux castings = 14 charges. Game over pour Orin.
+
+<SingleStepTracker stepId="acte3_orin_phase1" label="Phase 1 : Amener Orin à 50% PV normalement" />
+
+<SingleStepTracker stepId="acte3_orin_missiles" label="Phase 2 Tour 1 : Lancer Projectile Magique upcasté (Niv. 5 ou 6) × 2 personnages" />
+
+<SingleStepTracker stepId="acte3_orin_burst" label="Phase 2 Tour 2 : Charges épuisées → DPS maximum pour finir" />
+
+---
+
+## BOSS OPTIONNEL : Raphaël, Archidiable (666 PV)
+
+Le combat le plus dur du jeu. **666 PV**, Contresort en réaction, AoE de feu massives, et 4 Piliers d'Âmes qui le rendent quasi-invincible. Ne tentez ce combat que si vous voulez l'<CodexTooltipById id="helldusk_armour" text="Armure Infernale" />.
+
+<BossCard id="raphael" />
+
+<EmergencyMatrix bossId="raphael" />
+
+### Règles de Survie
+
+<SingleStepTracker stepId="acte3_raphael_piliers" label="Tour 1 : Détruire les 4 Piliers d'Âmes (AoE : Boule de Feu, Éclair)" />
+
+<SingleStepTracker stepId="acte3_raphael_globe" label="Préparer Globe d'Invulnérabilité pour la Phase 2" />
+
+<SingleStepTracker stepId="acte3_raphael_radiant" label="JAMAIS de dégâts radiants sur les sbires (renvoi × 2)" />
+
+<FailsafeCard missing="Globe d'Invulnérabilité (emplacement de sort utilisé)" fallback="Résistance au Feu (sort) sur tout le groupe — réduit ses dégâts de moitié" condition="Si l'emplacement de sort niveau 6 est déjà consommé" />
+
+---
+
+## LE POINT DE NON-RETOUR
+
+> Après avoir vaincu les Élus et récupéré les Pierres du Néthéril, vous pouvez affronter le Cerveau Vénérable. **Cette décision est IRRÉVERSIBLE.** Assurez-vous d'avoir complété TOUT ce que vous vouliez faire dans Baldur's Gate.
+
+<SingleStepTracker stepId="acte3_pnr_equip" label="Tout l'équipement BiS est équipé et optimisé" />
+
+<SingleStepTracker stepId="acte3_pnr_elixirs" label="Stock complet d'élixirs, parchemins, et potions de soin supérieures" />
+
+<SingleStepTracker stepId="acte3_pnr_repos" label="Repos Long FINAL avant le Morphic Pool" />
+
+<SingleStepTracker stepId="acte3_pnr_saves" label="Vérifier les sorts préparés de CHAQUE personnage (dernière chance)" />
+
+---
+
+## BOSS FINAL : Le Cerveau Vénérable (Netherbrain — 450 PV)
+
+C'est le dernier combat de votre run Mode Honneur. Tout ce que vous avez construit — les builds, l'équipement, les failsafes — converge ici.
+
+<BossCard id="netherbrain" />
+
+### ⛔ ALERTE ROUGE — MÉCANIQUE MODE HONNEUR EXCLUSIVE ⛔
+
+> **IMMUNITÉ RÉTRIBUTIVE** : À la fin de chaque round, le Cerveau Vénérable devient **totalement immunisé à TOUS les types de dégâts** qu'il a subis durant ce round. Si vous mélangez Foudre + Radiant + Tranchant au Tour 1, le Cerveau est **immunisé aux trois** au Tour 2. Vous devez **segmenter vos types de dégâts par tour**.
+
+<EmergencyMatrix bossId="netherbrain" />
+
+### Protocole de Séparation des Dégâts
+
+C'est la stratégie la plus importante du jeu. Chaque personnage doit savoir **exactement** quel tour il frappe et quel tour il se contente de buffer/soigner.
+
+<SingleStepTracker stepId="brain_t1" label="Tour 1 : Dégâts Magiques UNIQUEMENT (Foudre, Froid, Force)" />
+
+Au Tour 1, seuls vos lanceurs de sorts attaquent. Utilisez : Éclair, Cône de Froid, <CodexTooltipById id="eldritch_blast" text="Décharge Occulte" /> (Force), Projectile Magique (Force). Vos martiaux se positionnent, buffent, soignent.
+
+<SingleStepTracker stepId="brain_t2" label="Tour 2 : Dégâts Martiaux UNIQUEMENT (Radiant, Contondant, Tranchant)" />
+
+Au Tour 2, vos martiaux frappent. Châtiment Divin (Radiant), attaques d'armes (Tranchant/Contondant). Vos lanceurs ne font **aucun dégât** — ils soignent, buffent, ou utilisent <CodexTooltipById id="haste" text="Hâte" /> sur les attaquants.
+
+<SingleStepTracker stepId="brain_t3" label="Tour 3+ : Alterner le cycle — retour aux dégâts Magiques" />
+
+> **ERREUR FATALE LA PLUS COURANTE** : Un personnage avec un enchantement d'arme élémentaire (ex: +1d6 feu sur l'épée) qui frappe au « mauvais » tour. Cela ajoute le type Feu à la liste d'immunités du Cerveau. **Retirez tous les enchantements élémentaires de vos armes avant ce combat.**
+
+### Phase 2 — Sous 50% PV : Dégâts Rétributifs
+
+En dessous de 225 PV, le Cerveau inflige **2d8 psychiques** à chaque attaquant mêlée, sans jet de sauvegarde. Ce n'est PAS une réaction — ça se déclenche sur **chaque coup**.
+
+<SingleStepTracker stepId="brain_phase2_range" label="Phase 2 : Passer en attaques à DISTANCE exclusivement" />
+
+<SingleStepTracker stepId="brain_phase2_dom" label="Préparer Liberté de Mouvement contre Domination (JdS SAG DD 20)" />
+
+<FailsafeCard missing="Liberté de Mouvement (emplacement utilisé)" fallback="Aura de Protection du Paladin 6 (CHA aux JdS) + Cape de Protection + Anneau de Protection" condition="Si aucun emplacement niveau 4 n'est disponible" />
+
+### Exécution Finale
+
+<SingleStepTracker stepId="brain_final_dps" label="Concentrer le DPS restant — alterner les types jusqu'à 0 PV" />
+
+<SingleStepTracker stepId="brain_victory" label="🏆 VICTOIRE — Le Cerveau Vénérable est détruit" />
+
+---
+
+## Épilogue
+
+> Félicitations, Commandant. Si vous lisez ces lignes et que votre sauvegarde affiche « Victoire — Mode Honneur », vous avez accompli l'un des défis les plus exigeants du RPG moderne. Chaque build planifié, chaque failsafe préparé, chaque type de dégât segmenté — tout cela a convergé vers ce moment. Que les dés soient toujours en votre faveur.

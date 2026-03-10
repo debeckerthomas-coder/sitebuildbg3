@@ -2,8 +2,64 @@
 title: "Acte 1 : La Route Pacifique (Niveaux 1 à 4)"
 act: 1
 slug: "acte-1"
-description: "Atteignez le Niveau 4 sans lancer les dés. La fondation de toute run Mode Honneur réussie."
+description: "Atteignez le Niveau 4 sans lancer les dés. Prologue du Nautiloïde, Route Pacifique, Camp Gobelin, et Grymforge — la fondation de toute run Mode Honneur réussie."
 order: 1
+---
+
+## Prologue : Le Crash du Nautiloïde
+
+La lumière est rouge. Des alarmes hurlent dans les entrailles du vaisseau Illithid tandis que des tentacules organiques se contractent autour de vous. Le Nautiloïde est en chute libre au-dessus de la Côte des Épées, et vous avez exactement **six minutes** pour récupérer les objets les plus importants du début de partie — ou les perdre à jamais.
+
+Le Nautiloïde n'est pas un tutoriel. C'est le **premier test de discipline** de votre run Mode Honneur. Chaque objet raté ici est un handicap que vous traînerez pendant tout l'Acte 1.
+
+### La Salle de Commande — L'Épée de Zhalk
+
+La première salle du Nautiloïde contient le Commandeur Zhalk, un cambion en plein combat contre un Flagelleur Mental. Zhalk tient dans sa main droite l'<CodexTooltipById id="epee_flammes_eternelles" text="Épée de Flammes Éternelles" /> — la meilleure arme à deux mains que vous verrez avant la Grymforge, des dizaines d'heures de jeu plus tard.
+
+**Statistiques de l'Épée :** 2d6 tranchants + 1d4 feu = **moyenne 11 dégâts par coup**. À titre de comparaison, la meilleure épée longue trouvable dans la nature à l'Acte 1 fait 1d8+1 = moyenne 5.5. C'est le **double** des dégâts de base.
+
+> **Comment la récupérer :** Lancez <CodexTooltipById id="injonction" text="Injonction : Lâcher" /> sur le Commandeur Zhalk. C'est un sort de Clerc/Paladin de niveau 1 avec un JdS de Sagesse. Zhalk a une SAG de 14 (+2), donc contre un DD de sort de 13 (CHA 16 + maîtrise 2), vous avez **50% de chance de réussite**. Si vous avez Shadowheart dans le groupe, elle peut le lancer au Tour 1.
+
+<SingleStepTracker stepId="nautiloid_command" label="Lancer Injonction : Lâcher sur Zhalk — récupérer l'Épée de Flammes Éternelles" />
+
+**Si Injonction échoue** : Ne paniquez pas. Vous avez un Tour 2. Zhalk et le Flagelleur Mental se battent entre eux — ils ne vous cibleront pas sauf si vous les attaquez. Relancez <CodexTooltipById id="injonction" text="Injonction" /> avec votre deuxième emplacement de sort. Avec deux tentatives, la probabilité combinée de récupérer l'épée monte à **75%**.
+
+> **RÈGLE MODE HONNEUR :** Ne frappez JAMAIS Zhalk en mêlée. Il a une CA de 18 et 3 attaques par tour à +9 au toucher. Un seul tour de riposte peut tuer un personnage niveau 1 (20 PV en moyenne). <CodexTooltipById id="injonction" text="Injonction" /> est la seule approche sans risque.
+
+<FailsafeCard missing="Injonction échoue deux fois (pas de Clerc/Paladin)" fallback="Récupérer l'épée sur le cadavre de Zhalk — il meurt automatiquement au Tour 5 quand le Nautiloïde crashe. Restez à distance et attendez." condition="Si vous n'avez aucun lanceur de sort de niveau 1 avec Injonction" />
+
+<SingleStepTracker stepId="nautiloid_us" label="Fouiller le cadavre d'Us (Flagelleur Mental) — récupérer le Cerveau de l'Intellect Dévoreur" />
+
+### Le Cerveau en Pot — Us, le Serviteur Illithid
+
+Dans la deuxième salle, un cerveau nage dans un bocal. C'est Us, un Intellect Dévoreur. **Libérez-le.** Il vous rejoint comme compagnon temporaire avec 21 PV, une CA de 10, et surtout une attaque de mêlée qui inflige 1d6+3 dégâts + étourdissement (JdS INT DD 12). En Mode Honneur, un ennemi étourdi pendant 1 tour gratuit est inestimable.
+
+Us est un bouclier humain sacrificiel. Mettez-le devant, laissez-le absorber les dégâts, et profitez de son étourdissement pour sécuriser les premiers combats scriptés du Nautiloïde.
+
+<SingleStepTracker stepId="nautiloid_us_liberer" label="Libérer Us dans la salle des cerveaux — le recruter comme compagnon temporaire" />
+
+### Gestion des Repos — Nautiloïde
+
+Le Nautiloïde ne permet **aucun repos**. Vous avez vos emplacements de sort de départ et c'est tout. Pour un Clerc avec 2 emplacements de niveau 1, cela signifie : 1 pour <CodexTooltipById id="injonction" text="Injonction" /> sur Zhalk, 1 pour <CodexTooltipById id="sanctuary" text="Sanctuaire" /> ou <CodexTooltipById id="shield_of_faith" text="Bouclier de la Foi" /> sur votre personnage le plus fragile pendant la séquence de combat du pont.
+
+> **Calcul de survie :** Un personnage niveau 1 a en moyenne 10 PV (Classe d10) ou 8 PV (Classe d8). <CodexTooltipById id="shield_of_faith" text="Bouclier de la Foi" /> ajoute +2 CA, ce qui sur un ennemi avec +5 au toucher contre une CA de base de 16 (cotte de mailles) transforme un taux de touche de 50% en **40%**. Sur 3 attaques ennemies, c'est statistiquement **1 coup évité** — soit 7 à 10 dégâts économisés.
+
+---
+
+## La Plage de l'Écrasement — Premiers Pas sur la Côte
+
+Vous vous réveillez face à la mer, le Nautiloïde en morceaux derrière vous. L'air salé de la Côte des Épées remplace l'atmosphère oppressante du vaisseau. C'est le début réel de votre run.
+
+Le premier réflexe est de **faire un Repos Long immédiatement**. Le crash ne coûte aucune ressource narrative, et vos emplacements de sort sont vides après le Nautiloïde. Avant de parler au moindre PNJ, avant d'explorer quoi que ce soit : cliquez sur Repos Long.
+
+<SingleStepTracker stepId="acte1_plage_repos" label="Repos Long immédiat après le crash — récupérer tous les emplacements de sort" />
+
+<SingleStepTracker stepId="acte1_plage_shadowheart" label="Recruter Shadowheart sur la plage (si pas déjà fait dans le Nautiloïde)" />
+
+<SingleStepTracker stepId="acte1_plage_astarion" label="Recruter Astarion — au nord de la plage (événement : il vous attaque, choisir dialogue)" />
+
+<SingleStepTracker stepId="acte1_plage_gale" label="Recruter Gale — portail téléportique à l'est de la plage (aider à le tirer)" />
+
 ---
 
 ## Pourquoi la Route Pacifique ?
@@ -12,25 +68,37 @@ En **Mode Honneur**, votre run est un one-shot — une seule sauvegarde, un seul
 
 La Route Pacifique est la méta optimale : **atteindre le niveau 4 sans déclencher un seul combat non-scripté**. Pourquoi le niveau 4 ? Parce que c'est le palier des **dons** — et des dons comme <CodexTooltipById id="great_weapon_master" text="Maître des Armes à Deux Mains" /> transforment un personnage médiocre en machine de guerre.
 
+**Les mathématiques sont implacables :** Un personnage niveau 2 avec une épée longue +0 fait 1d8+3 = **7.5 dégâts moyens par attaque**. Ce même personnage au niveau 4 avec <CodexTooltipById id="great_weapon_master" text="GWM" /> activé et l'<CodexTooltipById id="elixir_geant_collines" text="Élixir de Force de Géant des Collines" /> (FOR 21, +5) fait 2d6+15 = **22 dégâts moyens par attaque** avec l'<CodexTooltipById id="epee_flammes_eternelles" text="Épée de Flammes Éternelles" />. C'est une multiplication par **3** de votre DPS.
+
 > **Règle d'or Mode Honneur** : Chaque point d'XP gagné par la diplomatie, l'exploration et la complétion de quêtes est un point d'XP gagné sans risque. Vous avez littéralement **zéro raison** de combattre avant le niveau 4.
 
 ---
 
-## L'Abus du Vendor Refresh
+## L'Abus du Vendor Refresh — L'Économie de la Survie
 
 C'est la technique la plus importante de l'Acte 1. En Mode Honneur, les marchands rechargent leur inventaire **à chaque montée de niveau**. Cela signifie que vous pouvez acheter plusieurs exemplaires d'objets normalement limités.
 
+L'<CodexTooltipById id="elixir_geant_collines" text="Élixir de Force de Géant des Collines" /> est l'objet le plus cassé de l'Acte 1. Il fixe votre Force à **21** jusqu'au prochain repos long, indépendamment de votre score de base. Combiné avec <CodexTooltipById id="great_weapon_master" text="Maître des Armes à Deux Mains" /> au niveau 4, chaque attaque gagne **+10 aux dégâts** avec seulement -5 au toucher — compensé par la Force 21 (+5 au toucher) et la maîtrise (+2).
+
+**Calcul complet du Vendor Refresh :**
+
+| Niveau | Source | Achats Prioritaires | Coût Estimé |
+|--------|--------|-------------------|-------------|
+| 2 | Tatie Ethel | 3× <CodexTooltipById id="elixir_geant_collines" text="Élixir de Force" />, 2× Parchemin de <CodexTooltipById id="sanctuary" text="Sanctuaire" /> | ~300 PO |
+| 3 | Tatie Ethel (refresh) | 3× <CodexTooltipById id="elixir_geant_collines" text="Élixir de Force" />, Flèches +1 | ~350 PO |
+| 4 | Tatie Ethel (refresh) | 3× <CodexTooltipById id="elixir_geant_collines" text="Élixir de Force" />, Potions de Soin Supérieures | ~400 PO |
+
 <SingleStepTracker stepId="vendor_ethel" label="Acheter 3 Élixirs de Force à Tatie Ethel à chaque montée de niveau" />
-
-L'<CodexTooltipById id="elixir_geant_collines" text="Élixir de Force de Géant des Collines" /> est l'objet le plus cassé de l'Acte 1. Il fixe votre Force à **21** jusqu'au prochain repos long, indépendamment de votre score de base. Combiné avec <CodexTooltipById id="great_weapon_master" text="Maître des Armes à Deux Mains" /> au niveau 4, chaque attaque gagne **+10 aux dégâts** avec seulement -5 au toucher — compensé par la Force 21.
-
-**Protocole Vendor Refresh :**
 
 <SingleStepTracker stepId="vendor_refresh_1" label="Niveau 2 : Acheter Élixir de Force + Parchemins de Sanctuaire chez Tatie Ethel" />
 
 <SingleStepTracker stepId="vendor_refresh_2" label="Niveau 3 : Racheter les stocks refresh (Élixirs + Flèches +1)" />
 
-<SingleStepTracker stepId="vendor_refresh_3" label="Niveau 4 : Dernier refresh avant le Camp Gobelin — s'assurer d'avoir 5+ Élixirs" />
+<SingleStepTracker stepId="vendor_refresh_3" label="Niveau 4 : Dernier refresh avant le Camp Gobelin — s'assurer d'avoir 9+ Élixirs au total" />
+
+**Comment financer ces achats ?** Le Nautiloïde contient ~200 PO d'objets vendables (gemmes, équipements des Illithids morts). La plage et les grottes adjacentes ajoutent ~150 PO. Les quêtes pacifiques du Village Dévasté rapportent ~100 PO en récompenses. Total : **~450 PO avant le premier combat**, suffisant pour le premier cycle de Vendor Refresh.
+
+> **Gestion des Repos Longs :** Chaque Repos Long consomme 1 <CodexTooltipById id="elixir_geant_collines" text="Élixir" /> (ils expirent au repos). Limitez vos Repos Longs au strict minimum — idéalement 1 par montée de niveau. Utilisez des Repos Courts (récupération de dés de vie) entre les explorations.
 
 ---
 
@@ -38,74 +106,169 @@ L'<CodexTooltipById id="elixir_geant_collines" text="Élixir de Force de Géant 
 
 ### 1. Le Village Dévasté — La Voie de la Persuasion
 
-Le Village Dévasté est votre première source d'XP massive sans combat. Chaque interaction réussie rapporte entre 20 et 75 XP.
+Les murs de pierre du Village Dévasté se dressent au-dessus de la plaine, un dernier rempart contre le chaos des Terres Sauvages. Derrière ces fortifications de fortune, une communauté de Tieffelins fuit la persécution — et des Druides tentent de les expulser en scellant le Bosquet. L'atmosphère est électrique.
+
+Le Village Dévasté est votre première source d'XP massive sans combat. Chaque interaction réussie rapporte entre 20 et 75 XP. Le seuil du niveau 2 est à **300 XP** — vous pouvez l'atteindre en résolvant **4 à 5 quêtes de dialogue**.
 
 <SingleStepTracker stepId="acte1_village_zevlor" label="Parler à Zevlor — Accepter de l'aider (Persuasion DD 10)" />
 
+**Zevlor** est le chef des Tieffelins. Sa quête est la plus simple : acceptez de l'aider, et vous recevez 25 XP + son épée +1 en récompense. La Persuasion DD 10 est triviale avec un CHA de 14+ (bonus de +2, jet de 8+ = réussite). Avec un CHA de 16, le taux de réussite monte à **65%**.
+
 <SingleStepTracker stepId="acte1_village_kagha" label="Confronter Kagha — Trouver la preuve de la Tresse d'Ombre dans son coffre" />
+
+**Kagha** est la Druidesse qui veut expulser les Tieffelins. La preuve de sa corruption par la Tresse d'Ombre se trouve dans un coffre piégé au fond du Bosquet (Discrétion DD 12 pour s'approcher, Crochetage DD 10 pour le coffre). Une fois la lettre en main, confrontez Kagha devant l'assemblée : l'XP est **doublé** (50 XP au lieu de 25).
 
 <SingleStepTracker stepId="acte1_village_arabella" label="Sauver Arabella — Persuasion DD 15 ou preuve de Kagha" />
 
-> **Astuce Mode Honneur** : Si votre CHA est faible, utilisez un <CodexTooltipById id="sanctuary" text="Sanctuaire" /> avant les dialogues à risque. En cas d'échec critique de Persuasion qui déclenche un combat, <CodexTooltipById id="sanctuary" text="Sanctuaire" /> empêche les PNJ de vous cibler pendant 1 tour — le temps de fuir.
+**Arabella** est l'enfant Tieffelin que Kagha menace avec un serpent venimeux. Si vous avez la preuve de la Tresse d'Ombre, la confrontation est automatique. Sans preuve, c'est un jet de Persuasion DD 15 — un échec signifie qu'Arabella meurt, ce qui verrouille plusieurs quêtes secondaires.
+
+> **Astuce Mode Honneur** : Si votre CHA est faible, utilisez <CodexTooltipById id="sanctuary" text="Sanctuaire" /> avant les dialogues à risque. En cas d'échec critique de Persuasion qui déclenche un combat, <CodexTooltipById id="sanctuary" text="Sanctuaire" /> empêche les PNJ de vous cibler pendant 10 tours (c'est une Action Bonus !) — le temps de fuir et recharger la zone.
 
 ---
 
 ### 2. Le Repos de Waukeen — Sauvetage de Florrick
 
-Le Repos de Waukeen est un événement scriptié : l'auberge brûle, et le Conseiller Florrick est piégé à l'étage. C'est de l'XP **gratuit** si vous connaissez la route.
+La fumée noire s'élève en colonnes épaisses au-dessus de l'auberge du Repos de Waukeen. À travers les fenêtres fracassées, des flammes lèchent les poutres du premier étage. Le Conseiller Florrick, émissaire du Duc Ravengard, est piégé au deuxième étage — et vous avez **8 tours** avant que le bâtiment ne s'effondre.
+
+C'est de l'XP **gratuit** si vous connaissez la route.
 
 <SingleStepTracker stepId="acte1_waukeen_florrick" label="Sauver Florrick — Détruire la porte au 2e étage (Force DD 15 ou crochetage)" />
 
-<SingleStepTracker stepId="acte1_waukeen_coffre" label="Récupérer le coffre du sous-sol AVANT de sauver Florrick (minuterie)" />
+**Route optimale :** Entrez par l'arrière du bâtiment (la porte nord n'est pas en feu). Montez directement au deuxième étage. La porte de la chambre de Florrick est verrouillée — un personnage avec FOR 16+ la défonce en un essai (DD 15, bonus +3 = 60% de réussite). Alternative : crochetage DD 10, plus fiable mais consomme un tour.
+
+**Minuterie critique :** Le feu progresse de 2 cases par tour. Au Tour 4, l'escalier devient un terrain difficile (+coût de mouvement). Au Tour 6, il est bloqué. Au Tour 8, le bâtiment s'effondre et tout le monde meurt. **Ne perdez pas de temps à fouiller le rez-de-chaussée en premier.**
+
+<SingleStepTracker stepId="acte1_waukeen_coffre" label="Récupérer le coffre du sous-sol APRÈS avoir sécurisé Florrick (minuterie)" />
+
+Le sous-sol contient un coffre avec ~80 PO et une masse +1 — récupérez-le **après** avoir sauvé Florrick, en utilisant <CodexTooltipById id="pas_brumeux" text="Pas Brumeux" /> ou un sort d'eau pour éteindre les flammes qui bloquent l'accès.
 
 <FailsafeCard missing="Florrick meurt dans l'incendie" fallback="L'XP de sauvetage est perdu mais la quête continue via le Duc Ravengard à l'Acte 2" condition="Si vous n'atteignez pas le 2e étage en 8 tours" />
+
+**Repos Long après Florrick :** Faites un Repos Long après cet événement. Le dialogue de camp avec Florrick débloque des informations sur le Duc Ravengard qui seront cruciales à l'Acte 2. C'est aussi le moment de parler à tous vos compagnons — Shadowheart, Astarion et Gale ont des dialogues de fidélité qui augmentent leur approbation.
+
+<SingleStepTracker stepId="acte1_waukeen_repos" label="Repos Long après le sauvetage — dialogues de camp avec tous les compagnons" />
 
 ---
 
 ### 3. Le Camp Gobelin — Infiltration Illithid
 
-Le Camp Gobelin est le **gros morceau** de l'Acte 1. C'est ici que vous pouvez gagner le plus d'XP sans combat — mais un seul faux pas et 30+ gobelins vous tombent dessus.
+L'entrée du temple de la Lune Absolue est gardée par une trentaine de gobelins armés jusqu'aux dents, des worgs qui rôdent entre les tentes, et trois chefs de guerre qui ne demandent qu'à vous écraser. L'atmosphère est festive — les gobelins célèbrent une victoire récente — mais un seul mot de travers et cette fête se transforme en votre exécution.
+
+Le Camp Gobelin est le **gros morceau** de l'Acte 1. C'est ici que vous pouvez gagner le plus d'XP sans combat — mais un seul faux pas et 30+ gobelins vous tombent dessus. En Mode Honneur, un combat contre 30 gobelins au niveau 3 est un **wipe garanti** : leur nombre compense leur faiblesse individuelle, et l'action economy (30 actions contre vos 4) est insurmontable.
+
+**Stratégie d'infiltration :**
 
 <SingleStepTracker stepId="acte1_gobelin_porte" label="Utiliser le tadpole Illithid pour passer la porte (choix Illithid gratuit)" />
 
+Le tadpole Illithid vous offre un **pouvoir de persuasion psychique** gratuit sur les gobelins. Ce n'est pas un jet de dé — c'est un succès automatique. Utilisez-le à la porte principale, puis une seconde fois sur le garde intérieur. Chaque utilisation du tadpole rapporte **15 XP** (considéré comme une résolution de quête).
+
+> **Faut-il utiliser les pouvoirs Illithid ?** En Mode Honneur, **oui, sans hésiter**. Les pouvoirs Illithid de l'Acte 1 n'ont aucune conséquence négative à ce stade. La transformation Illithid ne devient un problème qu'à l'Acte 2. L'XP gratuit et l'infiltration sans risque valent largement le « coût » narratif.
+
 <SingleStepTracker stepId="acte1_gobelin_priestesse" label="Convaincre la Prêtresse Gut de vous 'soigner' — puis l'éliminer en 1v1 isolé" />
+
+**La Prêtresse Gut** est l'un des trois chefs gobelins. Elle propose de vous « soigner » de votre tadpole — en réalité, elle veut vous assommer et vous livrer à la Lune Absolue. Acceptez son offre, suivez-la dans sa chambre privée, et quand elle tente de vous endormir (JdS CON DD 12 — trivial à ce stade), retournez-vous et éliminez-la en 1v1. Elle n'a que **52 PV** et une CA de 13. Même un personnage niveau 3 la tue en 2-3 tours. Récompense : **75 XP** + accès à son laboratoire.
 
 <SingleStepTracker stepId="acte1_gobelin_dror" label="Empoisonner le tonneau de Dror Ragzlin (Discrétion DD 14)" />
 
-L'<CodexTooltipById id="etincelle_electrique" text="Étincelle Électrique" /> se trouve chez le marchand gobelin à l'intérieur du temple. N'oubliez pas de l'acheter **avant** de déclencher quoi que ce soit — une fois les gobelins hostiles, le marchand disparaît.
+**Dror Ragzlin** est le chef gobelin le plus dangereux — un Hobgobelin nécromancien avec 113 PV. Le combat direct est extrêmement risqué. La solution : empoisonnez le tonneau de bière dans sa salle de trône. Furtivité DD 14 pour s'approcher du tonneau (utilisez <CodexTooltipById id="invisibilite" text="Invisibilité" /> si disponible), puis ajoutez n'importe quel poison de votre inventaire. Au tour suivant, Dror Ragzlin boit et subit **Empoisonné** (Désavantage aux attaques + JdS pendant 3 tours).
+
+**Mathématiques du poison :** Dror Ragzlin a +7 au toucher. Contre une CA de 16, il touche à 45% (9+ sur un d20). Avec Empoisonné (Désavantage), son taux de touche chute à **20%** (calculé comme P = 0.45² ≈ 0.20). C'est la différence entre un combat mortel et un combat gérable.
+
+L'<CodexTooltipById id="etincelle_electrique" text="Étincelle Électrique" /> se trouve chez le marchand gobelin à l'intérieur du temple. N'oubliez pas de l'acheter **avant** de déclencher quoi que ce soit — une fois les gobelins hostiles, le marchand disparaît. Ce bâton est excellent sur Gale : il octroie le tour de magie Éclair de Sorcière (1d8 foudre à distance) en plus de ses propres tours de magie.
 
 <FailsafeCard missing="Le marchand gobelin est devenu hostile" fallback="L'Étincelle Électrique peut être trouvée sur le cadavre du marchand après le combat" condition="Si vous déclenchez l'alerte avant d'acheter" />
+
+### Le Troisième Chef : Minthara
+
+**Minthara** est la Drow qui planifie l'attaque sur le Bosquet. Vous avez deux options :
+
+1. **L'éliminer en combat** (difficile, 75 PV, CA 17, + gardes Drow)
+2. **La trahir lors de son attaque sur le Bosquet** (méthode recommandée — les défenseurs du Bosquet vous aident, transformant un 4v8 en 15v8)
+
+<SingleStepTracker stepId="acte1_gobelin_minthara" label="Résoudre Minthara — trahison lors de l'attaque du Bosquet OU élimination furtive" />
+
+> **Gestion des Repos au Camp Gobelin :** Ne faites PAS de Repos Long tant que vous êtes à l'intérieur du temple. Un Repos Long dans le Camp Gobelin déclenche un événement de rencontre nocturne qui peut alerter les gardes. Faites vos repos au campement de la plage, puis revenez.
+
+---
+
+## La Grymforge — Le Forge Adamantine
+
+Profondément sous la montagne, accessible via les champignons géants de l'Outreterre, la Grymforge est un atelier nain abandonné qui cache l'une des forges les plus puissantes de Faerûn. La chaleur oppressante du magma, le martèlement lointain de mécanismes anciens, et les ombres dansantes des Duergar créent une atmosphère de menace constante.
+
+La Grymforge est le dernier donjon de l'Acte 1 et contient deux des objets les plus importants du jeu : le <CodexTooltipById id="casque_acuite_arcanique" text="Casque d'Acuité Arcanique" /> et l'accès à la Forge Adamantine elle-même.
+
+### Le Casque d'Acuité Arcanique
+
+<SingleStepTracker stepId="acte1_equip_casque" label="Casque d'Acuité Arcanique — Grymforge (combat contre le Gardien)" />
+
+Le <CodexTooltipById id="casque_acuite_arcanique" text="Casque d'Acuité Arcanique" /> est un objet que vous garderez **jusqu'à la fin du jeu** — de l'Acte 1 jusqu'au Cerveau Vénérable. Voici pourquoi :
+
+Chaque sort de contrôle que vous lancez applique **Acuité Arcanique** sur la cible : -1 aux jets de sauvegarde par charge, cumulable jusqu'à **-7**. Cela signifie qu'après 3 sorts de contrôle (même ratés !), un boss avec un JdS de +5 se retrouve à +2. Après 5 sorts, il est à +0. Vos <CodexTooltipById id="immobilisation_personne" text="Immobilisation de Personne" /> deviennent quasi-imparables.
+
+**Exemple concret (Acte 3) :** Gortash a un JdS SAG de +2. Avec 5 charges d'Acuité Arcanique, son JdS effectif tombe à **-3**. Contre un DD de sort de 17, il doit rouler un **20 naturel** pour résister à <CodexTooltipById id="immobilisation_personne" text="Immobilisation de Personne" />. C'est 5% de chance de résistance — autrement dit, **95% de paralysie garantie**.
+
+### La Forge Adamantine
+
+La Forge Adamantine produit des armes et armures en adamantine — un métal qui rend les critiques ennemis impossibles sur le porteur et qui a un bonus de +1 implicite. Pour un tank Mode Honneur, le Bouclier Adamantin (CA +2, immunité crit) est l'un des meilleurs objets de l'Acte 1.
+
+<SingleStepTracker stepId="acte1_grymforge_forge" label="Activer la Forge Adamantine — fabriquer le Bouclier Adamantin" />
+
+> **Combat du Gardien (Grym) :** Le Gardien de la Forge est un golem avec 300 PV et une immunité à tous les dégâts physiques. La seule façon de le blesser est de le positionner sur la plaque de lave au centre de la forge, puis d'activer le marteau. Chaque coup de marteau inflige **100 dégâts** — 3 coups suffisent. Utilisez <CodexTooltipById id="injonction" text="Injonction : Approche" /> pour le forcer sur la plaque si nécessaire.
 
 ---
 
 ## Équipement Critique Acte 1
 
-Avant de quitter l'Acte 1, vérifiez que vous avez récupéré ces objets essentiels :
+Avant de quitter l'Acte 1, vérifiez que vous avez récupéré ces objets essentiels. Chaque objet manqué est un handicap aux Actes 2 et 3 :
 
-<SingleStepTracker stepId="acte1_equip_everburn" label="Épée Éternelle — Retirer de la main du Commandeur sur le Nautiloïde" />
+<SingleStepTracker stepId="acte1_equip_everburn" label="Épée de Flammes Éternelles — Nautiloïde (Injonction : Lâcher sur Zhalk)" />
 
-L'<CodexTooltipById id="everburn_blade" text="Lame Toujours Ardente" /> est récupérable sur le Nautiloïde en utilisant <CodexTooltipById id="injonction" text="Injonction : Lâcher" /> sur le Commandeur Zhalk. C'est la meilleure arme à deux mains de l'Acte 1 avec ses 2d6 tranchants + 1d4 feu.
-
-<SingleStepTracker stepId="acte1_equip_casque" label="Casque d'Acuité Arcanique — Grymforge (combat contre le Gardien)" />
-
-Le <CodexTooltipById id="casque_acuite_arcanique" text="Casque d'Acuité Arcanique" /> est un objet que vous garderez jusqu'à la fin du jeu. Chaque sort de contrôle applique -1 aux JdS de la cible (cumul jusqu'à -7), rendant vos <CodexTooltipById id="immobilisation_personne" text="Immobilisation de Personne" /> quasi-imparables aux Actes 2 et 3.
+L'<CodexTooltipById id="everburn_blade" text="Lame Toujours Ardente" /> est récupérable sur le Nautiloïde en utilisant <CodexTooltipById id="injonction" text="Injonction : Lâcher" /> sur le Commandeur Zhalk. C'est la meilleure arme à deux mains de l'Acte 1 avec ses 2d6 tranchants + 1d4 feu = **moyenne 11 dégâts par coup**. Avec <CodexTooltipById id="great_weapon_master" text="GWM" /> activé et l'<CodexTooltipById id="elixir_geant_collines" text="Élixir de Force" />, cette arme monte à **moyenne 23.5 dégâts par coup** au niveau 4.
 
 <SingleStepTracker stepId="acte1_equip_gants" label="Gants d'Habilité (FOR 23) — Vol au Sous-sol du Bosquet (Discrétion)" />
 
-<FailsafeCard missing="Gants d'Habilité (vol raté au Bosquet)" fallback="Élixir de Force de Géant des Collines (FOR 21) — disponible chez Tatie Ethel" condition="Si le vol échoue ou si les Druides sont hostiles" />
+<SingleStepTracker stepId="acte1_equip_ombrecoeur" label="Ombrecœur (Shadowheart) — masse +1 nécrotique pour l'Acte 2" />
+
+L'<CodexTooltipById id="ombrecoeur" text="Ombrecœur" /> est la masse personnelle de Shadowheart. Elle inflige 1d6+1 contondants + 1d6 nécrotique contre les ennemis hors lumière — ce qui représente **tous les ennemis de l'Acte 2** dans les Terres Maudites. C'est l'arme parfaite pour la transition.
+
+<FailsafeCard missing="Gants d'Habilité (vol raté au Bosquet)" fallback="Élixir de Force de Géant des Collines (FOR 21) — disponible chez Tatie Ethel. Moins bon (-2 FOR) mais suffisant." condition="Si le vol échoue ou si les Druides sont hostiles" />
 
 ---
 
 ## Checklist de Sortie — Acte 1
 
-Avant de passer à l'Acte 2, confirmez chaque point :
+Avant de passer à l'Acte 2, confirmez chaque point. Un seul oubli peut compromettre votre run :
+
+### Niveaux et Dons
 
 <SingleStepTracker stepId="acte1_exit_level4" label="Tout le groupe est au moins Niveau 4" />
 
-<SingleStepTracker stepId="acte1_exit_dons" label="Tous les dons critiques sont pris (Bagarreur, GWM, Tireur d'Élite)" />
+<SingleStepTracker stepId="acte1_exit_dons" label="Tous les dons critiques sont pris (GWM, Bagarreur, Tireur d'Élite, Attaque Supplémentaire)" />
 
-<SingleStepTracker stepId="acte1_exit_elixirs" label="Stock de 5+ Élixirs de Force de Géant" />
+**Dons recommandés au niveau 4 :**
+- **Martial DPS :** <CodexTooltipById id="great_weapon_master" text="Maître des Armes à Deux Mains" /> (+10 dégâts / -5 toucher)
+- **Moine :** Bagarreur des Tavernes (FOR aux attaques non armées + lancer d'objets)
+- **Archer :** Tireur d'Élite (+10 dégâts / -5 toucher, variante à distance)
+- **Lanceur de sorts :** Augmentation de caractéristique (CHA/INT 18 → DD de sort 14)
 
-<SingleStepTracker stepId="acte1_exit_repos" label="Faire un Repos Long AVANT de traverser la Montagne" />
+### Inventaire
 
-> **POINT DE NON-RETOUR** : Une fois que vous traversez les Montagnes vers les Terres Maudites, il n'y a **pas de retour possible** à l'Acte 1. Tout objet oublié est perdu définitivement. Vérifiez que l'<CodexTooltipById id="epee_flammes_eternelles" text="Épée de Flammes Éternelles" /> et l'<CodexTooltipById id="elixir_geant_collines" text="Élixir de Force" /> sont bien dans votre inventaire.
+<SingleStepTracker stepId="acte1_exit_elixirs" label="Stock de 9+ Élixirs de Force de Géant (3 cycles de Vendor Refresh)" />
+
+<SingleStepTracker stepId="acte1_exit_parchemins" label="Stock de Parchemins de Sanctuaire et de Bouclier de la Foi" />
+
+<SingleStepTracker stepId="acte1_exit_potions" label="10+ Potions de Soin (Régulières ou Supérieures)" />
+
+### Quêtes et Relations
+
+<SingleStepTracker stepId="acte1_exit_compagnons" label="Tous les compagnons disponibles sont recrutés (Shadowheart, Astarion, Gale, Lae'zel, Wyll, Karlach)" />
+
+<SingleStepTracker stepId="acte1_exit_florrick" label="Florrick sauvée au Repos de Waukeen" />
+
+<SingleStepTracker stepId="acte1_exit_bosquet" label="Le Bosquet est sauvé (Kagha confrontée ou Minthara éliminée)" />
+
+### Repos Final
+
+<SingleStepTracker stepId="acte1_exit_repos" label="Faire un Repos Long FINAL — dialogues de camp, derniers achats, derniers Élixirs" />
+
+> **POINT DE NON-RETOUR** : Une fois que vous traversez les Montagnes vers les Terres Maudites, il n'y a **pas de retour possible** à l'Acte 1. Tout objet oublié est perdu définitivement. Vérifiez que l'<CodexTooltipById id="epee_flammes_eternelles" text="Épée de Flammes Éternelles" />, le <CodexTooltipById id="casque_acuite_arcanique" text="Casque d'Acuité Arcanique" />, et vos <CodexTooltipById id="elixir_geant_collines" text="Élixirs de Force" /> sont bien dans votre inventaire. Le <CodexTooltipById id="casque_acuite_arcanique" text="Casque d'Acuité" /> en particulier est **irremplaçable** — aucun objet de l'Acte 2 ou 3 ne reproduit son effet.

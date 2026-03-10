@@ -1,0 +1,107 @@
+---
+title: "Acte 1 : La Route Pacifique (Niveaux 1 à 4)"
+act: 1
+slug: "acte-1"
+description: "Atteignez le Niveau 4 sans lancer les dés. La fondation de toute run Mode Honneur réussie."
+order: 1
+---
+
+## Pourquoi la Route Pacifique ?
+
+En **Mode Honneur**, votre run est un one-shot — une seule sauvegarde, un seul essai. Mourir à l'Acte 1 parce qu'un gobelin a roulé un critique sur votre Moine niveau 2 n'est pas un échec de stratégie, c'est un échec de **planification**.
+
+La Route Pacifique est la méta optimale : **atteindre le niveau 4 sans déclencher un seul combat non-scripté**. Pourquoi le niveau 4 ? Parce que c'est le palier des **dons** — et des dons comme Bagarreur des Tavernes ou Maître des Armes à Deux Mains transforment un personnage médiocre en machine de guerre.
+
+> **Règle d'or Mode Honneur** : Chaque point d'XP gagné par la diplomatie, l'exploration et la complétion de quêtes est un point d'XP gagné sans risque. Vous avez littéralement **zéro raison** de combattre avant le niveau 4.
+
+---
+
+## L'Abus du Vendor Refresh
+
+C'est la technique la plus importante de l'Acte 1. En Mode Honneur, les marchands rechargent leur inventaire **à chaque montée de niveau**. Cela signifie que vous pouvez acheter plusieurs exemplaires d'objets normalement limités.
+
+<SingleStepTracker stepId="vendor_ethel" label="Acheter 3 Élixirs de Force à Tatie Ethel à chaque montée de niveau" />
+
+L'<CodexTooltipById id="elixir_geant_collines" text="Élixir de Force de Géant des Collines" /> est l'objet le plus cassé de l'Acte 1. Il fixe votre Force à **21** jusqu'au prochain repos long, indépendamment de votre score de base. Combiné avec Bagarreur des Tavernes au niveau 4, chaque attaque à mains nues gagne **+10 aux dégâts**.
+
+**Protocole Vendor Refresh :**
+
+<SingleStepTracker stepId="vendor_refresh_1" label="Niveau 2 : Acheter Élixir de Force + Parchemins de Sanctuaire chez Tatie Ethel" />
+
+<SingleStepTracker stepId="vendor_refresh_2" label="Niveau 3 : Racheter les stocks refresh (Élixirs + Flèches +1)" />
+
+<SingleStepTracker stepId="vendor_refresh_3" label="Niveau 4 : Dernier refresh avant le Camp Gobelin — s'assurer d'avoir 5+ Élixirs" />
+
+---
+
+## Quêtes de Complétion Pacifique
+
+### 1. Le Village Dévasté — La Voie de la Persuasion
+
+Le Village Dévasté est votre première source d'XP massive sans combat. Chaque interaction réussie rapporte entre 20 et 75 XP.
+
+<SingleStepTracker stepId="acte1_village_zevlor" label="Parler à Zevlor — Accepter de l'aider (Persuasion DD 10)" />
+
+<SingleStepTracker stepId="acte1_village_kagha" label="Confronter Kagha — Trouver la preuve de la Tresse d'Ombre dans son coffre" />
+
+<SingleStepTracker stepId="acte1_village_arabella" label="Sauver Arabella — Persuasion DD 15 ou preuve de Kagha" />
+
+> **Astuce Mode Honneur** : Si votre CHA est faible, utilisez un <CodexTooltipById id="sanctuary" text="Sanctuaire" /> avant les dialogues à risque. En cas d'échec critique de Persuasion qui déclenche un combat, Sanctuaire empêche les PNJ de vous cibler pendant 1 tour — le temps de fuir.
+
+---
+
+### 2. Le Repos de Waukeen — Sauvetage de Florrick
+
+Le Repos de Waukeen est un événement scriptié : l'auberge brûle, et le Conseiller Florrick est piégé à l'étage. C'est de l'XP **gratuit** si vous connaissez la route.
+
+<SingleStepTracker stepId="acte1_waukeen_florrick" label="Sauver Florrick — Détruire la porte au 2e étage (Force DD 15 ou crochetage)" />
+
+<SingleStepTracker stepId="acte1_waukeen_coffre" label="Récupérer le coffre du sous-sol AVANT de sauver Florrick (minuterie)" />
+
+<FailsafeCard missing="Florrick meurt dans l'incendie" fallback="L'XP de sauvetage est perdu mais la quête continue via le Duc Ravengard à l'Acte 2" condition="Si vous n'atteignez pas le 2e étage en 8 tours" />
+
+---
+
+### 3. Le Camp Gobelin — Infiltration Illithid
+
+Le Camp Gobelin est le **gros morceau** de l'Acte 1. C'est ici que vous pouvez gagner le plus d'XP sans combat — mais un seul faux pas et 30+ gobelins vous tombent dessus.
+
+<SingleStepTracker stepId="acte1_gobelin_porte" label="Utiliser le tadpole Illithid pour passer la porte (choix Illithid gratuit)" />
+
+<SingleStepTracker stepId="acte1_gobelin_priestesse" label="Convaincre la Prêtresse Gut de vous 'soigner' — puis l'éliminer en 1v1 isolé" />
+
+<SingleStepTracker stepId="acte1_gobelin_dror" label="Empoisonner le tonneau de Dror Ragzlin (Discrétion DD 14)" />
+
+L'<CodexTooltipById id="etincelle_electrique" text="Étincelle Électrique" /> se trouve chez le marchand gobelin à l'intérieur du temple. N'oubliez pas de l'acheter **avant** de déclencher quoi que ce soit — une fois les gobelins hostiles, le marchand disparaît.
+
+<FailsafeCard missing="Le marchand gobelin est devenu hostile" fallback="L'Étincelle Électrique peut être trouvée sur le cadavre du marchand après le combat" condition="Si vous déclenchez l'alerte avant d'acheter" />
+
+---
+
+## Équipement Critique Acte 1
+
+Avant de quitter l'Acte 1, vérifiez que vous avez récupéré ces objets essentiels :
+
+<SingleStepTracker stepId="acte1_equip_everburn" label="Épée Éternelle — Retirer de la main du Commandeur sur le Nautiloïde" />
+
+<SingleStepTracker stepId="acte1_equip_casque" label="Casque d'Acuité Arcanique — Grymforge (combat contre le Gardien)" />
+
+<SingleStepTracker stepId="acte1_equip_gants" label="Gants d'Habilité (FOR 23) — Vol au Sous-sol du Bosquet (Discrétion)" />
+
+<FailsafeCard missing="Gants d'Habilité (vol raté au Bosquet)" fallback="Élixir de Force de Géant des Collines (FOR 21) — disponible chez Tatie Ethel" condition="Si le vol échoue ou si les Druides sont hostiles" />
+
+---
+
+## Checklist de Sortie — Acte 1
+
+Avant de passer à l'Acte 2, confirmez chaque point :
+
+<SingleStepTracker stepId="acte1_exit_level4" label="Tout le groupe est au moins Niveau 4" />
+
+<SingleStepTracker stepId="acte1_exit_dons" label="Tous les dons critiques sont pris (Bagarreur, GWM, Tireur d'Élite)" />
+
+<SingleStepTracker stepId="acte1_exit_elixirs" label="Stock de 5+ Élixirs de Force de Géant" />
+
+<SingleStepTracker stepId="acte1_exit_repos" label="Faire un Repos Long AVANT de traverser la Montagne" />
+
+> **POINT DE NON-RETOUR** : Une fois que vous traversez les Montagnes vers les Terres Maudites, il n'y a **pas de retour possible** à l'Acte 1. Tout objet oublié est perdu définitivement.

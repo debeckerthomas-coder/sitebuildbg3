@@ -1,13 +1,49 @@
 import type { Metadata } from "next";
-import { getActe } from "@/data/playthrough";
-import { Acte2Client } from "./Acte2Client";
+import { notFound } from "next/navigation";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { getWalkthrough } from "@/lib/mdx";
+import { mdxComponents } from "@/components/mdx/MDXComponents";
 
 export const metadata: Metadata = {
-  title: "Acte 2 — Les Terres Maudites & L'Apôtre de Myrkul | BG3 Honor Companion",
-  description: "Guide pas-à-pas pour l'Acte 2 en Mode Honneur. Balthazar, l'Apôtre de Myrkul, et la gestion de la lumière.",
+  title: "Acte 2 : Les Terres Maudites & L'Apôtre de Myrkul | BG3 Honor Companion",
+  description: "Guide complet Mode Honneur pour les Terres Maudites. Gestion de la lumière, Balthazar, et le combat le plus dangereux du jeu.",
 };
 
 export default function Acte2Page() {
-  const acte = getActe(2);
-  return <Acte2Client acte={acte} />;
+  let walkthrough;
+  try {
+    walkthrough = getWalkthrough("acte-2");
+  } catch {
+    notFound();
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <article
+        data-mdx-content
+        className="prose prose-invert prose-gold max-w-none
+          prose-headings:font-display prose-headings:text-gold
+          prose-p:font-body prose-p:text-gray-300 prose-p:leading-relaxed
+          prose-strong:text-gold-light
+          prose-blockquote:border-l-gold/40 prose-blockquote:bg-surface-raised
+          prose-blockquote:rounded-card prose-blockquote:py-3 prose-blockquote:px-4
+          prose-blockquote:not-italic prose-blockquote:text-gray-400
+          prose-li:text-gray-300 prose-li:font-body
+          prose-hr:border-border
+        "
+      >
+        <h1 className="font-display text-3xl sm:text-4xl text-gold mb-2">
+          {walkthrough.meta.title}
+        </h1>
+        <p className="text-sm font-data text-gray-400 mb-8">
+          {walkthrough.meta.description}
+        </p>
+
+        <MDXRemote
+          source={walkthrough.source}
+          components={mdxComponents}
+        />
+      </article>
+    </div>
+  );
 }

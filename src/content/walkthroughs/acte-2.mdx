@@ -1,0 +1,131 @@
+---
+title: "Acte 2 : Les Terres Maudites & L'Apôtre de Myrkul"
+act: 2
+slug: "acte-2"
+description: "Guide complet Mode Honneur pour les Terres Maudites. Gestion de la lumière, Balthazar, et le combat le plus dangereux du jeu."
+order: 2
+---
+
+## ⚠ AVERTISSEMENT CRITIQUE : La Gestion de la Lumière
+
+Les Terres Maudites sont plongées dans une **Malédiction d'Ombre** permanente. Sans source de lumière, votre groupe subit :
+
+- **Désavantage à TOUS les jets d'attaque**
+- **Désavantage à TOUS les jets de perception**
+- **Dégâts nécrotiques passifs** (2d6 par tour dans les zones d'ombre profonde)
+
+> **C'est la cause de mort #1 en Mode Honneur à l'Acte 2.** Des joueurs expérimentés perdent leur run parce qu'ils oublient d'équiper leur source de lumière avant un combat surprise.
+
+Vous avez **deux sources de lumière** viables pour traverser les Terres Maudites. Si vous ratez la première, le système de failsafe vous redirige vers la seconde :
+
+<FailsafeCard missing="Bénédiction de la Pixie (Kar'niss raté)" fallback="Lanterne Lunaire de Balthazar via infiltration à Hautelune" condition="Si l'embuscade de la caravane de Kar'niss est ratée ou si la Pixie est tuée accidentellement" />
+
+<SingleStepTracker stepId="acte2_lumiere_pixie" label="Option A : Libérer la Pixie de la Lanterne de Kar'niss (MEILLEURE OPTION)" />
+
+<SingleStepTracker stepId="acte2_lumiere_lanterne" label="Option B : Voler la Lanterne Lunaire dans les quartiers de Balthazar à Hautelune" />
+
+> **Conseil Pro** : La Bénédiction de la Pixie est **permanente** et ne prend pas de slot d'équipement. La <CodexTooltipById id="lanterne_lunaire" text="Lanterne Lunaire" /> doit être tenue en main, ce qui vous coûte un bouclier ou une arme. Priorisez **toujours** la Pixie.
+
+---
+
+## Route Optimale — Terres Maudites
+
+### Phase 1 : La Traversée
+
+<SingleStepTracker stepId="acte2_traverse_camp" label="Établir le camp à la Tour de Guet de la Dernière Lumière" />
+
+<SingleStepTracker stepId="acte2_traverse_isobel" label="Parler à Isobel — PROTÉGER À TOUT PRIX (sa mort = game over)" />
+
+<SingleStepTracker stepId="acte2_traverse_jaheira" label="Recruter Jaheira — Ne PAS l'amener dans les combats optionnels" />
+
+> **ALERTE MODE HONNEUR** : L'attaque sur la Tour de la Dernière Lumière est un événement scriptié. Si Isobel meurt, **tout le camp est maudit** et votre run est quasi-impossible à terminer. Préparez <CodexTooltipById id="counterspell" text="Contresort" /> pour bloquer le sort de Marcus.
+
+---
+
+### Phase 2 : Hautelune & Balthazar
+
+<SingleStepTracker stepId="acte2_hautelune_entree" label="Entrer dans Hautelune (Persuasion DD 14 ou déguisement)" />
+
+<SingleStepTracker stepId="acte2_hautelune_balthazar" label="Infiltrer les quartiers de Balthazar — récupérer le grimoire" />
+
+<SingleStepTracker stepId="acte2_hautelune_ketheric" label="Localiser le point faible de Ketheric Thorm (dialogue avec les servants)" />
+
+<BossCard id="balthazar" />
+
+<EmergencyMatrix bossId="balthazar" />
+
+### Stratégie Balthazar
+
+1. **Éliminer les squelettes invoqués en premier** — ils se réaniment si Balthazar est encore debout avec des emplacements de sort
+2. Utiliser <CodexTooltipById id="silence" text="Silence" /> sur Balthazar pour bloquer **tous** ses sorts (il n'a pas de composante somatique pure)
+3. Le pousser dans le gouffre avec <CodexTooltipById id="injonction" text="Injonction : Approche" /> puis Répulsion — mort instantanée, XP complet
+
+<FailsafeCard missing="Silence échoue (Balthazar réussit sa sauvegarde)" fallback="Cécité + Ténèbres en combo : il ne peut plus cibler vos alliés individuellement" condition="Si votre DD de sort est inférieur à 15" />
+
+---
+
+## BOSS MAJEUR : L'Apôtre de Myrkul
+
+C'est **le combat le plus dangereux du jeu en Mode Honneur**. Plus de runs sont perdues ici que contre le Netherbrain. Lisez chaque ligne de la matrice d'urgence ci-dessous — votre survie en dépend.
+
+<BossCard id="apotre_myrkul" />
+
+### Préparation Obligatoire
+
+Avant de déclencher ce combat, chaque membre du groupe doit avoir :
+
+<SingleStepTracker stepId="acte2_apotre_elixir" label="Élixirs de Résistance à la Nécromancie (TOUS les membres du groupe)" />
+
+<SingleStepTracker stepId="acte2_apotre_arme" label="Arme anti-mort-vivant équipée sur le DPS principal" />
+
+Le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> est l'arme **absolue** contre l'Apôtre. Ses dégâts radiants supplémentaires et son aura aveuglante contre les Morts-vivants neutralisent la moitié des mécaniques du boss.
+
+<FailsafeCard missing="Le Sang de Lathandre (puzzle du Monastère non résolu)" fallback="Masse +2 radiant chez le marchand de la Tour de la Dernière Lumière" condition="Si le puzzle du Monastère de Rosymorn n'est pas résolu avant le combat" />
+
+---
+
+### Matrice d'Urgence — L'Apôtre
+
+<EmergencyMatrix bossId="apotre_myrkul" />
+
+### Décomposition Phase par Phase
+
+**Phase 1 — Le Flagelleur Mental**
+
+> **TUEZ LE FLAGELLEUR MENTAL AU TOUR 1.** C'est la règle la plus importante de ce combat. Le Flagelleur Mental lance <CodexTooltipById id="doigt_de_mort" text="Doigt de Mort" /> au Tour 2. Si votre healer prend ce sort sans résistance nécrotique, c'est un **one-shot garanti** (70+ dégâts).
+
+<SingleStepTracker stepId="acte2_apotre_flagelleur" label="Tour 1 : Concentrer TOUT le DPS sur le Flagelleur Mental" />
+
+**Phase 2 — L'Apôtre lui-même**
+
+L'Apôtre a deux mécaniques létales :
+
+**Action Légendaire — Regard des Morts** : Une riposte effrayante qui déclenche un jet de SAG DD 17. En cas d'échec, le personnage est **Effrayé** pendant 2 tours et doit fuir le combat. En Mode Honneur, un tank effrayé qui fuit = le reste du groupe se fait écraser.
+
+> **Contre** : <CodexTooltipById id="cecite" text="Cécité" /> ou <CodexTooltipById id="tenebres" text="Ténèbres" /> directement sur le boss. Un boss aveuglé ne peut pas utiliser Regard des Morts (nécessite une ligne de vue).
+
+**Piège Mortel — Aura de Frisson Osseux** : Dans un rayon de 6m autour de la plateforme centrale, **les soins et la réanimation sont impossibles**. Vos potions de soin, Mot de Guérison, et Relève-toi sont désactivés dans cette zone.
+
+> **Contre** : Gardez votre healer **en dehors** de l'aura. Soignez à distance avec des sorts à longue portée. Si un allié tombe dans l'aura, utilisez <CodexTooltipById id="pas_brumeux" text="Pas Brumeux" /> pour le téléporter hors de la zone AVANT de le soigner.
+
+<SingleStepTracker stepId="acte2_apotre_cecite" label="Appliquer Cécité/Ténèbres sur l'Apôtre DÈS le début de Phase 2" />
+
+<SingleStepTracker stepId="acte2_apotre_healer" label="Positionner le healer à 9m+ de la plateforme centrale" />
+
+<SingleStepTracker stepId="acte2_apotre_kill" label="Achever l'Apôtre — Récupérer le Heaume de Ketheric" />
+
+---
+
+## Checklist de Sortie — Acte 2
+
+<SingleStepTracker stepId="acte2_exit_level8" label="Tout le groupe est au moins Niveau 8" />
+
+<SingleStepTracker stepId="acte2_exit_isobel" label="Isobel est vivante et la Tour de la Dernière Lumière est intacte" />
+
+<SingleStepTracker stepId="acte2_exit_lathandre" label="Le Sang de Lathandre est dans l'inventaire" />
+
+<SingleStepTracker stepId="acte2_exit_jaheira" label="Jaheira est recrutée et vivante" />
+
+<SingleStepTracker stepId="acte2_exit_repos" label="Repos Long complet AVANT d'entrer dans Baldur's Gate" />
+
+> **POINT DE NON-RETOUR** : L'entrée dans Baldur's Gate est définitive. Les Terres Maudites et Hautelune deviennent **inaccessibles**. Tout objet, quête ou recrutement oublié est perdu pour le reste de la run.

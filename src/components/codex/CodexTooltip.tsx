@@ -21,6 +21,7 @@ import {
 } from "@floating-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Rarity } from "@/types";
+import { IconWithFallback } from "./IconWithFallback";
 
 // ---------------------------------------------------------------------------
 // Rarity → Color Mappings
@@ -205,23 +206,20 @@ export function CodexTooltip({
 
             {/* Header */}
             <div className="px-4 pt-3 pb-2 flex items-start gap-3">
-              {icon && (
-                <div
-                  className={`
-                    w-12 h-12 rounded border ${colors.border}
-                    bg-abyss-100 flex items-center justify-center shrink-0
-                    overflow-hidden
-                  `}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={icon}
-                    alt={name}
-                    className="w-10 h-10 object-contain"
-                    loading="lazy"
-                  />
-                </div>
-              )}
+              <div
+                className={`
+                  w-12 h-12 rounded border ${colors.border}
+                  bg-abyss-100 flex items-center justify-center shrink-0
+                  overflow-hidden
+                `}
+              >
+                <IconWithFallback
+                  src={icon ?? ""}
+                  alt={name}
+                  rarity={rarity}
+                  size={40}
+                />
+              </div>
               <div className="flex-1 min-w-0">
                 <h3 className={`font-display text-sm font-semibold ${colors.text} leading-tight`}>
                   {name}

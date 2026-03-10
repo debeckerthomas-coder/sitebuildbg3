@@ -1,10 +1,10 @@
 "use client";
 
 // ============================================================================
-// Sidebar — Navigation latérale principale en français
+// Sidebar — Navigation latérale responsive avec hamburger mobile
 // ============================================================================
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -58,7 +58,15 @@ const NAV_ITEMS: readonly NavItem[] = [
 // Composant NavGroup (avec sous-menus)
 // ---------------------------------------------------------------------------
 
-function NavGroup({ item, pathname }: { item: NavItem; pathname: string }) {
+function NavGroup({
+  item,
+  pathname,
+  onNavigate,
+}: {
+  item: NavItem;
+  pathname: string;
+  onNavigate?: () => void;
+}) {
   const hasChildren = item.children && item.children.length > 0;
   const isActive = item.href === pathname || item.children?.some((c) => c.href === pathname);
   const [isOpen, setIsOpen] = useState(isActive || false);
@@ -68,6 +76,7 @@ function NavGroup({ item, pathname }: { item: NavItem; pathname: string }) {
     return (
       <Link
         href={item.href}
+        onClick={onNavigate}
         className={`
           flex items-center gap-3 px-3 py-2.5 rounded-card text-sm font-data transition-all duration-200
           ${active
@@ -117,6 +126,7 @@ function NavGroup({ item, pathname }: { item: NavItem; pathname: string }) {
                   <Link
                     key={child.href}
                     href={child.href!}
+                    onClick={onNavigate}
                     className={`
                       flex items-center gap-2.5 px-3 py-2 rounded text-xs font-data transition-all duration-200
                       ${childActive
@@ -138,16 +148,41 @@ function NavGroup({ item, pathname }: { item: NavItem; pathname: string }) {
 }
 
 // ---------------------------------------------------------------------------
-// Sidebar
+// Hamburger Icon (animated)
 // ---------------------------------------------------------------------------
 
-export function Sidebar() {
+function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
+  return (
+    <div className="w-5 h-4 relative flex flex-col justify-between">
+      <motion.span
+        animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.2 }}
+        className="block h-0.5 w-full bg-gold rounded-full origin-center"
+      />
+      <motion.span
+        animate={isOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.15 }}
+        className="block h-0.5 w-full bg-gold rounded-full"
+      />
+      <motion.span
+        animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.2 }}
+        className="block h-0.5 w-full bg-gold rounded-full origin-center"
+      />
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Navigation Content (shared between desktop and mobile)
+// ---------------------------------------------------------------------------
+
+function NavContent({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 shrink-0 border-r border-border bg-surface h-[calc(100vh-3.5rem)] sticky top-14 overflow-y-auto scrollbar-thin">
+    <>
       <div className="p-4 space-y-1">
-        {/* Titre */}
         <div className="px-3 py-3 mb-2">
           <p className="text-[10px] font-data uppercase tracking-widest text-gray-500">
             Navigation
@@ -155,11 +190,10 @@ export function Sidebar() {
         </div>
 
         {NAV_ITEMS.map((item) => (
-          <NavGroup key={item.label} item={item} pathname={pathname} />
+          <NavGroup key={item.label} item={item} pathname={pathname} onNavigate={onNavigate} />
         ))}
       </div>
 
-      {/* Footer */}
       <div className="p-4 mt-auto border-t border-border">
         <p className="text-[10px] font-data text-gray-600 text-center">
           BG3 Honor Companion v0.1
@@ -168,6 +202,78 @@ export function Sidebar() {
           Mode Honneur — Aucun droit à l&apos;erreur
         </p>
       </div>
-    </aside>
+    </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Sidebar (Desktop + Mobile)
+// ---------------------------------------------------------------------------
+
+export function Sidebar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  return (
+    <>
+      {/* Mobile hamburger button */}
+      <button
+        onClick={() => setMobileOpen(!mobileOpen)}
+        className="lg:hidden fixed top-3.5 right-4 z-50 p-2 rounded-card bg-surface border border-border hover:border-gold/30 transition-colors"
+        aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+      >
+        <HamburgerIcon isOpen={mobileOpen} />
+      </button>
+
+      {/* Desktop sidebar */}
+      <aside className="hidden lg:block w-64 shrink-0 border-r border-border bg-surface h-[calc(100vh-3.5rem)] sticky top-14 overflow-y-auto scrollbar-thin">
+        <NavContent />
+      </aside>
+
+      {/* Mobile overlay + drawer */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden fixed inset-0 z-40 bg-abyss/80 backdrop-blur-sm"
+              onClick={() => setMobileOpen(false)}
+            />
+
+            {/* Drawer */}
+            <motion.aside
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="lg:hidden fixed top-14 left-0 bottom-0 z-50 w-72 bg-surface border-r border-border overflow-y-auto scrollbar-thin"
+            >
+              <NavContent onNavigate={() => setMobileOpen(false)} />
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

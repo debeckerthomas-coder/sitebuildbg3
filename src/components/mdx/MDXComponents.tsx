@@ -13,6 +13,8 @@ import { FailsafeCard } from "@/components/cards/FailsafeCard";
 import { CodexTooltipById } from "./CodexTooltipById";
 import { SingleStepTracker } from "./SingleStepTracker";
 import { CombatLogMDX } from "./CombatLogMDX";
+import { InteractiveMap } from "@/components/media/InteractiveMap";
+import { BossTacticMedia } from "@/components/media/BossTacticMedia";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -41,4 +43,6 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   CodexTooltipById,
   SingleStepTracker,
   CombatLogMDX,
+  InteractiveMap,
+  BossTacticMedia,
 };

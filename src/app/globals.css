@@ -55,18 +55,39 @@
   .prose-gold h2 {
     font-family: "Cinzel", serif;
     border-bottom: 1px solid #2a3048;
-    padding-bottom: 0.5rem;
-    margin-top: 2.5rem;
+    padding-bottom: 0.75rem;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .prose-gold h3 {
     font-family: "Cinzel", serif;
     color: #e8cc6e;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
   }
 
   .prose-gold p {
     font-family: "Lora", serif;
     color: #b0b0c0;
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose-gold hr {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .prose-gold blockquote {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .prose-gold li {
+    line-height: 1.85;
+    margin-bottom: 0.35rem;
   }
 
   .prose-gold strong {

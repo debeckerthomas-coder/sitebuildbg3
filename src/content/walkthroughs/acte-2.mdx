@@ -6,7 +6,7 @@ description: "Guide complet Mode Honneur pour les Terres Maudites. Gestion de la
 order: 2
 ---
 
-## ⚠ AVERTISSEMENT CRITIQUE : La Gestion de la Lumière
+## AVERTISSEMENT CRITIQUE : La Gestion de la Lumière
 
 Les Terres Maudites sont plongées dans une **Malédiction d'Ombre** permanente. Sans source de lumière, votre groupe subit :
 
@@ -38,7 +38,7 @@ Vous avez **deux sources de lumière** viables pour traverser les Terres Maudite
 
 <SingleStepTracker stepId="acte2_traverse_jaheira" label="Recruter Jaheira — Ne PAS l'amener dans les combats optionnels" />
 
-> **ALERTE MODE HONNEUR** : L'attaque sur la Tour de la Dernière Lumière est un événement scriptié. Si Isobel meurt, **tout le camp est maudit** et votre run est quasi-impossible à terminer. Préparez <CodexTooltipById id="counterspell" text="Contresort" /> pour bloquer le sort de Marcus.
+> **ALERTE MODE HONNEUR** : L'attaque sur la Tour de la Dernière Lumière est un événement scriptié. Si Isobel meurt, **tout le camp est maudit** et votre run est quasi-impossible à terminer. Préparez <CodexTooltipById id="counterspell" text="Contresort" /> pour bloquer le sort de Marcus. Si votre <CodexTooltipById id="counterspell" text="Contresort" /> échoue (sort de niv. 4+), relancez avec un emplacement supérieur.
 
 ---
 
@@ -49,6 +49,8 @@ Vous avez **deux sources de lumière** viables pour traverser les Terres Maudite
 <SingleStepTracker stepId="acte2_hautelune_balthazar" label="Infiltrer les quartiers de Balthazar — récupérer le grimoire" />
 
 <SingleStepTracker stepId="acte2_hautelune_ketheric" label="Localiser le point faible de Ketheric Thorm (dialogue avec les servants)" />
+
+Profitez de Hautelune pour acheter la <CodexTooltipById id="hallebarde_vigilance" text="Hallebarde de Vigilance" /> chez Roah Moonglow. L'Avantage permanent à l'initiative et l'immunité Surprise sont inestimables pour le reste de la run.
 
 <BossCard id="balthazar" />
 
@@ -78,7 +80,7 @@ Avant de déclencher ce combat, chaque membre du groupe doit avoir :
 
 <SingleStepTracker stepId="acte2_apotre_arme" label="Arme anti-mort-vivant équipée sur le DPS principal" />
 
-Le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> est l'arme **absolue** contre l'Apôtre. Ses dégâts radiants supplémentaires et son aura aveuglante contre les Morts-vivants neutralisent la moitié des mécaniques du boss.
+Le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> est l'arme **absolue** contre l'Apôtre. Ses dégâts radiants supplémentaires et son aura aveuglante contre les Morts-vivants neutralisent la moitié des mécaniques du boss. Combiné avec <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> niv. 3+, chaque coup peut infliger 60+ dégâts radiants.
 
 <FailsafeCard missing="Le Sang de Lathandre (puzzle du Monastère non résolu)" fallback="Masse +2 radiant chez le marchand de la Tour de la Dernière Lumière" condition="Si le puzzle du Monastère de Rosymorn n'est pas résolu avant le combat" />
 
@@ -92,9 +94,11 @@ Le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> est l'ar
 
 **Phase 1 — Le Flagelleur Mental**
 
-> **TUEZ LE FLAGELLEUR MENTAL AU TOUR 1.** C'est la règle la plus importante de ce combat. Le Flagelleur Mental lance <CodexTooltipById id="doigt_de_mort" text="Doigt de Mort" /> au Tour 2. Si votre healer prend ce sort sans résistance nécrotique, c'est un **one-shot garanti** (70+ dégâts).
+> **TUEZ LE FLAGELLEUR MENTAL AU TOUR 1.** C'est la règle la plus importante de ce combat. Le Flagelleur Mental lance <CodexTooltipById id="doigt_de_mort" text="Doigt de Mort" /> au Tour 2 — 7d8+30 nécrotique = moyenne **61 dégâts**. Si votre healer prend ce sort sans résistance nécrotique, c'est un **one-shot garanti**.
 
 <SingleStepTracker stepId="acte2_apotre_flagelleur" label="Tour 1 : Concentrer TOUT le DPS sur le Flagelleur Mental" />
+
+Utilisez <CodexTooltipById id="invisibilite" text="Invisibilité" /> sur votre personnage le plus mobile avant le dialogue pour positionner quelqu'un derrière Dame Aylin et la libérer dès le Tour 1.
 
 **Phase 2 — L'Apôtre lui-même**
 
@@ -128,4 +132,4 @@ L'Apôtre a deux mécaniques létales :
 
 <SingleStepTracker stepId="acte2_exit_repos" label="Repos Long complet AVANT d'entrer dans Baldur's Gate" />
 
-> **POINT DE NON-RETOUR** : L'entrée dans Baldur's Gate est définitive. Les Terres Maudites et Hautelune deviennent **inaccessibles**. Tout objet, quête ou recrutement oublié est perdu pour le reste de la run.
+> **POINT DE NON-RETOUR** : L'entrée dans Baldur's Gate est définitive. Les Terres Maudites et Hautelune deviennent **inaccessibles**. Vérifiez que le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" />, la <CodexTooltipById id="hallebarde_vigilance" text="Hallebarde de Vigilance" />, et vos <CodexTooltipById id="elixir_geant_collines" text="Élixirs de Force" /> sont bien dans votre inventaire.

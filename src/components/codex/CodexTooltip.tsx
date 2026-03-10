@@ -6,10 +6,10 @@
 
 // ============================================================================
 // CodexTooltip 2.0 — Premium BG3 Item/Spell Hover Card
-// Features: Dynamic positioning (Floating UI), rarity glow, Framer Motion
+// Fix: FloatingPortal + strategy:"fixed" for correct viewport positioning
 // ============================================================================
 
-import { useState, type ReactNode } from "react";
+import { useState, useId, type ReactNode } from "react";
 import {
   useFloating,
   autoUpdate,
@@ -17,6 +17,7 @@ import {
   flip,
   shift,
   arrow,
+  FloatingPortal,
   type Placement,
 } from "@floating-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -120,14 +121,16 @@ export function CodexTooltip({
 }: CodexTooltipProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [arrowEl, setArrowEl] = useState<HTMLDivElement | null>(null);
+  const tooltipId = useId();
 
   const floating = useFloating({
     open: isOpen,
     placement,
+    strategy: "fixed",
     middleware: [
       offset(12),
-      flip({ padding: 16 }),
-      shift({ padding: 16 }),
+      flip({ padding: 16, fallbackAxisSideDirection: "start" }),
+      shift({ padding: 16, crossAxis: true }),
       arrow({ element: arrowEl }),
     ],
     whileElementsMounted: autoUpdate,
@@ -139,7 +142,6 @@ export function CodexTooltip({
 
   const colors = RARITY_COLORS[rarity];
 
-  // Avoid hydration mismatches: only compute arrow placement client-side
   const arrowSide = floating.context.placement?.split("-")[0];
   const arrowPosition: Record<string, string> = {
     top: "bottom-[-4px]",
@@ -160,131 +162,133 @@ export function CodexTooltip({
         className={`inline-flex items-center gap-1 cursor-help border-b border-dotted ${colors.text} hover:brightness-125 transition-all duration-150`}
         tabIndex={0}
         role="button"
-        aria-describedby={isOpen ? "codex-tooltip" : undefined}
+        aria-describedby={isOpen ? tooltipId : undefined}
       >
         {children}
       </span>
 
-      {/* Floating Tooltip Card */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            ref={setFloating}
-            id="codex-tooltip"
-            role="tooltip"
-            style={floatingStyles}
-            initial={{ opacity: 0, scale: 0.95, y: 4 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 4 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className={`
-              z-50 w-72 sm:w-80
-              rounded-card border-2 ${colors.border}
-              ${colors.glow}
-              bg-surface/95 backdrop-blur-md
-              overflow-hidden
-              pointer-events-none
-            `}
-          >
-            {/* Rarity glow strip at top */}
-            <div
-              className={`h-0.5 w-full ${colors.bg} animate-glow-rarity`}
-              style={{
-                background: `linear-gradient(90deg, transparent, ${
-                  rarity === "legendary"
-                    ? "rgba(255,140,0,0.6)"
-                    : rarity === "very_rare"
-                      ? "rgba(179,102,255,0.5)"
-                      : rarity === "rare"
-                        ? "rgba(77,148,255,0.4)"
-                        : rarity === "uncommon"
-                          ? "rgba(63,191,63,0.3)"
-                          : "rgba(157,157,157,0.2)"
-                }, transparent)`,
-              }}
-            />
-
-            {/* Header */}
-            <div className="px-4 pt-3 pb-2 flex items-start gap-3">
+      {/* Floating Tooltip — rendered in a portal to escape overflow/stacking contexts */}
+      <FloatingPortal>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              ref={setFloating}
+              id={tooltipId}
+              role="tooltip"
+              style={floatingStyles}
+              initial={{ opacity: 0, scale: 0.95, y: 4 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 4 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className={`
+                z-[9999] w-72 sm:w-80
+                rounded-card border-2 ${colors.border}
+                ${colors.glow}
+                bg-surface/95 backdrop-blur-md
+                overflow-hidden
+                pointer-events-none
+              `}
+            >
+              {/* Rarity glow strip at top */}
               <div
-                className={`
-                  w-12 h-12 rounded border ${colors.border}
-                  bg-abyss-100 flex items-center justify-center shrink-0
-                  overflow-hidden
-                `}
-              >
-                <IconWithFallback
-                  src={icon ?? ""}
-                  alt={name}
-                  rarity={rarity}
-                  size={40}
-                />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className={`font-display text-sm font-semibold ${colors.text} leading-tight`}>
-                  {name}
-                </h3>
-                <span className={`text-xs font-data ${colors.text} opacity-70`}>
-                  {RARITY_LABELS[rarity]}
-                </span>
-              </div>
-            </div>
+                className={`h-0.5 w-full ${colors.bg} animate-glow-rarity`}
+                style={{
+                  background: `linear-gradient(90deg, transparent, ${
+                    rarity === "legendary"
+                      ? "rgba(255,140,0,0.6)"
+                      : rarity === "very_rare"
+                        ? "rgba(179,102,255,0.5)"
+                        : rarity === "rare"
+                          ? "rgba(77,148,255,0.4)"
+                          : rarity === "uncommon"
+                            ? "rgba(63,191,63,0.3)"
+                            : "rgba(157,157,157,0.2)"
+                  }, transparent)`,
+                }}
+              />
 
-            {/* Divider */}
-            <div className="mx-4 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-            {/* Description */}
-            <div className="px-4 py-2">
-              <p className="text-xs font-body text-gray-300 leading-relaxed">
-                {description}
-              </p>
-            </div>
-
-            {/* Stats */}
-            {stats && stats.length > 0 && (
-              <div className="px-4 pb-2">
-                <div className="bg-abyss-100/50 rounded px-2 py-1.5 space-y-0.5">
-                  {stats.map((stat) => (
-                    <StatRow key={stat.label} label={stat.label} value={stat.value} />
-                  ))}
+              {/* Header */}
+              <div className="px-4 pt-3 pb-2 flex items-start gap-3">
+                <div
+                  className={`
+                    w-12 h-12 rounded border ${colors.border}
+                    bg-abyss-100 flex items-center justify-center shrink-0
+                    overflow-hidden
+                  `}
+                >
+                  <IconWithFallback
+                    src={icon ?? ""}
+                    alt={name}
+                    rarity={rarity}
+                    size={40}
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className={`font-display text-sm font-semibold ${colors.text} leading-tight`}>
+                    {name}
+                  </h3>
+                  <span className={`text-xs font-data ${colors.text} opacity-70`}>
+                    {RARITY_LABELS[rarity]}
+                  </span>
                 </div>
               </div>
-            )}
 
-            {/* Flavour text */}
-            {flavourText && (
-              <div className="px-4 pb-2">
-                <p className="text-xs font-body italic text-gold-muted leading-relaxed">
-                  &ldquo;{flavourText}&rdquo;
+              {/* Divider */}
+              <div className="mx-4 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+
+              {/* Description */}
+              <div className="px-4 py-2">
+                <p className="text-xs font-body text-gray-300 leading-relaxed">
+                  {description}
                 </p>
               </div>
-            )}
 
-            {/* Tags */}
-            {tags && tags.length > 0 && (
-              <div className="px-4 pb-3 flex flex-wrap gap-1">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] font-data px-1.5 py-0.5 rounded bg-abyss-200 text-gray-400 uppercase tracking-wider"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+              {/* Stats */}
+              {stats && stats.length > 0 && (
+                <div className="px-4 pb-2">
+                  <div className="bg-abyss-100/50 rounded px-2 py-1.5 space-y-0.5">
+                    {stats.map((stat) => (
+                      <StatRow key={stat.label} label={stat.label} value={stat.value} />
+                    ))}
+                  </div>
+                </div>
+              )}
 
-            {/* Arrow */}
-            <div
-              ref={setArrowEl}
-              className={`
-                absolute w-2 h-2 rotate-45 bg-surface border ${colors.border}
-                ${arrowSide ? arrowPosition[arrowSide] ?? "" : ""}
-              `}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {/* Flavour text */}
+              {flavourText && (
+                <div className="px-4 pb-2">
+                  <p className="text-xs font-body italic text-gold-muted leading-relaxed">
+                    &ldquo;{flavourText}&rdquo;
+                  </p>
+                </div>
+              )}
+
+              {/* Tags */}
+              {tags && tags.length > 0 && (
+                <div className="px-4 pb-3 flex flex-wrap gap-1">
+                  {tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] font-data px-1.5 py-0.5 rounded bg-abyss-200 text-gray-400 uppercase tracking-wider"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* Arrow */}
+              <div
+                ref={setArrowEl}
+                className={`
+                  absolute w-2 h-2 rotate-45 bg-surface border ${colors.border}
+                  ${arrowSide ? arrowPosition[arrowSide] ?? "" : ""}
+                `}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </FloatingPortal>
     </>
   );
 }

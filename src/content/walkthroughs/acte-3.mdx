@@ -30,11 +30,19 @@ Avant d'engager les boss, vérifiez votre équipement. C'est le moment de finali
 
 <SingleStepTracker stepId="acte3_equip_markoheshkir" label="Markoheshkir récupéré (Tour de Ramazith — sort de télékinésie)" />
 
+Le <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> est le meilleur bâton du jeu. Son Élément de Karsus permet de choisir un type de dégâts élémentaires par repos long, et il octroie le <CodexTooltipById id="globe_invulnerabilite" text="Globe d'Invulnérabilité" /> gratuitement — un sort normalement de niveau 6.
+
 <SingleStepTracker stepId="acte3_equip_nyrulna" label="Nyrulna récupérée (Cirque d'Akabi — Roue de la Fortune)" />
+
+La <CodexTooltipById id="nyrulna" text="Nyrulna" /> est un trident légendaire +3 qui revient automatiquement après un lancer et génère une explosion de tonnerre AoE à l'impact. Idéale pour votre <CodexTooltipById id="great_weapon_master" text="Maître des Armes à Deux Mains" />.
 
 <FailsafeCard missing="Markoheshkir (Tour de Ramazith non complétée)" fallback="Bâton de Tonnerres et Éclairs +2 — disponible chez le marchand de la Sous-Cité" condition="Si le puzzle de la Tour n'est pas résolu ou si Lorroakan est hostile" />
 
 <FailsafeCard missing="Nyrulna (Cirque d'Akabi raté)" fallback="Hache de Retour +2 forgée par Dammon à l'Acte 2" condition="Si le djinn est tué ou si le lancer est raté" />
+
+### Équipement Ansur
+
+Si vous prévoyez d'affronter Ansur dans la Voie du Wyrm, la récompense est massive : la <CodexTooltipById id="baldurans_giantslayer" text="Pourfendeuse de Géant de Baldur" /> (double le modificateur de Force sur les dégâts) et le <CodexTooltipById id="helmet_of_balduran" text="Heaume de Baldur" /> (régénère 2 PV/tour + anti-critique). Ces deux objets rendent votre tank quasi-immortel pour les combats restants.
 
 ---
 
@@ -66,7 +74,7 @@ Gortash est le boss le plus « propre » de l'Acte 3 — un seul ennemi, une seu
 
 La solution est simple : <CodexTooltipById id="delivrance_maledictions" text="Délivrance des Malédictions" /> purge le Marquage instantanément. Lancez-le **dès que** le debuff apparaît — pas au tour suivant, pas quand c'est « pratique ». Immédiatement.
 
-Ensuite, exploitez sa vulnérabilité : Gortash est un **humanoïde**. <CodexTooltipById id="immobilisation_personne" text="Immobilisation de Personne" /> le paralyse, garantissant des **critiques automatiques en mêlée**. Combinez avec un Châtiment Divin niveau 4+ pour un burst de 100+ dégâts en un coup.
+Ensuite, exploitez sa vulnérabilité : Gortash est un **humanoïde**. <CodexTooltipById id="immobilisation_personne" text="Immobilisation de Personne" /> le paralyse, garantissant des **critiques automatiques en mêlée**. Combinez avec <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> niveau 4+ pour un burst de 100+ dégâts en un coup.
 
 <SingleStepTracker stepId="acte3_gortash_immo" label="Lancer Immobilisation de Personne dès que le Marquage est purgé" />
 
@@ -86,7 +94,7 @@ Orin est un piège cognitif. Sa Phase 1 est triviale — quelques dagues empoiso
 
 En Phase 2, Orin active **Implacable** : chaque attaque qu'elle reçoit est réduite à **1 dégât** et consomme 1 charge. Elle a **12 charges**. Si vous frappez normalement, il faut 12 attaques juste pour épuiser les charges — pendant ce temps, ses Griffes de l'Écorcheur (2d8+6 × 3) vous déchirent.
 
-> **LA SOLUTION : Projectile Magique.** Chaque missile de <CodexTooltipById id="projectile_magique" text="Projectile Magique" /> compte comme une **attaque séparée**. Un Projectile Magique upcasté au **niveau 5 = 7 missiles = 7 charges brûlées d'un seul sort**. Deux castings = 14 charges. Game over pour Orin.
+> **LA SOLUTION : Projectile Magique.** Chaque missile de <CodexTooltipById id="projectile_magique" text="Projectile Magique" /> compte comme une **attaque séparée**. Un <CodexTooltipById id="projectile_magique" text="Projectile Magique" /> upcasté au **niveau 5 = 7 missiles = 7 charges brûlées d'un seul sort**. Deux castings = 14 charges. Game over pour Orin.
 
 <SingleStepTracker stepId="acte3_orin_phase1" label="Phase 1 : Amener Orin à 50% PV normalement" />
 
@@ -98,7 +106,7 @@ En Phase 2, Orin active **Implacable** : chaque attaque qu'elle reçoit est réd
 
 ## BOSS OPTIONNEL : Raphaël, Archidiable (666 PV)
 
-Le combat le plus dur du jeu. **666 PV**, Contresort en réaction, AoE de feu massives, et 4 Piliers d'Âmes qui le rendent quasi-invincible. Ne tentez ce combat que si vous voulez l'<CodexTooltipById id="helldusk_armour" text="Armure Infernale" />.
+Le combat le plus dur du jeu. **666 PV**, <CodexTooltipById id="counterspell" text="Contresort" /> en réaction, AoE de feu massives, et 4 Piliers d'Âmes qui le rendent quasi-invincible. Ne tentez ce combat que si vous voulez l'<CodexTooltipById id="helldusk_armour" text="Armure Infernale" /> (21 CA, réduction -2 à tous les dégâts, immunité Brûlé).
 
 <BossCard id="raphael" />
 
@@ -111,6 +119,10 @@ Le combat le plus dur du jeu. **666 PV**, Contresort en réaction, AoE de feu ma
 <SingleStepTracker stepId="acte3_raphael_globe" label="Préparer Globe d'Invulnérabilité pour la Phase 2" />
 
 <SingleStepTracker stepId="acte3_raphael_radiant" label="JAMAIS de dégâts radiants sur les sbires (renvoi × 2)" />
+
+Gardez le <CodexTooltipById id="globe_invulnerabilite" text="Globe d'Invulnérabilité" /> pour la Phase 2 quand Raphaël se transforme en Archidiable et déchaîne son Souffle Infernal (10d8 feu, JdS DEX DD 20). Le Globe annule tout sort de niveau 5 ou moins dans sa zone.
+
+> **PIÈGE MORTEL** : Ne jamais utiliser <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> ou des dégâts radiants sur les sbires démoniaques de Raphaël. Ils renvoient les dégâts de feu **doublés**. Un Châtiment niv. 3 sur un sbire = 4d8 feu renvoyés sur l'attaquant.
 
 <FailsafeCard missing="Globe d'Invulnérabilité (emplacement de sort utilisé)" fallback="Résistance au Feu (sort) sur tout le groupe — réduit ses dégâts de moitié" condition="Si l'emplacement de sort niveau 6 est déjà consommé" />
 
@@ -128,6 +140,8 @@ Le combat le plus dur du jeu. **666 PV**, Contresort en réaction, AoE de feu ma
 
 <SingleStepTracker stepId="acte3_pnr_saves" label="Vérifier les sorts préparés de CHAQUE personnage (dernière chance)" />
 
+Confirmez que <CodexTooltipById id="haste" text="Hâte" /> est préparé sur au moins un lanceur, que <CodexTooltipById id="counterspell" text="Contresort" /> est prêt, et que vos <CodexTooltipById id="elixir_geant_collines" text="Élixirs de Force" /> sont consommés.
+
 ---
 
 ## BOSS FINAL : Le Cerveau Vénérable (Netherbrain — 450 PV)
@@ -136,7 +150,7 @@ C'est le dernier combat de votre run Mode Honneur. Tout ce que vous avez constru
 
 <BossCard id="netherbrain" />
 
-### ⛔ ALERTE ROUGE — MÉCANIQUE MODE HONNEUR EXCLUSIVE ⛔
+### ALERTE ROUGE — MÉCANIQUE MODE HONNEUR EXCLUSIVE
 
 > **IMMUNITÉ RÉTRIBUTIVE** : À la fin de chaque round, le Cerveau Vénérable devient **totalement immunisé à TOUS les types de dégâts** qu'il a subis durant ce round. Si vous mélangez Foudre + Radiant + Tranchant au Tour 1, le Cerveau est **immunisé aux trois** au Tour 2. Vous devez **segmenter vos types de dégâts par tour**.
 
@@ -148,15 +162,15 @@ C'est la stratégie la plus importante du jeu. Chaque personnage doit savoir **e
 
 <SingleStepTracker stepId="brain_t1" label="Tour 1 : Dégâts Magiques UNIQUEMENT (Foudre, Froid, Force)" />
 
-Au Tour 1, seuls vos lanceurs de sorts attaquent. Utilisez : Éclair, Cône de Froid, <CodexTooltipById id="eldritch_blast" text="Décharge Occulte" /> (Force), Projectile Magique (Force). Vos martiaux se positionnent, buffent, soignent.
+Au Tour 1, seuls vos lanceurs de sorts attaquent. Utilisez : Éclair, Cône de Froid, <CodexTooltipById id="eldritch_blast" text="Décharge Occulte" /> (Force), <CodexTooltipById id="projectile_magique" text="Projectile Magique" /> (Force). Vos martiaux se positionnent, consomment leurs <CodexTooltipById id="elixir_geant_collines" text="Élixirs de Force" />, et appliquent <CodexTooltipById id="shield_of_faith" text="Bouclier de la Foi" />.
 
 <SingleStepTracker stepId="brain_t2" label="Tour 2 : Dégâts Martiaux UNIQUEMENT (Radiant, Contondant, Tranchant)" />
 
-Au Tour 2, vos martiaux frappent. Châtiment Divin (Radiant), attaques d'armes (Tranchant/Contondant). Vos lanceurs ne font **aucun dégât** — ils soignent, buffent, ou utilisent <CodexTooltipById id="haste" text="Hâte" /> sur les attaquants.
+Au Tour 2, vos martiaux frappent. <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> (Radiant), attaques d'armes (Tranchant/Contondant). Vos lanceurs ne font **aucun dégât** — ils soignent, buffent, ou utilisent <CodexTooltipById id="haste" text="Hâte" /> sur les attaquants.
 
 <SingleStepTracker stepId="brain_t3" label="Tour 3+ : Alterner le cycle — retour aux dégâts Magiques" />
 
-> **ERREUR FATALE LA PLUS COURANTE** : Un personnage avec un enchantement d'arme élémentaire (ex: +1d6 feu sur l'épée) qui frappe au « mauvais » tour. Cela ajoute le type Feu à la liste d'immunités du Cerveau. **Retirez tous les enchantements élémentaires de vos armes avant ce combat.**
+> **ERREUR FATALE LA PLUS COURANTE** : Un personnage avec un enchantement d'arme élémentaire (ex: +1d6 feu sur l'épée) qui frappe au « mauvais » tour. Cela ajoute le type Feu à la liste d'immunités du Cerveau. **Retirez tous les enchantements élémentaires de vos armes avant ce combat.** Oui, même l'<CodexTooltipById id="everburn_blade" text="Lame Toujours Ardente" /> — ses dégâts de feu passifs ruineraient la rotation.
 
 ### Phase 2 — Sous 50% PV : Dégâts Rétributifs
 
@@ -166,13 +180,15 @@ En dessous de 225 PV, le Cerveau inflige **2d8 psychiques** à chaque attaquant 
 
 <SingleStepTracker stepId="brain_phase2_dom" label="Préparer Liberté de Mouvement contre Domination (JdS SAG DD 20)" />
 
+Utilisez <CodexTooltipById id="eldritch_blast" text="Décharge Occulte" /> et <CodexTooltipById id="projectile_magique" text="Projectile Magique" /> à distance. Vos martiaux passent aux arcs ou aux lancers. Un personnage dominé avec <CodexTooltipById id="great_weapon_master" text="Maître des Armes à Deux Mains" /> activé peut one-shot votre soigneur en un coup.
+
 <FailsafeCard missing="Liberté de Mouvement (emplacement utilisé)" fallback="Aura de Protection du Paladin 6 (CHA aux JdS) + Cape de Protection + Anneau de Protection" condition="Si aucun emplacement niveau 4 n'est disponible" />
 
 ### Exécution Finale
 
 <SingleStepTracker stepId="brain_final_dps" label="Concentrer le DPS restant — alterner les types jusqu'à 0 PV" />
 
-<SingleStepTracker stepId="brain_victory" label="🏆 VICTOIRE — Le Cerveau Vénérable est détruit" />
+<SingleStepTracker stepId="brain_victory" label="VICTOIRE — Le Cerveau Vénérable est détruit" />
 
 ---
 

@@ -22,8 +22,13 @@ interface NavItem {
 
 const NAV_ITEMS: readonly NavItem[] = [
   {
-    label: "Le Codex",
+    label: "Accueil",
     href: "/",
+    icon: "🏠",
+  },
+  {
+    label: "Le Codex",
+    href: "/codex",
     icon: "📖",
   },
   {

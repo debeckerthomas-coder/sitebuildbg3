@@ -134,7 +134,7 @@ export function EmergencyMatrix({ bossId }: EmergencyMatrixProps) {
   });
 
   return (
-    <div className="space-y-4">
+    <div className="my-8 space-y-4">
       {/* Header */}
       <div className="flex items-center gap-3">
         <div className="w-1 h-8 rounded-full bg-blood" />

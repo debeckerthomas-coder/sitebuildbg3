@@ -2,87 +2,291 @@
 title: "Acte 2 : Les Terres Maudites & L'Apôtre de Myrkul"
 act: 2
 slug: "acte-2"
-description: "Guide complet Mode Honneur pour les Terres Maudites. Gestion de la lumière, Balthazar, et le combat le plus dangereux du jeu."
+description: "Guide complet Mode Honneur pour les Terres Maudites. Gestion de la lumière, embuscade de Kar'niss, Hautelune, Gantelet de Shar, et le combat le plus dangereux du jeu — l'Apôtre de Myrkul. Aucun droit à l'erreur."
 order: 2
 ---
 
-## AVERTISSEMENT CRITIQUE : La Gestion de la Lumière
+## L'Arrivée dans les Ténèbres — La Malédiction d'Ombre
 
-Les Terres Maudites sont plongées dans une **Malédiction d'Ombre** permanente. Sans source de lumière, votre groupe subit :
+L'air change quand vous franchissez le col des montagnes. Le ciel, d'un bleu éclatant quelques mètres plus tôt, vire au gris cendré puis au noir d'encre. La lumière du soleil ne pénètre plus. Les arbres sont des squelettes tordus, leurs branches nues tendues vers un ciel qu'elles ne verront plus jamais. Bienvenue dans les **Terres Maudites** — le domaine de la Malédiction d'Ombre de Shar, où la lumière meurt et les non-préparés avec elle.
 
-- **Désavantage à TOUS les jets d'attaque**
-- **Désavantage à TOUS les jets de perception**
-- **Dégâts nécrotiques passifs** (2d6 par tour dans les zones d'ombre profonde)
+Les Terres Maudites sont le **cimetière des runs Mode Honneur**. Plus de parties sont perdues ici qu'à n'importe quel autre acte — pas à cause des boss, mais à cause de la **gestion de la lumière**. Sans source de lumière active, votre groupe subit en permanence :
 
-> **C'est la cause de mort #1 en Mode Honneur à l'Acte 2.** Des joueurs expérimentés perdent leur run parce qu'ils oublient d'équiper leur source de lumière avant un combat surprise.
+- **Désavantage à TOUS les jets d'attaque** (taux de touche réduit de ~50% à ~25%)
+- **Désavantage à TOUS les jets de Perception** (embuscades impossibles à détecter)
+- **2d6 dégâts nécrotiques par tour** dans les zones d'ombre profonde (moyenne 7 dégâts/tour = mort en 3-4 tours sur un lanceur de sorts)
 
-Vous avez **deux sources de lumière** viables pour traverser les Terres Maudites. Si vous ratez la première, le système de failsafe vous redirige vers la seconde :
+> **STATISTIQUE BRUTALE :** Un personnage avec 40 PV (niveau 5-6 typique) meurt en **6 tours** juste en restant dans l'ombre profonde sans lumière. Ajoutez le Désavantage aux attaques et l'incapacité de percevoir les ennemis, et chaque combat non-préparé est un condamné en sursis.
 
-<FailsafeCard missing="Bénédiction de la Pixie (Kar'niss raté)" fallback="Lanterne Lunaire de Balthazar via infiltration à Hautelune" condition="Si l'embuscade de la caravane de Kar'niss est ratée ou si la Pixie est tuée accidentellement" />
+La première et unique priorité de votre arrivée est d'obtenir une **source de lumière permanente**. Deux options existent, et l'une d'elles est vastement supérieure.
 
-<SingleStepTracker stepId="acte2_lumiere_pixie" label="Option A : Libérer la Pixie de la Lanterne de Kar'niss (MEILLEURE OPTION)" />
+---
+
+## La Bénédiction de la Pixie vs La Lanterne Lunaire
+
+### Option A (RECOMMANDÉE) : L'Embuscade de Kar'niss — La Bénédiction de la Pixie
+
+Kar'niss est un **Drider** — une abomination mi-drow mi-araignée — qui transporte une <CodexTooltipById id="lanterne_lunaire" text="Lanterne Lunaire" /> contenant une Pixie prisonnière. Il mène un convoi à travers les Terres Maudites. Vous pouvez l'intercepter sur la route entre le col et la Tour de la Dernière Lumière.
+
+**Comment déclencher l'embuscade :** Parlez aux Harpers au campement du col. Ils vous proposent de tendre une embuscade au convoi. Acceptez, positionnez-vous aux points marqués, et attendez.
+
+<SingleStepTracker stepId="acte2_embuscade_position" label="Positionner le groupe aux marqueurs d'embuscade Harper avant l'arrivée du convoi" />
+
+**Le combat contre Kar'niss :**
+- **Kar'niss** : 120 PV, CA 17, 3 attaques de mêlée (+8, 2d8+4 chacune), sort <CodexTooltipById id="tenebres" text="Ténèbres" /> sur lui-même en réaction
+- **Escorte** : 2 Ombres (40 PV, CA 12) + 3 Gobelins (7 PV)
+- **Alliés Harper** : 4 Rangers Harper (~30 PV chacun) qui se battent à vos côtés
+
+> **Stratégie Tour 1 :** Concentrez **tout** le DPS sur Kar'niss. Les Harpers s'occupent de l'escorte. Avec <CodexTooltipById id="great_weapon_master" text="Maître des Armes à Deux Mains" /> activé et un <CodexTooltipById id="elixir_geant_collines" text="Élixir de Force" />, votre DPS principal fait ~22 dégâts par attaque. En 2 tours avec Attaque Supplémentaire, c'est ~88 dégâts — 73% des PV de Kar'niss. Ajoutez un <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> niveau 2 sur le premier coup (3d8 radiant = ~13.5 dégâts), et Kar'niss tombe au Tour 2.
+
+<SingleStepTracker stepId="acte2_karniss_kill" label="Éliminer Kar'niss en 2-3 tours — concentrer le DPS, Harpers gèrent l'escorte" />
+
+**Après le combat :** Ramassez la <CodexTooltipById id="lanterne_lunaire" text="Lanterne Lunaire" />. **NE L'ÉQUIPEZ PAS.** Ouvrez-la et **libérez la Pixie**. Elle vous accorde la **Bénédiction de la Pixie** — une protection permanente contre la Malédiction d'Ombre qui s'applique à **tout le groupe** et qui **ne prend aucun emplacement d'équipement**.
+
+<SingleStepTracker stepId="acte2_lumiere_pixie" label="Libérer la Pixie de la Lanterne — Bénédiction permanente pour tout le groupe" />
+
+> **Pourquoi libérer la Pixie ?** La <CodexTooltipById id="lanterne_lunaire" text="Lanterne Lunaire" /> fonctionne aussi, mais elle doit être **tenue en main** par un personnage. Cela signifie que ce personnage perd son bouclier ou sa deuxième arme — une perte de CA de 2 sur un tank ou de dégâts massifs sur un DPS. La Bénédiction de la Pixie est **passive et gratuite**. Le choix est mathématique.
+
+### Option B (FAILSAFE) : La Lanterne Lunaire de Balthazar
+
+Si vous ratez l'embuscade (elle est chronométrée — attendre trop longtemps au col fait passer le convoi), la <CodexTooltipById id="lanterne_lunaire" text="Lanterne Lunaire" /> de rechange se trouve dans les **quartiers de Balthazar** à Hautelune.
 
 <SingleStepTracker stepId="acte2_lumiere_lanterne" label="Option B : Voler la Lanterne Lunaire dans les quartiers de Balthazar à Hautelune" />
 
-> **Conseil Pro** : La Bénédiction de la Pixie est **permanente** et ne prend pas de slot d'équipement. La <CodexTooltipById id="lanterne_lunaire" text="Lanterne Lunaire" /> doit être tenue en main, ce qui vous coûte un bouclier ou une arme. Priorisez **toujours** la Pixie.
+<FailsafeCard missing="Bénédiction de la Pixie (Kar'niss raté ou Pixie tuée)" fallback="Lanterne Lunaire de Balthazar via infiltration à Hautelune — doit être tenue en main" condition="Si l'embuscade du convoi est ratée ou si la Pixie est tuée accidentellement" />
+
+Si vous n'avez **aucune** des deux options, le sort <CodexTooltipById id="lumiere_du_jour" text="Lumière du Jour" /> (niveau 3) fonctionne comme substitut temporaire — mais il consomme un emplacement de sort ET la Concentration de votre lanceur. C'est un plan C, pas un plan viable.
 
 ---
 
-## Route Optimale — Terres Maudites
+## La Tour de la Dernière Lumière — Le QG de Survie
 
-### Phase 1 : La Traversée
+La Tour de la Dernière Lumière est le seul endroit sûr des Terres Maudites. Protégée par la bénédiction de **Dame Isobel**, elle est baignée d'une lumière dorée surnaturelle qui repousse la Malédiction d'Ombre. C'est votre camp de base, votre marchand, votre lieu de repos — et votre **point de non-retour** si Isobel meurt.
 
-<SingleStepTracker stepId="acte2_traverse_camp" label="Établir le camp à la Tour de Guet de la Dernière Lumière" />
+### Isobel — La Protection Absolue
 
-<SingleStepTracker stepId="acte2_traverse_isobel" label="Parler à Isobel — PROTÉGER À TOUT PRIX (sa mort = game over)" />
+<SingleStepTracker stepId="acte2_traverse_isobel" label="Parler à Isobel au 2e étage de la Tour — obtenir sa bénédiction" />
 
-<SingleStepTracker stepId="acte2_traverse_jaheira" label="Recruter Jaheira — Ne PAS l'amener dans les combats optionnels" />
+Isobel est une Clerc de Sélûne qui maintient la barrière de lumière autour de la Tour. Si elle meurt, **toute la Tour tombe dans l'ombre** — les Harpers, les Tieffelins, les marchands, tout le monde est maudit et devient des Ombres hostiles. Votre camp de base est détruit. Vos marchands sont perdus. Votre run est quasi-impossible à terminer.
 
-> **ALERTE MODE HONNEUR** : L'attaque sur la Tour de la Dernière Lumière est un événement scriptié. Si Isobel meurt, **tout le camp est maudit** et votre run est quasi-impossible à terminer. Préparez <CodexTooltipById id="counterspell" text="Contresort" /> pour bloquer le sort de Marcus. Si votre <CodexTooltipById id="counterspell" text="Contresort" /> échoue (sort de niv. 4+), relancez avec un emplacement supérieur.
+> **ALERTE ROUGE : L'attaque de Marcus est un événement scripté.** Peu de temps après votre arrivée, Marcus — un sbire vampirique ailé — attaque la Tour avec l'ordre explicite de kidnapper Isobel. Si Marcus touche Isobel une seule fois avec sa capacité de téléportation, **elle disparaît et meurt**.
+
+### L'Attaque de Marcus — Protocole de Défense
+
+<EmergencyMatrix bossId="marcus_attaque" />
+
+Marcus arrive avec 2-3 sbires volants. Le combat n'est pas difficile en soi (Marcus a ~90 PV, CA 15), mais **le moindre round où Isobel est sans protection peut terminer votre run**.
+
+**Protocole de défense en 4 étapes :**
+
+<SingleStepTracker stepId="acte2_marcus_sanctuaire" label="Tour 0 : Lancer Sanctuaire sur Isobel AVANT que Marcus n'attaque" />
+
+Dès que le dialogue avec Isobel se termine, lancez <CodexTooltipById id="sanctuary" text="Sanctuaire" /> sur elle **immédiatement**. <CodexTooltipById id="sanctuary" text="Sanctuaire" /> est une Action Bonus de niveau 1 — elle force Marcus à réussir un JdS de Sagesse (DD = votre DD de sort, typiquement 14-15) pour cibler Isobel. S'il échoue, il **doit** choisir une autre cible. C'est votre filet de sécurité.
+
+<SingleStepTracker stepId="acte2_marcus_barricade" label="Pré-combat : Placer des caisses et barils devant les fenêtres du 2e étage" />
+
+> **Astuce avancée :** Avant de déclencher le dialogue, placez des **caisses** et des **tonneaux** devant les fenêtres du 2e étage où Isobel se trouve. Marcus entre par les fenêtres — s'il doit dépenser son mouvement à contourner les obstacles, il perd un tour entier pour atteindre Isobel. Un tour de plus pour votre groupe = Marcus éliminé avant qu'il ne la touche.
+
+<SingleStepTracker stepId="acte2_marcus_contresort" label="Tour 1 : Préparer Contresort en réaction si Marcus tente un sort sur Isobel" />
+
+Gardez <CodexTooltipById id="counterspell" text="Contresort" /> en réserve. Marcus peut lancer **Immobilisation de Personne** sur Isobel pour la paralyser, puis la téléporter. Si votre lanceur a <CodexTooltipById id="counterspell" text="Contresort" /> préparé et est à portée (18m), bloquez ce sort **immédiatement**. Le sort de Marcus est de niveau 2 — votre <CodexTooltipById id="counterspell" text="Contresort" /> de niveau 3 réussit automatiquement.
+
+<SingleStepTracker stepId="acte2_marcus_kill" label="Tour 2-3 : Éliminer Marcus — 90 PV, CA 15, vulnérable au Radiant" />
+
+Marcus est un mort-vivant. Les dégâts radiants sont **doublés** sur lui. Un <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> niveau 2 sur un critique fait 6d8 radiant = **27 dégâts moyens**, doublés à **54**. Ajoutez les dégâts d'arme, et Marcus tombe en un seul coup critique.
+
+<FailsafeCard missing="Sanctuaire échoue ou n'est pas préparé" fallback="Positionnez physiquement un personnage tank ENTRE Marcus et Isobel — bloquez le passage avec votre corps + Attaque d'Opportunité" condition="Si aucun lanceur n'a Sanctuaire préparé" />
+
+### Recrutement et Marchands de la Tour
+
+<SingleStepTracker stepId="acte2_traverse_jaheira" label="Recruter Jaheira — Druide niveau 7, tank secondaire et soigneuse polyvalente" />
+
+**Jaheira** est une Druide de haut niveau. Son principal atout est sa polyvalence : elle peut tanker en Forme Sauvage (Ours = 30 PV temporaires + CA 11 + Résistance à tout sauf Psychique), soigner avec Guérison, et contrôler avec sorts de zone. **Ne l'amenez PAS dans les combats optionnels** — si elle meurt, vous perdez une alliée critique pour l'Acte 3.
+
+**Dammon** (forgeron Tieffelin) est le marchand le plus important de la Tour. Il vend le <CodexTooltipById id="flail_of_ages" text="Fléau des Âges" /> — un fléau +2 avec 1d6 feu supplémentaire et ralentissement. Excellent sur un Clerc ou un Paladin en off-hand. Dammon forge aussi des armes à partir de **Fer Infernal** si vous en avez rapporté de l'Acte 1.
+
+<SingleStepTracker stepId="acte2_dammon_fleau" label="Acheter le Fléau des Âges chez Dammon — 1d8+2 contondants + 1d6 feu" />
+
+> **Gestion des Repos à la Tour :** La Tour est votre base de repos sûre. Profitez-en : faites un Repos Long après chaque exploration significative. Les <CodexTooltipById id="elixir_geant_collines" text="Élixirs de Force" /> expirent au repos, donc ne les consommez qu'avant un combat planifié. Gardez vos Repos Courts pour la récupération de dés de vie entre les explorations.
 
 ---
 
-### Phase 2 : Hautelune & Balthazar
+## Le Monastère de Rosymorn — Le Sang de Lathandre
 
-<SingleStepTracker stepId="acte2_hautelune_entree" label="Entrer dans Hautelune (Persuasion DD 14 ou déguisement)" />
+Avant de plonger dans Hautelune ou le Gantelet de Shar, faites un détour par le **Monastère de Rosymorn** au nord-est des Terres Maudites. C'est ici que se trouve le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> — l'arme qui **transforme le combat contre l'Apôtre de Myrkul** d'un cauchemar en un combat gérable.
 
-<SingleStepTracker stepId="acte2_hautelune_balthazar" label="Infiltrer les quartiers de Balthazar — récupérer le grimoire" />
+### Le Puzzle des Vitraux
 
-<SingleStepTracker stepId="acte2_hautelune_ketheric" label="Localiser le point faible de Ketheric Thorm (dialogue avec les servants)" />
+Le Monastère est un puzzle de placement. Quatre armes cérémonielles doivent être placées sur les autels correspondants devant les vitraux. Les armes sont dispersées dans le monastère — deux au rez-de-chaussée, une au sous-sol, une portée par un Chevalier Fantôme errant.
 
-Profitez de Hautelune pour acheter la <CodexTooltipById id="hallebarde_vigilance" text="Hallebarde de Vigilance" /> chez Roah Moonglow. L'Avantage permanent à l'initiative et l'immunité Surprise sont inestimables pour le reste de la run.
+<SingleStepTracker stepId="acte2_monastere_puzzle" label="Résoudre le puzzle des vitraux — placer les 4 armes cérémonielles sur les autels" />
+
+<SingleStepTracker stepId="acte2_monastere_lathandre" label="Récupérer le Sang de Lathandre dans la chambre secrète" />
+
+**Statistiques du <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> :**
+- **Dégâts :** 1d6+3 contondants + 1d6 radiant = **moyenne 10.5 par coup**
+- **Aura Aveuglante :** Tous les Morts-vivants dans un rayon de 6m sont automatiquement **Aveuglés** au début de chaque tour (pas de JdS !)
+- **Bouclier Solaire :** 1×/Long Repos — résistance à tous les dégâts + renvoi de 2d8 radiant aux attaquants mêlée pendant 3 tours
+- **Résurrection d'urgence :** Si le porteur tombe à 0 PV, il est automatiquement ramené à 1 PV (1×/Long Repos)
+
+> **Pourquoi c'est l'arme la plus importante de l'Acte 2 :** L'Aura Aveuglante fonctionne sur l'Apôtre de Myrkul — un boss Mort-vivant. Un boss aveuglé ne peut pas utiliser son **Regard des Morts** (nécessite une ligne de vue), ne peut pas cibler vos alliés individuellement, et a le **Désavantage à toutes ses attaques**. C'est la différence entre un combat de 15 minutes et un wipe au Tour 3.
+
+<FailsafeCard missing="Le Sang de Lathandre (puzzle du Monastère non résolu)" fallback="Masse +2 radiant chez le marchand de la Tour de la Dernière Lumière — pas d'Aura Aveuglante, mais les dégâts radiants restent efficaces contre les Morts-vivants" condition="Si le puzzle du Monastère n'est pas résolu ou si les Chevaliers Fantômes sont trop difficiles" />
+
+---
+
+## Hautelune — La Cité Maudite
+
+Hautelune est une cité en ruines, autrefois florissante, aujourd'hui transformée en bastion de Ketheric Thorm et de ses fanatiques de la Lune Absolue. L'atmosphère est oppressante : des torches verdâtres éclairent des rues pavées de cadavres, des cultistes murmurent des prières à Shar, et l'ombre du Gantelet de Shar se profile au-dessus de tout.
+
+### Entrer dans Hautelune
+
+<SingleStepTracker stepId="acte2_hautelune_entree" label="Entrer dans Hautelune — Persuasion DD 14 au garde OU déguisement de cultiste" />
+
+L'entrée est gardée. Deux options :
+1. **Persuasion DD 14** : Avec CHA 16 (+3 Persuasion + 3 Maîtrise = +6), vous avez besoin d'un 8+ sur le d20 = **65% de réussite**. Si vous portez des équipements de Charisme (Amulette de CHA +1, etc.), le DD descend encore.
+2. **Déguisement de cultiste** : Si vous avez récupéré une robe de cultiste de la Lune Absolue (sur les ennemis de l'Acte 1), équipez-la. L'entrée est alors **automatique**, sans jet de dé.
+
+> **Mode Honneur :** Prenez toujours l'option sans jet de dé. Un échec à la porte de Hautelune déclenche un combat contre 8+ gardes — un combat que vous pouvez gagner, mais qui consomme des ressources précieuses et peut coûter une vie si les dés sont défavorables.
+
+### Les Marchands de Hautelune
+
+Hautelune contient trois marchands essentiels. Achetez **tout** ce dont vous avez besoin avant de déclencher quoi que ce soit dans la ville — une fois les hostilités ouvertes, les marchands disparaissent.
+
+**Roah Moonglow** — La marchande d'armes principale. Elle vend :
+- La <CodexTooltipById id="hallebarde_vigilance" text="Hallebarde de Vigilance" /> : 1d10+2 tranchants, **Avantage permanent à l'Initiative**, **Immunité Surprise**. C'est l'arme la plus sous-estimée du jeu. L'initiative détermine qui agit en premier dans un combat — avec l'Avantage, votre initiative moyenne passe de **10.5 à 13.8** (calcul : E[max(d20,d20)] = 13.825). Être premier signifie buffer avant que l'ennemi n'agisse, ce qui en Mode Honneur est la différence entre la vie et la mort.
+
+<SingleStepTracker stepId="acte2_roah_hallebarde" label="Acheter la Hallebarde de Vigilance chez Roah Moonglow (~800 PO)" />
+
+**Araj Oblodra** — L'alchimiste Drow. Deux objets critiques :
+- **Potion de Vigueur d'Astarion** : Si Astarion est dans votre groupe, vous pouvez lui demander de mordre Araj. Celle-ci fabrique ensuite une potion qui donne à Astarion +2 aux jets d'attaque pendant 3 Long Repos. C'est un buff gratuit et unique.
+- Les <CodexTooltipById id="gants_maitre_armes" text="Gants du Maître d'Armes" /> : Maîtrise de TOUTES les armes. Parfait si votre lanceur de sorts veut utiliser une arme martiale sans multiclassage.
+
+<SingleStepTracker stepId="acte2_araj_potion" label="Faire mordre Araj par Astarion — Potion de Vigueur (+2 attaque, 3 repos)" />
+
+<SingleStepTracker stepId="acte2_araj_gants" label="Acheter les Gants du Maître d'Armes chez Araj Oblodra" />
+
+**Lann Tarv** — Le quartier-maître gobelin. Il vend des munitions enchantées (Flèches +2, Carreaux d'arbalète +1) et des composants alchimiques. Moins prioritaire que les deux précédents, mais les Flèches +2 sont excellentes sur un Ranger ou un Rogue archer.
+
+<SingleStepTracker stepId="acte2_lann_munitions" label="Acheter des Flèches +2 et Carreaux +1 chez Lann Tarv" />
+
+### La Robe Puissante
+
+Dans les quartiers de Balthazar (accessibles via Discrétion ou après son élimination), vous trouverez la **Robe Puissante** — une armure légère qui confère +22 PV temporaires au début de chaque combat ET un bonus de +1 au DD de sort. C'est la meilleure armure pour un lanceur de sorts jusqu'à l'Acte 3.
+
+<SingleStepTracker stepId="acte2_hautelune_robe" label="Récupérer la Robe Puissante dans les quartiers de Balthazar" />
+
+> **Gestion des Repos à Hautelune :** Ne faites PAS de Repos Long à l'intérieur de Hautelune. Les événements nocturnes aléatoires peuvent déclencher des combats contre des cultistes. Retournez à la Tour de la Dernière Lumière pour vos repos — le voyage est court et sans danger si vous avez la Bénédiction de la Pixie.
+
+---
+
+## Le Gantelet de Shar — Zéro Risque, Zéro Improvisation
+
+Le Gantelet de Shar est un donjon dédié à la déesse de l'ombre. Trois épreuves, un laboratoire de nécromancien, et un accès vers les profondeurs de Gisombre. En Mode Honneur, l'objectif est simple : **compléter les épreuves avec le minimum de risque** et récupérer les Pierres de Nuit sans déclencher de combat optionnel.
+
+### Épreuve de la Foi — Le Labyrinthe de Ténèbres
+
+L'épreuve de la Foi est un labyrinthe dans le noir total. Le sol est un gouffre sauf sur un chemin invisible. Un pas de travers = chute dans le vide = **mort instantanée en Mode Honneur**.
+
+**La solution sans risque :** Le sort <CodexTooltipById id="pas_brumeux" text="Pas Brumeux" /> (niveau 2, Action Bonus) permet de téléporter un personnage directement à la plateforme d'arrivée — visible depuis l'entrée. Pas de labyrinthe, pas de chemin invisible, pas de risque de chute.
+
+<SingleStepTracker stepId="acte2_gantelet_foi" label="Épreuve de la Foi : Pas Brumeux directement à la plateforme finale" />
+
+> **Alternative :** Le sort de Vol (niveau 3) fonctionne aussi, mais consomme un emplacement plus élevé. Si vous n'avez ni <CodexTooltipById id="pas_brumeux" text="Pas Brumeux" /> ni Vol, lancez <CodexTooltipById id="lumiere_du_jour" text="Lumière du Jour" /> pour révéler le chemin — les dalles sûres brillent faiblement sous la lumière magique.
+
+### Épreuve de la Ruse — Infiltration
+
+L'épreuve de la Ruse demande de traverser une salle remplie d'Ombres hostiles sans être détecté. Les Ombres ont une Perception passive de 14 — contre une Discrétion typique de +5 à +7, c'est un jet de 7-9+ nécessaire = ~55-65% de réussite par personnage. Avec 4 personnages, la probabilité que TOUS passent est ~11-18%. **Inacceptable en Mode Honneur.**
+
+**La solution :** <CodexTooltipById id="invisibilite" text="Invisibilité" /> (niveau 2, Concentration) rend un personnage invisible. Lancez-le sur chaque personnage individuellement et traversez un par un. L'<CodexTooltipById id="invisibilite" text="Invisibilité" /> annule toute détection visuelle — seul le bruit (Discrétion) compte, et les Ombres n'ont pas de Perception auditive améliorée.
+
+<SingleStepTracker stepId="acte2_gantelet_ruse" label="Épreuve de la Ruse : Invisibilité sur chaque personnage, traverser un par un" />
+
+> **Calcul d'emplacements :** 4 castings d'<CodexTooltipById id="invisibilite" text="Invisibilité" /> = 4 emplacements de niveau 2. À ce stade du jeu (niveau 6-7), votre groupe devrait avoir 6-8 emplacements de niveau 2 entre tous les lanceurs. C'est un investissement lourd mais qui élimine **100% du risque**.
+
+### Épreuve de la Douleur — Le Combat Contrôlé
+
+La seule épreuve qui nécessite un combat. Vous affrontez des miroirs de vous-mêmes — des copies sombres de votre groupe avec vos stats mais sans vos objets magiques. Le combat est calibré pour être faisable, mais en Mode Honneur, un critique de votre propre copie peut être dévastateur.
+
+<SingleStepTracker stepId="acte2_gantelet_douleur" label="Épreuve de la Douleur : Éliminer les copies — prioriser les copies de lanceurs de sorts" />
+
+**Stratégie :** Concentrez le DPS sur la copie de votre lanceur de sorts en premier — c'est elle qui peut lancer des sorts de contrôle (copie de Gale = <CodexTooltipById id="counterspell" text="Contresort" /> + AoE). Ensuite, la copie du tank (inoffensif mais long à tuer). Gardez la copie du Rogue pour la fin — ses Sneaky Attacks font mal mais elle est fragile.
+
+---
+
+## Balthazar — Le Piège de Gisombre
+
+Balthazar, nécromancien de Myrkul, est le boss intermédiaire de l'Acte 2. C'est un lanceur de sorts avec 180 PV, CA 16, et la capacité d'invoquer des morts-vivants en continu. Mais la véritable menace n'est pas Balthazar lui-même — c'est **l'endroit où vous l'affrontez**.
+
+### RÈGLE ABSOLUE : JAMAIS le Combat dans Gisombre
 
 <BossCard id="balthazar" />
 
 <EmergencyMatrix bossId="balthazar" />
 
-### Stratégie Balthazar
+> **ALERTE ROUGE — GAME OVER INSTANTANÉ :** Si vous combattez Balthazar dans la prison de Chantsenuit (Gisombre), ses sbires morts-vivants **vous poussent dans le vide**. Il n'y a pas de JdS. Il n'y a pas de réaction. C'est une chute dans l'infini — **mort instantanée**, fin de la run Mode Honneur. Des centaines de joueurs ont perdu des runs de 30+ heures à cause de ce piège.
 
-1. **Éliminer les squelettes invoqués en premier** — ils se réaniment si Balthazar est encore debout avec des emplacements de sort
-2. Utiliser <CodexTooltipById id="silence" text="Silence" /> sur Balthazar pour bloquer **tous** ses sorts (il n'a pas de composante somatique pure)
-3. Le pousser dans le gouffre avec <CodexTooltipById id="injonction" text="Injonction : Approche" /> puis Répulsion — mort instantanée, XP complet
+### Stratégie : Le Tuer dans Son Bureau
 
-<FailsafeCard missing="Silence échoue (Balthazar réussit sa sauvegarde)" fallback="Cécité + Ténèbres en combo : il ne peut plus cibler vos alliés individuellement" condition="Si votre DD de sort est inférieur à 15" />
+La seule stratégie viable est de déclencher le combat dans le **laboratoire de Balthazar** au sein du Gantelet de Shar — un espace clos avec des murs et un sol solide, sans gouffre.
+
+<SingleStepTracker stepId="acte2_balthazar_lieu" label="CONFIRMER : Le combat a lieu dans le laboratoire de Balthazar, PAS dans Gisombre" />
+
+**Protocole d'engagement :**
+
+<SingleStepTracker stepId="acte2_balthazar_porte" label="Tour 0 : Fermer la porte du laboratoire derrière vous — empêcher les renforts" />
+
+Avant d'engager, fermez la porte du laboratoire. Les renforts morts-vivants qui patrouillent dans le couloir ne pourront pas entrer. Cela réduit le combat de 8 ennemis à 4 : Balthazar, son Golem de Chair, et 2 squelettes initiaux.
+
+<SingleStepTracker stepId="acte2_balthazar_silence" label="Tour 1 : Lancer Silence centré sur Balthazar — bloque TOUS ses sorts" />
+
+Balthazar est un lanceur de sorts pur. **Tous** ses sorts ont une composante verbale — ce qui signifie que <CodexTooltipById id="silence" text="Silence" /> les annule intégralement. Centrez <CodexTooltipById id="silence" text="Silence" /> directement sur lui. Tant que la zone de 6m de rayon couvre sa position, il ne peut lancer **aucun sort** : pas de <CodexTooltipById id="fletrir" text="Flétrissure" /> (8d8 nécrotique), pas de Rayon Nécrotique (3d8), pas d'invocations. Il est réduit à ses attaques de mêlée pitoyables (+2 au toucher, 1d6 dégâts).
+
+> **Et si Balthazar sort de la zone de Silence ?** Il dépense son Action de mouvement pour quitter la zone, ce qui lui coûte un tour entier de sorts. Redéplacez la zone au tour suivant avec la Concentration. Alternativement, utilisez <CodexTooltipById id="injonction" text="Injonction : Arrête" /> pour le forcer à rester immobile dans la zone.
+
+<SingleStepTracker stepId="acte2_balthazar_golem" label="Tours 1-2 : Éliminer le Golem de Chair en priorité (vulnérable au Feu)" />
+
+Le Golem de Chair a ~60 PV et une **vulnérabilité au Feu** — les dégâts de feu sont doublés. L'<CodexTooltipById id="epee_flammes_eternelles" text="Épée de Flammes Éternelles" /> inflige 1d4 feu par coup, doublé à 2d4. Une Boule de Feu (8d6 feu = 28 moyen, doublé à 56) le one-shot.
+
+<SingleStepTracker stepId="acte2_balthazar_kill" label="Tours 3-4 : Achever Balthazar — sans sorts, il est inoffensif" />
+
+**Alternative — Mort par le vide (Ironie poétique) :** Si vous voulez une méthode rapide et stylée, lancez <CodexTooltipById id="injonction" text="Injonction : Approche" /> pour forcer Balthazar vers un rebord, puis utilisez Poussée (Force DD 13) ou le sort Répulsion pour le faire tomber. Mort instantanée, XP complet. Le nécromancien qui poussait les joueurs dans le vide meurt par sa propre mécanique.
+
+<FailsafeCard missing="Silence échoue (Balthazar réussit à quitter la zone)" fallback="Cécité + Ténèbres en combo : il ne peut plus cibler vos alliés individuellement et a le Désavantage aux attaques" condition="Si votre DD de sort est inférieur à 15 ou si la Concentration est perdue" />
 
 ---
 
-## BOSS MAJEUR : L'Apôtre de Myrkul
+## L'Apôtre de Myrkul — Le Tueur de Run
 
-C'est **le combat le plus dangereux du jeu en Mode Honneur**. Plus de runs sont perdues ici que contre le Netherbrain. Lisez chaque ligne de la matrice d'urgence ci-dessous — votre survie en dépend.
+C'est le **combat le plus dangereux du jeu en Mode Honneur**. Plus de runs sont perdues ici que contre le Cerveau Vénérable à l'Acte 3. L'Apôtre de Myrkul est un piège à multiples couches : une Phase 1 trompeusement simple qui endort votre vigilance, suivie d'une Phase 2 qui annihile les groupes non-préparés en 2-3 tours.
+
+**Le boss a 280 PV, CA 18, et 3 mécaniques Mode Honneur qui se combinent en une machine de mort :**
+
+1. **Aura de Frisson Osseux** — zone anti-soin de 6m autour de la plateforme centrale
+2. **Regard des Morts** — riposte automatique : 3d8 nécrotique + Effrayé 2 tours (pas de JdS)
+3. **Doigt de Mort** — 7d8+30 nécrotique (moyenne **61 dégâts**) = one-shot sur 95% des personnages
 
 <BossCard id="apotre_myrkul" />
 
-### Préparation Obligatoire
+### Préparation Obligatoire — AVANT le Combat
 
-Avant de déclencher ce combat, chaque membre du groupe doit avoir :
+Chaque minute investie en préparation ici vous sauve des heures de frustration. Ne déclenchez **JAMAIS** ce combat sans avoir vérifié chaque point ci-dessous.
 
-<SingleStepTracker stepId="acte2_apotre_elixir" label="Élixirs de Résistance à la Nécromancie (TOUS les membres du groupe)" />
+<SingleStepTracker stepId="acte2_apotre_elixir" label="Élixirs de Résistance à la Nécromancie sur TOUS les membres du groupe" />
 
-<SingleStepTracker stepId="acte2_apotre_arme" label="Arme anti-mort-vivant équipée sur le DPS principal" />
+Les Élixirs de Résistance Nécrotique réduisent les dégâts nécrotiques de **50%**. Le <CodexTooltipById id="doigt_de_mort" text="Doigt de Mort" /> passe de 61 dégâts moyens à **30.5** — survivable pour un personnage avec 35+ PV. L'Aura de Frisson et le Regard des Morts sont aussi nécrotiques — la résistance réduit TOUTES les sources de dégâts de ce combat.
 
-Le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> est l'arme **absolue** contre l'Apôtre. Ses dégâts radiants supplémentaires et son aura aveuglante contre les Morts-vivants neutralisent la moitié des mécaniques du boss. Combiné avec <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> niv. 3+, chaque coup peut infliger 60+ dégâts radiants.
+<SingleStepTracker stepId="acte2_apotre_lathandre" label="Le Sang de Lathandre équipé sur le personnage le plus agressif (Paladin/Clerc)" />
 
-<FailsafeCard missing="Le Sang de Lathandre (puzzle du Monastère non résolu)" fallback="Masse +2 radiant chez le marchand de la Tour de la Dernière Lumière" condition="Si le puzzle du Monastère de Rosymorn n'est pas résolu avant le combat" />
+Le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> est votre arme principale ici. Son Aura Aveuglante (6m) rend l'Apôtre **aveuglé automatiquement** à chaque début de tour — désactivant le Regard des Morts et donnant l'Avantage à toutes vos attaques. Combiné avec <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> niv. 3+ (4d8 radiant, doublé contre Morts-vivants = **36 dégâts moyens**), chaque coup est dévastateur.
+
+<SingleStepTracker stepId="acte2_apotre_contresort" label="Contresort préparé sur au moins 1 lanceur — contre le Doigt de Mort" />
+
+Le <CodexTooltipById id="counterspell" text="Contresort" /> est votre dernière ligne de défense contre le <CodexTooltipById id="doigt_de_mort" text="Doigt de Mort" />. Ce sort est de niveau 7 — votre <CodexTooltipById id="counterspell" text="Contresort" /> de niveau 3 nécessitera un jet de caractéristique DD 17. Avec un bonus d'INT/CHA de +4, vous avez besoin d'un 13+ = **40% de réussite**. Si vous avez un emplacement de niveau 4 ou 5, upcastez le <CodexTooltipById id="counterspell" text="Contresort" /> pour augmenter vos chances.
+
+<SingleStepTracker stepId="acte2_apotre_invisibilite" label="Invisibilité préparée sur le personnage le plus mobile (pour libérer Aylin)" />
+
+<SingleStepTracker stepId="acte2_apotre_positions" label="Positionner le groupe AVANT le dialogue — healer à 9m+ de la plateforme" />
 
 ---
 
@@ -90,46 +294,121 @@ Le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> est l'ar
 
 <EmergencyMatrix bossId="apotre_myrkul" />
 
-### Décomposition Phase par Phase
+---
 
-**Phase 1 — Le Flagelleur Mental**
+### Phase 1 — Ketheric Thorm & Le Flagelleur Mental
 
-> **TUEZ LE FLAGELLEUR MENTAL AU TOUR 1.** C'est la règle la plus importante de ce combat. Le Flagelleur Mental lance <CodexTooltipById id="doigt_de_mort" text="Doigt de Mort" /> au Tour 2 — 7d8+30 nécrotique = moyenne **61 dégâts**. Si votre healer prend ce sort sans résistance nécrotique, c'est un **one-shot garanti**.
+La Phase 1 est un **piège cognitif**. Ketheric Thorm sous forme humanoïde semble gérable : 3 attaques de mêlée (+10, 2d6+6) et une Rafale Nécrotique en cône (6d6, DD CON 16). Mais le vrai danger est le **Flagelleur Mental** à ses côtés.
 
-<SingleStepTracker stepId="acte2_apotre_flagelleur" label="Tour 1 : Concentrer TOUT le DPS sur le Flagelleur Mental" />
+> **TUEZ LE FLAGELLEUR MENTAL AU TOUR 1.** C'est la règle la plus importante de ce combat. Le Flagelleur Mental lance <CodexTooltipById id="doigt_de_mort" text="Doigt de Mort" /> au Tour 2 — 7d8+30 nécrotique = moyenne **61 dégâts**. Si votre healer prend ce sort sans résistance nécrotique, c'est un **one-shot garanti**. Pire : si la cible meurt, elle se relève en **zombie hostile** — votre propre compagnon retourné contre vous.
 
-Utilisez <CodexTooltipById id="invisibilite" text="Invisibilité" /> sur votre personnage le plus mobile avant le dialogue pour positionner quelqu'un derrière Dame Aylin et la libérer dès le Tour 1.
+**Mathématiques de la Phase 1 :**
+- Le Flagelleur Mental a **~75 PV** et une CA de 15
+- Votre DPS principal avec <CodexTooltipById id="great_weapon_master" text="GWM" /> + <CodexTooltipById id="elixir_geant_collines" text="Élixir de Force" /> fait ~22 dégâts/attaque × 2 (Attaque Supplémentaire) = **44 dégâts/tour**
+- Ajoutez un <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> niv. 2 (3d8 = 13.5) sur le premier coup : **57.5 dégâts au Tour 1**
+- Un deuxième attaquant avec ne serait-ce que 2 attaques à ~10 dégâts = 20 de plus = **77.5 total**
+- Le Flagelleur Mental est **mort au Tour 1** avant même d'agir
 
-**Phase 2 — L'Apôtre lui-même**
+<SingleStepTracker stepId="acte2_apotre_flagelleur" label="Tour 1 : Concentrer TOUT le DPS sur le Flagelleur Mental — il DOIT mourir ce tour" />
 
-L'Apôtre a deux mécaniques létales :
+**Simultanément au Tour 1 :** Votre personnage le plus mobile (idéalement sous <CodexTooltipById id="invisibilite" text="Invisibilité" /> lancée avant le dialogue) se téléporte derrière Dame Aylin et la libère de ses chaînes. Aylin rejoint le combat comme alliée avec ~100 PV et des dégâts radiants massifs — elle peut tanker Ketheric pendant que vous finissez le Flagelleur.
 
-**Action Légendaire — Regard des Morts** : Une riposte effrayante qui déclenche un jet de SAG DD 17. En cas d'échec, le personnage est **Effrayé** pendant 2 tours et doit fuir le combat. En Mode Honneur, un tank effrayé qui fuit = le reste du groupe se fait écraser.
+<SingleStepTracker stepId="acte2_apotre_aylin" label="Tour 1 : Libérer Dame Aylin (personnage invisible positionné derrière elle)" />
 
-> **Contre** : <CodexTooltipById id="cecite" text="Cécité" /> ou <CodexTooltipById id="tenebres" text="Ténèbres" /> directement sur le boss. Un boss aveuglé ne peut pas utiliser Regard des Morts (nécessite une ligne de vue).
+**Phase 1 devrait durer 3-4 tours.** Ketheric a ~280 PV en Phase 1 mais Aylin aide massivement. Ne gaspillez pas vos emplacements de sort de haut niveau ici — vous en aurez besoin en Phase 2.
 
-**Piège Mortel — Aura de Frisson Osseux** : Dans un rayon de 6m autour de la plateforme centrale, **les soins et la réanimation sont impossibles**. Vos potions de soin, Mot de Guérison, et Relève-toi sont désactivés dans cette zone.
+---
 
-> **Contre** : Gardez votre healer **en dehors** de l'aura. Soignez à distance avec des sorts à longue portée. Si un allié tombe dans l'aura, utilisez <CodexTooltipById id="pas_brumeux" text="Pas Brumeux" /> pour le téléporter hors de la zone AVANT de le soigner.
+### Phase 2 — L'Apôtre de Myrkul (La Transformation)
 
-<SingleStepTracker stepId="acte2_apotre_cecite" label="Appliquer Cécité/Ténèbres sur l'Apôtre DÈS le début de Phase 2" />
+Quand Ketheric tombe à 0 PV, il se transforme en **l'Apôtre de Myrkul** — un squelette géant de 10 mètres de haut, avatar du Dieu de la Mort. La musique change. L'atmosphère change. Et les règles du combat changent radicalement.
 
-<SingleStepTracker stepId="acte2_apotre_healer" label="Positionner le healer à 9m+ de la plateforme centrale" />
+**Statistiques de l'Apôtre :**
+- **280 PV**, CA 18
+- **Immunité** : Poison, Nécrotique
+- **Vulnérabilité** : Radiant (dégâts ×2)
+- **3 Actions Légendaires** par round
 
-<SingleStepTracker stepId="acte2_apotre_kill" label="Achever l'Apôtre — Récupérer le Heaume de Ketheric" />
+### Mécanique 1 : L'Aura de Frisson Osseux (Anti-Guérison)
+
+Dans un rayon de **6 mètres** autour de la plateforme centrale, **les soins et la réanimation sont IMPOSSIBLES**. Vos potions de soin, <CodexTooltipById id="sanctuary" text="Sanctuaire" />, Mot de Guérison, et Relève-toi sont désactivés dans cette zone. Un personnage qui tombe à 0 PV dans l'aura est **mort définitivement** — pas de jets de mort, pas de stabilisation. Mort.
+
+> **RÈGLE N°1 :** Votre healer DOIT rester **en dehors** de l'aura, à 9m+ de la plateforme. Il soigne à distance avec des sorts à longue portée. Si un allié tombe dans l'aura, utilisez <CodexTooltipById id="pas_brumeux" text="Pas Brumeux" /> pour le téléporter hors de la zone **AVANT** toute tentative de soin.
+
+<SingleStepTracker stepId="acte2_apotre_healer" label="Positionner le healer à 9m+ de la plateforme — HORS de l'Aura de Frisson" />
+
+### Mécanique 2 : Regard des Morts (Riposte Automatique)
+
+Chaque fois que l'Apôtre est attaqué en **ligne de vue**, il déclenche **Regard des Morts** en réaction : un rayon nécrotique qui inflige **3d8 nécrotique** (moyenne 13.5, réduit à 6.75 avec résistance) ET applique l'état **Effrayé** pendant 2 tours. L'Effrayé force le personnage à fuir — un tank effrayé qui abandonne la ligne de front expose votre backline.
+
+> **LA CONTRE-MESURE :** <CodexTooltipById id="cecite" text="Cécité" /> ou <CodexTooltipById id="tenebres" text="Ténèbres" /> directement sur l'Apôtre. Un boss aveuglé **ne peut pas** utiliser Regard des Morts (nécessite une ligne de vue). Le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> fait cela **automatiquement** avec son Aura Aveuglante — c'est pourquoi c'est l'arme obligatoire ici.
+
+<SingleStepTracker stepId="acte2_apotre_cecite" label="Tour 1 Phase 2 : Appliquer Cécité/Ténèbres sur l'Apôtre OU positionner le Sang de Lathandre à 6m" />
+
+**Si vous n'avez pas le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> :** Lancez <CodexTooltipById id="cecite" text="Cécité" /> (niveau 2, JdS CON). L'Apôtre a CON +6 — contre un DD de 15, il résiste sur un 9+ = **60% de résistance**. C'est insuffisant. Relancez chaque tour. Avec <CodexTooltipById id="tenebres" text="Ténèbres" /> (pas de JdS, zone de 4.5m), vous pouvez couvrir l'Apôtre sans qu'il puisse résister — mais attention, vos attaquants mêlée auront aussi le Désavantage dans la zone.
+
+### Mécanique 3 : Doigt de Mort (One-Shot Potentiel)
+
+L'Apôtre utilise les **Néchromites** (petits squelettes errants, ~15 PV chacun) comme carburant pour lancer le <CodexTooltipById id="doigt_de_mort" text="Doigt de Mort" />. Chaque casting consomme un Néchromite. S'il n'y a plus de Néchromites, il ne peut **plus lancer** ce sort.
+
+> **7d8+30 = fourchette 37-86 dégâts, moyenne 61.** Avec résistance nécrotique, la moyenne tombe à **30.5** — survivable mais douloureux. Sans résistance, un lanceur de sorts avec 40 PV a **78% de chance de mourir** (probabilité que 7d8+30 > 40).
+
+<SingleStepTracker stepId="acte2_apotre_nechromites" label="Priorité : Tuer les Néchromites avant qu'ils n'atteignent l'Apôtre — pas de carburant = pas de Doigt de Mort" />
+
+---
+
+### Rotation Tour par Tour — Phase 2
+
+<SingleStepTracker stepId="acte2_apotre_t1" label="Tour 1 Phase 2 : Cécité/Ténèbres + Sang de Lathandre en position + tuer les Néchromites" />
+
+**Tour 1 :** Le lanceur de contrôle applique <CodexTooltipById id="cecite" text="Cécité" /> ou <CodexTooltipById id="tenebres" text="Ténèbres" /> sur l'Apôtre. Le porteur du <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" /> se positionne à 6m (portée de l'Aura Aveuglante). Les DPS secondaires éliminent les Néchromites (15 PV, CA 10 — un coup suffit).
+
+<SingleStepTracker stepId="acte2_apotre_t2" label="Tour 2 Phase 2 : DPS maximum sur l'Apôtre — Châtiment Divin radiant (dégâts ×2)" />
+
+**Tour 2 :** L'Apôtre est aveuglé. C'est le moment d'utiliser vos emplacements de sort de haut niveau. <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> niv. 3 = 4d8 radiant = 18 moyen, **×2 vulnérabilité = 36 par Smite**. Attaque d'arme (<CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" />) : 1d6+3 + 1d6 radiant (×2) = 3.5+3+7 = **13.5 par coup**. Avec 2 attaques + 2 Smites = (13.5 + 36) × 2 = **99 dégâts en un tour** d'un seul Paladin. L'Apôtre a 280 PV — avec Aylin qui aide, c'est **3-4 tours** pour le finir.
+
+<SingleStepTracker stepId="acte2_apotre_t3" label="Tour 3+ Phase 2 : Maintenir l'aveuglement, achever — Contresort si Doigt de Mort" />
+
+**Tour 3 et suivants :** Maintenez l'aveuglement (relancez <CodexTooltipById id="cecite" text="Cécité" /> si nécessaire ou restez dans la portée de l'Aura). Gardez <CodexTooltipById id="counterspell" text="Contresort" /> en réaction permanente. Éliminez les Néchromites qui spawn. Continuez le DPS radiant jusqu'à ce que l'Apôtre tombe.
+
+<SingleStepTracker stepId="acte2_apotre_kill" label="Achever l'Apôtre de Myrkul — Récupérer le Heaume de Ketheric" />
+
+<FailsafeCard missing="Sang de Lathandre + Contresort (aucun des deux disponibles)" fallback="Bouclier de la Foi sur le healer (+2 CA), Résistance Nécrotique sur tous, et DPS pur — c'est plus risqué mais faisable si l'Apôtre est aveuglé par Ténèbres" condition="Si le puzzle du Monastère ET les emplacements de Contresort sont indisponibles" />
 
 ---
 
 ## Checklist de Sortie — Acte 2
 
-<SingleStepTracker stepId="acte2_exit_level8" label="Tout le groupe est au moins Niveau 8" />
+L'Acte 2 est terminé. Avant de passer à Baldur's Gate, confirmez chaque point. L'Acte 3 ne pardonne aucun oubli.
 
-<SingleStepTracker stepId="acte2_exit_isobel" label="Isobel est vivante et la Tour de la Dernière Lumière est intacte" />
+### Niveaux et Équipement
+
+<SingleStepTracker stepId="acte2_exit_level8" label="Tout le groupe est au moins Niveau 8" />
 
 <SingleStepTracker stepId="acte2_exit_lathandre" label="Le Sang de Lathandre est dans l'inventaire" />
 
+<SingleStepTracker stepId="acte2_exit_hallebarde" label="La Hallebarde de Vigilance est équipée (Avantage Initiative + Anti-Surprise)" />
+
+<SingleStepTracker stepId="acte2_exit_casque" label="Le Casque d'Acuité Arcanique est équipé sur un lanceur de contrôle" />
+
+### Compagnons et Quêtes
+
+<SingleStepTracker stepId="acte2_exit_isobel" label="Isobel est vivante et la Tour de la Dernière Lumière est intacte" />
+
 <SingleStepTracker stepId="acte2_exit_jaheira" label="Jaheira est recrutée et vivante" />
+
+<SingleStepTracker stepId="acte2_exit_dammon" label="Dammon est vivant (il forge à l'Acte 3 — crucial pour certains builds)" />
+
+### Inventaire
+
+<SingleStepTracker stepId="acte2_exit_elixirs" label="Stock d'Élixirs de Force de Géant + Élixirs de Résistance Nécrotique" />
+
+<SingleStepTracker stepId="acte2_exit_parchemins" label="Parchemins de Contresort, de Sanctuaire, et de Pas Brumeux" />
+
+<SingleStepTracker stepId="acte2_exit_potions" label="15+ Potions de Soin Supérieures" />
+
+### Repos Final
 
 <SingleStepTracker stepId="acte2_exit_repos" label="Repos Long complet AVANT d'entrer dans Baldur's Gate" />
 
-> **POINT DE NON-RETOUR** : L'entrée dans Baldur's Gate est définitive. Les Terres Maudites et Hautelune deviennent **inaccessibles**. Vérifiez que le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" />, la <CodexTooltipById id="hallebarde_vigilance" text="Hallebarde de Vigilance" />, et vos <CodexTooltipById id="elixir_geant_collines" text="Élixirs de Force" /> sont bien dans votre inventaire.
+> **POINT DE NON-RETOUR** : L'entrée dans Baldur's Gate est **définitive**. Les Terres Maudites et Hautelune deviennent **inaccessibles**. Vérifiez que le <CodexTooltipById id="sang_de_lathandre" text="Sang de Lathandre" />, la <CodexTooltipById id="hallebarde_vigilance" text="Hallebarde de Vigilance" />, le <CodexTooltipById id="casque_acuite_arcanique" text="Casque d'Acuité Arcanique" />, et vos <CodexTooltipById id="elixir_geant_collines" text="Élixirs de Force" /> sont bien dans votre inventaire. Chaque objet oublié est un handicap **permanent** pour l'Acte 3.

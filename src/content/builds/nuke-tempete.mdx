@@ -1,0 +1,82 @@
+---
+title: "Le Nuke Tempête — Guide Complet"
+buildId: nuke_tempete
+description: "L'Annihilation Élémentaire. Ensorceleur des Tempêtes / Clerc de la Tempête — 160 dégâts garantis sur 4 cibles simultanément."
+---
+
+# Le Nuke Tempête : L'Annihilation Élémentaire
+
+*(10 Ensorceleur des Tempêtes / 2 Clerc du Domaine de la Tempête)*
+
+Le "Storm Sorcerer Nuke" repose sur une interaction mathématique dévastatrice. Dans BG3, le statut "Mouillé" double les dégâts de Foudre et de Froid subis. Le Clerc de la Tempête, via son Conduit Divin, permet de ne pas lancer les dés de dégâts de Foudre, mais d'appliquer directement le résultat maximum. Le résultat ? Une Éclair en Chaîne qui frappe pour 160 dégâts garantis sur 4 cibles simultanément.
+
+---
+
+## 1. Création du Personnage & Statistiques
+
+Nous commençons Ensorceleur pour obtenir la maîtrise des jets de sauvegarde de Constitution (pour ne pas perdre notre concentration sur des sorts comme *Hâte*).
+
+- **Race Optimale :** Demi-Elfe ou Humain (pour la maîtrise des boucliers si vous ne portez pas d'armure lourde), ou Drakéide de Foudre/Bleu (pour la résistance thématique).
+- **Historique :** Charlatan ou Noble.
+
+**Répartition des 27 points :**
+
+- **Force : 8** (Inutile)
+- **Dextérité : 14** (Initiative et Classe d'Armure)
+- **Constitution : 16** (Points de vie et concentration)
+- **Intelligence : 8** (Dump stat)
+- **Sagesse : 10** (Juste assez pour éviter les malus)
+- **Charisme : 17** (Statistique principale pour toucher et dégâts de vos sorts d'Ensorceleur. +1 via l'Épilation de la Guenaude = 18)
+
+---
+
+## 2. Le Leveling (Niveau 1 à 12)
+
+Le build met un peu de temps à démarrer, mais devient un rouleau compresseur total à partir du niveau 7.
+
+<ChecklistTracker checklistId="leveling_stormsorc" />
+
+* **Niveau 1 : Ensorceleur (Sorcellerie des Tempêtes).** Vous gagnez la capacité de voler en Action Bonus après avoir lancé un sort, vous offrant une mobilité inégalée.
+* **Niveaux 2 à 3 : Clerc (Domaine de la Tempête 1 & 2).** Le multiclassage immédiat. Vous gagnez la maîtrise des armures lourdes et surtout, au niveau 2 de Clerc, la **Colère Destructrice** (Channel Divinity) : au lieu de lancer les dés pour un sort de Foudre, vous infligez le maximum possible.
+* **Niveaux 4 à 12 : Ensorceleur (Niveaux 2 à 10).** * **Niveau 5 global (Ensorceleur 3) :** Déblocage de la **Métamagie**. Prenez *Sort Accéléré* (Quickened Spell) pour lancer un sort en Action Bonus, et *Sort Jumeau* (Twinned Spell).
+* **Niveau 6 global (Ensorceleur 4) :** Prenez le don **Amélioration de Caractéristique** (+2 Charisme) ou **Alerte** (pour toujours jouer en premier et nuker avant que les ennemis ne s'éparpillent).
+* **Niveau 10 global (Ensorceleur 8) :** Prenez le don **Double Maniement** (Dual Wielder). Cela vous permettra de porter DEUX bâtons magiques légendaires en même temps à l'Acte 3.
+
+---
+
+## 3. L'Équipement "Best in Slot" (BiS)
+
+Pour infliger des dégâts apocalyptiques, il vous faut des objets qui augmentent le DD de vos sorts et vous donnent des incantations gratuites.
+
+<EmergencyMatrix title="Le Sceptre du Dieu de la Foudre" severity="lethal">
+  - **Arme Principale (Acte 3) :** <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> (Tour de Ramazith, Chambre Forte). Ce bâton légendaire vous donne le buff "Faveur de Kereska" (Foudre). Il vous permet de lancer <CodexTooltipById id="chain_lightning" text="Éclair en Chaîne" /> gratuitement une fois par repos court !
+</EmergencyMatrix>
+
+**Le reste de l'équipement :**
+
+- **Arme Secondaire (Acte 3) :** <CodexTooltipById id="staff_spellpower" text="Bâton de Puissance Magique" /> (Maison de l'Espoir). Grâce au don Double Maniement, portez ce deuxième bâton pour une autre incantation gratuite (Batterie Arcanique).
+- **Tête (Acte 3) :** <CodexTooltipById id="hood_weave" text="Capuchon de la Toile" /> (Manoir de Philgrave). +2 au DD des sorts.
+- **Amulette (Acte 3) :** <CodexTooltipById id="amulet_devout" text="Amulette du Dévot" /> (Caveau du Tabernacle). Ajoute une charge de Conduit Divin. Vous pourrez faire DEUX nukes maximisés par repos court !
+- **Armure :** Armure Lourde de votre choix (ex: Armure du Crépuscule Infernal) ou la *Robe de la Toile* si vous préférez maximiser le DD.
+
+<FailsafeCard
+  missing="Amulette du Dévot (Si vous ne voulez pas voler les dieux)"
+  fallback="Amulette de Santé (Maison de l'Espoir) pour bloquer votre Constitution à 23 et ne jamais perdre votre concentration."
+/>
+
+---
+
+## 4. La Boucle de la Mort (Rotation de Combat)
+
+L'objectif est de préparer le terrain avec de l'eau, puis d'appuyer sur le bouton nucléaire.
+
+1. **Tour 1 - La Préparation (Action) :** Lancez le sort *Création d'Eau* ou jetez une bouteille d'eau/tonneau d'eau sur le groupe d'ennemis. Ils sont maintenant "Mouillés" (Vulnérables à la Foudre).
+2. **Le Déclencheur (Action Bonus) :** Utilisez votre Métamagie *Sort Accéléré* pour lancer <CodexTooltipById id="chain_lightning" text="Éclair en Chaîne" /> (ou *Appel de la Foudre* / *Éclair* si vous n'êtes pas niveau 12).
+3. **Le Jugement Dernier (Réaction) :** Le jeu vous demande si vous voulez utiliser votre *Colère Destructrice*. Dites OUI.
+4. **Bilan Mathématique :** L'Éclair en Chaîne fait 10d8 dégâts. La Colère Destructrice fixe le jet à 80. L'état Mouillé multiplie par 2. **160 dégâts instantanés** sur la cible principale ET sur trois autres cibles proches. Le combat est terminé.
+
+<CombatLogSimulator
+  baseDice="10d8"
+  statModifier="0"
+  extraDamage={[{source: "Colère Destructrice (Max Roll)", value: 80}, {source: "Vulnérabilité (Mouillé)", value: 80}]}
+/>

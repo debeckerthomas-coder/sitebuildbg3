@@ -678,6 +678,58 @@ export const CODEX: Record<string, CodexEntry> = {
     tags: ["casque", "très-rare", "contrôle", "acuité"],
   },
 
+  robe_de_la_trame: {
+    id: "robe_de_la_trame",
+    name: "Robe de la Trame",
+    type: "objet",
+    rarity: "very_rare",
+    description:
+      "Robe qui confère +1 au DD de sort, +1 aux jets d'attaque des sorts, et le sort Armure de Mage permanent. Trouvée dans la Chambre Forte des Sorcelleries, Acte 3.",
+    stats: [
+      { label: "CA", value: "10 + DEX + Armure de Mage (+3)" },
+      { label: "DD sort", value: "+1" },
+      { label: "Attaque sort", value: "+1" },
+      { label: "Passif", value: "Armure de Mage permanent" },
+      { label: "Localisation", value: "Chambre Forte des Sorcelleries" },
+    ],
+    iconUrl: "/assets/icons/robe_weave.webp",
+    tags: ["robe", "très-rare", "acte-3", "lanceur-de-sorts"],
+  },
+
+  liberte_de_mouvement: {
+    id: "liberte_de_mouvement",
+    name: "Liberté de Mouvement",
+    type: "sort",
+    rarity: "rare",
+    description:
+      "Sort de niveau 4. Immunise la cible aux effets qui restreignent le mouvement : paralysie, agrippement, ralentissement, terrain difficile. Dure 1 heure, pas de concentration.",
+    stats: [
+      { label: "Niveau", value: "4" },
+      { label: "Durée", value: "1 heure" },
+      { label: "Concentration", value: "Non" },
+      { label: "Effet", value: "Immunité aux restrictions de mouvement" },
+    ],
+    iconUrl: "/assets/icons/freedom_of_movement.webp",
+    tags: ["abjuration", "protection", "anti-contrôle"],
+  },
+
+  eclair: {
+    id: "eclair",
+    name: "Éclair",
+    type: "sort",
+    rarity: "rare",
+    description:
+      "Sort de niveau 3. Projette un trait de foudre de 30m de long sur 1,5m de large. Inflige 8d6 dégâts de foudre (JdS DEX pour moitié). Excellent contre le Titan de la Garde d'Acier (vulnérabilité Foudre).",
+    stats: [
+      { label: "Niveau", value: "3" },
+      { label: "Dégâts", value: "8d6 foudre" },
+      { label: "Zone", value: "Ligne 30m × 1,5m" },
+      { label: "JdS", value: "Dextérité (moitié)" },
+    ],
+    iconUrl: "/assets/icons/lightning_bolt.webp",
+    tags: ["évocation", "foudre", "dégâts", "AoE"],
+  },
+
   shield_of_faith: {
     id: "shield_of_faith",
     name: "Bouclier de la Foi",

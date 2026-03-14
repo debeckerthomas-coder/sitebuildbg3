@@ -590,6 +590,129 @@ export const BOSSES: Record<string, Boss> = {
     loot: ["helldusk_armour"],
     tags: ["archidiable", "cambion", "maison-espoir", "acte-3"],
   },
+
+  steel_watch_titan: {
+    id: "steel_watch_titan",
+    name: "Titan de la Garde d'Acier",
+    icon: "/icons/bosses/steel_watch_titan.webp",
+    act: 3,
+    location: "Fonderie de la Garde d'Acier — Ville Basse",
+    hitPoints: 300,
+    armourClass: 20,
+    initiativeBonus: 0,
+    abilities: {
+      strength: 26,
+      dexterity: 8,
+      constitution: 24,
+      intelligence: 6,
+      wisdom: 10,
+      charisma: 6,
+    },
+    phases: [
+      {
+        name: "Phase Unique — Automate de Guerre",
+        description:
+          "Le Titan est un golem de métal alimenté par un Moteur Gondien. Vulnérable à la Foudre, résistant aux dégâts physiques non-magiques.",
+        actions: [
+          {
+            name: "Frappe Dévastatrice",
+            description:
+              "Attaque de mêlée. +14 au toucher, 3d10+8 contondants. Repousse la cible de 4,5m.",
+            damage: "3d10+8 bludgeoning",
+            isLegendary: false,
+          },
+          {
+            name: "Surcharge de Vapeur (AoE)",
+            description:
+              "AoE de 6m autour du Titan. 6d6 dégâts de feu (JdS DEX DD 17 pour moitié). Inflige Brûlé pendant 2 tours.",
+            damage: "6d6 fire",
+            recharge: "5-6",
+            isLegendary: false,
+          },
+          {
+            name: "Prise Broyeuse",
+            description:
+              "Agrippe une cible (JdS FOR DD 18). La cible est Agrippée et subit 2d8+8 contondants automatiques au début de chaque tour du Titan.",
+            damage: "2d8+8 bludgeoning/tour",
+            isLegendary: false,
+          },
+        ],
+        immunities: ["poison", "psychic"],
+        vulnerabilities: ["lightning"],
+        resistances: ["bludgeoning", "piercing", "slashing"],
+      },
+    ],
+    mechanics: [
+      {
+        id: "vulnerabilite_foudre",
+        name: "Vulnérabilité à la Foudre — Exploitable",
+        severity: "info",
+        description:
+          "Le Titan est VULNÉRABLE aux dégâts de Foudre (×2). Un Éclair (8d6 = moy. 28, ×2 = 56) ou un Appel de la Foudre touche deux fois plus fort.",
+        counterplay:
+          "Préparez maximum de sorts de Foudre : Éclair, Appel de la Foudre, Sorcière Éclair. Équipez le Markoheshkir sur Foudre via l'Élément de Karsus.",
+      },
+      {
+        id: "prise_broyeuse",
+        name: "Prise Broyeuse — Piège Mêlée",
+        severity: "warning",
+        description:
+          "Le Titan peut agripper un personnage et infliger 2d8+8 contondants automatiques par tour. Un personnage agrippé ne peut pas bouger ni utiliser d'armes à deux mains.",
+        counterplay:
+          "Pas Brumeux permet de s'échapper instantanément (la téléportation brise l'agrippement). Liberté de Mouvement rend le personnage immunisé à l'agrippement.",
+      },
+    ],
+    loot: [],
+    tags: ["golem", "acier", "fonderie", "acte-3"],
+  },
+
+  marcus_attaque: {
+    id: "marcus_attaque",
+    name: "Marcus — L'Attaque de la Tour",
+    icon: "/icons/bosses/marcus.webp",
+    act: 2,
+    location: "Tour de la Dernière Lumière — 2e étage",
+    hitPoints: 90,
+    armourClass: 15,
+    initiativeBonus: 2,
+    abilities: {
+      strength: 16,
+      dexterity: 14,
+      constitution: 14,
+      intelligence: 12,
+      wisdom: 12,
+      charisma: 14,
+    },
+    phases: [
+      {
+        name: "Phase Unique — Assaut Vampirique",
+        description:
+          "Marcus attaque avec des sbires volants pour kidnapper Isobel. Si Isobel est touchée, la run est quasi-perdue.",
+        actions: [
+          {
+            name: "Téléportation Vampirique",
+            description:
+              "Peut téléporter Isobel hors de la Tour. Si réussi, Isobel meurt et la Tour tombe dans l'ombre.",
+            isLegendary: false,
+          },
+        ],
+        vulnerabilities: ["radiant"],
+      },
+    ],
+    mechanics: [
+      {
+        id: "isobel_protection",
+        name: "Protection d'Isobel — Priorité Absolue",
+        severity: "lethal",
+        description:
+          "Si Marcus touche Isobel avec sa téléportation, la Tour tombe dans l'ombre. Tous les PNJ deviennent des Ombres hostiles. Votre camp de base est détruit.",
+        counterplay:
+          "Lancez Sanctuaire sur Isobel AVANT le combat. Barricadez les fenêtres avec des caisses. Gardez Contresort en réaction. Éliminez Marcus en 2-3 tours avec des dégâts radiants (×2).",
+      },
+    ],
+    loot: [],
+    tags: ["vampire", "mort-vivant", "tour-lumière", "acte-2"],
+  },
 };
 
 export function getBoss(id: string): Boss | undefined {

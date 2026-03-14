@@ -4,42 +4,78 @@ buildId: moine_bagarreur
 description: "Le build monocible le plus dévastateur du Mode Honneur. Philosophie, progression, et simulation de dégâts."
 ---
 
-## Philosophie du Build
+# Le Moine Bagarreur : La Machine à Dégâts
 
-Le Moine Bagarreur repose sur un principe simple mais redoutable : **maximiser le nombre d'attaques par tour tout en gonflant chaque frappe avec le modificateur de Force doublé**. Grâce à l'<CodexTooltipById id="elixir_geant_collines" text="Élixir de Force de Géant des Collines" />, votre Force passe à 21, ce qui signifie un modificateur de +5… doublé à +10 par le don Bagarreur des Tavernes sur chaque attaque à mains nues.
+*(8 Moine de la Paume Ouverte / 4 Roublard Voleur)*
 
-Le résultat ? Avec 5 à 6 attaques par tour (Attaque Supplémentaire du Moine + Rafale de Coups + Action Bonus du Voleur), chaque round inflige entre **60 et 80 dégâts** de manière constante, sans consommer aucune ressource rechargeable.
+Le "Tavern Brawler Monk" est une aberration mathématique en Mode Honneur. En abusant de la mécanique des Élixirs de Force et du Don Bagarreur des Tavernes, ce build contourne les limites de caractéristiques du jeu pour offrir une précision absolue et des dégâts colossaux, capables de terrasser des boss en un seul tour grâce à ses multiples actions bonus.
 
-## Progression Clé
+---
 
-La montée en puissance se fait en trois paliers critiques. Le plus important est le niveau 4 :
+## 1. Création du Personnage & Statistiques
 
-<SingleStepTracker stepId="moine_feat" label="Niveau 4 : Prendre le don Bagarreur des Tavernes" />
+Le secret de ce build est de "dumper" (abandonner) complètement la Force lors de la création, car vous boirez un Élixir de Force après chaque repos long.
 
-C'est le moment où le build « s'active ». Avant ce don, vous êtes un moine standard. Après, chaque attaque à mains nues ajoute votre modificateur de Force **deux fois** aux dégâts.
+- **Race Optimale :** Elfe des Bois (pour la vitesse de déplacement vitale pour un moine) ou Demi-Orc (pour la survie et les critiques).
+- **Historique :** Étranger ou Héros du Peuple.
 
-<SingleStepTracker stepId="moine_elixir" label="Obtenir l'Élixir de Force de Géant des Collines (Marchands Acte 1)" />
+**Répartition des 27 points (Mode Élixir) :**
 
-<SingleStepTracker stepId="moine_multiclass" label="Niveau 9 : Multiclasser en Roublard (Voleur) pour la 2e Action Bonus" />
+- **Force : 8** (Remplacée par l'Élixir à 21 ou 27)
+- **Dextérité : 16** (Classe d'Armure, Initiative)
+- **Constitution : 14** (Points de vie)
+- **Intelligence : 8** (Inutile)
+- **Sagesse : 16** (Dégâts bonus de la Paume Ouverte, Classe d'Armure du Moine)
+- **Charisme : 10**
 
-## Simulation de Dégâts
+---
 
-Voici le breakdown mathématique d'une Rafale de Coups complète avec le build en ligne :
+## 2. Le Leveling (Niveau 1 à 12)
 
-<CombatLogMDX base="1d6" statModifier={5} tavernBrawler={5} label="Simuler une Rafale de Coups (Sans arme)" />
+La progression nécessite un multiclassage précis pour obtenir l'Action Bonus supplémentaire du Roublard.
 
-Chaque coup de la rafale inflige en moyenne **13.5 dégâts**. Avec 5 attaques par tour, cela représente **67.5 dégâts moyens par round** — sans compter les effets de Paume Ouverte (Prône, Repousser, Empêcher les réactions).
+<ChecklistTracker checklistId="leveling_monk" />
 
-## Plans de Secours
+* **Niveaux 1 à 6 : Moine.** Choisissez la sous-classe **Paume Ouverte** au niveau 3 pour débloquer le renversement.
+* **Niveau 4 (Le Tournant) :** Prenez le don **Bagarreur des Tavernes** (Tavern Brawler) avec un point en Constitution. Ce don ajoute DEUX FOIS votre modificateur de Force à vos jets d'attaque et de dégâts à mains nues.
+* **Niveau 6 :** Déblocage des *Manifestations* (ajoute des dégâts Nécrotiques, Radiants ou Psychiques à chaque coup).
+* **Niveaux 7 à 9 : Roublard (1 à 3).** Au niveau 3 de Roublard (niveau 9 global), choisissez la sous-classe **Voleur**. Vous gagnez une Action Bonus permanente. Pour un Moine, une Action Bonus = une *Rafale de Coups* (2 attaques).
+* **Niveaux 10 à 12 : Moine (7 à 8) ou Roublard (4).** Le choix méta est de reprendre du Moine pour obtenir *Évasion* et le don de niveau 8 (Amélioration de Sagesse +2).
 
-Si vous ratez l'objet clé du build, voici le plan B :
+---
 
-<FailsafeCard missing="Gants d'Étincelle Infernale" fallback="Gants de la Force des Cieux" condition="Si les Gants d'Étincelle ne sont pas trouvés dans les coffres de la Forge d'Adamantine" />
+## 3. L'Équipement "Best in Slot" (BiS)
 
-<FailsafeCard missing="Gants d'Habilité (FOR 23)" fallback="Élixir de Force de Géant des Collines (FOR 21)" condition="Si les gants ne sont pas volés au Sous-sol du Bosquet à l'Acte 1" />
+<EmergencyMatrix title="Le Carburant Absolu (VITAL)" severity="lethal">
+  - **Élixir de Force de Géant des Collines (Force 21) :** Achetez-en 3 à Tatie Ethel au Bosquet d'Émeraude à CHAQUE montée de niveau d'un personnage (Vendor Refresh).
+  - **Élixir de Force de Géant des Nuages (Force 27) :** À accumuler dès l'Acte 3 (chez Derryth ou au Magasin des Sorcelleries).
+</EmergencyMatrix>
 
-## Conseils Mode Honneur
+**L'Équipement Clé par Acte :**
 
-> **Ne gaspillez jamais votre Étourdissement** sur des ennemis mineurs. Gardez-le exclusivement pour les boss et les cibles prioritaires. En Mode Honneur, un Étourdissement raté sur un boss peut signifier un wipe — visez les cibles à faible SAG.
+- **Mains (Acte 1) :** <CodexTooltipById id="gloves_sparkle_hands" text="Les Mains Étincelantes" /> (Charges de foudre) ou Gants de Crapaud.
+- **Pieds (Acte 1) :** <CodexTooltipById id="boots_kushigo" text="Bottes de Kushigo sans entraves" /> (Ajoute la Sagesse aux dégâts à mains nues).
+- **Mains (Acte 3 - Endgame) :** <CodexTooltipById id="gloves_soul_catching" text="Gants de Capture d'Âmes" /> (Maison de l'Espoir). Soigne ou donne un avantage aux attaques, et ajoute 1d10 de dégâts de Force par coup.
+- **Tête (Acte 3) :** <CodexTooltipById id="mask_soul_perception" text="Masque de Perception de l'Âme" /> (+2 Jets d'attaque, Initiative).
 
-> Le **positionnement est crucial** : restez toujours à portée de mêlée du boss principal, mais évitez les zones d'AoE ennemies. Le Pas Chassé du Moine (Disengage gratuit) vous permet de vous repositionner sans provoquer d'attaques d'opportunité.
+<FailsafeCard
+  missing="Gants de Capture d'Âmes (Si vous ratez le sauvetage d'Espérance)"
+  fallback="Gants d'Écrasement d'Os (Lootés sur divers boss de l'Acte 3, ignorent la résistance contondante)."
+/>
+
+---
+
+## 4. La Boucle de la Mort (Rotation de Combat)
+
+Votre mobilité vous permet d'atteindre n'importe quelle cible. Votre but est d'éliminer le boss adverse avant même qu'il ne puisse agir.
+
+1. **Pré-Combat :** Vérifiez que votre Élixir est actif et qu'une Manifestation (ex: Dégâts Radiants) est allumée dans vos passifs.
+2. **Action Principale :** Frappez deux fois avec vos poings standards pour appliquer d'éventuels malus ou renverser.
+3. **Actions Bonus (La machine à coudre) :** Utilisez vos deux Actions Bonus pour lancer **Rafale de Coups** deux fois.
+4. **Bilan du Tour 1 :** Vous avez frappé 6 fois. Avec une Force à 27, le don Bagarreur des Tavernes et vos bottes, vos chances de toucher sont bloquées à 95% minimum.
+
+<CombatLogSimulator
+  baseDice="1d6"
+  statModifier="8"
+  extraDamage={[{source: "Bagarreur des Tavernes", value: 8}, {source: "Bottes Kushigo", value: 4}, {source: "Manifestation", dice: "1d4 + 4"}]}
+/>

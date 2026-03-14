@@ -32,4 +32,52 @@ Nous commençons avec un niveau d'Ensorceleur pour une raison purement d'optimis
 
 ## 2. Le Leveling (Niveau 1 à 12)
 
-Votre rôle change drastiquement à partir
+Votre rôle change drastiquement à partir du niveau 6 (Niveau 5 de Clerc) quand vous débloquez le sort *Gardiens Spirituels*. Vous devenez une "tondeuse à gazon" divine.
+
+<ChecklistTracker checklistId="leveling_lightcleric" />
+
+* **Niveau 1 : Ensorceleur (Lignée de la Tempête).** Pourquoi Tempête ? Pour la mobilité. Lancer un sort de niveau 1 vous permet de voler en Action Bonus sans provoquer d'attaque d'opportunité. Prenez le sort <CodexTooltipById id="shield_spell" text="Bouclier" /> et *Projectile Magique*.
+* **Niveaux 2 à 12 : Clerc (Domaine de la Lumière).** Le Domaine de la Lumière donne accès à *Illumination de l'Aube* (une AoE radiante massive) et à la *Lueur Protectrice* (réaction pour imposer un désavantage à une attaque ennemie).
+* **Niveau 5 (Clerc 4) :** Prenez le don **Mage de Guerre** (War Caster). Combiné à votre maîtrise de la Constitution, vous ne perdrez pratiquement jamais votre concentration sur *Gardiens Spirituels*.
+* **Niveau 9 (Clerc 8) :** Prenez le don **Amélioration de Caractéristique** (+2 Sagesse).
+* **Niveau 11 (Clerc 10) :** Vous débloquez l'Intervention Divine. Gardez-la pour une arme légendaire ou un soin d'urgence total sur un boss endgame.
+
+---
+
+## 3. L'Équipement "Best in Slot" (BiS)
+
+Ce build repose **entièrement** sur un set d'équipement précis. Si vous ratez ces objets, le build ne fonctionne pas.
+
+<EmergencyMatrix title="Le Set d'Irradiation (À NE SURTOUT PAS RATER)" severity="lethal">
+  - **L'Armure (Acte 1) :** <CodexTooltipById id="luminous_armor" text="Armure Lumineuse" /> (Avant-poste Sélunite en Ombreterre, salle secrète). Crée une onde de choc d'Orbes d'Irradiation chaque fois que vous infligez des dégâts radiants.
+  - **Les Gants (Acte 2) :** <CodexTooltipById id="luminous_gloves" text="Gants Lumineux" /> (Coffre du Potier, Ruines du champ de bataille). Infliger des dégâts radiants applique 2 Orbes supplémentaires.
+  - **L'Anneau (Acte 2) :** <CodexTooltipById id="coruscation_ring" text="Anneau de Coruscation" /> (Cave de l'Auberge de l'Ultime Lueur). Lancer un sort en étant illuminé applique 2 Orbes.
+</EmergencyMatrix>
+
+**Le reste de l'équipement :**
+
+- **Arme (Acte 1) :** <CodexTooltipById id="blood_lathander" text="Le Sang de Lathandre" /> (Crèche Y'llek). La lumière émise active l'Anneau de Coruscation en permanence.
+- **Tête (Acte 1.5) :** <CodexTooltipById id="holy_lance_helm" text="Heaume de la Sainte Lance" /> (Toit du Monastère d'Auberos). Les ennemis qui vous ratent prennent des dégâts radiants (ce qui réapplique des Orbes !).
+- **Amulette (Acte 3) :** <CodexTooltipById id="amulet_devout" text="Amulette du Dévot" /> (Caveau de la Basilique). +2 au DD de vos sorts et une charge de Conduit Divin supplémentaire.
+
+<FailsafeCard
+  missing="Heaume de la Sainte Lance"
+  fallback="Chapeau d'Acrobate (Cirque de la Fin des Jours, Acte 3) pour l'avantage aux jets de Dextérité."
+/>
+
+---
+
+## 4. La Boucle de la Mort (Rotation de Combat)
+
+Votre stratégie n'est pas de tuer les ennemis un par un, mais de vous jeter au milieu de la mêlée pour castrer leur potentiel offensif.
+
+1. **Tour 1 - Préparation :** Utilisez votre Action pour lancer *Gardiens Spirituels* (en choisissant l'option Radiante, évidemment).
+2. **Le Vol de la Tondeuse :** Grâce à votre niveau d'Ensorceleur Tempête, l'incantation vous permet de vous envoler en Action Bonus. Volez à travers les lignes ennemies.
+3. **L'Effet Domino :** Chaque ennemi touché par les Gardiens prend des dégâts. L'Armure Lumineuse s'active, créant une onde d'Orbes. Les Gants s'activent. L'Anneau s'active. Un simple passage inflige entre 4 et 8 tours d'Orbes d'Irradiation en zone (entre -4 et -8 à leurs jets d'attaque).
+4. **Tour 2 - Le Flash :** Utilisez votre Conduit Divin *Illumination de l'Aube*. C'est un rayon de 9 mètres qui ignore le couvert. Chaque ennemi touché reçoit une nouvelle explosion d'Orbes. Le combat est mathématiquement gagné, ils ne feront plus que des Échecs Critiques.
+
+<CombatLogSimulator
+  baseDice="3d8"
+  statModifier="0"
+  extraDamage={[{source: "Gardiens Spirituels", value: 0}, {source: "Orbes Appliqués (Debuff)", value: -6}]}
+/>

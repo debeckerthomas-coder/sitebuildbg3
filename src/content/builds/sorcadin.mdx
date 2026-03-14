@@ -1,0 +1,86 @@
+---
+title: "Le Sorcadin — Guide Complet"
+buildId: sorcadin
+description: "L'Égide Incandescente. Paladin Vengeance / Ensorceleur Draconique — Aura de Protection + Métamagie + Châtiment Divin critique garanti."
+---
+
+# Le Sorcadin : L'Égide Incandescente
+
+*(6 Paladin du Serment de Vengeance / 6 Ensorceleur Draconique)*
+
+Le "Sorcadin" est le parangon de la survie et du "Burst" (dégâts instantanés) en Mode Honneur. La synergie est évidente : le Paladin a besoin d'emplacements de sorts pour utiliser son *Châtiment Divin*, et l'Ensorceleur en possède à revendre. En allant chercher le niveau 6 de Paladin, vous débloquez l'une des capacités les plus brisées du jeu de rôle : l'*Aura de Protection*, qui ajoute votre modificateur de Charisme à tous les jets de sauvegarde de votre équipe.
+
+---
+
+## 1. Création du Personnage & Statistiques
+
+Contrairement au Bardadin qui joue sur la Dextérité, le Sorcadin porte une armure lourde et manie des armes à deux mains massives.
+
+- **Race Optimale :** Demi-Orc (Pour l'Attaque Sauvage et l'Endurance Implacable) ou Zariel Tieffelin.
+- **Historique :** Noble ou Soldat.
+
+**Répartition des 27 points (Sans Élixir) :**
+
+- **Force : 16** (Statistique de frappe principale)
+- **Dextérité : 10** (Inutile en Armure Lourde, laissez faire les autres pour l'Initiative)
+- **Constitution : 14** (Points de vie)
+- **Intelligence : 8** (Dump stat)
+- **Sagesse : 8** (L'Aura de Protection compensera ce malus)
+- **Charisme : 16** (Pour le DD de vos sorts et l'Aura de Protection)
+
+---
+
+## 2. Le Leveling (Niveau 1 à 12)
+
+Il est crucial de commencer par le Paladin pour obtenir la maîtrise des Armures Lourdes et des Armes de Guerre.
+
+<ChecklistTracker checklistId="leveling_sorcadin" />
+
+* **Niveaux 1 à 6 : Paladin (Serment de Vengeance).** - *Niveau 2 :* Style de combat **Arme à deux mains** (Great Weapon Fighting) et <CodexTooltipById id="divine_smite" text="Châtiment Divin" />.
+  - *Niveau 3 :* Vœu d'Inimitié (Avantage garanti sur un boss).
+  - *Niveau 4 :* Don **Maître des Armes Lourdes** (Great Weapon Master) pour le +10 aux dégâts.
+  - *Niveau 5 :* Attaque supplémentaire.
+  - *Niveau 6 (Crucial) :* **Aura de Protection**. Le cœur défensif du build.
+* **Niveaux 7 à 12 : Ensorceleur (1 à 6).** Choisissez la **Lignée Draconique** (Feu ou Argent) pour la survie supplémentaire, ou **Tempête** pour la mobilité.
+  - *Niveau 7 (Ensorceleur 1) :* Prenez les sorts <CodexTooltipById id="shield_spell" text="Bouclier" /> (qui fait grimper votre CA à plus de 25 en réaction) et *Projectile Magique*.
+  - *Niveau 9 (Ensorceleur 3) :* La **Métamagie**. Prenez *Sort Accéléré* (Quickened Spell). Cela vous permet de lancer un sort en Action Bonus et de taper ensuite !
+  - *Niveau 10 (Ensorceleur 4) :* Prenez le don **Amélioration de Caractéristique** (+2 Force ou +2 Charisme selon vos besoins).
+
+---
+
+## 3. L'Équipement "Best in Slot" (BiS)
+
+Vous êtes le rempart de l'équipe. Votre équipement doit refléter cette domination physique.
+
+<EmergencyMatrix title="L'Armurerie du Colosse" severity="info">
+  - **L'Arme Ultime (Acte 3) :** <CodexTooltipById id="giantslayer" text="Tueur de Géants de Balduran" /> (Sous-sols du Dracosire). Double votre modificateur de Force aux dégâts et vous permet de grandir.
+  - **L'Armure Ultime (Acte 3) :** <CodexTooltipById id="armor_persistence" text="Armure de la Persévérance" /> (Achetée à Dammon). Réduit tous les dégâts subis de 2 de façon permanente et donne un avantage aux jets de sauvegarde.
+</EmergencyMatrix>
+
+**Le reste de l'équipement :**
+
+- **Tête (Acte 3) :** <CodexTooltipById id="helm_balduran" text="Heaume de Balduran" /> (Guérit de 2 PV par tour, immunise aux étourdissements et aux coups critiques).
+- **Gants (Acte 3) :** <CodexTooltipById id="legacy_masters" text="Héritage des Maîtres" /> (+2 aux jets d'attaque et de dégâts) ou les Gants de Force de Géant des Collines (si vous voulez re-spécialiser pour mettre votre Force de base à 8 et tout maximiser en Charisme).
+- **Anneau (Acte 2) :** <CodexTooltipById id="ring_protection" text="Anneau de Protection" /> ou <CodexTooltipById id="risky_ring" text="Anneau Risqué" /> (Pour avoir toujours l'avantage et annuler le malus du don Maître des Armes Lourdes).
+
+<FailsafeCard
+  missing="Armure de la Persévérance (Si Dammon est mort)"
+  fallback="Armure du Crépuscule Infernal (Loot de Raphaël à la Maison de l'Espoir). Elle offre une CA de 21 et une résistance au feu."
+/>
+
+---
+
+## 4. La Boucle de la Mort (Rotation de Combat)
+
+Là où un Paladin classique doit choisir entre utiliser son tour pour faire un sort de contrôle OU attaquer, le Sorcadin fait les deux.
+
+1. **L'Ouverture (Action Bonus) :** Utilisez votre Métamagie *Sort Accéléré* pour lancer <CodexTooltipById id="hold_person" text="Immobilisation de Personne" /> (ou *Immobilisation de Monstre*) sur la cible prioritaire.
+2. **Le Jugement (Action Principale) :** Avancez sur la cible paralysée. Sur une cible paralysée, TOUTES les attaques de mêlée qui touchent sont des **Coups Critiques garantis**.
+3. **L'Anéantissement :** Frappez deux fois. Comme c'est un critique assuré, utilisez l'interface de Réaction pour lâcher vos *Châtiments Divins* de plus haut niveau.
+4. **Le Cleave (Action Bonus Gratuite) :** Le don *Maître des Armes Lourdes* stipule que si vous faites un critique ou tuez un ennemi, vous gagnez une attaque supplémentaire en Action Bonus (si vous n'avez pas utilisé Sort Accéléré ce tour-ci, c'est pour le Tour 2).
+
+<CombatLogSimulator
+  baseDice="2d6"
+  statModifier="5"
+  extraDamage={[{source: "Maître des Armes Lourdes", value: 10}, {source: "Tueur de Géants", value: 5}, {source: "Châtiment Divin Niv 3 (Critique)", dice: "8d8"}]}
+/>

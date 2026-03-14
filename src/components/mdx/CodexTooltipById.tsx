@@ -99,6 +99,9 @@ const WIKI_ICON_NAMES: Record<string, string> = {
   holy_lance_helm: "Holy Lance Helm",
   hat_fire_acuity: "Hat of Fire Acuity",
   spellmight_gloves: "Spellmight Gloves",
+  // Lockadin
+  diadem_arcane_synergy: "Diadem of Arcane Synergy",
+  sword_of_chaos: "Sword of Chaos",
 };
 
 interface CodexTooltipByIdProps {

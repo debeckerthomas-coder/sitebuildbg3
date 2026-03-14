@@ -1,4 +1,7 @@
 import { LOCKADIN } from "@/data/builds/lockadin";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { getBuildMDX } from "@/lib/builds-mdx";
+import { mdxComponents } from "@/components/mdx/MDXComponents";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,8 +23,9 @@ function TierBadge({ tier }: { tier: string }) {
   );
 }
 
-export default function LockBuildPage() {
+export default async function LockBuildPage() {
   const build = LOCKADIN;
+  const mdxData = getBuildMDX("lockadin");
 
   return (
     <div className="max-w-4xl space-y-8">
@@ -169,6 +173,33 @@ export default function LockBuildPage() {
           ))}
         </div>
       </section>
+
+      {/* ── Deep Dive MDX Zone ────────────────────────────────────── */}
+      {mdxData && (
+        <section className="pt-4">
+          <div className="border-t-2 border-gold/20 pt-8">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1 h-8 rounded-full bg-gold" />
+              <h2 className="font-display text-2xl text-gold">
+                Guide Approfondi
+              </h2>
+            </div>
+            <article className="prose prose-invert prose-gold max-w-none
+              prose-headings:font-display prose-headings:text-gold
+              prose-p:font-body prose-p:text-gray-300 prose-p:leading-relaxed
+              prose-strong:text-gold-light
+              prose-blockquote:border-gold/30 prose-blockquote:bg-surface-raised
+              prose-blockquote:rounded-card prose-blockquote:py-3 prose-blockquote:px-4
+              prose-blockquote:not-italic prose-blockquote:text-gray-400
+            ">
+              <MDXRemote
+                source={mdxData.source}
+                components={mdxComponents}
+              />
+            </article>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

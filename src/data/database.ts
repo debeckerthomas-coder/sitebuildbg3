@@ -730,6 +730,56 @@ export const CODEX: Record<string, CodexEntry> = {
     tags: ["évocation", "foudre", "dégâts", "AoE"],
   },
 
+  diadem_arcane_synergy: {
+    id: "diadem_arcane_synergy",
+    name: "Diadème de Synergie Arcanique",
+    type: "objet",
+    rarity: "very_rare",
+    description:
+      "Lorsque vous infligez une condition, vous gagnez Synergie Arcanique : votre modificateur de Charisme s'ajoute aux dégâts d'arme. Essentiel pour le Lockadin — triple Charisme aux dégâts.",
+    stats: [
+      { label: "Effet", value: "Synergie Arcanique (+CHA aux dégâts)" },
+      { label: "Déclencheur", value: "Infliger une condition" },
+      { label: "Localisation", value: "Crèche Y'llek — Acte 1.5" },
+    ],
+    iconUrl: "/assets/icons/diadem_arcane_synergy.webp",
+    tags: ["casque", "très-rare", "acte-1", "charisme", "lockadin"],
+  },
+
+  sword_of_chaos: {
+    id: "sword_of_chaos",
+    name: "Épée du Chaos",
+    type: "objet",
+    rarity: "very_rare",
+    description:
+      "Épée à deux mains qui soigne le porteur de 1d6 PV à chaque coup. Les soins combinés aux résistances du Paladin Parjure rendent le porteur quasi-immortel.",
+    stats: [
+      { label: "Dégâts", value: "2d6+2 tranchants" },
+      { label: "Enchantement", value: "+2" },
+      { label: "Passif", value: "Soigne 1d6 PV par coup" },
+      { label: "Localisation", value: "Tribunal du Meurtre — Acte 3" },
+    ],
+    iconUrl: "/assets/icons/sword_of_chaos.webp",
+    tags: ["épée-à-deux-mains", "très-rare", "acte-3", "soin", "lockadin"],
+  },
+
+  armor_persistence: {
+    id: "armor_persistence",
+    name: "Armure de la Persévérance",
+    type: "objet",
+    rarity: "very_rare",
+    description:
+      "Armure lourde qui réduit tous les dégâts subis de 2 de façon permanente et confère l'Avantage aux jets de sauvegarde. Achetable chez Dammon à l'Acte 3.",
+    stats: [
+      { label: "CA", value: "19" },
+      { label: "Réduction", value: "-2 à tous les dégâts" },
+      { label: "Passif", value: "Avantage aux JdS" },
+      { label: "Source", value: "Dammon — Acte 3" },
+    ],
+    iconUrl: "/assets/icons/armor_persistence.webp",
+    tags: ["armure-lourde", "très-rare", "acte-3", "défensif"],
+  },
+
   shield_of_faith: {
     id: "shield_of_faith",
     name: "Bouclier de la Foi",

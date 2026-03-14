@@ -24,6 +24,7 @@ const BUILD_MDX_SLUGS: Record<string, string> = {
   sorcadin: "sorcadin",
   fire_sorlock: "fire-sorlock",
   gloom_assassin: "gloom-assassin",
+  lockadin: "lockadin",
 };
 
 // ---------------------------------------------------------------------------

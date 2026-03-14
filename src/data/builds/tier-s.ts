@@ -283,6 +283,33 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
       { missingItem: "Cape d'Ombre", fallbackItem: "Cape de Protection +1", condition: "Si le marchand de l'Ombre n'est pas trouvé" },
     ],
   },
+
+  // =========================================================================
+  // 10. Le Lockadin "Héraut du Crépuscule"
+  // =========================================================================
+  {
+    id: "lockadin",
+    name: "Le Lockadin",
+    classes: "7 Paladin Parjure / 5 Occultiste de la Lame",
+    coreRole: "Tank Burst SAD (Charisme)",
+    keyMechanic:
+      "Triple Charisme aux dégâts : Pacte de la Lame (CHA à l'attaque/dégâts) + Aura de Haine (CHA aux dégâts mêlée) + Synergie Arcanique (CHA aux dégâts d'arme). Les emplacements d'Occultiste se rechargent au Repos Court, offrant des Châtiments Divins illimités.",
+    stats: { STR: 8, DEX: 14, CON: 16, INT: 8, WIS: 10, CHA: 17 },
+    featProgression: [
+      { level: 4, feat: "+2 Charisme (17→19)", reason: "Augmente simultanément les dégâts, l'Aura de Protection, et le DD des sorts." },
+      { level: 8, feat: "+2 Charisme (19→20)", reason: "CHA 20 = +5 triplé aux dégâts (+15 par coup), Aura de Protection +5 à toute l'équipe." },
+      { level: 12, feat: "Mage de Guerre", reason: "Concentration garantie sur Maléfice et sorts de contrôle grâce au bonus CHA aux JdS." },
+    ],
+    bestInSlot: {
+      act1: ["Épée de Flammes Éternelles", "Armure Lourde +1", "Bouclier de la Foi (sort)"],
+      act2: ["Hallebarde de Vigilance", "Armure de Plate de Mithral", "Diadème de Synergie Arcanique"],
+      act3: ["Épée du Chaos", "Armure de la Persévérance", "Anneau Risqué", "Héritage des Maîtres"],
+    },
+    failsafes: [
+      { missingItem: "Épée du Chaos", fallbackItem: "Hallebarde de Vigilance", condition: "Si le Tribunal du Meurtre n'est pas complété à l'Acte 3" },
+      { missingItem: "Armure de la Persévérance", fallbackItem: "Armure du Crépuscule Infernal (vaincre Raphaël)", condition: "Si Dammon est mort" },
+    ],
+  },
 ];
 
 // ---------------------------------------------------------------------------

@@ -18,7 +18,7 @@ const BUILD_MDX_SLUGS: Record<string, string> = {
   moine_bagarreur: "moine-bagarreur",
   barde_controleur: "barde-controleur",
   throwzerker: "throwzerker",
-  clerc_irradiation: "clerc-irradiation",
+  clerc_irradiation: "clerc-orbes",
   nuke_tempete: "nuke-tempete",
   bardadin: "bardadin",
   sorcadin: "sorcadin",

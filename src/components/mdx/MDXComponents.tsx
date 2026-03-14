@@ -13,6 +13,8 @@ import { FailsafeCard } from "@/components/cards/FailsafeCard";
 import { CodexTooltipById } from "./CodexTooltipById";
 import { SingleStepTracker } from "./SingleStepTracker";
 import { CombatLogMDX } from "./CombatLogMDX";
+import { ChecklistTrackerMDX } from "./ChecklistTrackerMDX";
+import { CombatLogSimulatorMDX } from "./CombatLogSimulatorMDX";
 import { InteractiveMap } from "@/components/media/InteractiveMap";
 import { BossTacticMedia } from "@/components/media/BossTacticMedia";
 import type { MDXComponentMap } from "@/types";
@@ -31,6 +33,8 @@ import type { MDXComponentMap } from "@/types";
  * <CodexTooltipById id="elixir_geant_collines" text="Élixir de Force" />
  * <SingleStepTracker stepId="moine_feat" label="Niveau 4 : Prendre le don" />
  * <CombatLogMDX base="1d6" statModifier={5} label="Simuler une attaque" />
+ * <ChecklistTracker checklistId="leveling_bard" />
+ * <CombatLogSimulator baseDice="1d8" statModifier="5" extraDamage={[...]} />
  */
 export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType<any>> = {
   BossCard,
@@ -43,6 +47,8 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   CodexTooltipById,
   SingleStepTracker,
   CombatLogMDX,
+  ChecklistTracker: ChecklistTrackerMDX,
+  CombatLogSimulator: CombatLogSimulatorMDX,
   InteractiveMap,
   BossTacticMedia,
 };

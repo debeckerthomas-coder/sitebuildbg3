@@ -1,0 +1,71 @@
+---
+title: "Le Fire Sorlock — Guide Complet"
+buildId: fire_sorlock
+description: "L'Inquisiteur Ardent. Ensorceleur Draconique / Occultiste du Fiel — Rayon Ardent + Acuité de Feu + Commandement infaillible."
+---
+
+# Le Fire Sorlock : L'Inquisiteur Ardent
+
+*(11 Ensorceleur Draconique / 1 Occultiste du Fiel)*
+
+Le "Fire Acuity Sorlock" est une variante magique dévastatrice. Au lieu d'utiliser des flèches pour charger l'Acuité Arcanique comme le Barde, ce build utilise le sort *Rayon Ardent* (Scorching Ray) couplé au Chapeau d'Acuité de Feu. En un seul sort de bas niveau, vous maximisez votre puissance magique pour enchaîner immédiatement avec un sort de contrôle de foule infaillible.
+
+---
+
+## 1. Création du Personnage & Statistiques
+
+- **Race Optimale :** Demi-Elfe ou Humain (pour la maîtrise des boucliers).
+- **Historique :** Noble ou Charlatan.
+
+**Répartition des 27 points :**
+
+- **Force : 8** - **Dextérité : 16** (Initiative et Classe d'Armure)
+- **Constitution : 14** - **Intelligence : 8** - **Sagesse : 10** - **Charisme : 17** (Statistique principale de dégâts. +1 avec la Guenaude = 18)
+
+---
+
+## 2. Le Leveling (Niveau 1 à 12)
+
+<ChecklistTracker checklistId="leveling_firesorlock" />
+
+* **Niveau 1 : Ensorceleur (Lignée Draconique - Feu).** Vous donne des PV supplémentaires, une armure de base à 13, et la maîtrise des jets de sauvegarde de Constitution.
+* **Niveau 2 : Occultiste (1).** Le multiclassage stratégique. Choisissez le Patron du **Fiel** (Fiend). Cela vous donne accès au sort <CodexTooltipById id="command" text="Commandement" /> (indispensable pour ce build) et à *Armure d'Agathys*.
+* **Niveaux 3 à 12 : Ensorceleur (2 à 11).**
+  - *Niveau 4 global :* **Métamagie** (Sort Accéléré et Sort Jumeau).
+  - *Niveau 5 global :* Prenez le don **Alerte** (Jouer en premier est vital).
+  - *Niveau 6 global :* Déblocage de <CodexTooltipById id="scorching_ray" text="Rayon Ardent" /> et *Boule de Feu*.
+  - *Niveau 7 global :* L'Affinité Élémentaire Draconique ajoute votre modificateur de Charisme à CHAQUE rayon de vos sorts de feu.
+
+---
+
+## 3. L'Équipement "Best in Slot" (BiS)
+
+<EmergencyMatrix title="Le Moteur à Incendie" severity="lethal">
+  - **TÊTE (Acte 2) :** <CodexTooltipById id="hat_fire_acuity" text="Chapeau d'Acuité de Feu" /> (Loot sur l'Étrange Bœuf à l'Auberge de l'Ultime Lueur). Infliger des dégâts de feu vous donne de l'Acuité Arcanique (+1 au DD par charge, jusqu'à 10).
+  - **GANTS (Acte 3) :** <CodexTooltipById id="spellmight_gloves" text="Gants de Puissance Magique" /> (Quête du Clown Dribbles). Ajoute 1d8 dégâts à chaque rayon en échange d'un malus de -5 pour toucher (que votre acuité annulera instantanément).
+</EmergencyMatrix>
+
+**Le reste de l'équipement :**
+
+- **Arme (Acte 3) :** <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> (Aura de feu gratuite).
+- **Anneau (Acte 1) :** Anneau de Coruscation (Pour appliquer des Orbes d'Irradiation sur vos rayons).
+
+<FailsafeCard
+  missing="Chapeau d'Acuité de Feu (Si le Bœuf est mort à l'Acte 1)"
+  fallback="Le build s'effondre sans ce chapeau. Passez sur le build Nuke Tempête."
+/>
+
+---
+
+## 4. La Boucle de la Mort (Rotation de Combat)
+
+1. **L'Allumage (Action) :** Lancez *Rayon Ardent* (niveau 3 ou 4). Vous tirez 4 à 5 rayons.
+2. **Le Buff :** Chaque rayon touche et déclenche le Chapeau d'Acuité. En une seule action, vous êtes à 10 charges (+10 au DD des sorts !). Vos Gants ajoutent 1d8 à chaque rayon.
+3. **Le Contrôle (Action Bonus) :** Utilisez la Métamagie *Sort Accéléré* pour lancer <CodexTooltipById id="command" text="Commandement (Approche ou Halte)" /> upcasté sur tous les ennemis à l'écran.
+4. **Bilan :** Vous avez infligé d'énormes dégâts monocible au boss, et toute sa garde rapprochée passera son prochain tour.
+
+<CombatLogSimulator
+  baseDice="2d6"
+  statModifier="5"
+  extraDamage={[{source: "Affinité Draconique", value: 5}, {source: "Gants de Puissance", dice: "1d8"}]}
+/>

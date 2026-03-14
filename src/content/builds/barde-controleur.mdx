@@ -1,0 +1,65 @@
+---
+title: "Le Barde Contrôleur — Guide Complet"
+buildId: barde_controleur
+description: "Le Maître du Mode Honneur. Barde Collège des Épées / Guerrier / Magicien — 100% de chance de paralyser tous les boss après 4 flèches."
+---
+
+# Le Barde Contrôleur : Le Maître du Mode Honneur
+
+*(10 Barde Collège des Épées / 1 Guerrier / 1 Magicien)*
+
+Le "Control Bard" est universellement reconnu comme le build le plus puissant pour sécuriser une victoire en Mode Honneur. Sa philosophie est simple : infliger des dégâts dévastateurs à distance pour charger son acuité mentale, puis utiliser une action bonus pour paralyser tous les boss de la carte avec 100% de chance de réussite.
+
+---
+
+## 1. Création du Personnage & Statistiques
+
+- **Race Optimale :** Elfe des Bois (pour la mobilité) ou Halfelin (pour relancer les Échecs Critiques de 1).
+- **Historique :** Charlatan ou Gosse des Rues.
+
+**Répartition des 27 points :**
+
+- **Force : 8** - **Dextérité : 16** (Dégâts à l'arc, Classe d'Armure, Initiative)
+- **Constitution : 14** (Concentration)
+- **Intelligence : 8** - **Sagesse : 10** - **Charisme : 17** (Statistique principale. +1 avec la Guenaude = 18)
+
+---
+
+## 2. Le Leveling (Niveau 1 à 12)
+
+<ChecklistTracker checklistId="leveling_bard" />
+
+* **Niveaux 1 à 6 : Barde.** Choisissez le **Collège des Épées** au niveau 3. Cela donne accès à la *Floriture Tranchante* (deux flèches sur la même cible). Au niveau 4, prenez le Don **Tireur d'Élite** (Sharpshooter).
+* **Niveau 7 : Guerrier (1).** Multiclassage crucial pour le Style de Combat *Archerie* (+2 attaque).
+* **Niveau 8 : Magicien (1).** Permet d'apprendre des sorts via parchemins : <CodexTooltipById id="shield_spell" text="Bouclier" />, <CodexTooltipById id="magic_missile" text="Projectile Magique" />, <CodexTooltipById id="haste" text="Hâte" />.
+* **Niveaux 9 à 12 : Barde (7 à 10).** Don **Amélioration de Caractéristique** (+2 Charisme). Au niveau 10, *Secrets Magiques* : <CodexTooltipById id="command" text="Commandement" /> et <CodexTooltipById id="counterspell" text="Contresort" />.
+
+---
+
+## 3. L'Équipement "Best in Slot" (BiS)
+
+<EmergencyMatrix title="Le Cœur du Build" severity="warning">
+  - **TÊTE (Acte 2) :** <CodexTooltipById id="helmet_arcane_acuity" text="Casque d'Acuité Arcanique" />. Chaque attaque avec une arme confère +2 en Acuité (augmente le DD de vos sorts).
+  - **ANNEAU (Acte 3) :** <CodexTooltipById id="ring_mystic_scoundrel" text="Anneau du Gredin Mystique" />. Permet de lancer des sorts d'illusion/enchantement en Action Bonus après une attaque.
+</EmergencyMatrix>
+
+**Le reste de l'équipement :**
+
+- **Arme (Acte 3) :** Arc long <CodexTooltipById id="gontr_mael" text="Gontr Mael" /> ou Arc de la Frappe Préventive.
+- **Gants :** <CodexTooltipById id="gloves_dexterity" text="Gants de Dextérité" /> (Acte 1) ou Gants d'Archerie.
+- **Armure :** <CodexTooltipById id="armor_agility" text="Armure de l'Agilité" /> (Acte 3).
+
+---
+
+## 4. La Boucle de la Mort (Rotation de Combat)
+
+1. **L'Ouverture :** Action Principale -> deux *Floritures Tranchantes à distance* (4 flèches).
+2. **Le Buff :** Le Casque d'Acuité s'active 4 fois (+8 au DD des sorts).
+3. **Le Contrôle :** Action Bonus (via l'Anneau) -> lancez <CodexTooltipById id="command" text="Commandement (Halte)" /> upcasté sur tous les ennemis.
+4. **Conclusion :** Avec 100% de chance d'échec pour eux, les boss passent leur tour.
+
+<CombatLogSimulator
+  baseDice="1d8"
+  statModifier="3"
+  extraDamage={[{source: "Tireur d'Élite", value: 10}, {source: "Floriture", dice: "1d10"}]}
+/>

@@ -1,0 +1,93 @@
+---
+title: "Le Gloom Assassin — Guide Complet"
+buildId: gloom_assassin
+description: "La Terreur de l'Ombre. Rôdeur Traqueur des Ténèbres / Roublard Assassin / Guerrier Champion — 6 critiques automatiques garantis au Tour 1."
+---
+
+# Le Gloom Assassin : La Terreur de l'Ombre
+
+*(5 Rôdeur Traqueur des Ténèbres / 4 Roublard Assassin / 3 Guerrier Champion)*
+
+Le "Gloom Assassin" est l'incarnation de la létalité au Tour 1. Ce build exploite la mécanique de "Surprise" de Baldur's Gate 3. Si vous attaquez un ennemi en furtivité, vous déclenchez un round de surprise. La sous-classe Assassin réinitialise votre action au début du combat et garantit que TOUTES vos attaques contre une cible surprise sont des **Coups Critiques**. Ajoutez à cela les attaques gratuites du Traqueur des Ténèbres et le Sursaut d'Activité du Guerrier, et vous effacez le boss de la carte avant qu'il ne joue.
+
+---
+
+## 1. Création du Personnage & Statistiques
+
+Nous jouons une version optimisée "Titan" de l'Assassin, qui utilise la Force (via un objet ou un élixir) en plus de la Dextérité pour maximiser les dégâts des arcs longs.
+
+- **Race Optimale :** Elfe des Bois (pour la vitesse de déplacement et la furtivité) ou Duergar (Invisibilité à volonté hors combat pour garantir la surprise).
+- **Historique :** Criminel ou Gosse des rues.
+
+**Répartition des 27 points :**
+
+- **Force : 8** (Remplacée par le Gourdin de Force ou un Élixir)
+- **Dextérité : 17** (Dégâts à l'arc, CA, Initiative. +1 avec la Guenaude = 18)
+- **Constitution : 14** (Points de vie)
+- **Intelligence : 8** (Dump stat)
+- **Sagesse : 14** (Jets de sauvegarde et sorts de Rôdeur)
+- **Charisme : 8** (Dump stat)
+
+---
+
+## 2. Le Leveling (Niveau 1 à 12)
+
+Le build est opérationnel et mortel dès le niveau 4, et devient inarrêtable au niveau 8.
+
+<ChecklistTracker checklistId="leveling_gloomassassin" />
+
+* **Niveaux 1 à 5 : Rôdeur.**
+  - *Niveau 2 :* Style de combat **Archerie** (+2 aux jets d'attaque).
+  - *Niveau 3 :* Sous-classe **Traqueur des Ténèbres** (Gloom Stalker). Vous gagnez +3 en Initiative, et surtout la *Frappe Redoutable* : une attaque gratuite supplémentaire au Tour 1 qui inflige 1d8 dégâts bonus.
+  - *Niveau 4 :* Don **Tireur d'Élite** (Sharpshooter) pour +10 dégâts par flèche.
+  - *Niveau 5 :* Attaque Supplémentaire et le sort *Passage Sans Trace*.
+* **Niveaux 6 à 9 : Roublard (1 à 4).**
+  - *Niveau 8 global (Roublard 3) :* Sous-classe **Assassin**. C'est le cœur du build. Avantage contre les ennemis qui n'ont pas encore joué, et critiques automatiques sur les ennemis surpris.
+  - *Niveau 9 global (Roublard 4) :* Don **Amélioration de Caractéristique** (+2 Dextérité) ou **Alerte** (pour être absolument certain de jouer en premier).
+* **Niveaux 10 à 12 : Guerrier (1 à 3).**
+  - *Niveau 2 :* **Sursaut d'Activité** (Action Surge) pour une action principale supplémentaire.
+  - *Niveau 3 :* Sous-classe **Champion** (Réduit le seuil de critique pour les tours suivants).
+
+---
+
+## 3. L'Équipement "Best in Slot" (BiS)
+
+<EmergencyMatrix title="L'Arc du Titan (Le Moteur de Dégâts)" severity="lethal">
+  - **L'Arme de Jet (Acte 1) :** <CodexTooltipById id="titanstring_bow" text="Arc à Cordes de Titan" /> (Acheté à Brem au Repaire des Zhentarim). Cet arc exceptionnel ajoute votre modificateur de FORCE aux dégâts, en PLUS de votre modificateur de DEXTÉRITÉ.
+  - **L'Enabler (Acte 1) :** <CodexTooltipById id="club_hill_giant" text="Gourdin de Force de Géant des Collines" /> (Tour mystique en Ombreterre). Équipez-le en arme de corps-à-corps, il bloque votre Force à 19 en permanence (vous donnant +4 aux dégâts de l'arc !).
+</EmergencyMatrix>
+
+**Le reste de l'équipement :**
+
+- **Tête (Acte 2) :** <CodexTooltipById id="cowl_weaved" text="Capuchon de la Toile" /> ou le Diadème d'Acuité Arcanique.
+- **Armure (Acte 3) :** <CodexTooltipById id="armor_agility" text="Armure de l'Agilité" /> ou <CodexTooltipById id="bhaalist_armor" text="Armure Bhaaliste" />. L'Armure Bhaaliste rend les ennemis à moins de 2m vulnérables aux dégâts perforants (vos dégâts de flèches sont doublés si vous tirez à bout portant).
+- **Gants (Acte 1) :** <CodexTooltipById id="gloves_archery" text="Gants d'Archerie" /> (Camp Gobelin) puis <CodexTooltipById id="legacy_masters" text="Héritage des Maîtres" /> (Acte 3).
+- **Anneaux :** <CodexTooltipById id="ring_risky" text="Anneau Risqué" /> (Acte 2) pour avoir un avantage permanent sur tous vos tirs si la cible n'est pas surprise.
+
+<FailsafeCard
+  missing="Arc à Cordes de Titan (Si le Repaire des Zhentarim explose)"
+  fallback="Utilisez deux Arbalètes de poing +1 (Marchands) et spammez les attaques en Action Bonus, puis passez au Tir Mortel (Dead Shot) à l'Acte 3."
+/>
+
+---
+
+## 4. La Boucle de la Mort (Rotation de Combat)
+
+Il est vital de comprendre comment déclencher la "Surprise". Vous devez attaquer en étant accroupi (furtif) ET hors du champ de vision rouge de l'ennemi.
+
+1. **L'Amorce :** Détachez le Gloom Assassin du groupe. Mettez-vous en furtivité. Tirez sur le boss.
+2. **Le Déclencheur :** Le combat s'engage. L'ennemi reçoit l'état "Surpris". Grâce au passif d'Assassin, l'action que vous venez de dépenser pour attaquer vous est **remboursée**.
+3. **Le Tour 1 (Le Déluge) :**
+   - Vous jouez en premier (Initiative massive).
+   - *Action 1 :* Tirez deux flèches.
+   - *Frappe Redoutable :* Tirez la flèche gratuite du Traqueur des Ténèbres (+1d8).
+   - *Action Bonus :* Si vous utilisez des flèches spéciales (Flèche de Slaying, etc.), enduisez votre arme de poison.
+   - *Sursaut d'Activité :* Activez-le pour gagner une nouvelle Action.
+   - *Action 2 :* Tirez encore deux flèches.
+4. **Le Bilan Mathématique :** Vous avez tiré 6 flèches au Tour 1 (en comptant l'amorce). La cible est surprise, donc **ces 6 flèches sont des Coups Critiques automatiques**. Le tout avec le bonus de Tireur d'Élite (+10 par flèche) et la double stat de l'Arc du Titan (+9 par flèche). Absolument rien n'y survit.
+
+<CombatLogSimulator
+  baseDice="1d8"
+  statModifier="9"
+  extraDamage={[{source: "Tireur d'Élite", value: 10}, {source: "Frappe Redoutable", dice: "1d8"}, {source: "Assassin (Critique Automatique)", dice: "2d8"}]}
+/>

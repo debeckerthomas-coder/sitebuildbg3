@@ -1,0 +1,82 @@
+---
+title: "Le Bardadin — Guide Complet"
+buildId: bardadin
+description: "Le Maestro du Châtiment Divin. Barde du Collège des Épées / Paladin — Floriture Tranchante + double Châtiment Divin sur deux cibles simultanément."
+---
+
+# Le Bardadin : Le Maestro du Châtiment Divin
+
+*(10 Barde du Collège des Épées / 2 Paladin)*
+
+Le "Bardadin" (aussi appelé Smite Swords Bard) est l'un des builds de mêlée les plus terrifiants du jeu. Contrairement au Paladin pur qui s'essouffle vite par manque d'emplacements de sorts, le Barde de niveau 10 lui offre une réserve magique gigantesque. Vous pouvez utiliser une *Floriture Tranchante* pour frapper deux ennemis en même temps, et déclencher un *Châtiment Divin* de niveau 4 sur **chacune** des cibles simultanément.
+
+---
+
+## 1. Création du Personnage & Statistiques
+
+Pour maximiser l'efficacité de vos armes de corps-à-corps et de vos sorts, nous allons nous baser sur la Dextérité et le Charisme, en utilisant des armes "Finesse".
+
+- **Race Optimale :** Demi-Orc (Le passif d'Attaque Sauvage rajoute un dé de dégâts sur chaque coup critique, parfait pour les Smites) ou Zariel Tieffelin (Châtiments gratuits).
+- **Historique :** Charlatan ou Artiste.
+
+**Répartition des 27 points :**
+
+- **Force : 8** (Inutile, nous utilisons des armes de Finesse)
+- **Dextérité : 16** (Statistique d'attaque principale, Classe d'Armure, Initiative)
+- **Constitution : 14** (Points de vie)
+- **Intelligence : 8** (Dump stat)
+- **Sagesse : 10** (Pour éviter les malus)
+- **Charisme : 17** (Statistique de sorts principale. +1 avec la Guenaude = 18)
+
+---
+
+## 2. Le Leveling (Niveau 1 à 12)
+
+Le début de partie se joue comme un Barde classique. Le véritable carnage commence au niveau 8.
+
+<ChecklistTracker checklistId="leveling_bardadin" />
+
+* **Niveaux 1 à 6 : Barde.** Choisissez le **Collège des Épées** au niveau 3. Cela vous donne accès aux *Floritures* défensives et tranchantes au corps-à-corps. Au niveau 4, prenez le Don **Amélioration de Caractéristique** (+2 Dextérité ou +2 Charisme). Au niveau 6, vous obtenez votre Attaque Supplémentaire.
+* **Niveaux 7 à 8 : Paladin (1 à 2).** Le multiclassage clé. Au niveau 1 de Paladin, vous gagnez la maîtrise des armures lourdes et boucliers (si vous avez commencé Paladin, sinon limitez-vous aux armures intermédiaires). Au niveau 2, vous débloquez le Style de Combat (*Duel* ou *Défense*) et surtout le <CodexTooltipById id="divine_smite" text="Châtiment Divin" />.
+* **Niveaux 9 à 12 : Barde (7 à 10).** De retour sur le Barde pour accumuler les emplacements de sorts de haut niveau.
+* **Niveau 12 global (Barde 10) :** Vous débloquez les *Secrets Magiques*. C'est ici que le build devient divin : choisissez le sort de Paladin <CodexTooltipById id="banishing_smite" text="Châtiment Bannisseur" /> (5d10 dégâts de force) et <CodexTooltipById id="counterspell" text="Contresort" />.
+
+---
+
+## 3. L'Équipement "Best in Slot" (BiS)
+
+Ce build utilise la même synergie d'accessoires que le Barde Contrôleur, mais adaptée pour le corps-à-corps.
+
+<EmergencyMatrix title="Le Kit du Duelliste Divin" severity="info">
+  - **TÊTE (Acte 2) :** <CodexTooltipById id="helmet_arcane_acuity" text="Casque d'Acuité Arcanique" />. Frapper au corps-à-corps augmente le DD de vos sorts de +2 par coup.
+  - **ANNEAU 1 (Acte 3) :** <CodexTooltipById id="ring_mystic_scoundrel" text="Anneau du Gredin Mystique" />. Lancer des sorts d'illusion/enchantement en Action Bonus après une attaque.
+</EmergencyMatrix>
+
+**Les Armes (Le cœur des dégâts) :**
+
+- **Acte 1 :** <CodexTooltipById id="phalar_aluve" text="Phalar Aluve" /> (Ombreterre). Une épée longue avec la propriété Finesse.
+- **Acte 3 (Choix 1) :** <CodexTooltipById id="duellists_prerogative" text="Prérogative du Duelliste" /> (Récompense pour avoir sauvé Vanra). Vous offre une attaque supplémentaire en Action Bonus et réduit le seuil de critique.
+- **Acte 3 (Choix 2) :** <CodexTooltipById id="crimson_mischief" text="Méfait Sanguinaire" /> couplée à <CodexTooltipById id="bloodthirst" text="Soif de Sang" /> (Loot d'Orin) pour un build ambidextre mortel.
+
+<FailsafeCard
+  missing="Prérogative du Duelliste (Si Vanra meurt ou si Tatie Ethel s'échappe)"
+  fallback="Épée d'Argent du Plan Astral (Si vous êtes Githyanki) ou la Lame des Voleurs de l'Ombre."
+/>
+
+---
+
+## 4. La Boucle de la Mort (Rotation de Combat)
+
+Le Bardadin est capable d'anéantir n'importe quel boss et de paralyser ses sbires dans le même tour.
+
+1. **L'Ouverture :** Utilisez votre Action Principale pour faire une *Floriture Tranchante (Corps-à-corps)*. Si deux ennemis sont côte à côte, vous les frappez tous les deux.
+2. **La Décharge Divine :** Sur l'écran de réaction, appliquez un *Châtiment Divin* de niveau 4 sur la première cible, et un autre sur la deuxième. (Oui, c'est légal).
+3. **Le Buff :** Vos attaques de mêlée ont chargé votre *Casque d'Acuité Arcanique*. Vos sorts ont maintenant un taux de réussite de 100%.
+4. **Le Contrôle ou l'Exécution (Action Bonus) :** - *Option A :* Utilisez l'*Anneau du Gredin Mystique* pour lancer <CodexTooltipById id="hold_monster" text="Immobilisation de Monstre" /> sur le boss survivant.
+   - *Option B :* Si vous utilisez la Prérogative du Duelliste, faites une attaque supplémentaire au corps-à-corps pour l'achever avec un autre Châtiment Divin.
+
+<CombatLogSimulator
+  baseDice="1d8"
+  statModifier="5"
+  extraDamage={[{source: "Floriture", dice: "1d10"}, {source: "Châtiment Bannisseur", dice: "5d10"}, {source: "Châtiment Divin (Niv 4)", dice: "5d8"}]}
+/>

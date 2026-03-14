@@ -1,0 +1,80 @@
+---
+title: "Le Lanceur Fou Throwzerker — Guide Complet"
+buildId: throwzerker
+description: "L'artillerie lourde du Mode Honneur. Barbare Berserker / Roublard Voleur / Guerrier Champion — 5 lancers dévastateurs au Tour 1."
+---
+
+# Le Lanceur Fou "Throwzerker" : L'Artillerie Lourde
+
+*(5 Barbare Berserker / 4 Roublard Voleur / 3 Guerrier Champion)*
+
+Le "Throwzerker" est l'une des stars incontestées du Mode Honneur. En combinant la sous-classe Berserker avec le don Bagarreur des Tavernes et des armes qui reviennent automatiquement en main, vous obtenez une tourelle de siège mobile. Sa capacité à mettre les ennemis "À terre" (Prone) sans jet de sauvegarde en fait un atout de contrôle et de dégâts inestimable.
+
+---
+
+## 1. Création du Personnage & Statistiques
+
+Comme pour le Moine, nous allons abuser des Élixirs de Force pour optimiser nos autres statistiques, notamment la Dextérité pour l'Initiative et la Sagesse pour résister aux sorts de contrôle ennemis.
+
+- **Race Optimale :** Nain d'Écu ou Nain d'Or (Bonus raciaux défensifs, et synergie parfaite avec le *Marteau de Lancer Nain* à l'Acte 3), ou Demi-Orc.
+- **Historique :** Soldat ou Criminel.
+
+**Répartition des 27 points (Mode Élixir) :**
+
+- **Force : 8** (Remplacée par l'Élixir de Force de Géant à 21 ou 27)
+- **Dextérité : 16** (Classe d'Armure, Initiative, Jets de sauvegarde)
+- **Constitution : 16** (Points de vie massifs)
+- **Intelligence : 8** (Inutile)
+- **Sagesse : 14** (Jets de sauvegarde mentaux vitaux)
+- **Charisme : 10**
+
+---
+
+## 2. Le Leveling (Niveau 1 à 12)
+
+Votre pic de puissance arrive extrêmement tôt (Niveau 4), ce qui rend l'Acte 1 trivial.
+
+<ChecklistTracker checklistId="leveling_throwzerker" />
+
+* **Niveaux 1 à 5 : Barbare.** Choisissez la sous-classe **Berserker** au niveau 3. Cela vous donne l'*Attaque Frénétique* et surtout la *Frappe Enragée* (Lancer un objet/arme en Action Bonus).
+* **Niveau 4 (Le Tournant) :** Prenez le don **Bagarreur des Tavernes** (Tavern Brawler). Vos lancers gagnent DEUX FOIS votre modificateur de Force aux jets d'attaque et aux dégâts.
+* **Niveau 5 :** Attaque supplémentaire. Vous lancez désormais deux fois par Action.
+* **Niveaux 6 à 9 : Roublard (1 à 4).** Au niveau 3 de Roublard (niveau 8 global), choisissez la sous-classe **Voleur** pour obtenir l'Action Bonus supplémentaire. Vous pourrez faire DEUX lancers frénétiques par tour. Au niveau 4 de Roublard, prenez le don **Alerte** (Initiative +5).
+* **Niveaux 10 à 12 : Guerrier (1 à 3).** Obtenez le Style de Combat *Défense* (+1 CA) et le *Sursaut d'Activité* (Action Surge) au niveau 2. Au niveau 3, prenez **Champion** pour doubler vos chances de coup critique.
+
+---
+
+## 3. L'Équipement "Best in Slot" (BiS)
+
+<EmergencyMatrix title="L'Arsenal du Lanceur" severity="info">
+  - **L'Arme de l'Acte 1 :** <CodexTooltipById id="returning_pike" text="La Pique de Retour" /> (Achetée au camp gobelin à Grat le marchand).
+  - **L'Arme de l'Acte 3 :** <CodexTooltipById id="nyrulna" text="Nyrulna" /> (Le trident légendaire du Génie Akabi) OU le <CodexTooltipById id="dwarven_thrower" text="Marteau de Lancer Nain" /> (Acheté à Ferg Drogher à Rivington si vous êtes un Nain).
+</EmergencyMatrix>
+
+**Les multiplicateurs de dégâts de lancer :**
+
+- **Anneau (Acte 1) :** <CodexTooltipById id="ring_flinging" text="Anneau de Lancer" /> (Bosquet d'Émeraude). +1d4 aux dégâts de lancer.
+- **Gants (Acte 1) :** <CodexTooltipById id="gloves_kushigo" text="Gants de Kushigo sans entraves" /> (Sauvetage de Baelen en Ombreterre). +1d4 aux dégâts de lancer.
+- **Tête (Acte 3) :** <CodexTooltipById id="horns_berserker" text="Cornes du Berserker" /> (+2 dégâts aux attaques si vous n'avez pas tous vos PV).
+
+<FailsafeCard
+  missing="Gants de Kushigo (Si Baelen meurt ou si vous ratez la quête)"
+  fallback="Gants du Crépuscule Infernal Défectueux (Forgés par Dammon à l'Acte 2) pour ajouter 1d4 dégâts de feu à chaque lancer."
+/>
+
+---
+
+## 4. La Boucle de la Mort (Rotation de Combat)
+
+Le Throwzerker brille par son positionnement. Cherchez **toujours** la hauteur. Dans BG3, lancer un objet lourd depuis une position surélevée ajoute des dégâts contondants supplémentaires basés sur le poids et la hauteur de chute (Crushing damage).
+
+1. **Tour 1 - L'Ouverture :** Action Bonus pour entrer en *Rage Frénétique*.
+2. **Action Principale :** Lancez Nyrulna ou votre Pique deux fois.
+3. **Action Bonus Restante :** Utilisez *Frappe Enragée* pour lancer une troisième fois. La Frappe Enragée a la propriété magique de mettre la cible **"À terre" (Prone)** sans qu'elle puisse faire de jet de sauvegarde !
+4. **Le Sursaut (Optionnel) :** Si c'est un boss, activez *Sursaut d'Activité* pour lancer encore deux fois. Total : 5 lancers dévastateurs au Tour 1.
+
+<CombatLogSimulator
+  baseDice="1d10"
+  statModifier="8"
+  extraDamage={[{source: "Bagarreur des Tavernes", value: 8}, {source: "Anneau de Lancer", dice: "1d4"}, {source: "Gants Kushigo", dice: "1d4"}, {source: "Rage", value: 2}, {source: "Chute de hauteur", dice: "1d4"}]}
+/>

@@ -5,11 +5,12 @@
 // refs (setReference/setFloating), not ref objects. Safe to use in render.
 
 // ============================================================================
-// CodexTooltip 2.0 — Premium BG3 Item/Spell Hover Card
-// Fix: FloatingPortal + strategy:"fixed" for correct viewport positioning
+// CodexTooltip 3.0 — Premium BG3 Item/Spell Hover Card
+// Fix: Separate floating-ui positioning (top/left) from framer-motion
+// animation (transform) to prevent transform conflicts at (0,0).
 // ============================================================================
 
-import { useState, useId, type ReactNode } from "react";
+import { useState, useId, useMemo, type ReactNode } from "react";
 import {
   useFloating,
   autoUpdate,
@@ -123,26 +124,28 @@ export function CodexTooltip({
   const [arrowEl, setArrowEl] = useState<HTMLDivElement | null>(null);
   const tooltipId = useId();
 
-  const floating = useFloating({
-    open: isOpen,
-    placement,
-    strategy: "fixed",
-    middleware: [
+  // Build middleware array, only include arrow when its element is available
+  const middleware = useMemo(
+    () => [
       offset(12),
       flip({ padding: 16, fallbackAxisSideDirection: "start" }),
       shift({ padding: 16, crossAxis: true }),
-      arrow({ element: arrowEl }),
+      ...(arrowEl ? [arrow({ element: arrowEl })] : []),
     ],
+    [arrowEl],
+  );
+
+  const { refs, x, y, strategy, context } = useFloating({
+    open: isOpen,
+    placement,
+    strategy: "fixed",
+    middleware,
     whileElementsMounted: autoUpdate,
   });
 
-  const setReference = floating.refs.setReference;
-  const setFloating = floating.refs.setFloating;
-  const floatingStyles = floating.floatingStyles;
-
   const colors = RARITY_COLORS[rarity];
 
-  const arrowSide = floating.context.placement?.split("-")[0];
+  const arrowSide = context.placement?.split("-")[0];
   const arrowPosition: Record<string, string> = {
     top: "bottom-[-4px]",
     bottom: "top-[-4px]",
@@ -150,11 +153,24 @@ export function CodexTooltip({
     right: "left-[-4px]",
   };
 
+  // ---------------------------------------------------------------------------
+  // CRITICAL FIX: Use top/left for positioning instead of floatingStyles.
+  // floatingStyles uses CSS `transform: translate(...)` which conflicts with
+  // framer-motion's own transform (scale, y). This conflict caused the tooltip
+  // to render at (0,0). By using top/left directly, we free the `transform`
+  // property for framer-motion animations.
+  // ---------------------------------------------------------------------------
+  const positionStyles: React.CSSProperties = {
+    position: strategy,
+    top: y ?? 0,
+    left: x ?? 0,
+  };
+
   return (
     <>
       {/* Trigger */}
       <span
-        ref={setReference}
+        ref={refs.setReference}
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
         onFocus={() => setIsOpen(true)}
@@ -172,10 +188,10 @@ export function CodexTooltip({
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              ref={setFloating}
+              ref={refs.setFloating}
               id={tooltipId}
               role="tooltip"
-              style={floatingStyles}
+              style={positionStyles}
               initial={{ opacity: 0, scale: 0.95, y: 4 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 4 }}
@@ -209,20 +225,12 @@ export function CodexTooltip({
 
               {/* Header */}
               <div className="px-4 pt-3 pb-2 flex items-start gap-3">
-                <div
-                  className={`
-                    w-12 h-12 rounded border ${colors.border}
-                    bg-abyss-100 flex items-center justify-center shrink-0
-                    overflow-hidden
-                  `}
-                >
-                  <IconWithFallback
-                    src={icon ?? ""}
-                    alt={name}
-                    rarity={rarity}
-                    size={40}
-                  />
-                </div>
+                <IconWithFallback
+                  src={icon ?? ""}
+                  alt={name}
+                  rarity={rarity}
+                  size={48}
+                />
                 <div className="flex-1 min-w-0">
                   <h3 className={`font-display text-sm font-semibold ${colors.text} leading-tight`}>
                     {name}

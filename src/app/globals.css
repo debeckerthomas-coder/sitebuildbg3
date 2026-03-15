@@ -28,29 +28,30 @@
     pointer-events: none;
   }
 
-  /* Golden dark scrollbar — thin, elegant, transparent track */
+  /* Golden dark scrollbar — Dark Fantasy Grimoire */
   ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: #0a0c13;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(212, 175, 55, 0.2);
-    border-radius: 9999px;
+    background: #d4af37;
+    border-radius: 5px;
+    border: 2px solid #0a0c13;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(212, 175, 55, 0.4);
+    background: #fef08a;
   }
   ::-webkit-scrollbar-corner {
-    background: transparent;
+    background: #0a0c13;
   }
 
   /* Firefox scrollbar */
   * {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(212, 175, 55, 0.2) transparent;
+    scrollbar-width: auto;
+    scrollbar-color: #d4af37 #0a0c13;
   }
 
   ::selection {

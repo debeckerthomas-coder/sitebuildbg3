@@ -28,7 +28,7 @@ const SEVERITY_STYLES = {
     icon: "⚠️",
     label: "Danger",
     labelColor: "text-yellow-400",
-    animation: "",
+    animation: "animate-pulse-warning",
   },
   lethal: {
     border: "border-blood/60",
@@ -61,6 +61,7 @@ function MechanicCard({ mechanic, index }: MechanicCardProps) {
         rounded-card border-2 ${style.border} ${style.animation}
         bg-[#111520]/60 backdrop-blur-md shadow-lg shadow-black/50
         p-4 space-y-3
+        transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-gold/20
       `}
     >
       {/* Header */}

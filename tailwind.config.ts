@@ -84,6 +84,16 @@ const config: Config = {
             boxShadow: "0 0 20px 4px rgba(196, 60, 60, 0.5)",
           },
         },
+        "pulse-warning": {
+          "0%, 100%": {
+            borderColor: "rgba(234, 179, 8, 0.5)",
+            boxShadow: "0 0 8px 0 rgba(234, 179, 8, 0.2)",
+          },
+          "50%": {
+            borderColor: "rgba(250, 204, 21, 0.7)",
+            boxShadow: "0 0 16px 2px rgba(250, 204, 21, 0.35)",
+          },
+        },
         "glow-rarity": {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "0.8" },
@@ -111,6 +121,7 @@ const config: Config = {
       },
       animation: {
         "pulse-danger": "pulse-danger 2s ease-in-out infinite",
+        "pulse-warning": "pulse-warning 2.5s ease-in-out infinite",
         "glow-rarity": "glow-rarity 3s ease-in-out infinite",
         "checkmark-strike": "checkmark-strike 0.4s ease-out forwards",
         "fade-in-up": "fade-in-up 0.3s ease-out",

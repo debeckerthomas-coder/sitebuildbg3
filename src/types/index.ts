@@ -487,5 +487,5 @@ export interface MDXComponentMap {
   readonly SpellTooltip: React.ComponentType<{ readonly id: string; readonly children?: React.ReactNode }>;
   readonly Checklist: React.ComponentType<{ readonly category: string; readonly act: Act }>;
   readonly Failsafe: React.ComponentType<{ readonly slot: ItemSlot; readonly buildId: string }>;
-  readonly EmergencyMatrix: React.ComponentType<{ readonly bossId: string }>;
+  readonly EmergencyMatrix: React.ComponentType<{ readonly bossId?: string; readonly title?: string; readonly severity?: "info" | "warning" | "lethal"; readonly children?: React.ReactNode }>;
 }

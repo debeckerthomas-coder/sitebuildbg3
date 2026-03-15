@@ -112,13 +112,62 @@ function MechanicCard({ mechanic, index }: MechanicCardProps) {
 
 // ---------------------------------------------------------------------------
 // EmergencyMatrix Component
+// Supports two modes:
+//   1. Boss mode:   <EmergencyMatrix bossId="gortash" />
+//   2. Inline mode:  <EmergencyMatrix title="..." severity="warning">children</EmergencyMatrix>
 // ---------------------------------------------------------------------------
 
+type Severity = keyof typeof SEVERITY_STYLES;
+
 interface EmergencyMatrixProps {
-  readonly bossId: string;
+  readonly bossId?: string;
+  readonly title?: string;
+  readonly severity?: Severity;
+  readonly children?: React.ReactNode;
 }
 
-export function EmergencyMatrix({ bossId }: EmergencyMatrixProps) {
+function InlineMatrix({ title, severity, children }: { title: string; severity: Severity; children: React.ReactNode }) {
+  const style = SEVERITY_STYLES[severity];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className={`
+        my-8 rounded-card border-2 ${style.border} ${style.animation}
+        bg-[#111520]/60 backdrop-blur-md shadow-lg shadow-black/50
+        p-5 space-y-3
+      `}
+    >
+      <div className="flex items-center gap-2">
+        <span className="text-lg" aria-hidden>{style.icon}</span>
+        <h4 className="font-display text-sm text-gray-100">{title}</h4>
+        <span
+          className={`
+            text-[10px] font-data font-bold uppercase tracking-widest
+            px-1.5 py-0.5 rounded ${style.labelColor}
+            ${severity === "lethal" ? "bg-blood/20" : "bg-white/5"}
+          `}
+        >
+          {style.label}
+        </span>
+      </div>
+      <div className="text-sm font-body text-gray-200 leading-relaxed prose-gold">
+        {children}
+      </div>
+    </motion.div>
+  );
+}
+
+export function EmergencyMatrix(props: EmergencyMatrixProps) {
+  // Inline mode: title + severity + children
+  if (props.title && props.severity && props.children) {
+    return <InlineMatrix title={props.title} severity={props.severity} children={props.children} />;
+  }
+
+  // Boss mode: bossId
+  const bossId = props.bossId ?? "";
   const boss = getBoss(bossId);
 
   if (!boss) {

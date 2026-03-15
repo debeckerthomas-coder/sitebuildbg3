@@ -6,12 +6,28 @@
 // ============================================================================
 
 import { useState, useCallback, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
-const MAPGENIE_URL = "https://mapgenie.io/baldurs-gate-3/maps/faerun";
+const MAP_BY_ACT: Record<string, { url: string; label: string }> = {
+  "acte-1": { url: "https://mapgenie.io/baldurs-gate-3/maps/wilderness", label: "Wilderness — Acte 1" },
+  "acte-2": { url: "https://mapgenie.io/baldurs-gate-3/maps/shadow-cursed-lands", label: "Terres Maudites — Acte 2" },
+  "acte-3": { url: "https://mapgenie.io/baldurs-gate-3/maps/baldurs-gate", label: "Porte de Baldur — Acte 3" },
+};
+
+const DEFAULT_MAP = { url: "https://mapgenie.io/baldurs-gate-3/maps/faerun", label: "Faerûn" };
+
+function useCurrentMap(): { url: string; label: string } {
+  const pathname = usePathname();
+  for (const [key, map] of Object.entries(MAP_BY_ACT)) {
+    if (pathname.includes(key)) return map;
+  }
+  return DEFAULT_MAP;
+}
 
 export function MapGenieWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const currentMap = useCurrentMap();
 
   const open = useCallback(() => setIsOpen(true), []);
   const close = useCallback(() => setIsOpen(false), []);
@@ -124,14 +140,14 @@ export function MapGenieWidget() {
                     <path d="M16 6v16" />
                   </svg>
                   <h2 className="font-display text-sm text-gold">
-                    Carte de Faerûn — MapGenie
+                    {currentMap.label} — MapGenie
                   </h2>
                 </div>
 
                 <div className="flex items-center gap-3">
                   {/* External link */}
                   <a
-                    href={MAPGENIE_URL}
+                    href={currentMap.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[11px] font-data text-gray-500 hover:text-gold transition-colors flex items-center gap-1.5"
@@ -180,7 +196,7 @@ export function MapGenieWidget() {
               {/* Iframe container */}
               <div className="flex-1 relative">
                 <iframe
-                  src={MAPGENIE_URL}
+                  src={currentMap.url}
                   title="MapGenie — Baldur's Gate 3"
                   className="w-full h-full border-0"
                   allow="fullscreen"
@@ -193,7 +209,7 @@ export function MapGenieWidget() {
                     <div className="space-y-3">
                       <p className="font-display text-gold">Carte non disponible</p>
                       <a
-                        href={MAPGENIE_URL}
+                        href={currentMap.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-blue-400 underline"

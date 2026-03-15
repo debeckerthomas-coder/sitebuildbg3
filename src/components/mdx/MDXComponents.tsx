@@ -17,6 +17,7 @@ import { ChecklistTrackerMDX } from "./ChecklistTrackerMDX";
 import { CombatLogSimulatorMDX } from "./CombatLogSimulatorMDX";
 import { InteractiveMap } from "@/components/media/InteractiveMap";
 import { BossTacticMedia } from "@/components/media/BossTacticMedia";
+import { ParallelRoutes, Route } from "./ParallelRoutes";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -51,4 +52,6 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   CombatLogSimulator: CombatLogSimulatorMDX,
   InteractiveMap,
   BossTacticMedia,
+  ParallelRoutes,
+  Route,
 };

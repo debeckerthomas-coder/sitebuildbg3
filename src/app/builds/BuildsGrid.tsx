@@ -1,88 +1,234 @@
 "use client";
 
 // ============================================================================
-// BuildsGrid — Grille de cartes pour les 9 Builds Tier S
+// BuildsGrid — Premium Glassmorphism Grid for Tier S Builds
 // ============================================================================
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { getAllBuildsTierS, type BuildTierS } from "@/data/builds/tier-s";
 
 // ---------------------------------------------------------------------------
-// Couleurs de rôle
+// Class icon SVGs (inline, no external deps)
 // ---------------------------------------------------------------------------
 
-const ROLE_COLORS: Record<string, string> = {
-  "Tueur de Boss Monocible": "text-blood-light bg-blood/20",
-  "DPS Distance & Contrôle de Foule": "text-purple-400 bg-purple-500/20",
-  "Dégâts à Distance & Prône": "text-orange-400 bg-orange-500/20",
-  "Soutien & Debuff Radiant": "text-yellow-400 bg-yellow-500/20",
-  "Dégâts Magiques AoE Maximum": "text-blue-400 bg-blue-500/20",
-  "DPS Burst & Support Polyvalent": "text-gold bg-gold/20",
-  "Tank Burst avec Aura de Protection": "text-green-400 bg-green-500/20",
-  "DPS Magique Soutenu à Distance": "text-red-400 bg-red-500/20",
-  "Élimination Surprise Tour 1": "text-gray-300 bg-gray-500/20",
+const CLASS_ICONS: Record<string, React.ReactNode> = {
+  monk: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <circle cx="12" cy="5" r="2.5" />
+      <path d="M12 7.5v4" />
+      <path d="M8 20l4-8.5 4 8.5" />
+      <path d="M6 14l6-2.5 6 2.5" />
+    </svg>
+  ),
+  bard: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M9 2v14" />
+      <path d="M9 16a4 4 0 1 1-4-4h4" />
+      <path d="M9 2h6a2 2 0 0 1 0 4H9" />
+      <circle cx="17" cy="6" r="1" fill="currentColor" />
+      <circle cx="19" cy="10" r="1" fill="currentColor" />
+    </svg>
+  ),
+  barbarian: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M12 2L8 8h8L12 2z" />
+      <path d="M10 8v12" />
+      <path d="M14 8v12" />
+      <path d="M7 20h10" />
+      <path d="M6 12h12" />
+    </svg>
+  ),
+  cleric: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M12 3v18" />
+      <path d="M6 9h12" />
+      <circle cx="12" cy="9" r="6" />
+      <path d="M12 6v6" />
+      <path d="M9 9h6" />
+    </svg>
+  ),
+  sorcerer: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+  ),
+  paladin: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M12 2L4 7v5c0 5.25 3.4 10.15 8 11.4 4.6-1.25 8-6.15 8-11.4V7l-8-5z" />
+      <path d="M12 8v5" />
+      <path d="M9.5 10.5h5" />
+    </svg>
+  ),
+  ranger: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M12 22V2" />
+      <path d="M12 2l7 5-7-1-7 1 7-5z" />
+      <path d="M12 8l5 3.5-5-.5-5 .5L12 8z" />
+      <path d="M8 22l4-6 4 6" />
+    </svg>
+  ),
+  rogue: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M14.5 3.5L20 12l-5.5 8.5" />
+      <path d="M9.5 3.5L4 12l5.5 8.5" />
+      <path d="M12 2v20" />
+      <path d="M8 12h8" />
+    </svg>
+  ),
+  warlock: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 3c-2 3-2 6 0 9s2 6 0 9" />
+      <path d="M3 12h18" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  ),
+  fighter: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+      <path d="M14.5 2L20 7.5 7.5 20 2 14.5 14.5 2z" />
+      <path d="M17 7l-10 10" />
+      <path d="M2 22l4-4" />
+      <path d="M15 4l5 5" />
+    </svg>
+  ),
+};
+
+function getClassIcon(classes: string): React.ReactNode {
+  const lower = classes.toLowerCase();
+  if (lower.includes("moine")) return CLASS_ICONS.monk;
+  if (lower.includes("barde") && lower.includes("paladin")) return CLASS_ICONS.paladin;
+  if (lower.includes("barde")) return CLASS_ICONS.bard;
+  if (lower.includes("barbare")) return CLASS_ICONS.barbarian;
+  if (lower.includes("clerc")) return CLASS_ICONS.cleric;
+  if (lower.includes("ensorceleur") && lower.includes("clerc")) return CLASS_ICONS.sorcerer;
+  if (lower.includes("ensorceleur") && lower.includes("occultiste")) return CLASS_ICONS.sorcerer;
+  if (lower.includes("ensorceleur")) return CLASS_ICONS.sorcerer;
+  if (lower.includes("paladin") && lower.includes("ensorceleur")) return CLASS_ICONS.paladin;
+  if (lower.includes("paladin") && lower.includes("occultiste")) return CLASS_ICONS.warlock;
+  if (lower.includes("paladin")) return CLASS_ICONS.paladin;
+  if (lower.includes("rôdeur")) return CLASS_ICONS.ranger;
+  if (lower.includes("occultiste")) return CLASS_ICONS.warlock;
+  if (lower.includes("guerrier")) return CLASS_ICONS.fighter;
+  return CLASS_ICONS.fighter;
+}
+
+// ---------------------------------------------------------------------------
+// Role colors & short labels
+// ---------------------------------------------------------------------------
+
+const ROLE_CONFIG: Record<string, { color: string; short: string }> = {
+  "Tueur de Boss Monocible": { color: "text-blood-light bg-blood/20 border-blood/30", short: "Boss Killer" },
+  "DPS Distance & Contrôle de Foule": { color: "text-purple-400 bg-purple-500/15 border-purple-500/30", short: "Contrôle" },
+  "Dégâts à Distance & Prône": { color: "text-orange-400 bg-orange-500/15 border-orange-500/30", short: "Lanceur" },
+  "Soutien & Debuff Radiant": { color: "text-yellow-400 bg-yellow-500/15 border-yellow-500/30", short: "Soutien" },
+  "Dégâts Magiques AoE Maximum": { color: "text-blue-400 bg-blue-500/15 border-blue-500/30", short: "Nuke AoE" },
+  "DPS Burst & Support Polyvalent": { color: "text-gold bg-gold/15 border-gold/30", short: "Burst DPS" },
+  "Tank Burst avec Aura de Protection": { color: "text-green-400 bg-green-500/15 border-green-500/30", short: "Tank Burst" },
+  "Tank Burst SAD (Charisme)": { color: "text-emerald-400 bg-emerald-500/15 border-emerald-500/30", short: "Tank SAD" },
+  "DPS Magique Soutenu à Distance": { color: "text-red-400 bg-red-500/15 border-red-500/30", short: "DPS Feu" },
+  "Élimination Surprise Tour 1": { color: "text-gray-300 bg-gray-500/15 border-gray-500/30", short: "Alpha Strike" },
 };
 
 // ---------------------------------------------------------------------------
-// Build Card
+// Premium Build Card
 // ---------------------------------------------------------------------------
 
 function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
   const [expanded, setExpanded] = useState(false);
-  const roleColor = ROLE_COLORS[build.coreRole] ?? "text-gray-400 bg-gray-500/20";
+  const role = ROLE_CONFIG[build.coreRole] ?? { color: "text-gray-400 bg-gray-500/15 border-gray-500/30", short: build.coreRole };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.06, duration: 0.4 }}
-      className="bg-surface-raised border border-border rounded-card overflow-hidden hover:border-gold/30 transition-colors"
+      transition={{ delay: index * 0.07, duration: 0.5, ease: "easeOut" }}
+      className="group relative flex flex-col rounded-xl overflow-hidden
+                 bg-[#111520]/60 backdrop-blur-md
+                 border border-gold/15
+                 transition-all duration-300
+                 hover:-translate-y-2 hover:border-gold/50
+                 hover:shadow-[0_8px_40px_rgba(212,175,55,0.15),inset_0_1px_0_rgba(212,175,55,0.1)]"
     >
-      {/* Header */}
-      <div className="p-4 space-y-2">
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="font-display text-base text-gold leading-tight">{build.name}</h3>
-          <span className="shrink-0 text-[10px] font-data font-bold px-2 py-0.5 rounded bg-gold/20 text-gold uppercase tracking-wider">
-            Tier S
-          </span>
+      {/* Top glow bar */}
+      <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+      {/* Header zone */}
+      <div className="p-5 pb-3 flex items-start gap-4">
+        {/* Class icon */}
+        <div className="shrink-0 w-12 h-12 rounded-lg bg-gold/10 border border-gold/20 p-2.5 text-gold/70 group-hover:text-gold group-hover:bg-gold/15 group-hover:border-gold/40 transition-all duration-300">
+          {getClassIcon(build.classes)}
         </div>
 
-        <p className="text-xs font-mono text-gray-400">{build.classes}</p>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <h2 className="font-display text-base text-gold leading-tight truncate group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-yellow-200 group-hover:via-gold group-hover:to-amber-600 transition-all duration-300">
+              {build.name}
+            </h2>
+            {/* Tier S Badge */}
+            <span className="shrink-0 text-[9px] font-data font-bold px-2 py-0.5 rounded-md bg-gradient-to-r from-blood/30 to-gold/20 border border-blood/40 text-gold uppercase tracking-widest">
+              Tier S
+            </span>
+          </div>
+          <p className="text-[11px] font-mono text-gray-500 leading-snug truncate">{build.classes}</p>
+        </div>
+      </div>
 
-        <span className={`inline-block text-[10px] font-data px-2 py-0.5 rounded ${roleColor}`}>
+      {/* Role badge */}
+      <div className="px-5 pb-3">
+        <span className={`inline-flex items-center gap-1.5 text-[10px] font-data font-medium px-2.5 py-1 rounded-md border ${role.color}`}>
           {build.coreRole}
         </span>
       </div>
 
-      {/* Mécanique clé */}
-      <div className="px-4 pb-3">
+      {/* Key mechanic */}
+      <div className="px-5 pb-4 flex-1">
         <p className="text-xs font-body text-gray-400 leading-relaxed line-clamp-3">
           {build.keyMechanic}
         </p>
       </div>
 
       {/* Stats bar */}
-      <div className="px-4 pb-3 grid grid-cols-6 gap-1">
-        {(["STR", "DEX", "CON", "INT", "WIS", "CHA"] as const).map((stat) => (
-          <div key={stat} className="text-center">
-            <p className="text-[9px] font-data text-gray-600 uppercase">{stat}</p>
-            <p className={`text-xs font-data ${build.stats[stat] >= 16 ? "text-gold" : "text-gray-500"}`}>
-              {build.stats[stat]}
-            </p>
-          </div>
-        ))}
+      <div className="px-5 pb-4">
+        <div className="grid grid-cols-6 gap-1 p-2 rounded-lg bg-abyss/40 border border-border/30">
+          {(["STR", "DEX", "CON", "INT", "WIS", "CHA"] as const).map((stat) => {
+            const val = build.stats[stat];
+            const isHigh = val >= 16;
+            return (
+              <div key={stat} className="text-center">
+                <p className="text-[8px] font-data text-gray-600 uppercase tracking-wider">{stat}</p>
+                <p className={`text-xs font-data font-semibold ${isHigh ? "text-gold" : val <= 10 ? "text-gray-600" : "text-gray-400"}`}>
+                  {val}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Toggle détails */}
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full py-2 text-[10px] font-data text-gray-500 hover:text-gold border-t border-border/50 transition-colors uppercase tracking-wider"
-      >
-        {expanded ? "Masquer les détails" : "Voir les détails"}
-      </button>
+      {/* Action buttons */}
+      <div className="px-5 pb-4 flex gap-2">
+        <Link
+          href={`/builds/${build.id}`}
+          className="flex-1 text-center py-2.5 text-xs font-display tracking-wide rounded-lg
+                     bg-gradient-to-r from-gold/20 to-gold/10 border border-gold/30
+                     text-gold hover:from-gold/30 hover:to-gold/20 hover:border-gold/50
+                     transition-all duration-200 uppercase"
+        >
+          Guide Complet
+        </Link>
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="px-4 py-2.5 text-xs font-data text-gray-500 hover:text-gold rounded-lg
+                     border border-border/50 hover:border-gold/30
+                     transition-all duration-200 uppercase tracking-wider"
+        >
+          {expanded ? "Masquer" : "Détails"}
+        </button>
+      </div>
 
-      {/* Détails expandables */}
+      {/* Expandable details */}
       <AnimatePresence>
         {expanded && (
           <motion.div
@@ -92,16 +238,18 @@ function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 space-y-4 border-t border-border/50 pt-3">
-              {/* Dons */}
+            <div className="px-5 pb-5 space-y-4 border-t border-gold/10 pt-4">
+              {/* Feats */}
               <div>
-                <p className="text-[10px] font-data text-gray-500 uppercase tracking-wider mb-1.5">
+                <p className="text-[10px] font-data text-gold/60 uppercase tracking-widest mb-2">
                   Progression des Dons
                 </p>
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                   {build.featProgression.map((feat) => (
                     <div key={feat.level} className="flex gap-2 items-start">
-                      <span className="text-[10px] font-data text-gold shrink-0 w-8">Niv.{feat.level}</span>
+                      <span className="text-[10px] font-data text-gold bg-gold/10 rounded px-1.5 py-0.5 shrink-0">
+                        Niv.{feat.level}
+                      </span>
                       <div>
                         <span className="text-xs font-data text-gray-300">{feat.feat}</span>
                         <p className="text-[10px] font-data text-gray-600">{feat.reason}</p>
@@ -113,19 +261,19 @@ function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
 
               {/* Best in Slot */}
               <div>
-                <p className="text-[10px] font-data text-gray-500 uppercase tracking-wider mb-1.5">
+                <p className="text-[10px] font-data text-gold/60 uppercase tracking-widest mb-2">
                   Équipement Best-in-Slot
                 </p>
                 {(["act1", "act2", "act3"] as const).map((act) => (
-                  <div key={act} className="mb-1.5">
-                    <p className="text-[10px] font-data text-gold-muted uppercase">
+                  <div key={act} className="mb-2">
+                    <p className="text-[10px] font-data text-gold-muted uppercase mb-0.5">
                       {act === "act1" ? "Acte 1" : act === "act2" ? "Acte 2" : "Acte 3"}
                     </p>
-                    <div className="flex flex-wrap gap-1 mt-0.5">
+                    <div className="flex flex-wrap gap-1">
                       {build.bestInSlot[act].map((item) => (
                         <span
                           key={item}
-                          className="text-[10px] font-data text-gray-400 bg-abyss px-1.5 py-0.5 rounded border border-border/50"
+                          className="text-[10px] font-data text-gray-400 bg-abyss/80 px-1.5 py-0.5 rounded border border-border/40"
                         >
                           {item}
                         </span>
@@ -138,19 +286,18 @@ function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
               {/* Failsafes */}
               {build.failsafes.length > 0 && (
                 <div>
-                  <p className="text-[10px] font-data text-gray-500 uppercase tracking-wider mb-1.5">
+                  <p className="text-[10px] font-data text-gold/60 uppercase tracking-widest mb-2">
                     Failsafes (Plans B)
                   </p>
                   <div className="space-y-1.5">
                     {build.failsafes.map((fs) => (
-                      <div key={fs.missingItem} className="bg-abyss/60 rounded px-2.5 py-1.5 border border-border/50">
+                      <div key={fs.missingItem} className="bg-blood/5 rounded-lg px-3 py-2 border border-blood/20">
                         <p className="text-[10px] font-data text-blood-light">
                           Si manqué : <span className="text-gray-400">{fs.missingItem}</span>
                         </p>
                         <p className="text-[10px] font-data text-gold">
-                          Remplacer par : <span className="text-gray-400">{fs.fallbackItem}</span>
+                          Alternative : <span className="text-gray-400">{fs.fallbackItem}</span>
                         </p>
-                        <p className="text-[9px] font-data text-gray-600">{fs.condition}</p>
                       </div>
                     ))}
                   </div>
@@ -160,7 +307,10 @@ function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+
+      {/* Bottom glow bar */}
+      <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    </motion.article>
   );
 }
 
@@ -172,7 +322,7 @@ export function BuildsGrid() {
   const builds = getAllBuildsTierS();
 
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {builds.map((build, i) => (
         <BuildCard key={build.id} build={build} index={i} />
       ))}

@@ -58,7 +58,8 @@ function MechanicCard({ mechanic, index }: MechanicCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.12, duration: 0.4, ease: "easeOut" }}
       className={`
-        rounded-card border-2 ${style.border} ${style.bg} ${style.animation}
+        rounded-card border-2 ${style.border} ${style.animation}
+        bg-[#111520]/60 backdrop-blur-md shadow-lg shadow-black/50
         p-4 space-y-3
       `}
     >

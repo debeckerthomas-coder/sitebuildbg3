@@ -5,9 +5,29 @@
 /* ----------------------------------------------------------------
    BG3 Honor Companion — Styles Globaux
    Palette : #111520 (fond) / #d4af37 (or) / #8b0000 (sang)
+   Dark Fantasy Grimoire Edition
    ---------------------------------------------------------------- */
 
 @layer base {
+  /* ---- Abyssal Background with depth vignette + noise ---- */
+  body {
+    background: radial-gradient(circle at 50% 0%, #1a1f2e 0%, #111520 60%, #0a0c13 100%);
+    background-attachment: fixed;
+  }
+
+  /* Ultra-subtle noise overlay on the page */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    pointer-events: none;
+  }
+
   /* Golden dark scrollbar — thin, elegant, transparent track */
   ::-webkit-scrollbar {
     width: 5px;
@@ -41,15 +61,54 @@
   .scrollbar-thin::-webkit-scrollbar {
     width: 3px;
   }
+
+  /* ---- Epic Gold Dividers ---- */
+  hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
+    opacity: 0.5;
+    margin: 2rem 0;
+  }
 }
 
 @layer components {
+  /* ---- Gold Gradient Text Utility ---- */
+  .text-gradient-gold {
+    background: linear-gradient(to bottom right, #fef08a, #d4af37, #b48608);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0px 2px 10px rgba(212, 175, 55, 0.2));
+  }
+
+  /* ---- Glassmorphism Card Utility ---- */
+  .glass-card {
+    background: rgba(17, 21, 32, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+
   .prose-gold {
     --tw-prose-headings: #d4af37;
     --tw-prose-links: #4d94ff;
     --tw-prose-bold: #e8cc6e;
     --tw-prose-code: #d4af37;
     --tw-prose-hr: #2a3048;
+  }
+
+  /* Gold gradient on h1 and h2 inside prose */
+  .prose-gold h1,
+  .prose-gold h2 {
+    background: linear-gradient(to bottom right, #fef08a, #d4af37, #b48608);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0px 2px 10px rgba(212, 175, 55, 0.2));
   }
 
   .prose-gold h2 {
@@ -75,8 +134,11 @@
   }
 
   .prose-gold hr {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #d4af37, transparent);
+    opacity: 0.5;
+    margin: 3rem 0;
   }
 
   .prose-gold blockquote {

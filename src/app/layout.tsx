@@ -26,7 +26,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-abyss text-gray-200 font-data antialiased min-h-screen">
+      <body className="text-gray-200 font-data antialiased min-h-screen">
         <HydrationProvider>
           <header className="border-b border-border bg-surface/80 backdrop-blur-md sticky top-0 z-40">
             <div className="max-w-[1600px] mx-auto px-4 h-14 flex items-center justify-between">

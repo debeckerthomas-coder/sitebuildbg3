@@ -62,7 +62,7 @@ export function BossCard({ id }: { readonly id: string }) {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="border-2 border-blood/40 rounded-card bg-surface-raised overflow-hidden my-6"
+      className="border-2 border-blood/40 rounded-card bg-[#111520]/60 backdrop-blur-md shadow-lg shadow-black/50 overflow-hidden my-6"
     >
       {/* Header */}
       <div className="bg-gradient-to-r from-blood-dark/60 to-abyss-200/80 px-5 py-4">

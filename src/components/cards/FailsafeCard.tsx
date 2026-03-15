@@ -23,7 +23,7 @@ export function FailsafeCard({ missing, fallback, condition }: FailsafeCardProps
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className="my-5 rounded-card border border-gold-dark/40 bg-gradient-to-br from-surface-raised to-abyss overflow-hidden"
+      className="my-5 rounded-card border border-gold/20 bg-[#111520]/60 backdrop-blur-md shadow-lg shadow-black/50 overflow-hidden"
     >
       {/* Header */}
       <div className="px-4 py-2 bg-gold-dark/10 border-b border-gold-dark/20 flex items-center gap-2">

@@ -28,6 +28,21 @@
     pointer-events: none;
   }
 
+  /* ---- Grimoire Filigrane — D20 watermark ---- */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 440' fill='none' stroke='%23d4af37' stroke-width='1'%3E%3C!-- Outer icosahedron (D20) --%3E%3Cpolygon points='200,10 390,140 340,380 60,380 10,140'/%3E%3C!-- Inner star facets --%3E%3Cline x1='200' y1='10' x2='60' y2='380'/%3E%3Cline x1='200' y1='10' x2='340' y2='380'/%3E%3Cline x1='10' y1='140' x2='340' y2='380'/%3E%3Cline x1='390' y1='140' x2='60' y2='380'/%3E%3Cline x1='10' y1='140' x2='390' y2='140'/%3E%3C!-- Inner pentagon --%3E%3Cpolygon points='200,130 310,210 270,340 130,340 90,210'/%3E%3C!-- Center to inner pentagon --%3E%3Cline x1='200' y1='10' x2='200' y2='130'/%3E%3Cline x1='390' y1='140' x2='310' y2='210'/%3E%3Cline x1='340' y1='380' x2='270' y2='340'/%3E%3Cline x1='60' y1='380' x2='130' y2='340'/%3E%3Cline x1='10' y1='140' x2='90' y2='210'/%3E%3C!-- 20 text --%3E%3Ctext x='200' y='260' text-anchor='middle' font-family='Cinzel,serif' font-size='64' fill='%23d4af37' stroke='none'%3E20%3C/text%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 50%;
+    pointer-events: none;
+  }
+
   /* Golden dark scrollbar — Dark Fantasy Grimoire */
   ::-webkit-scrollbar {
     width: 10px;

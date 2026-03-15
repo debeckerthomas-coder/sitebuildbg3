@@ -180,14 +180,10 @@ export function LootCard({ item }: LootCardProps) {
     }
   }, [codexEntry]);
 
-  // Truncate effect to ~120 chars for compact display
-  const compactEffect =
-    item.effect.length > 120 ? item.effect.slice(0, 117) + "..." : item.effect;
-
   const cardContent = (
     <div
       onClick={handleClick}
-      className={`group relative flex rounded-xl overflow-hidden
+      className={`group relative h-full flex flex-row rounded-xl overflow-hidden
                   bg-[#111520]/70 backdrop-blur-md
                   border ${style.card}
                   transition-all duration-300 ease-out
@@ -198,7 +194,7 @@ export function LootCard({ item }: LootCardProps) {
       <div className={`absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r ${style.bar}`} />
 
       {/* ===== LEFT COLUMN — Icon Showcase (~40%) ===== */}
-      <div className="relative flex items-center justify-center p-4 pr-0 shrink-0">
+      <div className="relative shrink-0 w-28 md:w-32 flex flex-col items-center justify-center p-4 bg-black/40">
         {/* Ambient glow behind icon */}
         <div
           className={`absolute inset-0 ${style.iconGlowBg} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`}
@@ -206,7 +202,7 @@ export function LootCard({ item }: LootCardProps) {
 
         {/* Icon container with rarity border and glow */}
         <div
-          className={`relative w-24 h-24 rounded-xl border-2 ${style.iconBorder}
+          className={`relative w-20 h-20 md:w-24 md:h-24 rounded-xl border-2 ${style.iconBorder}
                       bg-abyss/80 flex items-center justify-center overflow-hidden
                       transition-all duration-300
                       group-hover:scale-105`}
@@ -246,10 +242,10 @@ export function LootCard({ item }: LootCardProps) {
       </div>
 
       {/* ===== RIGHT COLUMN — Info Panel (~60%) ===== */}
-      <div className="flex-1 min-w-0 p-4 pl-3 flex flex-col justify-between gap-2">
+      <div className="flex-1 min-w-0 p-4 pl-3 flex flex-col gap-1.5">
         {/* Title */}
         <h3
-          className={`font-display text-sm leading-tight ${style.text} group-hover:brightness-125 transition-all duration-200`}
+          className={`font-display text-sm leading-tight line-clamp-2 ${style.text} group-hover:brightness-125 transition-all duration-200`}
         >
           {item.name}
         </h3>
@@ -270,32 +266,35 @@ export function LootCard({ item }: LootCardProps) {
           </span>
         </div>
 
-        {/* Location */}
-        <div className="flex items-center gap-1 text-[10px] font-data text-gray-500">
-          <LocationIcon />
-          <span className="truncate" title={item.location}>
-            {item.location}
-          </span>
-        </div>
-
         {/* Compact effect */}
-        <p className="text-[11px] font-body text-gray-400 leading-relaxed line-clamp-3">
-          {compactEffect}
+        <p className="text-sm font-body text-gray-300 leading-relaxed line-clamp-3">
+          {item.effect}
         </p>
 
-        {/* Used by builds */}
-        {item.usedBy.length > 0 && (
-          <div className="flex flex-wrap gap-1 pt-0.5">
-            {item.usedBy.map((build) => (
-              <span
-                key={build}
-                className="text-[9px] font-data text-gray-400/80 bg-abyss/80 px-1.5 py-0.5 rounded border border-border/30"
-              >
-                {build}
-              </span>
-            ))}
+        {/* Footer: location + builds — pushed to bottom */}
+        <div className="mt-auto flex flex-col gap-1.5 pt-1">
+          {/* Location */}
+          <div className="flex items-center gap-1 text-[10px] font-data text-gray-500">
+            <LocationIcon />
+            <span className="truncate" title={item.location}>
+              {item.location}
+            </span>
           </div>
-        )}
+
+          {/* Used by builds */}
+          {item.usedBy.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {item.usedBy.map((build) => (
+                <span
+                  key={build}
+                  className="text-[9px] font-data text-gray-400/80 bg-abyss/80 px-1.5 py-0.5 rounded border border-border/30"
+                >
+                  {build}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Codex indicator dot */}

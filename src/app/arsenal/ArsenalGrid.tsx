@@ -269,10 +269,11 @@ export function ArsenalGrid() {
                 </div>
 
                 {/* Shelf grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-stretch">
                   {shelf.items.map((item, i) => (
                     <motion.div
                       key={item.id}
+                      className="h-full"
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: shelfIdx * 0.1 + i * 0.03, duration: 0.35 }}

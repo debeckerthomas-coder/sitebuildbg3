@@ -8,6 +8,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getWalkthrough, getWalkthroughSlugs } from "@/lib/mdx";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 import { TableOfContentsWrapper } from "./TableOfContentsWrapper";
+import type { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ actId: string }>;
@@ -15,6 +16,27 @@ interface PageProps {
 
 export function generateStaticParams() {
   return getWalkthroughSlugs().map((slug) => ({ actId: slug }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { actId } = await params;
+
+  let walkthrough;
+  try {
+    walkthrough = getWalkthrough(actId);
+  } catch {
+    return { title: "Guide introuvable | BG3 Honor Companion" };
+  }
+
+  return {
+    title: `${walkthrough.meta.title} | BG3 Honor Companion`,
+    description: walkthrough.meta.description,
+    openGraph: {
+      title: `${walkthrough.meta.title} | BG3 Honor Companion`,
+      description: walkthrough.meta.description,
+      type: "article",
+    },
+  };
 }
 
 export default async function WalkthroughPage({ params }: PageProps) {

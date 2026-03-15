@@ -3,9 +3,11 @@
 // ============================================================================
 // IconWithFallback — Displays an icon with rarity-colored border.
 // On error (404), shows a gradient fallback with the item's initial.
+// Uses next/image for automatic caching & optimization of bg3.wiki icons.
 // ============================================================================
 
 import { useState } from "react";
+import Image from "next/image";
 import type { Rarity } from "@/types";
 import { getRarityFallbackStyle } from "@/lib/icons";
 
@@ -56,13 +58,13 @@ export function IconWithFallback({
       className={`rounded-md border-2 ${borderClass} bg-abyss-100 shrink-0 overflow-hidden flex items-center justify-center ${className}`}
       style={{ width: size, height: size }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={src}
         alt={alt}
+        width={size}
+        height={size}
         className="object-contain"
-        style={{ width: size - 4, height: size - 4 }}
-        loading="lazy"
+        unoptimized={false}
         onError={() => setHasError(true)}
       />
     </div>

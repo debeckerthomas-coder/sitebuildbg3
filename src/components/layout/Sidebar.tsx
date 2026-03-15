@@ -32,6 +32,11 @@ const NAV_ITEMS: readonly NavItem[] = [
     icon: "📖",
   },
   {
+    label: "L'Armurerie",
+    href: "/arsenal",
+    icon: "🛡️",
+  },
+  {
     label: "Tier List Builds",
     icon: "⚔️",
     children: [

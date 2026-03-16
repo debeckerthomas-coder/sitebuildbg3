@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getWalkthrough, getWalkthroughSlugs } from "@/lib/mdx";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
-import { TableOfContentsWrapper } from "./TableOfContentsWrapper";
+import { FloatingTOC } from "@/components/ui/FloatingTOC";
 import type { Metadata } from "next";
 
 interface PageProps {
@@ -50,11 +50,14 @@ export default async function WalkthroughPage({ params }: PageProps) {
   }
 
   return (
-    <div className="flex gap-8 max-w-7xl mx-auto px-4 py-8">
-      {/* Main Content */}
+    <div className="relative max-w-5xl mx-auto px-4 py-8">
+      {/* Floating Table of Contents — fixed right on xl screens */}
+      <FloatingTOC />
+
+      {/* Main Content with timeline border */}
       <article
         data-mdx-content
-        className="flex-1 min-w-0 prose prose-invert prose-gold max-w-none"
+        className="prose prose-invert prose-gold max-w-none"
       >
         <h1 className="font-display text-3xl text-gold mb-2">
           {walkthrough.meta.title}
@@ -63,16 +66,14 @@ export default async function WalkthroughPage({ params }: PageProps) {
           {walkthrough.meta.description}
         </p>
 
-        <MDXRemote
-          source={walkthrough.source}
-          components={mdxComponents}
-        />
+        {/* Timeline wrapper — vertical gold line on the left */}
+        <div className="relative pl-6 md:pl-8 border-l border-gold/20 ml-2 md:ml-4 space-y-8">
+          <MDXRemote
+            source={walkthrough.source}
+            components={mdxComponents}
+          />
+        </div>
       </article>
-
-      {/* Sidebar ToC */}
-      <aside className="hidden lg:block w-56 shrink-0">
-        <TableOfContentsWrapper />
-      </aside>
     </div>
   );
 }

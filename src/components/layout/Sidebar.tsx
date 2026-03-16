@@ -57,9 +57,12 @@ const NAV_ITEMS: readonly NavItem[] = [
     label: "Méta & Outils",
     icon: "🔧",
     children: [
+      { label: "L'Atelier (Hub)", href: "/outils", icon: "🔧" },
       { label: "Simulateur de Dés", href: "/outils/des", icon: "🎲" },
       { label: "Initiative (d4)", href: "/outils/initiative", icon: "⚡" },
       { label: "Simulateur de Combat", href: "/outils/combat", icon: "💥" },
+      { label: "Calculateur Nova", href: "/outils/nova", icon: "🔮" },
+      { label: "Rituel de Préparation", href: "/outils/preparation", icon: "📜" },
     ],
   },
 ];

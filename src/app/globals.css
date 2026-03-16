@@ -9,6 +9,12 @@
    ---------------------------------------------------------------- */
 
 @layer base {
+  /* ---- Font CSS variables for Tailwind fontFamily references ---- */
+  :root {
+    --font-cinzel: "Cinzel", serif;
+    --font-inter: "Inter", sans-serif;
+  }
+
   /* ---- Abyssal Background with depth vignette + noise ---- */
   body {
     background: radial-gradient(circle at 50% 0%, #1a1f2e 0%, #111520 60%, #0a0c13 100%);
@@ -107,6 +113,23 @@
     box-shadow:
       0 8px 32px rgba(0, 0, 0, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+
+  /* ---- Prose base typography — Inter body + Cinzel headings ---- */
+  .prose {
+    font-family: var(--font-inter), "Inter", sans-serif;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    font-family: var(--font-cinzel), "Cinzel", serif;
+    background: linear-gradient(to bottom right, #fef08a, #d4af37, #b48608);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0px 2px 10px rgba(212, 175, 55, 0.2));
   }
 
   .prose-gold {

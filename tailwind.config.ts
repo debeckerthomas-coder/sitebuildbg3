@@ -68,9 +68,11 @@ const config: Config = {
       },
 
       fontFamily: {
-        display: ["Cinzel", "serif"],
+        sans: ["var(--font-inter)", "Inter", "sans-serif"],
+        heading: ["var(--font-cinzel)", "Cinzel", "serif"],
+        display: ["var(--font-cinzel)", "Cinzel", "serif"],
         body: ["Lora", "serif"],
-        data: ["Inter", "sans-serif"],
+        data: ["var(--font-inter)", "Inter", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
 

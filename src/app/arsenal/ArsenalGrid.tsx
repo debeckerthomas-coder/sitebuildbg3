@@ -269,7 +269,7 @@ export function ArsenalGrid() {
                 </div>
 
                 {/* Shelf grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-stretch">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-stretch auto-rows-fr">
                   {shelf.items.map((item, i) => (
                     <motion.div
                       key={item.id}

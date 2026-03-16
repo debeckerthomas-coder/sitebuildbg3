@@ -18,6 +18,8 @@ import { CombatLogSimulatorMDX } from "./CombatLogSimulatorMDX";
 import { InteractiveMap } from "@/components/media/InteractiveMap";
 import { BossTacticMedia } from "@/components/media/BossTacticMedia";
 import { ParallelRoutes, Route } from "./ParallelRoutes";
+import { ZoneBanner } from "./ZoneBanner";
+import { Accordion } from "./Accordion";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -54,4 +56,6 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   BossTacticMedia,
   ParallelRoutes,
   Route,
+  ZoneBanner,
+  Accordion,
 };

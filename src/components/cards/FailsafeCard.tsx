@@ -67,7 +67,7 @@ export function FailsafeCard({ missing, fallback, condition }: FailsafeCardProps
       <div className="px-4 py-3 flex items-center gap-2.5">
         <WarningIcon />
         <div className="min-w-0">
-          <p className="text-[10px] font-data text-gray-400 uppercase tracking-wider">
+          <p className="text-[10px] font-heading text-amber-300 uppercase tracking-wider">
             Si vous avez manqué
           </p>
           <p className="text-sm font-display text-red-400 truncate">

@@ -20,6 +20,7 @@ import { BossTacticMedia } from "@/components/media/BossTacticMedia";
 import { ParallelRoutes, Route } from "./ParallelRoutes";
 import { ZoneBanner } from "./ZoneBanner";
 import { Accordion } from "./Accordion";
+import { BuildTactic } from "./BuildTactic";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -58,4 +59,5 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   Route,
   ZoneBanner,
   Accordion,
+  BuildTactic,
 };

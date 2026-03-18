@@ -52,6 +52,7 @@ export const useAppStore = create<AppStore>()(
     sidebarOpen: true,
     activeTooltip: null,
     currentAct: 1,
+    activeBuild: null,
 
     // Run Management
     createRun(name: string, builds: readonly RunBuildSelection[]): string {
@@ -130,15 +131,22 @@ export const useAppStore = create<AppStore>()(
       set({ activeTooltip: data });
     },
 
+    setActiveBuild(buildId: string): void {
+      set({ activeBuild: buildId || null });
+      void setMetaValue("activeBuild", buildId);
+    },
+
     // Persistence Hydration
     async hydrate(): Promise<void> {
-      const [runs, activeRunId] = await Promise.all([
+      const [runs, activeRunId, activeBuild] = await Promise.all([
         getAllRuns(),
         getMetaValue("activeRunId"),
+        getMetaValue("activeBuild"),
       ]);
       set({
         runs,
         activeRunId: activeRunId ?? null,
+        activeBuild: activeBuild ?? null,
       });
 
       // Multi-tab sync

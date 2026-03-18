@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { BuildSelector } from "@/components/ui/BuildSelector";
 
 // ---------------------------------------------------------------------------
 // Structure de navigation
@@ -205,6 +206,13 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
         {NAV_ITEMS.map((item) => (
           <NavGroup key={item.label} item={item} pathname={pathname} onNavigate={onNavigate} />
         ))}
+      </div>
+
+      <div className="px-4 py-3 border-t border-border">
+        <p className="text-[10px] font-data uppercase tracking-widest text-gray-500 mb-2 px-1">
+          Smart Guide
+        </p>
+        <BuildSelector />
       </div>
 
       <div className="p-4 mt-auto border-t border-border">

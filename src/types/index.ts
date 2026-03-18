@@ -448,6 +448,9 @@ export interface AppState {
   readonly sidebarOpen: boolean;
   readonly activeTooltip: CodexTooltipData | null;
   readonly currentAct: Act;
+
+  // Smart Guide — active build filter
+  readonly activeBuild: string | null;
 }
 
 export interface AppActions {
@@ -462,6 +465,9 @@ export interface AppActions {
   // UI
   toggleSidebar: () => void;
   setActiveTooltip: (data: CodexTooltipData | null) => void;
+
+  // Smart Guide
+  setActiveBuild: (buildId: string) => void;
 
   // Persistence
   hydrate: () => Promise<void>;

@@ -94,7 +94,7 @@ function NavGroup({
         className={`
           flex items-center gap-3 px-3 py-2.5 rounded-card text-sm font-data transition-all duration-200
           ${active
-            ? "bg-gold/10 text-gold border border-gold/20"
+            ? "bg-theme/10 text-theme border border-theme/20"
             : "text-gray-400 hover:text-gray-200 hover:bg-surface-raised"}
         `}
       >
@@ -110,7 +110,7 @@ function NavGroup({
         onClick={() => setIsOpen(!isOpen)}
         className={`
           w-full flex items-center gap-3 px-3 py-2.5 rounded-card text-sm font-data transition-all duration-200
-          ${isActive ? "text-gold" : "text-gray-400 hover:text-gray-200 hover:bg-surface-raised"}
+          ${isActive ? "text-theme" : "text-gray-400 hover:text-gray-200 hover:bg-surface-raised"}
         `}
       >
         <span className="text-base" aria-hidden>{item.icon}</span>
@@ -144,7 +144,7 @@ function NavGroup({
                     className={`
                       flex items-center gap-2.5 px-3 py-2 rounded text-xs font-data transition-all duration-200
                       ${childActive
-                        ? "bg-gold/10 text-gold"
+                        ? "bg-theme/10 text-theme"
                         : "text-gray-500 hover:text-gray-300 hover:bg-surface-raised"}
                     `}
                   >
@@ -171,17 +171,17 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
       <motion.span
         animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
         transition={{ duration: 0.2 }}
-        className="block h-0.5 w-full bg-gold rounded-full origin-center"
+        className="block h-0.5 w-full bg-theme rounded-full origin-center"
       />
       <motion.span
         animate={isOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
         transition={{ duration: 0.15 }}
-        className="block h-0.5 w-full bg-gold rounded-full"
+        className="block h-0.5 w-full bg-theme rounded-full"
       />
       <motion.span
         animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
         transition={{ duration: 0.2 }}
-        className="block h-0.5 w-full bg-gold rounded-full origin-center"
+        className="block h-0.5 w-full bg-theme rounded-full origin-center"
       />
     </div>
   );
@@ -258,7 +258,7 @@ export function Sidebar() {
       {/* Mobile hamburger button */}
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
-        className="lg:hidden fixed top-3.5 right-4 z-50 p-2 rounded-card bg-surface border border-border hover:border-gold/30 transition-colors"
+        className="lg:hidden fixed top-3.5 right-4 z-50 p-2 rounded-card bg-surface border border-border hover:border-theme/30 transition-colors"
         aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
       >
         <HamburgerIcon isOpen={mobileOpen} />

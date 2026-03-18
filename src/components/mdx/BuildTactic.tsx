@@ -9,17 +9,17 @@ interface BuildTacticProps {
 }
 
 export function BuildTactic({ target, children }: BuildTacticProps) {
-  const activeBuild = useAppStore((s) => s.activeBuild);
+  const mainBuild = useAppStore((s) => s.party.main);
 
   // No build selected → show everything
-  if (!activeBuild) {
+  if (!mainBuild) {
     return <>{children}</>;
   }
 
   // Build matches → highlight
-  if (activeBuild === target) {
+  if (mainBuild === target) {
     return (
-      <div className="border-l-2 border-gold/40 bg-gold/5 pl-4 py-1 rounded-r">
+      <div className="border-l-2 border-theme/40 bg-theme/5 pl-4 py-1 rounded-r">
         {children}
       </div>
     );

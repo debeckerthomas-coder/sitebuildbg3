@@ -436,7 +436,20 @@ export interface TableOfContentsEntry {
 }
 
 // ---------------------------------------------------------------------------
-// 13. Store Types
+// 13. Party System
+// ---------------------------------------------------------------------------
+
+export type CompanionSlot = "comp1" | "comp2" | "comp3";
+
+export interface Party {
+  readonly main: string | null;
+  readonly comp1: string | null;
+  readonly comp2: string | null;
+  readonly comp3: string | null;
+}
+
+// ---------------------------------------------------------------------------
+// 14. Store Types
 // ---------------------------------------------------------------------------
 
 export interface AppState {
@@ -449,7 +462,10 @@ export interface AppState {
   readonly activeTooltip: CodexTooltipData | null;
   readonly currentAct: Act;
 
-  // Smart Guide — active build filter
+  // Smart Guide — party of 4
+  readonly party: Party;
+
+  /** @deprecated Use party.main instead. Kept as computed alias for backwards compat. */
   readonly activeBuild: string | null;
 }
 
@@ -466,7 +482,12 @@ export interface AppActions {
   toggleSidebar: () => void;
   setActiveTooltip: (data: CodexTooltipData | null) => void;
 
-  // Smart Guide
+  // Smart Guide — party management
+  setMainBuild: (buildId: string) => void;
+  setCompanion: (slot: CompanionSlot, buildId: string | null) => void;
+  clearParty: () => void;
+
+  /** @deprecated Use setMainBuild instead. */
   setActiveBuild: (buildId: string) => void;
 
   // Persistence
@@ -476,7 +497,7 @@ export interface AppActions {
 export type AppStore = AppState & AppActions;
 
 // ---------------------------------------------------------------------------
-// 14. MDX / Content Types
+// 15. MDX / Content Types
 // ---------------------------------------------------------------------------
 
 export interface WalkthroughMeta {

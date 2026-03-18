@@ -21,6 +21,14 @@ const config: Config = {
           200: "#252b3d",
           300: "#2e354a",
         },
+        // Dynamic theme color (Interface Caméléon) — driven by CSS variables
+        theme: {
+          DEFAULT: "var(--theme-color)",
+          light: "var(--theme-color-light)",
+          dark: "var(--theme-color-dark)",
+          muted: "var(--theme-color-muted)",
+        },
+        // Static gold palette (preserved for non-themed elements)
         gold: {
           DEFAULT: "#d4af37",
           light: "#e8cc6e",

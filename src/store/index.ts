@@ -10,6 +10,8 @@ import type {
   Act,
   AppStore,
   CodexTooltipData,
+  CompanionSlot,
+  Party,
   Run,
   RunBuildSelection,
 } from "@/types";
@@ -44,6 +46,8 @@ function createEmptyRun(
   };
 }
 
+const EMPTY_PARTY: Party = { main: null, comp1: null, comp2: null, comp3: null };
+
 export const useAppStore = create<AppStore>()(
   subscribeWithSelector((set, get) => ({
     // State
@@ -52,7 +56,8 @@ export const useAppStore = create<AppStore>()(
     sidebarOpen: true,
     activeTooltip: null,
     currentAct: 1,
-    activeBuild: null,
+    party: { ...EMPTY_PARTY },
+    activeBuild: null, // synced alias for party.main (backwards compat)
 
     // Run Management
     createRun(name: string, builds: readonly RunBuildSelection[]): string {
@@ -131,22 +136,58 @@ export const useAppStore = create<AppStore>()(
       set({ activeTooltip: data });
     },
 
-    setActiveBuild(buildId: string): void {
-      set({ activeBuild: buildId || null });
+    // Party management
+    setMainBuild(buildId: string): void {
+      const main = buildId || null;
+      set((state) => ({
+        party: { ...state.party, main },
+        activeBuild: main,
+      }));
       void setMetaValue("activeBuild", buildId);
+    },
+
+    setCompanion(slot: CompanionSlot, buildId: string | null): void {
+      set((state) => ({
+        party: { ...state.party, [slot]: buildId || null },
+      }));
+      void setMetaValue(`party_${slot}`, buildId ?? "");
+    },
+
+    clearParty(): void {
+      set({ party: { ...EMPTY_PARTY }, activeBuild: null });
+      void setMetaValue("activeBuild", "");
+      void setMetaValue("party_comp1", "");
+      void setMetaValue("party_comp2", "");
+      void setMetaValue("party_comp3", "");
+    },
+
+    /** @deprecated Use setMainBuild instead. */
+    setActiveBuild(buildId: string): void {
+      get().setMainBuild(buildId);
     },
 
     // Persistence Hydration
     async hydrate(): Promise<void> {
-      const [runs, activeRunId, activeBuild] = await Promise.all([
-        getAllRuns(),
-        getMetaValue("activeRunId"),
-        getMetaValue("activeBuild"),
-      ]);
+      const [runs, activeRunId, activeBuild, comp1, comp2, comp3] =
+        await Promise.all([
+          getAllRuns(),
+          getMetaValue("activeRunId"),
+          getMetaValue("activeBuild"),
+          getMetaValue("party_comp1"),
+          getMetaValue("party_comp2"),
+          getMetaValue("party_comp3"),
+        ]);
+      const main = activeBuild || null;
       set({
         runs,
         activeRunId: activeRunId ?? null,
-        activeBuild: activeBuild ?? null,
+        party: {
+          main,
+          comp1: comp1 || null,
+          comp2: comp2 || null,
+          comp3: comp3 || null,
+        },
+        activeBuild: main,
       });
 
       // Multi-tab sync

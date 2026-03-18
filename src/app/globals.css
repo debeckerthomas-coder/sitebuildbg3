@@ -10,9 +10,16 @@
 
 @layer base {
   /* ---- Font CSS variables for Tailwind fontFamily references ---- */
+  /* ---- Theme CSS variables (Interface Caméléon) ---- */
   :root {
     --font-cinzel: "Cinzel", serif;
     --font-inter: "Inter", sans-serif;
+
+    /* Dynamic theme — defaults to Gold, overridden by JS per build */
+    --theme-color: #d4af37;
+    --theme-color-light: #e8cc6e;
+    --theme-color-dark: #9b7e1e;
+    --theme-color-muted: #7a6530;
   }
 
   /* ---- Abyssal Background with depth vignette + noise ---- */

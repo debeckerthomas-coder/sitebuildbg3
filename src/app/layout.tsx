@@ -31,11 +31,11 @@ export default function RootLayout({
           <header className="border-b border-border bg-surface/80 backdrop-blur-md sticky top-0 z-40">
             <div className="max-w-[1600px] mx-auto px-4 h-14 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3 group">
-                <div className="w-8 h-8 rounded bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center">
+                <div className="w-8 h-8 rounded bg-gradient-to-br from-theme to-theme-dark flex items-center justify-center transition-colors duration-300">
                   <span className="font-display text-xs font-bold text-abyss">BG3</span>
                 </div>
                 <div>
-                  <h1 className="font-display text-sm text-gold tracking-wide group-hover:text-gold-light transition-colors">
+                  <h1 className="font-display text-sm text-theme tracking-wide group-hover:text-theme-light transition-colors duration-300">
                     Honor Companion
                   </h1>
                   <p className="text-[9px] font-data text-gray-500 -mt-0.5">Mode Honneur — Aucun droit à l&apos;erreur</p>

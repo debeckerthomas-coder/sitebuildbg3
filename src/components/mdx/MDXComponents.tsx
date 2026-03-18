@@ -21,6 +21,7 @@ import { ParallelRoutes, Route } from "./ParallelRoutes";
 import { ZoneBanner } from "./ZoneBanner";
 import { Accordion } from "./Accordion";
 import { BuildTactic } from "./BuildTactic";
+import { LevelingGuide, LevelStep } from "./LevelingGuide";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -60,4 +61,6 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   ZoneBanner,
   Accordion,
   BuildTactic,
+  LevelingGuide,
+  LevelStep,
 };

@@ -2,53 +2,57 @@
 
 // ============================================================================
 // LevelingGuide — Timeline interactive de leveling (1-12)
-// Remplace les listes à puces par un slider navigable niveau par niveau
+// Architecture Context : le niveau actif est propagé via React Context,
+// éliminant les problèmes de parsing MDX avec React.Children.map.
 // ============================================================================
 
-import React, { useState, type ReactNode, type ReactElement } from "react";
+import React, { useState, createContext, useContext, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ---------------------------------------------------------------------------
-// LevelStep — Child component (receives level prop, renders children)
+// Context — transmet le niveau actif aux LevelStep enfants
+// ---------------------------------------------------------------------------
+
+const LevelContext = createContext<number>(1);
+
+// ---------------------------------------------------------------------------
+// LevelStep — S'affiche uniquement quand son `level` correspond au contexte
 // ---------------------------------------------------------------------------
 
 export function LevelStep({
+  level,
   children,
 }: {
   level: number;
   children: ReactNode;
 }) {
+  const activeLevel = useContext(LevelContext);
+
+  if (activeLevel !== level) return null;
+
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.25, ease: "easeOut" }}
-        className="prose prose-invert prose-sm max-w-none
-                   prose-strong:text-theme prose-em:text-gray-300
-                   prose-p:text-gray-300 prose-p:leading-relaxed prose-p:font-body"
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className="prose prose-invert prose-sm max-w-none
+                 prose-strong:text-theme prose-em:text-gray-300
+                 prose-p:text-gray-300 prose-p:leading-relaxed prose-p:font-body"
+    >
+      {children}
+    </motion.div>
   );
 }
 
 // ---------------------------------------------------------------------------
-// LevelingGuide — Parent component with timeline
+// LevelingGuide — Parent component with timeline + Context Provider
 // ---------------------------------------------------------------------------
 
 const LEVELS = Array.from({ length: 12 }, (_, i) => i + 1);
 
 export function LevelingGuide({ children }: { children: ReactNode }) {
   const [activeLevel, setActiveLevel] = useState(1);
-
-  // Find the child whose `level` prop matches activeLevel
-  const activeChild = React.Children.toArray(children).find((child) => {
-    if (!React.isValidElement(child)) return false;
-    return (child as ReactElement<{ level: number }>).props.level === activeLevel;
-  });
 
   return (
     <div className="my-8 not-prose">
@@ -88,19 +92,9 @@ export function LevelingGuide({ children }: { children: ReactNode }) {
           </span>
         </div>
         <AnimatePresence mode="wait">
-          <motion.div
-            key={activeLevel}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-          >
-            {activeChild ?? (
-              <p className="text-sm text-gray-500 italic font-data">
-                Aucun contenu pour le niveau {activeLevel}.
-              </p>
-            )}
-          </motion.div>
+          <LevelContext.Provider value={activeLevel}>
+            {children}
+          </LevelContext.Provider>
         </AnimatePresence>
       </div>
 

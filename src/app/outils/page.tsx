@@ -27,6 +27,13 @@ const TOOLS: readonly ToolCard[] = [
       "Composez votre groupe de 4 et analysez la répartition des reliques uniques, les synergies et les conflits de butin.",
   },
   {
+    href: "/outils/traqueur",
+    icon: "🎒",
+    title: "Le Traqueur d'Inventaire",
+    description:
+      "Checklist anti-oubli acte par acte. Vérifiez chaque objet vital avant les points de non-retour. Sauvegarde automatique.",
+  },
+  {
     href: "/outils/des",
     icon: "🎲",
     title: "Les Dés du Destin",

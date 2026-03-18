@@ -20,6 +20,13 @@ interface ToolCard {
 
 const TOOLS: readonly ToolCard[] = [
   {
+    href: "/outils/groupe",
+    icon: "👥",
+    title: "Le Conseil de Guerre",
+    description:
+      "Composez votre groupe de 4 et analysez la répartition des reliques uniques, les synergies et les conflits de butin.",
+  },
+  {
     href: "/outils/des",
     icon: "🎲",
     title: "Les Dés du Destin",

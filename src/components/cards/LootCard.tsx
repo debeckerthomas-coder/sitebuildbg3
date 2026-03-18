@@ -6,6 +6,7 @@
 // ============================================================================
 
 import { useState } from "react";
+import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { getBg3WikiIconUrl } from "@/lib/iconHelper";
 import type { ArsenalItem } from "@/data/arsenal";
@@ -164,6 +165,17 @@ export function LootCard({ item }: LootCardProps) {
   const [imgError, setImgError] = useState(false);
 
   return (
+    <Tilt
+      tiltMaxAngleX={5}
+      tiltMaxAngleY={5}
+      glareEnable={true}
+      glareMaxOpacity={0.15}
+      glareColor="#fbbf24"
+      glarePosition="all"
+      scale={1.02}
+      transitionSpeed={2000}
+      className="h-full"
+    >
     <div
       className={`group flex flex-row h-full w-full bg-[#111520]/60 backdrop-blur-md rounded-xl overflow-hidden
                   border ${style.card}
@@ -257,5 +269,6 @@ export function LootCard({ item }: LootCardProps) {
         </div>
       </div>
     </div>
+    </Tilt>
   );
 }

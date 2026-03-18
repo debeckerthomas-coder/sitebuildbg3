@@ -7,7 +7,7 @@
 // ============================================================================
 
 import React, { useState, createContext, useContext, type ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 // ---------------------------------------------------------------------------
 // Context — transmet le niveau actif aux LevelStep enfants
@@ -23,25 +23,21 @@ export function LevelStep({
   level,
   children,
 }: {
-  level: number;
+  level: number | string;
   children: ReactNode;
 }) {
   const activeLevel = useContext(LevelContext);
 
-  if (activeLevel !== level) return null;
+  // SÉCURITÉ ANTI-MDX : forçage en entier pour éviter les comparaisons string !== number
+  const targetLevel = typeof level !== "undefined" ? parseInt(String(level), 10) : NaN;
+  const currentLevel = typeof activeLevel !== "undefined" ? parseInt(String(activeLevel), 10) : NaN;
+
+  if (Number.isNaN(targetLevel) || Number.isNaN(currentLevel) || currentLevel !== targetLevel) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
-      className="prose prose-invert prose-sm max-w-none
-                 prose-strong:text-theme prose-em:text-gray-300
-                 prose-p:text-gray-300 prose-p:leading-relaxed prose-p:font-body"
-    >
+    <div className="mt-4 text-gray-200 opacity-100 transition-opacity duration-300">
       {children}
-    </motion.div>
+    </div>
   );
 }
 

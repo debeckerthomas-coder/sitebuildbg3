@@ -7,7 +7,7 @@
 // ============================================================================
 
 import React, { useState, createContext, useContext, type ReactNode } from "react";
-import { AnimatePresence } from "framer-motion";
+
 
 // ---------------------------------------------------------------------------
 // Context — transmet le niveau actif aux LevelStep enfants
@@ -87,11 +87,9 @@ export function LevelingGuide({ children }: { children: ReactNode }) {
             Niveau {activeLevel} / 12
           </span>
         </div>
-        <AnimatePresence mode="wait">
-          <LevelContext.Provider value={activeLevel}>
-            {children}
-          </LevelContext.Provider>
-        </AnimatePresence>
+        <LevelContext.Provider value={activeLevel}>
+          {children}
+        </LevelContext.Provider>
       </div>
 
       {/* Prev/Next buttons */}

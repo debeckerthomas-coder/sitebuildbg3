@@ -26,12 +26,12 @@
   body {
     background: radial-gradient(circle at 50% 0%, #1a1f2e 0%, #111520 60%, #0a0c13 100%);
     background-attachment: fixed;
-    cursor: url('/cursor.png'), auto;
+    cursor: url('/cursor.png') 4 2, auto;
   }
 
   /* ---- Faerûn Cursors — interactive elements ---- */
   a, button, [role="button"] {
-    cursor: url('/cursor-pointer.png'), pointer;
+    cursor: url('/cursor-pointer.png') 2 2, pointer;
   }
 
   /* Ultra-subtle noise overlay on the page */

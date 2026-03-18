@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { HydrationProvider } from "@/components/layout/HydrationProvider";
+import { PanicButton } from "@/components/ui/PanicButton";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -50,6 +51,7 @@ export default function RootLayout({
               {children}
             </main>
           </div>
+          <PanicButton />
         </HydrationProvider>
       </body>
     </html>

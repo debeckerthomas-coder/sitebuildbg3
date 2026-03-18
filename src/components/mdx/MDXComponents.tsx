@@ -23,6 +23,7 @@ import { Accordion } from "./Accordion";
 import { BuildTactic } from "./BuildTactic";
 import { LevelingGuide, LevelStep } from "./LevelingGuide";
 import { BossTimeline, Turn } from "./BossTimeline";
+import { RuleTooltip } from "./RuleTooltip";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -66,4 +67,5 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   LevelStep,
   BossTimeline,
   Turn,
+  Rule: RuleTooltip,
 };

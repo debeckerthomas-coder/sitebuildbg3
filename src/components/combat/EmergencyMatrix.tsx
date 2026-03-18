@@ -163,7 +163,7 @@ function InlineMatrix({ title, severity, children }: { title: string; severity: 
 export function EmergencyMatrix(props: EmergencyMatrixProps) {
   // Inline mode: title + severity + children
   if (props.title && props.severity && props.children) {
-    return <InlineMatrix title={props.title} severity={props.severity} children={props.children} />;
+    return <InlineMatrix title={props.title} severity={props.severity}>{props.children}</InlineMatrix>;
   }
 
   // Boss mode: bossId

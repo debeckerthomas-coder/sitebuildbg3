@@ -237,6 +237,7 @@ export function Sidebar() {
 
   // Close mobile menu on route change
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Responding to external navigation event; no alternative without effect
     setMobileOpen(false);
   }, [pathname]);
 

@@ -126,6 +126,7 @@ export function ChecklistTrackerMDX({
   useEffect(() => {
     try {
       const raw = localStorage.getItem(`${STORAGE_PREFIX}${checklistId}`);
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- SSR hydration: must read localStorage after mount to avoid server/client mismatch
       if (raw) setChecked(JSON.parse(raw));
     } catch {
       /* ignore */

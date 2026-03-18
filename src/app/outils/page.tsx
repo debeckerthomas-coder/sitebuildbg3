@@ -34,6 +34,13 @@ const TOOLS: readonly ToolCard[] = [
       "Checklist anti-oubli acte par acte. Vérifiez chaque objet vital avant les points de non-retour. Sauvegarde automatique.",
   },
   {
+    href: "/outils/illithid",
+    icon: "🧠",
+    title: "La Matrice Illithid",
+    description:
+      "Arbre de compétences des Têtards avec recommandations dynamiques selon votre build. Planifiez vos pouvoirs Illithids.",
+  },
+  {
     href: "/outils/des",
     icon: "🎲",
     title: "Les Dés du Destin",

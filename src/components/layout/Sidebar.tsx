@@ -61,6 +61,7 @@ const NAV_ITEMS: readonly NavItem[] = [
       { label: "L'Atelier (Hub)", href: "/outils", icon: "🔧" },
       { label: "Conseil de Guerre", href: "/outils/groupe", icon: "👥" },
       { label: "Traqueur d'Inventaire", href: "/outils/traqueur", icon: "🎒" },
+      { label: "Matrice Illithid", href: "/outils/illithid", icon: "🧠" },
       { label: "Simulateur de Dés", href: "/outils/des", icon: "🎲" },
       { label: "Initiative (d4)", href: "/outils/initiative", icon: "⚡" },
       { label: "Simulateur de Combat", href: "/outils/combat", icon: "💥" },

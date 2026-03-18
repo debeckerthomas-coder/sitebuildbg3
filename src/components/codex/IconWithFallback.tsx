@@ -9,7 +9,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import type { Rarity } from "@/types";
-import { getRarityFallbackStyle } from "@/lib/icons";
 
 // Rarity → solid border color for the icon wrapper
 const RARITY_BORDER: Record<Rarity, string> = {
@@ -40,15 +39,21 @@ export function IconWithFallback({
   const borderClass = RARITY_BORDER[rarity];
 
   if (hasError || !src) {
-    const fallbackStyle = getRarityFallbackStyle(rarity);
     return (
       <div
-        className={`rounded-md border-2 ${borderClass} shrink-0 ${className}`}
-        style={{ ...fallbackStyle, width: size, height: size }}
+        className={`rounded-md border-2 ${borderClass} shrink-0 overflow-hidden ${className}`}
+        style={{ width: size, height: size }}
         role="img"
         aria-label={alt}
       >
-        {alt.charAt(0).toUpperCase()}
+        <Image
+          src="/assets/fallback-loot.svg"
+          alt={alt}
+          width={size}
+          height={size}
+          className="object-contain"
+          unoptimized
+        />
       </div>
     );
   }

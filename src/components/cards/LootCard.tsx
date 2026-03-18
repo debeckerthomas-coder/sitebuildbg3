@@ -199,21 +199,15 @@ export function LootCard({ item }: LootCardProps) {
                       transition-all duration-300
                       group-hover:scale-105`}
         >
-          {!imgError ? (
-            <Image
-              src={getBg3WikiIconUrl(item.wikiName)}
-              alt={item.name}
-              width={96}
-              height={96}
-              className="relative z-10 w-full h-full object-contain p-1"
-              onError={() => setImgError(true)}
-              unoptimized
-            />
-          ) : (
-            <div className={`relative z-10 text-3xl font-display ${style.text} opacity-40`}>
-              {item.name.charAt(0)}
-            </div>
-          )}
+          <Image
+            src={imgError ? "/assets/fallback-loot.svg" : getBg3WikiIconUrl(item.wikiName)}
+            alt={item.name}
+            width={96}
+            height={96}
+            className="relative z-10 w-full h-full object-contain p-1"
+            onError={() => setImgError(true)}
+            unoptimized
+          />
         </div>
       </div>
 

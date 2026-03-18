@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a1525"/>
+      <stop offset="100%" stop-color="#0d0a14"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="40%">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rune" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="50%" stop-color="#d4a017"/>
+      <stop offset="100%" stop-color="#92700a"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="96" height="96" rx="12" fill="url(#bg)"/>
+  <!-- Ambient glow -->
+  <ellipse cx="48" cy="43" rx="30" ry="28" fill="url(#glow)"/>
+  <!-- Outer diamond (engramme shape) -->
+  <path d="M48 14 L74 48 L48 82 L22 48 Z" stroke="url(#rune)" stroke-width="1.5" fill="none" opacity="0.35"/>
+  <!-- Inner diamond -->
+  <path d="M48 26 L64 48 L48 70 L32 48 Z" stroke="url(#rune)" stroke-width="1.2" fill="none" opacity="0.55"/>
+  <!-- Central rune / mystic cross -->
+  <path d="M48 34 L48 62" stroke="url(#rune)" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <path d="M38 44 L58 52" stroke="url(#rune)" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M38 52 L58 44" stroke="url(#rune)" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <!-- Top / bottom accent dots -->
+  <circle cx="48" cy="20" r="2" fill="#fbbf24" opacity="0.7"/>
+  <circle cx="48" cy="76" r="2" fill="#fbbf24" opacity="0.7"/>
+  <!-- Side accent dots -->
+  <circle cx="28" cy="48" r="1.5" fill="#fbbf24" opacity="0.45"/>
+  <circle cx="68" cy="48" r="1.5" fill="#fbbf24" opacity="0.45"/>
+</svg>

@@ -22,6 +22,7 @@ import { ZoneBanner } from "./ZoneBanner";
 import { Accordion } from "./Accordion";
 import { BuildTactic } from "./BuildTactic";
 import { LevelingGuide, LevelStep } from "./LevelingGuide";
+import { BossTimeline, Turn } from "./BossTimeline";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -63,4 +64,6 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   BuildTactic,
   LevelingGuide,
   LevelStep,
+  BossTimeline,
+  Turn,
 };

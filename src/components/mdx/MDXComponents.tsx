@@ -24,6 +24,7 @@ import { BuildTactic } from "./BuildTactic";
 import { LevelingGuide, LevelStep } from "./LevelingGuide";
 import { BossTimeline, Turn } from "./BossTimeline";
 import { RuleTooltip } from "./RuleTooltip";
+import { SkillCheck } from "./SkillCheck";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -68,4 +69,5 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   BossTimeline,
   Turn,
   Rule: RuleTooltip,
+  SkillCheck,
 };

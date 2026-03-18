@@ -118,7 +118,7 @@ Le Village Dévasté est votre première source d'XP massive sans combat. Chaque
 
 <SingleStepTracker stepId="acte1_village_zevlor" label="Parler à Zevlor — Accepter de l'aider (Persuasion DD 10)" />
 
-**Zevlor** est le chef des Tieffelins. Sa quête est la plus simple : acceptez de l'aider, et vous recevez 25 XP + son épée +1 en récompense. La Persuasion DD 10 est triviale avec un CHA de 14+ (bonus de +2, jet de 8+ = réussite). Avec un CHA de 16, le taux de réussite monte à **65%**.
+**Zevlor** est le chef des Tieffelins. Sa quête est la plus simple : acceptez de l'aider, et vous recevez 25 XP + son épée +1 en récompense. Le <SkillCheck skill="Persuasion" dc={10} /> est trivial avec un CHA de 14+ (bonus de +2, jet de 8+ = réussite). Avec un CHA de 16, le taux de réussite monte à **65%**.
 
 <SingleStepTracker stepId="acte1_village_kagha" label="Confronter Kagha — Trouver la preuve de la Tresse d'Ombre dans son coffre" />
 
@@ -128,7 +128,7 @@ Le Village Dévasté est votre première source d'XP massive sans combat. Chaque
 
 <SingleStepTracker stepId="acte1_village_arabella" label="Sauver Arabella — Persuasion DD 15 ou preuve de Kagha" />
 
-**Arabella** est l'enfant Tieffelin que Kagha menace avec un serpent venimeux. Si vous avez la preuve de la Tresse d'Ombre, la confrontation est automatique. Sans preuve, c'est un jet de Persuasion DD 15 — un échec signifie qu'Arabella meurt, ce qui verrouille plusieurs quêtes secondaires.
+**Arabella** est l'enfant Tieffelin que Kagha menace avec un serpent venimeux. Si vous avez la preuve de la Tresse d'Ombre, la confrontation est automatique. Sans preuve, c'est un jet de <SkillCheck skill="Persuasion" dc={15} /> — un échec signifie qu'Arabella meurt, ce qui verrouille plusieurs quêtes secondaires.
 
 > **Astuce Mode Honneur** : Si votre CHA est faible, utilisez <CodexTooltipById id="sanctuary" text="Sanctuaire" /> avant les dialogues à risque. En cas d'échec critique de Persuasion qui déclenche un combat, <CodexTooltipById id="sanctuary" text="Sanctuaire" /> empêche les PNJ de vous cibler pendant 10 tours (c'est une Action Bonus !) — le temps de fuir et recharger la zone.
 

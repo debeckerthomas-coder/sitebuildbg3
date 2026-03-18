@@ -26,6 +26,12 @@
   body {
     background: radial-gradient(circle at 50% 0%, #1a1f2e 0%, #111520 60%, #0a0c13 100%);
     background-attachment: fixed;
+    cursor: url('/cursor.png'), auto;
+  }
+
+  /* ---- Faerûn Cursors — interactive elements ---- */
+  a, button, [role="button"] {
+    cursor: url('/cursor-pointer.png'), pointer;
   }
 
   /* Ultra-subtle noise overlay on the page */
@@ -233,4 +239,27 @@
   .prose-gold ul > li::marker {
     color: #7a6530;
   }
+}
+
+/* ---- D20 Roll Animation (SkillCheck component) ---- */
+@keyframes roll-dice {
+  0% {
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(90deg) translateY(-4px);
+  }
+  50% {
+    transform: rotate(180deg) translateY(0);
+  }
+  75% {
+    transform: rotate(270deg) translateY(-2px);
+  }
+  100% {
+    transform: rotate(360deg) translateY(0);
+  }
+}
+
+.animate-roll-dice {
+  animation: roll-dice 1.2s ease-in-out infinite;
 }

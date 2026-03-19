@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { HydrationProvider } from "@/components/layout/HydrationProvider";
 import { PanicButton } from "@/components/ui/PanicButton";
+import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="text-gray-200 font-data antialiased min-h-screen">
+      <body className="text-gray-200 font-data antialiased flex flex-col min-h-screen">
         <HydrationProvider>
           <header className="border-b border-border bg-surface/80 backdrop-blur-md sticky top-0 z-40">
             <div className="max-w-[1600px] mx-auto px-4 h-14 flex items-center justify-between">
@@ -45,12 +46,13 @@ export default function RootLayout({
             </div>
           </header>
 
-          <div className="flex max-w-[1600px] mx-auto">
+          <div className="flex flex-1 max-w-[1600px] mx-auto w-full">
             <Sidebar />
             <main className="flex-1 min-w-0 p-6">
               {children}
             </main>
           </div>
+          <Footer />
           <PanicButton />
         </HydrationProvider>
       </body>

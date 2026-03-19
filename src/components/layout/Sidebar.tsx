@@ -28,11 +28,6 @@ const NAV_ITEMS: readonly NavItem[] = [
     icon: "🏠",
   },
   {
-    label: "Le Codex",
-    href: "/codex",
-    icon: "📖",
-  },
-  {
     label: "L'Armurerie",
     href: "/arsenal",
     icon: "🛡️",

@@ -62,7 +62,7 @@ export function FailsafeCard({ missing, fallback, condition }: FailsafeCardProps
                  bg-red-950/30 backdrop-blur-sm
                  border-l-4 border-red-500
                  shadow-lg shadow-red-950/30
-                 font-sans"
+                 font-sans [&_p]:!font-sans [&_span]:!font-sans"
     >
       <div className="p-5">
         {/* Header — Warning + missing item */}

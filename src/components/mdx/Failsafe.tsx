@@ -50,7 +50,7 @@ export function Failsafe({ slot, buildId }: FailsafeProps) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="my-3 rounded-card border border-border bg-surface-raised overflow-hidden font-sans"
+      className="my-3 rounded-card border border-border bg-surface-raised overflow-hidden font-sans [&_p]:!font-sans [&_span]:!font-sans"
     >
       <div className="px-4 py-3 flex items-center gap-3">
         <div className="w-2 h-2 rounded-full bg-gold animate-glow-rarity" />

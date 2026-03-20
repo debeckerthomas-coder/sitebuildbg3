@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "locale": "en",
+    "label": "English"
+  },
+  "nav": {
+    "home": "Home",
+    "armory": "The Armory",
+    "tierList": "Build Tier List",
+    "allBuilds": "All Builds",
+    "walkthrough": "Walkthrough",
+    "act1": "Act 1 (Survival)",
+    "act2": "Act 2 (Shadows)",
+    "act3": "Act 3 (Endgame)",
+    "workshop": "Workshop",
+    "codex": "Rules Codex",
+    "navigation": "Navigation",
+    "smartGuide": "Smart Guide"
+  },
+  "footer": {
+    "navigation": "Navigation",
+    "support": "Support",
+    "supportTavern": "Support the Tavern (Ko-fi)",
+    "legalNotice": "Legal Notice",
+    "copyright": "© 2026 Faerun Tactics. Not affiliated with Larian Studios or Wizards of the Coast."
+  },
+  "ui": {
+    "search": "Search",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "loading": "Loading…",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "header": {
+    "title": "Honor Companion",
+    "subtitle": "Honour Mode — No margin for error",
+    "version": "BG3 Honor Companion v0.1"
+  }
+}

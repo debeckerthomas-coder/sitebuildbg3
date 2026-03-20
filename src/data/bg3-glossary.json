@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "description": "Source de vérité stricte FR ↔ EN pour le vocabulaire BG3 / D&D 5E. Toute traduction doit se conformer à ce glossaire.",
+    "version": "1.0.0"
+  },
+  "terms": {
+    "Mode Honneur": "Honour Mode",
+    "Avantage": "Advantage",
+    "Désavantage": "Disadvantage",
+    "Jet de Sauvegarde": "Saving Throw",
+    "Châtiment Divin": "Divine Smite",
+    "Anneau Risqué": "Risky Ring",
+    "Lance de Retour": "Returning Pike",
+    "Armure Lumineuse": "Luminous Armour",
+    "Action Bonus": "Bonus Action",
+    "Maître des Boucliers": "Shield Master",
+    "Tavernier Bagarreur": "Tavern Brawler",
+    "Classe d'Armure": "Armour Class",
+    "Point de Vie": "Hit Point",
+    "Repos Long": "Long Rest",
+    "Repos Court": "Short Rest",
+    "Concentration": "Concentration",
+    "Réaction": "Reaction",
+    "Attaque d'Opportunité": "Opportunity Attack",
+    "Jet d'Attaque": "Attack Roll",
+    "Jet de Dégâts": "Damage Roll",
+    "Résistance": "Resistance",
+    "Vulnérabilité": "Vulnerability",
+    "Immunité": "Immunity",
+    "Condition": "Condition",
+    "Inspiration": "Inspiration",
+    "Maîtrise": "Proficiency",
+    "Sort de Niveau": "Level Spell",
+    "Tour de Magie": "Cantrip",
+    "Emplacement de Sort": "Spell Slot",
+    "Aura de Protection": "Aura of Protection",
+    "Imposition des Mains": "Lay on Hands",
+    "Frappe Supplémentaire": "Extra Attack"
+  }
+}

@@ -1,5 +1,6 @@
 // ============================================================================
 // MDX Configuration — Server-side loading with next-mdx-remote v6 RSC
+// Supports i18n: reads from src/content/{lang}/walkthroughs/
 // ============================================================================
 
 import fs from "fs";
@@ -7,15 +8,20 @@ import path from "path";
 import matter from "gray-matter";
 import type { WalkthroughMeta } from "@/types";
 
-const CONTENT_DIR = path.join(process.cwd(), "src/content/walkthroughs");
+const DEFAULT_LANG = "fr";
+
+function contentDir(lang: string = DEFAULT_LANG): string {
+  return path.join(process.cwd(), "src/content", lang, "walkthroughs");
+}
 
 /**
  * Get all walkthrough slugs for static generation.
  */
-export function getWalkthroughSlugs(): string[] {
-  if (!fs.existsSync(CONTENT_DIR)) return [];
+export function getWalkthroughSlugs(lang: string = DEFAULT_LANG): string[] {
+  const dir = contentDir(lang);
+  if (!fs.existsSync(dir)) return [];
   return fs
-    .readdirSync(CONTENT_DIR)
+    .readdirSync(dir)
     .filter((f) => f.endsWith(".mdx"))
     .map((f) => f.replace(/\.mdx$/, ""));
 }
@@ -23,13 +29,16 @@ export function getWalkthroughSlugs(): string[] {
 /**
  * Load a single walkthrough by slug.
  * Returns the raw MDX source string and parsed frontmatter.
- * MDXRemote from next-mdx-remote/rsc handles compilation server-side.
  */
-export function getWalkthrough(slug: string): {
+export function getWalkthrough(slug: string, lang: string = DEFAULT_LANG): {
   source: string;
   meta: WalkthroughMeta;
 } {
-  const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
+  const filePath = path.join(contentDir(lang), `${slug}.mdx`);
+  if (!fs.existsSync(filePath) && lang !== DEFAULT_LANG) {
+    // Fallback to default language
+    return getWalkthrough(slug, DEFAULT_LANG);
+  }
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { content, data } = matter(fileContent);
 
@@ -42,11 +51,12 @@ export function getWalkthrough(slug: string): {
 /**
  * Get all walkthrough metadata, sorted by order.
  */
-export function getAllWalkthroughMeta(): WalkthroughMeta[] {
-  const slugs = getWalkthroughSlugs();
+export function getAllWalkthroughMeta(lang: string = DEFAULT_LANG): WalkthroughMeta[] {
+  const slugs = getWalkthroughSlugs(lang);
+  const dir = contentDir(lang);
   return slugs
     .map((slug) => {
-      const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
+      const filePath = path.join(dir, `${slug}.mdx`);
       const fileContent = fs.readFileSync(filePath, "utf-8");
       const { data } = matter(fileContent);
       return { ...(data as WalkthroughMeta), slug };

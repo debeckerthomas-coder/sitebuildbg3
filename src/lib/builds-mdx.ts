@@ -1,12 +1,13 @@
 // ============================================================================
 // Build MDX Loader — Server-side loading for build deep-dive content
+// Supports i18n: reads from src/content/{lang}/builds/
 // ============================================================================
 
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const BUILDS_CONTENT_DIR = path.join(process.cwd(), "src/content/builds");
+const DEFAULT_LANG = "fr";
 
 export interface BuildMDXMeta {
   title: string;
@@ -14,13 +15,23 @@ export interface BuildMDXMeta {
   description: string;
 }
 
+function contentDir(lang: string = DEFAULT_LANG): string {
+  return path.join(process.cwd(), "src/content", lang, "builds");
+}
+
 /**
  * Load MDX content for a build by its slug (filename without .mdx).
  * Returns null if no MDX file exists for this build.
  */
-export function getBuildMDX(slug: string): { source: string; meta: BuildMDXMeta } | null {
-  const filePath = path.join(BUILDS_CONTENT_DIR, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) return null;
+export function getBuildMDX(slug: string, lang: string = DEFAULT_LANG): { source: string; meta: BuildMDXMeta } | null {
+  const filePath = path.join(contentDir(lang), `${slug}.mdx`);
+  if (!fs.existsSync(filePath)) {
+    // Fallback to default language if requested lang file doesn't exist
+    if (lang !== DEFAULT_LANG) {
+      return getBuildMDX(slug, DEFAULT_LANG);
+    }
+    return null;
+  }
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { content, data } = matter(raw);
@@ -34,10 +45,11 @@ export function getBuildMDX(slug: string): { source: string; meta: BuildMDXMeta 
 /**
  * Get all available build MDX slugs.
  */
-export function getBuildMDXSlugs(): string[] {
-  if (!fs.existsSync(BUILDS_CONTENT_DIR)) return [];
+export function getBuildMDXSlugs(lang: string = DEFAULT_LANG): string[] {
+  const dir = contentDir(lang);
+  if (!fs.existsSync(dir)) return [];
   return fs
-    .readdirSync(BUILDS_CONTENT_DIR)
+    .readdirSync(dir)
     .filter((f) => f.endsWith(".mdx"))
     .map((f) => f.replace(/\.mdx$/, ""));
 }

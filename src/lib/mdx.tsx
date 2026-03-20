@@ -1,6 +1,6 @@
 // ============================================================================
 // MDX Utilities — Server Component compatible
-// - File-based walkthrough loading from src/content/walkthroughs/
+// - File-based walkthrough loading from src/content/{lang}/walkthroughs/
 // - Rendering helper using next-mdx-remote/rsc
 // ============================================================================
 
@@ -31,15 +31,20 @@ interface Walkthrough {
 // Walkthrough file loading
 // ---------------------------------------------------------------------------
 
-const CONTENT_DIR = path.join(process.cwd(), "src", "content", "walkthroughs");
+const DEFAULT_LANG = "fr";
+
+function contentDir(lang: string = DEFAULT_LANG): string {
+  return path.join(process.cwd(), "src", "content", lang, "walkthroughs");
+}
 
 /**
  * Returns the list of walkthrough slugs (used by generateStaticParams).
  */
-export function getWalkthroughSlugs(): string[] {
-  if (!fs.existsSync(CONTENT_DIR)) return [];
+export function getWalkthroughSlugs(lang: string = DEFAULT_LANG): string[] {
+  const dir = contentDir(lang);
+  if (!fs.existsSync(dir)) return [];
   return fs
-    .readdirSync(CONTENT_DIR)
+    .readdirSync(dir)
     .filter((f) => f.endsWith(".mdx"))
     .map((f) => f.replace(/\.mdx$/, ""));
 }
@@ -48,8 +53,11 @@ export function getWalkthroughSlugs(): string[] {
  * Loads a single walkthrough by slug.
  * Throws if the file doesn't exist.
  */
-export function getWalkthrough(slug: string): Walkthrough {
-  const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
+export function getWalkthrough(slug: string, lang: string = DEFAULT_LANG): Walkthrough {
+  const filePath = path.join(contentDir(lang), `${slug}.mdx`);
+  if (!fs.existsSync(filePath) && lang !== DEFAULT_LANG) {
+    return getWalkthrough(slug, DEFAULT_LANG);
+  }
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
 
@@ -72,13 +80,6 @@ interface RenderMDXProps {
 
 /**
  * Render an MDX string as a React Server Component tree.
- *
- * ```tsx
- * import { renderMDX } from "@/lib/mdx";
- * export default function Page() {
- *   return renderMDX({ source: mdxString });
- * }
- * ```
  */
 export function renderMDX({ source, extraComponents }: RenderMDXProps) {
   return (

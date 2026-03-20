@@ -45,20 +45,34 @@ export function Failsafe({ slot, buildId }: FailsafeProps) {
   );
 
   const item = getItem(resolvedItemId);
+  const hasWarnings = skippedReasons.length > 0;
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="my-3 rounded-card border border-border bg-surface-raised overflow-hidden font-sans [&_p]:!font-sans [&_span]:!font-sans"
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35 }}
+      className="my-3 rounded-lg overflow-hidden
+                 bg-gradient-to-br from-surface-raised to-surface
+                 border border-border
+                 shadow-md shadow-black/20
+                 font-sans [&_p]:!font-sans [&_span]:!font-sans"
     >
+      {/* Top accent */}
+      <div className="h-[2px] bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+
       <div className="px-4 py-3 flex items-center gap-3">
-        <div className="w-2 h-2 rounded-full bg-gold animate-glow-rarity" />
-        <div className="flex-1">
-          <p className="text-xs font-data text-gray-400 uppercase tracking-wider">
+        {/* Animated gold dot */}
+        <div className="relative flex items-center justify-center w-6 h-6 shrink-0">
+          <div className="absolute inset-0 rounded-full bg-gold/10 animate-glow-rarity" />
+          <div className="w-2 h-2 rounded-full bg-gold" />
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <p className="text-[10px] font-data text-gray-500 uppercase tracking-[0.12em]">
             {slot.replace("_", " ")} — Best Available
           </p>
-          <p className="text-sm font-display text-gold-light">
+          <p className="text-sm font-display text-gold-light tracking-wide mt-0.5">
             {item?.name ?? resolvedItemId}
           </p>
         </div>
@@ -66,21 +80,30 @@ export function Failsafe({ slot, buildId }: FailsafeProps) {
 
       {/* Skipped reasons */}
       <AnimatePresence>
-        {skippedReasons.length > 0 && (
+        {hasWarnings && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
-            className="px-4 pb-3 space-y-1"
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden"
           >
-            {skippedReasons.map((reason, i) => (
-              <div
-                key={i}
-                className="flex items-start gap-2 text-xs font-data text-yellow-600"
-              >
-                <span className="shrink-0">⚠</span>
-                <span>{reason}</span>
-              </div>
-            ))}
+            <div className="mx-4 mb-3 px-3 py-2.5 space-y-1.5
+                            rounded-md bg-amber-950/20 border border-amber-700/15">
+              {skippedReasons.map((reason, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-2 text-xs font-data text-amber-400/70"
+                >
+                  <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 shrink-0 mt-0.5 text-amber-500/50">
+                    <path
+                      d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 018 4zm0 7.5a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <span>{reason}</span>
+                </div>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

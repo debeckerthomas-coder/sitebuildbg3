@@ -134,7 +134,7 @@ const TIER_INNER: readonly IllithidPower[] = [
     id: "luck_far_realms",
     name: "Chance des Royaumes Lointains",
     tier: "inner",
-    description: "Luck of the Far Realms",
+    description: "Chance des Royaumes Lointains",
     effect:
       "1×/Repos Long : Transformez un jet d'attaque réussi en COUP CRITIQUE GARANTI. Fonctionne avec Châtiment Divin.",
     recommendedFor: ["lockadin", "gloom_assassin"],
@@ -145,7 +145,7 @@ const TIER_INNER: readonly IllithidPower[] = [
     id: "black_hole",
     name: "Trou Noir",
     tier: "inner",
-    description: "Black Hole",
+    description: "Trou Noir",
     effect:
       "Créez un vortex (rayon 6m) qui attire et ralentit toutes les créatures. Dure 1 tour. Parfait avant un AoE.",
     recommendedFor: ["barde_controleur"],
@@ -156,7 +156,7 @@ const TIER_INNER: readonly IllithidPower[] = [
     id: "mind_blast",
     name: "Souffle Mental",
     tier: "inner",
-    description: "Mind Blast",
+    description: "Souffle Mental",
     effect:
       "Cône de 9m : 6d8+30 dégâts psychiques (JdS INT pour demi). Les cibles en échec sont Étourdies 1 tour.",
     recommendedFor: [],
@@ -165,7 +165,7 @@ const TIER_INNER: readonly IllithidPower[] = [
     id: "mind_sanctuary",
     name: "Sanctuaire Mental",
     tier: "inner",
-    description: "Mind Sanctuary",
+    description: "Sanctuaire Mental",
     effect:
       "1×/Repos Long : Jusqu'à la fin du tour, vos Actions et Actions Bonus sont interchangeables. Permet de lancer 2 sorts en un tour.",
     recommendedFor: [],
@@ -174,7 +174,7 @@ const TIER_INNER: readonly IllithidPower[] = [
     id: "absorb_intellect",
     name: "Absorption d'Intellect",
     tier: "inner",
-    description: "Absorb Intellect",
+    description: "Absorption d'Intellect",
     effect:
       "Réduisez l'INT d'une cible de 1d4 et regagnez autant de PV × 5. Si l'INT tombe à 0, la cible meurt instantanément.",
     recommendedFor: [],

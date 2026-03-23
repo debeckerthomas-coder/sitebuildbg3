@@ -78,7 +78,7 @@ const TIER_MIDDLE: readonly IllithidPower[] = [
     id: "cull_the_weak",
     name: "Abattage",
     tier: "middle",
-    description: "Cull the Weak",
+    description: "Abattage des Faibles",
     effect:
       "Quand vous tuez un ennemi avec une attaque ou un sort, les créatures dans un rayon de 3m subissent 1-4 dégâts psychiques.",
     recommendedFor: ["throwzerker", "moine_bagarreur"],
@@ -89,7 +89,7 @@ const TIER_MIDDLE: readonly IllithidPower[] = [
     id: "charm",
     name: "Charme Illithid",
     tier: "middle",
-    description: "Illithid Charm",
+    description: "Charme Illithid",
     effect:
       "Charmez un humanoïde jusqu'à Repos Long. Utilisable en conversation pour éviter un combat.",
     recommendedFor: [],
@@ -98,7 +98,7 @@ const TIER_MIDDLE: readonly IllithidPower[] = [
     id: "repulsive_discharge",
     name: "Décharge Répulsive",
     tier: "middle",
-    description: "Repulsive Discharge",
+    description: "Décharge Répulsive",
     effect:
       "Quand un ennemi vous frappe au corps à corps, il doit réussir un JdS de Force ou être repoussé de 6m. Réaction.",
     recommendedFor: ["lockadin", "gloom_assassin"],
@@ -109,7 +109,7 @@ const TIER_MIDDLE: readonly IllithidPower[] = [
     id: "displace",
     name: "Déplacement",
     tier: "middle",
-    description: "Displace",
+    description: "Déplacement Psionique",
     effect:
       "Téléportez-vous à un emplacement visible dans un rayon de 9m. Action Bonus. Ne provoque pas d'Attaque d'Opportunité.",
     recommendedFor: [],
@@ -118,7 +118,7 @@ const TIER_MIDDLE: readonly IllithidPower[] = [
     id: "psionic_backlash",
     name: "Contrecoup Psionique",
     tier: "middle",
-    description: "Psionic Backlash",
+    description: "Contrecoup Psionique",
     effect:
       "Réaction : quand un ennemi lance un sort, infligez 1d4 dégâts psychiques par niveau du sort. Peut interrompre la Concentration.",
     recommendedFor: [],

@@ -1,52 +1,52 @@
 import type { ChecklistItem } from "@/types";
 
 export const CHECKLIST_ITEMS: readonly ChecklistItem[] = [
-  // ---- ACT 1 ----
+  // ---- ACTE 1 ----
   {
     id: "loot_everburn",
-    label: "Loot Everburn Blade from Commander Zhalk",
-    description: "Kill or loot Zhalk before the Nautiloid crashes. Requires careful timing.",
+    label: "Récupérer la Lame Semper-Ardente sur le Commandant Zhalk",
+    description: "Tuez ou fouillez Zhalk avant le crash du Nautiloïde. Le timing est serré.",
     act: 1,
     category: "item",
     setsFlag: "everburn_blade_looted",
   },
   {
     id: "recruit_karlach",
-    label: "Recruit Karlach",
-    description: "Find Karlach near the river in the Risen Road area. Do NOT attack her.",
+    label: "Recruter Karlach",
+    description: "Trouvez Karlach près de la rivière dans la zone de la Route Levée. NE l'attaquez PAS.",
     act: 1,
     category: "companion",
     setsFlag: "karlach_recruited",
   },
   {
     id: "save_dammon",
-    label: "Save Dammon during the Goblin attack",
-    description: "Protect Dammon at the Emerald Grove. He will move to Last Light Inn in Act 2.",
+    label: "Sauver Dammon pendant l'attaque des Gobelins",
+    description: "Protégez Dammon au Bosquet d'Émeraude. Il se déplacera à l'Auberge de la Dernière Lumière à l'Acte 2.",
     act: 1,
     category: "quest",
     setsFlag: "dammon_alive",
   },
 
-  // ---- ACT 2 ----
+  // ---- ACTE 2 ----
   {
     id: "protect_last_light",
-    label: "Protect Last Light Inn",
-    description: "Defend Isobel during the assault. If she falls, Last Light is destroyed.",
+    label: "Protéger l'Auberge de la Dernière Lumière",
+    description: "Défendez Isobel pendant l'assaut. Si elle tombe, l'Auberge est détruite.",
     act: 2,
     category: "quest",
   },
   {
     id: "free_nightsong",
-    label: "Free the Nightsong (Dame Aylin)",
-    description: "In the Shadowfell Gauntlet of Shar, choose to free Dame Aylin.",
+    label: "Libérer le Chant Nocturne (Dame Aylin)",
+    description: "Dans le Gantelet de Shar en Obscurcie, choisissez de libérer Dame Aylin.",
     act: 2,
     category: "quest",
     setsFlag: "nightsong_freed",
   },
   {
     id: "forge_flail",
-    label: "Give Infernal Iron to Dammon",
-    description: "Dammon forges Karlach's engine upgrades. Available only if Dammon survived.",
+    label: "Donner le Fer Infernal à Dammon",
+    description: "Dammon forge les améliorations du moteur de Karlach. Disponible uniquement si Dammon a survécu.",
     act: 2,
     category: "item",
     requiredFlag: "dammon_alive",

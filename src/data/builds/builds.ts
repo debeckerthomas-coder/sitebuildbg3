@@ -67,12 +67,12 @@ export const BUILDS: Record<string, Build> = {
                 value: true,
               },
               reason:
-                "Balduran's Giantslayer unavailable — Ansur not yet defeated",
+                "Pourfendeur de Géants de Balduran indisponible — Ansur pas encore vaincu",
             },
             {
               itemId: "fallback_greatsword",
               reason:
-                "Dammon is dead — Flail of Ages unavailable. Using Sword of Chaos.",
+                "Dammon est mort — Fléau des Âges indisponible. Épée du Chaos utilisée à la place.",
             },
           ],
         },
@@ -92,7 +92,7 @@ export const BUILDS: Record<string, Build> = {
           fallbacks: [
             {
               itemId: "everburn_blade", // placeholder — would be a helmet
-              reason: "Ansur not yet defeated. Use any +AC helmet.",
+              reason: "Ansur pas encore vaincu. Utilisez n'importe quel casque +CA.",
             },
           ],
         },

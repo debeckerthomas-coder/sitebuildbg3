@@ -52,27 +52,27 @@ export const CHECKLIST_ITEMS: readonly ChecklistItem[] = [
     requiredFlag: "dammon_alive",
   },
 
-  // ---- ACT 3 ----
+  // ---- ACTE 3 ----
   {
     id: "defeat_ansur",
-    label: "Defeat Ansur in the Wyrmway",
-    description: "Complete the Wyrmway trials and defeat the undead dragon. Rewards: Balduran's Giantslayer + Helmet of Balduran.",
+    label: "Vaincre Ansur dans la Voie du Wyrm",
+    description: "Complétez les épreuves de la Voie du Wyrm et terrassez le dragon mort-vivant. Récompenses : Pourfendeur de Géants de Balduran + Heaume de Balduran.",
     act: 3,
     category: "boss",
     setsFlag: "ansur_defeated",
   },
   {
     id: "defeat_raphael",
-    label: "Defeat Raphael in the House of Hope",
-    description: "Enter the House of Hope via Helsik's portal. Defeat Raphael for the Helldusk armour set.",
+    label: "Vaincre Raphaël dans la Maison de l'Espoir",
+    description: "Entrez dans la Maison de l'Espoir via le portail d'Helsik. Vainquez Raphaël pour l'armure Helldusk.",
     act: 3,
     category: "boss",
     setsFlag: "raphael_defeated",
   },
   {
     id: "defeat_netherbrain",
-    label: "Defeat the Netherbrain",
-    description: "The final battle. Use the Netherstones to dominate or destroy the Elder Brain.",
+    label: "Vaincre le Cerveau Primordial",
+    description: "La bataille finale. Utilisez les Pierres du Néant pour dominer ou détruire le Cerveau Ancien.",
     act: 3,
     category: "boss",
   },

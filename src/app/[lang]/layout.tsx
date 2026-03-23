@@ -4,7 +4,8 @@ import { HydrationProvider } from "@/components/layout/HydrationProvider";
 import { PanicButton } from "@/components/ui/PanicButton";
 import { Footer } from "@/components/layout/Footer";
 import { LangUpdater } from "@/components/layout/LangUpdater";
-import { i18n } from "@/dictionaries";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { i18n, getDictionary, type Locale } from "@/dictionaries";
 
 export function generateStaticParams() {
   return i18n.locales.map((lang) => ({ lang }));
@@ -18,6 +19,7 @@ export default async function LangLayout({
   params: Promise<{ lang: string }>;
 }>) {
   const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
 
   return (
     <HydrationProvider>
@@ -32,9 +34,10 @@ export default async function LangLayout({
               <h1 className="font-display text-sm text-theme tracking-wide group-hover:text-theme-light transition-colors duration-300">
                 Honor Companion
               </h1>
-              <p className="text-[9px] font-data text-gray-500 -mt-0.5">Mode Honneur — Aucun droit à l&apos;erreur</p>
+              <p className="text-[9px] font-data text-gray-500 -mt-0.5">{dict.header.subtitle}</p>
             </div>
           </Link>
+          <LanguageSwitcher />
         </div>
       </header>
 
@@ -44,7 +47,7 @@ export default async function LangLayout({
           {children}
         </main>
       </div>
-      <Footer />
+      <Footer lang={lang} />
       <PanicButton />
     </HydrationProvider>
   );

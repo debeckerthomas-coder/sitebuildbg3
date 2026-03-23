@@ -1,0 +1,83 @@
+---
+title: "The Tavern Brawler Monk — Complete Guide"
+buildId: moine_bagarreur
+description: "The most devastating single-target build in Honour Mode. Philosophy, progression, and damage simulation."
+---
+
+# The Tavern Brawler Monk: The Damage Machine
+
+*(8 Open Hand Monk / 4 Thief Rogue)*
+
+The "Tavern Brawler Monk" is a mathematical aberration in Honour Mode. By exploiting the Elixir of Hill Giant Strength mechanic and the Tavern Brawler feat, this build circumvents the game's ability score limits to deliver absolute accuracy and colossal damage, capable of felling bosses in a single turn thanks to its multiple Bonus Actions.
+
+---
+
+## 1. Character Creation & Stats
+
+The secret of this build is to completely dump Strength at creation, since you will drink an Elixir of Hill Giant Strength after every Long Rest.
+
+- **Optimal Race:** Wood Elf (for the movement speed vital for a monk) or Half-Orc (for survivability and critical hits).
+- **Background:** Outlander or Folk Hero.
+
+**27-Point Allocation (Elixir Mode):**
+
+- **Strength: 8** (Replaced by the Elixir at 21 or 27)
+- **Dexterity: 16** (Armour Class, Initiative)
+- **Constitution: 14** (Hit Points)
+- **Intelligence: 8** (Useless)
+- **Wisdom: 16** (Open Hand bonus damage, Monk Armour Class)
+- **Charisma: 10**
+
+---
+
+## 2. Leveling (Level 1 to 12)
+
+The progression requires a precise multiclass to obtain the Thief Rogue's additional Bonus Action.
+
+<ChecklistTracker checklistId="leveling_monk">
+
+- **Levels 1 to 6: Monk.** Choose the **Open Hand** subclass at level 3 to unlock knockdown.
+- **Level 4 (The Turning Point):** Take the **Tavern Brawler** feat with a point in Constitution. This feat adds TWICE your Strength modifier to your unarmed Attack Rolls and Damage Rolls.
+- **Level 6:** Unlock *Manifestations* (adds Necrotic, Radiant, or Psychic damage to every hit).
+- **Levels 7 to 9: Rogue (1 to 3).** At Rogue level 3 (overall level 9), choose the **Thief** subclass. You gain a permanent Bonus Action. For a Monk, a Bonus Action = a *Flurry of Blows* (2 attacks).
+- **Levels 10 to 12: Monk (7 to 8) or Rogue (4).** The meta choice is to continue Monk to obtain *Evasion* and the level 8 feat (Wisdom Improvement +2).
+
+</ChecklistTracker>
+
+---
+
+## 3. Best in Slot (BiS) Equipment
+
+<EmergencyMatrix title="The Absolute Fuel (VITAL)" severity="lethal">
+  - **Elixir of Hill Giant Strength (Strength 21):** Buy 3 from Auntie Ethel at the Emerald Grove with EACH character level-up (Vendor Refresh).
+  - **Elixir of Cloud Giant Strength (Strength 27):** Stockpile starting in Act 3 (from Derryth or the Sorcerous Sundries).
+</EmergencyMatrix>
+
+**Key Equipment by Act:**
+
+- **Hands (Act 1):** <CodexTooltipById id="gloves_sparkle_hands" text="The Sparkle Hands" /> (Lightning charges) or Gloves of the Growling Underdog.
+- **Feet (Act 1):** <CodexTooltipById id="boots_kushigo" text="Boots of Uninhibited Kushigo" /> (Adds Wisdom to unarmed damage).
+- **Hands (Act 3 - Endgame):** <CodexTooltipById id="gloves_soul_catching" text="Gloves of Soul Catching" /> (House of Hope). Heals or grants Advantage on attacks, and adds 1d10 Force damage per hit.
+- **Head (Act 3):** <CodexTooltipById id="mask_soul_perception" text="Mask of Soul Perception" /> (+2 Attack Rolls, Initiative).
+
+<FailsafeCard
+  missing="Gloves of Soul Catching (If you fail to save Hope)"
+  fallback="Bonecrusher Gloves (Looted from various Act 3 bosses, ignores bludgeoning resistance)."
+/>
+
+---
+
+## 4. The Death Loop (Combat Rotation)
+
+Your mobility allows you to reach any target. Your goal is to eliminate the enemy boss before it can even act.
+
+1. **Pre-Combat:** Verify that your Elixir is active and that a Manifestation (e.g., Radiant Damage) is toggled on in your passives.
+2. **Main Action:** Strike twice with your standard fists to apply potential debuffs or knockdown.
+3. **Bonus Actions (The Sewing Machine):** Use your two Bonus Actions to cast **Flurry of Blows** twice.
+4. **Turn 1 Summary:** You have struck 6 times. With 27 Strength, the Tavern Brawler feat, and your boots, your chance to hit is locked at a minimum of 95%.
+
+<CombatLogSimulator
+  baseDice="1d6"
+  statModifier="8"
+  extraDamage={[{source: "Bagarreur des Tavernes", value: 8}, {source: "Bottes Kushigo", value: 4}, {source: "Manifestation", dice: "1d4 + 4"}]}
+/>

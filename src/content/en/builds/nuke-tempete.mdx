@@ -1,0 +1,85 @@
+---
+title: "The Storm Nuke — Complete Guide"
+buildId: nuke_tempete
+description: "Elemental Annihilation. Storm Sorcerer / Tempest Cleric — 160 guaranteed damage on 4 targets simultaneously."
+---
+
+# The Storm Nuke: Elemental Annihilation
+
+*(10 Storm Sorcerer / 2 Tempest Domain Cleric)*
+
+The "Storm Sorcerer Nuke" relies on a devastating mathematical interaction. In BG3, the "Wet" status doubles Lightning and Cold damage taken. The Tempest Domain Cleric, through its Channel Divinity, allows you to skip the Damage Roll entirely and apply the maximum result instead. The result? A Chain Lightning that hits for 160 guaranteed damage on 4 targets simultaneously.
+
+---
+
+## 1. Character Creation & Stats
+
+We start as Sorcerer to gain proficiency in Constitution Saving Throws (to avoid losing Concentration on spells like <CodexTooltipById id="haste" text="Haste" />).
+
+- **Optimal Race:** Half-Elf or Human (for shield proficiency if you are not wearing heavy armour), or Blue/Lightning Dragonborn (for thematic resistance).
+- **Background:** Charlatan or Noble.
+
+**27-Point Allocation:**
+
+- **Strength: 8** (Useless)
+- **Dexterity: 14** (Initiative and Armour Class)
+- **Constitution: 16** (Hit Points and Concentration)
+- **Intelligence: 8** (Dump stat)
+- **Wisdom: 10** (Just enough to avoid penalties)
+- **Charisma: 17** (Primary stat for your Sorcerer spell accuracy and damage. +1 via the Hag's Hair = 18)
+
+---
+
+## 2. Leveling (Level 1 to 12)
+
+The build takes a little while to come online, but becomes an absolute steamroller starting at level 7.
+
+<ChecklistTracker checklistId="leveling_stormsorc">
+
+- **Level 1: Sorcerer (Storm Sorcery).** You gain the ability to fly as a Bonus Action after casting a spell, granting you unparalleled mobility.
+- **Levels 2 to 3: Cleric (Tempest Domain 1 & 2).** The immediate multiclass. You gain heavy armour proficiency and, most importantly, at Cleric level 2, **Destructive Wrath** (Channel Divinity): instead of rolling dice for a Lightning spell, you deal the maximum possible damage.
+- **Levels 4 to 12: Sorcerer (Levels 2 to 10).** Return to Sorcerer for the rest of the progression.
+- **Overall Level 5 (Sorcerer 3):** Unlock **Metamagic**. Take *Quickened Spell* to cast a spell as a Bonus Action, and *Twinned Spell*.
+- **Overall Level 6 (Sorcerer 4):** Take the **Ability Score Improvement** feat (+2 Charisma) or **Alert** (to always act first and nuke before enemies scatter).
+- **Overall Level 10 (Sorcerer 8):** Take the **Dual Wielder** feat. This will allow you to wield TWO legendary magical staves simultaneously in Act 3.
+
+</ChecklistTracker>
+
+---
+
+## 3. Best in Slot (BiS) Equipment
+
+To deal apocalyptic damage, you need items that raise your spell save DC and grant you free castings.
+
+<EmergencyMatrix title="The Sceptre of the Lightning God" severity="lethal">
+  - **Main Weapon (Act 3):** <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> (Ramazith's Tower, Vault). This legendary staff grants you the "Kereska's Favour" buff (Lightning). It lets you cast <CodexTooltipById id="chain_lightning" text="Chain Lightning" /> for free once per Short Rest!
+</EmergencyMatrix>
+
+**The rest of the equipment:**
+
+- **Off-Hand Weapon (Act 3):** <CodexTooltipById id="staff_spellpower" text="Staff of Spell Power" /> (House of Hope). Thanks to the Dual Wielder feat, wield this second staff for another free casting (Arcane Battery).
+- **Head (Act 3):** <CodexTooltipById id="hood_weave" text="Hood of the Weave" /> (Philgrave's Mansion). +2 to spell save DC.
+- **Amulet (Act 3):** <CodexTooltipById id="amulet_devout" text="Amulet of the Devout" /> (Tabernacle Vault). Adds a Channel Divinity charge. You can perform TWO maximised nukes per Short Rest!
+- **Armour:** Heavy Armour of your choice (e.g., Helldusk Armour) or the *Robe of the Weave* if you prefer to maximise spell save DC.
+
+<FailsafeCard
+  missing="Amulet of the Devout (If you don't want to rob the gods)"
+  fallback="Amulet of Greater Health (House of Hope) to lock your Constitution at 23 and never lose Concentration."
+/>
+
+---
+
+## 4. The Death Loop (Combat Rotation)
+
+The objective is to set the stage with water, then press the nuclear button.
+
+1. **Turn 1 - The Setup (Action):** Cast *Create Water* or throw a water bottle/barrel onto the group of enemies. They are now "Wet" (Vulnerable to Lightning).
+2. **The Trigger (Bonus Action):** Use your Metamagic *Quickened Spell* to cast <CodexTooltipById id="chain_lightning" text="Chain Lightning" /> (or *Call Lightning* / *Lightning Bolt* if you are not level 12).
+3. **Judgment Day (Reaction):** The game asks if you want to use your *Destructive Wrath*. Say YES.
+4. **Mathematical Breakdown:** Chain Lightning deals 10d8 damage. Destructive Wrath locks the roll to 80. The Wet status multiplies by 2. **160 instant damage** to the primary target AND to three nearby targets. The fight is over.
+
+<CombatLogSimulator
+  baseDice="10d8"
+  statModifier="0"
+  extraDamage={[{source: "Colère Destructrice (Max Roll)", value: 80}, {source: "Vulnérabilité (Mouillé)", value: 80}]}
+/>

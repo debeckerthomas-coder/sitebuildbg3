@@ -21,40 +21,64 @@ interface NavItem {
   readonly children?: readonly NavItem[];
 }
 
-const NAV_ITEMS: readonly NavItem[] = [
+const NAV_ITEMS_FR: readonly NavItem[] = [
+  { label: "Accueil", href: "/", icon: "🏠" },
+  { label: "L'Armurerie", href: "/arsenal", icon: "🛡️" },
   {
-    label: "Accueil",
-    href: "/",
-    icon: "🏠",
-  },
-  {
-    label: "L'Armurerie",
-    href: "/arsenal",
-    icon: "🛡️",
-  },
-  {
-    label: "Tier List Builds",
-    icon: "⚔️",
+    label: "Tier List Builds", icon: "⚔️",
     children: [
       { label: "Tous les Builds (9)", href: "/builds", icon: "📊" },
       { label: "Le Lockadin", href: "/builds/lockadin", icon: "🗡️" },
     ],
   },
   {
-    label: "Walkthrough",
-    icon: "🗺️",
+    label: "Walkthrough", icon: "🗺️",
     children: [
       { label: "Acte 1 (Survie)", href: "/walkthrough/acte-1", icon: "🏕️" },
       { label: "Acte 2 (Ombres)", href: "/walkthrough/acte-2", icon: "🌑" },
       { label: "Acte 3 (Endgame)", href: "/walkthrough/acte-3", icon: "🏰" },
     ],
   },
-  {
-    label: "Atelier",
-    href: "/outils",
-    icon: "🔧",
-  },
+  { label: "Atelier", href: "/outils", icon: "🔧" },
 ];
+
+const NAV_ITEMS_EN: readonly NavItem[] = [
+  { label: "Home", href: "/", icon: "🏠" },
+  { label: "The Armory", href: "/arsenal", icon: "🛡️" },
+  {
+    label: "Build Tier List", icon: "⚔️",
+    children: [
+      { label: "All Builds (9)", href: "/builds", icon: "📊" },
+      { label: "The Lockadin", href: "/builds/lockadin", icon: "🗡️" },
+    ],
+  },
+  {
+    label: "Walkthrough", icon: "🗺️",
+    children: [
+      { label: "Act 1 (Survival)", href: "/walkthrough/acte-1", icon: "🏕️" },
+      { label: "Act 2 (Shadows)", href: "/walkthrough/acte-2", icon: "🌑" },
+      { label: "Act 3 (Endgame)", href: "/walkthrough/acte-3", icon: "🏰" },
+    ],
+  },
+  { label: "Workshop", href: "/outils", icon: "🔧" },
+];
+
+const NAV_BY_LANG: Record<string, readonly NavItem[]> = { fr: NAV_ITEMS_FR, en: NAV_ITEMS_EN };
+
+/** Extract locale from pathname (e.g. "/en/builds" → "en") */
+function extractLang(pathname: string): string {
+  const seg = pathname.split("/")[1];
+  return seg === "en" ? "en" : "fr";
+}
+
+/** Prefix nav hrefs with the current lang */
+function prefixItems(items: readonly NavItem[], lang: string): NavItem[] {
+  return items.map((item) => ({
+    ...item,
+    href: item.href ? `/${lang}${item.href === "/" ? "" : item.href}` : undefined,
+    children: item.children ? prefixItems(item.children, lang) as readonly NavItem[] : undefined,
+  }));
+}
 
 // ---------------------------------------------------------------------------
 // Composant NavGroup (avec sous-menus)
@@ -179,8 +203,16 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
 // Navigation Content (shared between desktop and mobile)
 // ---------------------------------------------------------------------------
 
+const FOOTER_TEXT = {
+  fr: { version: "BG3 Honor Companion v0.1", subtitle: "Mode Honneur \u2014 Aucun droit \u00e0 l\u2019erreur" },
+  en: { version: "BG3 Honor Companion v0.1", subtitle: "Honour Mode \u2014 No margin for error" },
+} as const;
+
 function NavContent({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
+  const lang = extractLang(pathname);
+  const navItems = prefixItems(NAV_BY_LANG[lang] ?? NAV_ITEMS_FR, lang);
+  const footer = (lang === "en" ? FOOTER_TEXT.en : FOOTER_TEXT.fr);
 
   return (
     <>
@@ -191,7 +223,7 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
           </p>
         </div>
 
-        {NAV_ITEMS.map((item) => (
+        {navItems.map((item) => (
           <NavGroup key={item.label} item={item} pathname={pathname} onNavigate={onNavigate} />
         ))}
       </div>
@@ -205,10 +237,10 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
 
       <div className="p-4 mt-auto border-t border-border">
         <p className="text-[10px] font-data text-gray-600 text-center">
-          BG3 Honor Companion v0.1
+          {footer.version}
         </p>
         <p className="text-[10px] font-data text-gray-600 text-center mt-0.5">
-          Mode Honneur — Aucun droit à l&apos;erreur
+          {footer.subtitle}
         </p>
       </div>
     </>
@@ -247,7 +279,7 @@ export function Sidebar() {
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
         className="lg:hidden fixed top-3.5 right-4 z-50 p-2 rounded-card bg-surface border border-border hover:border-theme/30 transition-colors"
-        aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+        aria-label={mobileOpen ? "Close menu" : "Open menu"}
       >
         <HamburgerIcon isOpen={mobileOpen} />
       </button>

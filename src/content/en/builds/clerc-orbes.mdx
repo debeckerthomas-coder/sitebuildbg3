@@ -1,0 +1,85 @@
+---
+title: "The Radiating Orb Cleric — Complete Guide"
+buildId: clerc_irradiation
+description: "The Aura of Blindness. Storm Sorcerer / Light Cleric — break the boss math with Radiating Orbs."
+---
+
+# The Radiating Orb Cleric: The Aura of Blindness
+
+*(1 Storm Sorcerer / 11 Light Domain Cleric)*
+
+The "Radiating Orb" build is not here to deal the highest damage in the game, but to **break the boss math**. Every radiant damage you deal applies stacks of "Radiating Orb" in an area. Each stack inflicts a -1 penalty to the enemy's Attack Rolls. In a single turn, you can apply 10 stacks on a boss, rendering it unable to hit your party.
+
+---
+
+## 1. Character Creation & Stats
+
+We start with a Sorcerer level for purely min-max reasons: it grants proficiency in Constitution Saving Throws (crucial for maintaining Concentration on your spells) and access to the *Shield* spell.
+
+- **Optimal Race:** Half-Elf (Wood or High) for bonus movement or sleep Immunity, or Duergar (for at-will invisibility).
+- **Background:** Acolyte or Sage.
+
+**27-Point Allocation:**
+
+- **Strength: 8** (Unnecessary)
+- **Dexterity: 14** (To maximise Armour Class with medium armour)
+- **Constitution: 16** (Hit Points and unbreakable Concentration)
+- **Intelligence: 8** (Dump stat)
+- **Wisdom: 17** (Primary stat for Cleric spells. +1 from the Hag or a feat = 18)
+- **Charisma: 10**
+
+---
+
+## 2. Leveling (Level 1 to 12)
+
+Your role shifts drastically from level 6 onward (Cleric level 5) when you unlock the *Spirit Guardians* spell. You become a divine "lawnmower."
+
+<ChecklistTracker checklistId="leveling_lightcleric">
+
+- **Level 1: Sorcerer (Storm Sorcery).** Why Storm? For mobility. Casting a 1st Level Spell lets you fly as a Bonus Action without provoking an Opportunity Attack. Take the <CodexTooltipById id="shield_spell" text="Shield" /> and <CodexTooltipById id="projectile_magique" text="Magic Missile" /> spells.
+- **Levels 2 to 12: Cleric (Light Domain).** The Light Domain grants access to *Radiance of the Dawn* (a massive radiant AoE) and *Warding Flare* (a Reaction to impose Disadvantage on an enemy attack).
+- **Level 5 (Cleric 4):** Take the **War Caster** feat. Combined with your Constitution proficiency, you will almost never lose Concentration on *Spirit Guardians*.
+- **Level 9 (Cleric 8):** Take the **Ability Score Improvement** feat (+2 Wisdom).
+- **Level 11 (Cleric 10):** You unlock Divine Intervention. Save it for a legendary weapon or a full emergency heal on an endgame boss.
+
+</ChecklistTracker>
+
+---
+
+## 3. Best in Slot (BiS) Equipment
+
+This build relies **entirely** on a specific equipment set. If you miss these items, the build does not work.
+
+<EmergencyMatrix title="The Radiating Set (DO NOT MISS THESE)" severity="lethal">
+  - **Armour (Act 1):** <CodexTooltipById id="luminous_armor" text="Luminous Armour" /> (Selunite Outpost in the Underdark, secret room). Creates a shockwave of Radiating Orbs every time you deal radiant damage.
+  - **Gloves (Act 2):** <CodexTooltipById id="luminous_gloves" text="Luminous Gloves" /> (Potter's Chest, Battlefield Ruins). Dealing radiant damage applies 2 additional Orbs.
+  - **Ring (Act 2):** <CodexTooltipById id="coruscation_ring" text="Coruscation Ring" /> (Cellar of the Last Light Inn). Casting a spell while illuminated applies 2 Orbs.
+</EmergencyMatrix>
+
+**The rest of the equipment:**
+
+- **Weapon (Act 1):** <CodexTooltipById id="blood_lathander" text="Blood of Lathander" /> (Creche Y'llek). The emitted light permanently activates the Coruscation Ring.
+- **Head (Act 1.5):** <CodexTooltipById id="holy_lance_helm" text="Helm of the Holy Lance" /> (Rooftop of the Monastery of Rosymorn). Enemies that miss you take radiant damage (which reapplies Orbs!).
+- **Amulet (Act 3):** <CodexTooltipById id="amulet_devout" text="Amulet of the Devout" /> (Basilica Vault). +2 to your spell DC and an extra Channel Divinity charge.
+
+<FailsafeCard
+  missing="Helm of the Holy Lance"
+  fallback="Hat of the Acrobat (Circus of the Last Days, Act 3) for Advantage on Dexterity checks."
+/>
+
+---
+
+## 4. The Death Loop (Combat Rotation)
+
+Your strategy is not to kill enemies one by one, but to throw yourself into the thick of the melee to cripple their offensive potential.
+
+1. **Turn 1 - Preparation:** Use your Action to cast *Spirit Guardians* (choosing the Radiant option, obviously).
+2. **The Lawnmower Flight:** Thanks to your Storm Sorcerer level, casting the spell lets you fly as a Bonus Action. Fly through the enemy lines.
+3. **The Domino Effect:** Every enemy hit by the Guardians takes damage. The <Rule term="armure_lumineuse">Luminous Armour</Rule> activates, creating a wave of Orbs. The Gloves activate. The Ring activates. A single pass inflicts between 4 and 8 stacks of Radiating Orbs in an area (between -4 and -8 to their Attack Rolls).
+4. **Turn 2 - The Flash:** Use your Channel Divinity *Radiance of the Dawn*. It is a 9-metre radius that ignores cover. Every enemy hit receives a fresh explosion of Orbs. The fight is mathematically won — they will do nothing but Critical Failures.
+
+<CombatLogSimulator
+  baseDice="3d8"
+  statModifier="0"
+  extraDamage={[{source: "Gardiens Spirituels", value: 0}, {source: "Orbes Appliqués (Debuff)", value: -6}]}
+/>

@@ -1,47 +1,66 @@
 import Link from "next/link";
 
-export function Footer() {
+const FOOTER_I18N = {
+  fr: {
+    navigation: "Navigation",
+    codex: "Codex des Règles",
+    legal: "Mentions Légales",
+    support: "Soutien",
+    supportLink: "Soutenir la Taverne (Ko-fi)",
+    copyright: "© 2026 Faerun Tactics. Non affilié à Larian Studios ou Wizards of the Coast.",
+  },
+  en: {
+    navigation: "Navigation",
+    codex: "Rules Codex",
+    legal: "Legal Notice",
+    support: "Support",
+    supportLink: "Support the Tavern (Ko-fi)",
+    copyright: "© 2026 Faerun Tactics. Not affiliated with Larian Studios or Wizards of the Coast.",
+  },
+} as const;
+
+export function Footer({ lang = "fr" }: { lang?: string }) {
+  const t = FOOTER_I18N[lang as keyof typeof FOOTER_I18N] ?? FOOTER_I18N.fr;
+  const prefix = `/${lang}`;
+
   return (
     <footer className="mt-auto border-t border-[#fbbf24]/10 bg-[#0b0f19]/80 backdrop-blur-sm">
       <div className="max-w-[1600px] mx-auto px-6 py-8">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
-          {/* Navigation secondaire */}
           <div className="space-y-2">
             <p className="text-[10px] font-data uppercase tracking-widest text-gray-500 mb-3">
-              Navigation
+              {t.navigation}
             </p>
             <Link
-              href="/codex"
+              href={`${prefix}/codex`}
               className="block text-sm text-gray-400 hover:text-theme transition-colors"
             >
-              Codex des Regles
+              {t.codex}
             </Link>
             <Link
-              href="/mentions-legales"
+              href={`${prefix}/mentions-legales`}
               className="block text-sm text-gray-400 hover:text-theme transition-colors"
             >
-              Mentions Legales
+              {t.legal}
             </Link>
           </div>
 
-          {/* Soutien */}
           <div className="space-y-2">
             <p className="text-[10px] font-data uppercase tracking-widest text-gray-500 mb-3">
-              Soutien
+              {t.support}
             </p>
             <a
               href="#"
               className="inline-flex items-center gap-2 text-sm text-theme/70 hover:text-theme transition-colors"
             >
               <span aria-hidden>&#x2764;</span>
-              Soutenir la Taverne (Ko-fi)
+              {t.supportLink}
             </a>
           </div>
 
-          {/* Copyright */}
           <div className="flex items-end sm:justify-end">
             <p className="text-gray-500 text-sm">
-              &copy; 2026 Faerun Tactics. Non affilie a Larian Studios ou Wizards of the Coast.
+              {t.copyright}
             </p>
           </div>
         </div>

@@ -1,0 +1,67 @@
+---
+title: "The Control Bard — Complete Guide"
+buildId: barde_controleur
+description: "The Master of Honour Mode. College of Swords Bard / Fighter / Wizard — 100% chance to paralyse every boss after 4 arrows."
+---
+
+# The Control Bard: The Master of Honour Mode
+
+*(10 College of Swords Bard / 1 Fighter / 1 Wizard)*
+
+The "Control Bard" is universally recognised as the most powerful build for securing a victory in Honour Mode. Its philosophy is simple: deal devastating ranged damage to charge your mental acuity, then use a Bonus Action to paralyse every boss on the map with a 100% success rate.
+
+---
+
+## 1. Character Creation & Stats
+
+- **Optimal Race:** Wood Elf (for mobility) or Halfling (to reroll Critical Failures of 1).
+- **Background:** Charlatan or Urchin.
+
+**27-Point Allocation:**
+
+- **Strength: 8** - **Dexterity: 16** (Bow damage, Armour Class, Initiative)
+- **Constitution: 14** (Concentration)
+- **Intelligence: 8** - **Wisdom: 10** - **Charisma: 17** (Primary stat. +1 from the Hag = 18)
+
+---
+
+## 2. Leveling (Level 1 to 12)
+
+<ChecklistTracker checklistId="leveling_bard">
+
+- **Levels 1 to 6: Bard.** Choose the **College of Swords** at level 3. This grants access to *Slashing Flourish* (two arrows on the same target). At level 4, take the **Sharpshooter** feat.
+- **Level 7: Fighter (1).** Crucial multiclass for the *Archery* Fighting Style (+2 to hit).
+- **Level 8: Wizard (1).** Allows learning spells from scrolls: <CodexTooltipById id="shield_spell" text="Shield" />, <CodexTooltipById id="magic_missile" text="Magic Missile" />, <CodexTooltipById id="haste" text="Haste" />.
+- **Levels 9 to 12: Bard (7 to 10).** **Ability Score Improvement** feat (+2 Charisma). At level 10, *Magical Secrets*: <CodexTooltipById id="command" text="Command" /> and <CodexTooltipById id="counterspell" text="Counterspell" />.
+
+</ChecklistTracker>
+
+---
+
+## 3. Best in Slot (BiS) Equipment
+
+<EmergencyMatrix title="The Core of the Build" severity="warning">
+  - **HEAD (Act 2):** <CodexTooltipById id="helmet_arcane_acuity" text="Helmet of Arcane Acuity" />. Each weapon attack grants +2 Acuity (increases the DC of your spells).
+  - **RING (Act 3):** <CodexTooltipById id="ring_mystic_scoundrel" text="Ring of the Mystic Scoundrel" />. Allows casting illusion/enchantment spells as a Bonus Action after an attack.
+</EmergencyMatrix>
+
+**The rest of the equipment:**
+
+- **Weapon (Act 3):** Longbow <CodexTooltipById id="gontr_mael" text="Gontr Mael" /> or Bow of the Preemptive Strike.
+- **Gloves:** <CodexTooltipById id="gloves_dexterity" text="Gloves of Dexterity" /> (Act 1) or Archery Gloves.
+- **Armour:** <CodexTooltipById id="armor_agility" text="Armour of Agility" /> (Act 3).
+
+---
+
+## 4. The Death Loop (Combat Rotation)
+
+1. **The Opener:** Main Action -> two ranged *Slashing Flourishes* (4 arrows).
+2. **The Buff:** The Helmet of Arcane Acuity activates 4 times (+8 to spell DC).
+3. **The Control:** Bonus Action (via the Ring) -> cast <CodexTooltipById id="command" text="Command (Halt)" /> upcast on all enemies.
+4. **Conclusion:** With a 100% failure chance for them, the bosses skip their turn.
+
+<CombatLogSimulator
+  baseDice="1d8"
+  statModifier="3"
+  extraDamage={[{source: "Tireur d'Élite", value: 10}, {source: "Floriture", dice: "1d10"}]}
+/>

@@ -1,0 +1,95 @@
+---
+title: "The Gloom Assassin — Complete Guide"
+buildId: gloom_assassin
+description: "The Terror of Shadows. Gloom Stalker Ranger / Assassin Rogue / Champion Fighter — 6 guaranteed automatic criticals on Turn 1."
+---
+
+# The Gloom Assassin: The Terror of Shadows
+
+*(5 Gloom Stalker Ranger / 4 Assassin Rogue / 3 Champion Fighter)*
+
+The "Gloom Assassin" is the incarnation of Turn 1 lethality. This build exploits the "Surprise" mechanic in Baldur's Gate 3. If you attack an enemy while stealthed, you trigger a surprise round. The Assassin subclass resets your action at the start of combat and guarantees that ALL your attacks against a surprised target are **Critical Hits**. Add to that the free attacks from Gloom Stalker and Action Surge from the Fighter, and you erase the boss from the map before they ever get to play.
+
+---
+
+## 1. Character Creation & Stats
+
+We play an optimised "Titan" version of the Assassin, which uses Strength (via an item or elixir) on top of Dexterity to maximise longbow damage.
+
+- **Optimal Race:** Wood Elf (for movement speed and stealth) or Duergar (at-will Invisibility out of combat to guarantee Surprise).
+- **Background:** Criminal or Urchin.
+
+**27-Point Allocation:**
+
+- **Strength: 8** (Replaced by the Club of Hill Giant Strength or an Elixir)
+- **Dexterity: 17** (Bow damage, Armour Class, Initiative. +1 from the Hag = 18)
+- **Constitution: 14** (Hit Points)
+- **Intelligence: 8** (Dump stat)
+- **Wisdom: 14** (Saving Throws and Ranger spells)
+- **Charisma: 8** (Dump stat)
+
+---
+
+## 2. Leveling (Level 1 to 12)
+
+The build is operational and deadly from level 4, and becomes unstoppable at level 8.
+
+<ChecklistTracker checklistId="leveling_gloomassassin">
+
+- **Levels 1 to 5: Ranger.** Start Ranger for weapon and armour proficiency.
+- **Level 2:** **Archery** Fighting Style (+2 to Attack Rolls).
+- **Level 3:** **Gloom Stalker** subclass. You gain +3 to Initiative, and more importantly *Dread Ambusher*: a free extra attack on Turn 1 that deals 1d8 bonus damage.
+- **Level 4:** **Sharpshooter** feat for +10 damage per arrow.
+- **Level 5:** Extra Attack and the *Pass Without Trace* spell.
+- **Levels 6 to 9: Rogue (1 to 4).** Multiclass into Rogue for Assassin.
+- **Overall Level 8 (Rogue 3):** **Assassin** subclass. This is the heart of the build. Advantage against enemies who have not yet acted, and automatic criticals on surprised enemies.
+- **Overall Level 9 (Rogue 4):** **Ability Score Improvement** feat (+2 Dexterity) or **Alert** (to be absolutely certain you go first).
+- **Levels 10 to 12: Fighter (1 to 3).** Final multiclass for Action Surge.
+- **Level 11 (Fighter 2):** **Action Surge** for an additional main action.
+- **Level 12 (Fighter 3):** **Champion** subclass (Lowers the critical threshold for subsequent turns).
+
+</ChecklistTracker>
+
+---
+
+## 3. Best in Slot (BiS) Equipment
+
+<EmergencyMatrix title="The Titan Bow (The Damage Engine)" severity="lethal">
+  - **Ranged Weapon (Act 1):** <CodexTooltipById id="titanstring_bow" text="Titanstring Bow" /> (Purchased from Brem at the Zhentarim Hideout). This exceptional bow adds your STRENGTH modifier to damage, on TOP of your DEXTERITY modifier.
+  - **The Enabler (Act 1):** <CodexTooltipById id="club_hill_giant" text="Club of Hill Giant Strength" /> (Arcane Tower in the Underdark). Equip it as your melee weapon — it locks your Strength at 19 permanently (giving you +4 to bow damage!).
+</EmergencyMatrix>
+
+**The rest of the equipment:**
+
+- **Head (Act 2):** <CodexTooltipById id="cowl_weaved" text="Cowl of the Weaved" /> or the Diadem of Arcane Acuity.
+- **Armour (Act 3):** <CodexTooltipById id="armor_agility" text="Armour of Agility" /> or <CodexTooltipById id="bhaalist_armor" text="Bhaalist Armour" />. The Bhaalist Armour makes enemies within 2m vulnerable to piercing damage (your arrow damage is doubled if you shoot at point blank).
+- **Gloves (Act 1):** <CodexTooltipById id="gloves_archery" text="Archery Gloves" /> (Goblin Camp) then <CodexTooltipById id="legacy_masters" text="Legacy of the Masters" /> (Act 3).
+- **Rings:** <CodexTooltipById id="ring_risky" text="Risky Ring" /> (Act 2) for permanent Advantage on all your shots if the target is not surprised.
+
+<FailsafeCard
+  missing="Titanstring Bow (If the Zhentarim Hideout explodes)"
+  fallback="Use two Hand Crossbows +1 (Merchants) and spam Bonus Action attacks, then switch to the Dead Shot at Act 3."
+/>
+
+---
+
+## 4. The Death Loop (Combat Rotation)
+
+It is vital to understand how to trigger "Surprise." You must attack while crouched (stealthed) AND outside the enemy's red vision cone.
+
+1. **The Setup:** Detach the Gloom Assassin from the party. Enter stealth. Shoot the boss.
+2. **The Trigger:** Combat begins. The enemy receives the "Surprised" Condition. Thanks to the Assassin passive, the action you just spent attacking is **refunded**.
+3. **Turn 1 (The Barrage):**
+   - You go first (massive Initiative).
+   - *Action 1:* Fire two arrows.
+   - *Dread Ambusher:* Fire the free Gloom Stalker arrow (+1d8).
+   - *Bonus Action:* If using special arrows (Arrow of Slaying, etc.), coat your weapon with poison.
+   - *Action Surge:* Activate it to gain a new Action.
+   - *Action 2:* Fire two more arrows.
+4. **The Mathematical Breakdown:** You fired 6 arrows on Turn 1 (counting the setup shot). The target is surprised, so **all 6 arrows are automatic Critical Hits**. All of this with the Sharpshooter bonus (+10 per arrow) and the Titanstring Bow's dual stat (+9 per arrow). Absolutely nothing survives this.
+
+<CombatLogSimulator
+  baseDice="1d8"
+  statModifier="9"
+  extraDamage={[{source: "Tireur d'Élite", value: 10}, {source: "Frappe Redoutable", dice: "1d8"}, {source: "Assassin (Critique Automatique)", dice: "2d8"}]}
+/>

@@ -1,0 +1,80 @@
+---
+title: "Act 3 — Baldur's Gate & The Final Confrontation"
+act: 3
+slug: "act3-walkthrough"
+description: "Complete Honor Mode walkthrough for Act 3. Every boss, every BiS item, every fail-safe."
+order: 3
+---
+
+## Arriving in Baldur's Gate
+
+Welcome to Act 3, Commander. This is where your Honor Mode run will be decided. Every mistake here is permanent — every decision, irreversible. Follow this guide step by step and you **will** survive.
+
+Before you do anything else, verify your equipment loadout. The failsafe system below shows your **Best-in-Slot** weapon based on your current world state:
+
+<Failsafe slot="main_hand" buildId="honour_paladin" />
+
+If you see a warning above, it means a critical NPC died earlier in your run. The system has automatically selected your next-best option. Adapt and overcome.
+
+---
+
+## The Wyrmway — Ansur, Undead Dragon
+
+This is one of the hardest fights in Honor Mode. Ansur's **Stormheart Nova** can one-shot your entire party if you're not prepared. Read the emergency matrix below — every mechanic marked "LETHAL" **will** kill you if you ignore it.
+
+<BossCard id="ansur" />
+
+<EmergencyMatrix bossId="ansur" />
+
+### Recommended Strategy
+
+1. Pre-buff with <CodexTooltipById id="haste" text="Haste" /> on your main striker
+2. Open with <CodexTooltipById id="divine_smite" text="Divine Smite" /> at max spell slot on your first crit
+3. When Ansur begins channeling Stormheart Nova — **DO NOT** try to <CodexTooltipById id="counterspell" text="Counterspell" /> it. It's an ability, not a spell
+4. Instead: Dash all characters behind the farthest pillar or use <CodexTooltipById id="globe_invulnerabilite" text="Globe of Invulnerability" />
+
+### Loot Checklist
+
+After defeating Ansur, you unlock two of the strongest items in the game:
+
+- <CodexTooltipById id="baldurans_giantslayer" text="Balduran's Giantslayer" /> — doubles your STR modifier on damage. This is the reason we went Vengeance Paladin
+- <CodexTooltipById id="helmet_of_balduran" text="Helmet of Balduran" /> — 2 HP/turn regen + prevents crits against you
+
+---
+
+## Act 3 Objectives
+
+Track your progress through Act 3 below. Checking off boss kills will automatically update your equipment recommendations:
+
+<Checklist category="boss" act={3} />
+
+---
+
+## The Final Battle — The Netherbrain
+
+This is it. The culmination of your entire Honor Mode run.
+
+<BossCard id="netherbrain" />
+
+<EmergencyMatrix bossId="netherbrain" />
+
+### Phase 1 Execution
+
+- Use <CodexTooltipById id="vow_of_enmity" text="Vow of Enmity" /> on the Netherbrain for guaranteed Advantage
+- Stack <CodexTooltipById id="divine_smite" text="Divine Smite" /> on every hit — you won't need spell slots after this
+- Keep your squishiest party member **outside** 30ft range to avoid Psychic Blast
+- If a party member gets **Dominated**, use the Sentinel feat reaction or Aura of Protection to mitigate
+
+### Phase 2 — Retributive Immunity
+
+**THIS IS THE MOST COMMON HONOR MODE DEATH IN THE GAME.**
+
+When the Netherbrain drops below 50% HP, it gains Retributive Immunity. Every melee hit you land triggers **2d8 psychic damage back to you**. This is NOT a reaction — it triggers on every single hit.
+
+Switch to ranged attacks, Throw builds, or spells. If you must melee, ensure Death Ward and Temp HP are active.
+
+---
+
+## Victory
+
+Congratulations, Commander. If you've followed this guide and survived, you've conquered Honor Mode. May the dice be ever in your favour.

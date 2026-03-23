@@ -1,0 +1,89 @@
+---
+title: "The Sorcadin — Complete Guide"
+buildId: sorcadin
+description: "The Incandescent Aegis. Vengeance Paladin / Draconic Sorcerer — Aura of Protection + Metamagic + guaranteed critical Divine Smite."
+---
+
+# The Sorcadin: The Incandescent Aegis
+
+*(6 Oath of Vengeance Paladin / 6 Draconic Sorcerer)*
+
+The "Sorcadin" is the paragon of survivability and burst damage in Honour Mode. The synergy is self-evident: the Paladin needs Spell Slots to fuel <CodexTooltipById id="divine_smite" text="Divine Smite" />, and the Sorcerer has them in abundance. By reaching Paladin level 6, you unlock one of the most broken abilities in the entire RPG: *Aura of Protection*, which adds your Charisma modifier to all Saving Throws for your entire party.
+
+---
+
+## 1. Character Creation & Stats
+
+Unlike the Bardadin which relies on Dexterity, the Sorcadin wears heavy armour and wields massive two-handed weapons.
+
+- **Optimal Race:** Half-Orc (for Savage Attacks and Relentless Endurance) or Zariel Tiefling.
+- **Background:** Noble or Soldier.
+
+**27-Point Allocation (No Elixir):**
+
+- **Strength: 16** (Primary attack stat)
+- **Dexterity: 10** (Useless in Heavy Armour, let others handle Initiative)
+- **Constitution: 14** (Hit Points)
+- **Intelligence: 8** (Dump stat)
+- **Wisdom: 8** (Aura of Protection will compensate for this penalty)
+- **Charisma: 16** (For your spell save DC and Aura of Protection)
+
+---
+
+## 2. Leveling (Level 1 to 12)
+
+It is crucial to start as Paladin to gain proficiency in Heavy Armour and Martial Weapons.
+
+<ChecklistTracker checklistId="leveling_sorcadin">
+
+- **Levels 1 to 6: Paladin (Oath of Vengeance).** Start Paladin for Heavy Armour and Martial Weapon proficiency.
+- **Level 2:** Great Weapon Fighting style and <CodexTooltipById id="divine_smite" text="Divine Smite" />.
+- **Level 3:** <CodexTooltipById id="vow_of_enmity" text="Vow of Enmity" /> (guaranteed Advantage on a boss).
+- **Level 4:** **Great Weapon Master** feat for the +10 to damage.
+- **Level 5:** Extra Attack.
+- **Level 6 (Crucial):** **Aura of Protection**. The defensive core of the build.
+- **Levels 7 to 12: Sorcerer (1 to 6).** Choose the **Draconic Bloodline** (Fire or Silver) for survivability, or **Storm** for mobility.
+- **Level 7 (Sorcerer 1):** Take the spells <CodexTooltipById id="shield_spell" text="Shield" /> (Armour Class to 25+ as a Reaction) and <CodexTooltipById id="projectile_magique" text="Magic Missile" />.
+- **Level 9 (Sorcerer 3):** **Metamagic**. Take *Quickened Spell* to cast a spell as a Bonus Action and then attack.
+- **Level 10 (Sorcerer 4):** Take the **Ability Score Improvement** feat (+2 Strength or +2 Charisma depending on your needs).
+
+</ChecklistTracker>
+
+---
+
+## 3. Best in Slot (BiS) Equipment
+
+You are the party's bulwark. Your equipment must reflect this physical dominance.
+
+<EmergencyMatrix title="The Colossus Armoury" severity="info">
+  - **The Ultimate Weapon (Act 3):** <CodexTooltipById id="giantslayer" text="Balduran's Giantslayer" /> (Wyrmway Vaults). Doubles your Strength modifier on damage and allows you to grow in size.
+  - **The Ultimate Armour (Act 3):** <CodexTooltipById id="armor_persistence" text="Armour of Persistence" /> (Purchased from Dammon). Permanently reduces all incoming damage by 2 and grants Advantage on Saving Throws.
+</EmergencyMatrix>
+
+**The rest of the equipment:**
+
+- **Head (Act 3):** <CodexTooltipById id="helm_balduran" text="Helmet of Balduran" /> (Heals 2 Hit Points per turn, grants immunity to stuns and critical hits).
+- **Gloves (Act 3):** <CodexTooltipById id="legacy_masters" text="Legacy of the Masters" /> (+2 to Attack Rolls and Damage Rolls) or Gloves of Hill Giant Strength (if you want to respec to set your base Strength to 8 and maximise Charisma instead).
+- **Ring (Act 2):** <CodexTooltipById id="ring_protection" text="Ring of Protection" /> or <CodexTooltipById id="risky_ring" text="Risky Ring" /> (to always have Advantage and negate the Great Weapon Master penalty).
+
+<FailsafeCard
+  missing="Armour of Persistence (If Dammon is dead)"
+  fallback="Helldusk Armour (Looted from Raphael in the House of Hope). It offers an Armour Class of 21 and fire resistance."
+/>
+
+---
+
+## 4. The Death Loop (Combat Rotation)
+
+Where a standard Paladin must choose between using their turn to cast a control spell OR attacking, the Sorcadin does both.
+
+1. **The Opening (Bonus Action):** Use your Metamagic *Quickened Spell* to cast <CodexTooltipById id="hold_person" text="Hold Person" /> (or *Hold Monster*) on the priority target.
+2. **The Judgment (Main Action):** Move to the paralysed target. Against a paralysed target, ALL melee attacks that hit are **guaranteed Critical Hits**.
+3. **The Annihilation:** Strike twice. Since every hit is a guaranteed critical, use the Reaction interface to unleash your highest-level *Divine Smites*.
+4. **The Cleave (Free Bonus Action):** The *Great Weapon Master* feat states that if you score a critical hit or kill an enemy, you gain an additional attack as a Bonus Action (if you did not use Quickened Spell this turn, save it for Turn 2).
+
+<CombatLogSimulator
+  baseDice="2d6"
+  statModifier="5"
+  extraDamage={[{source: "Maître des Armes Lourdes", value: 10}, {source: "Tueur de Géants", value: 5}, {source: "Châtiment Divin Niv 3 (Critique)", dice: "8d8"}]}
+/>

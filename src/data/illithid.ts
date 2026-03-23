@@ -24,7 +24,7 @@ const TIER_OUTER: readonly IllithidPower[] = [
     id: "favorable_beginnings",
     name: "Débuts Favorables",
     tier: "outer",
-    description: "Favorable Beginnings",
+    description: "Débuts Favorables",
     effect:
       "Ajoutez votre bonus de maîtrise au premier jet d'attaque ou de compétence de chaque combat.",
     recommendedFor: ["barde_controleur"],
@@ -35,7 +35,7 @@ const TIER_OUTER: readonly IllithidPower[] = [
     id: "transfusion",
     name: "Transfusion",
     tier: "outer",
-    description: "Transfusion",
+    description: "Transfusion Illithid",
     effect:
       "Sacrifiez la moitié de vos PV restants pour soigner un allié du même montant. Ne provoque pas d'Attaque d'Opportunité.",
     recommendedFor: [],
@@ -44,7 +44,7 @@ const TIER_OUTER: readonly IllithidPower[] = [
     id: "somber_sickness",
     name: "Maladie Sombre",
     tier: "outer",
-    description: "Somber Sickness",
+    description: "Maladie Sombre",
     effect:
       "En réussissant un jet de sauvegarde de Constitution, gagnez l'Avantage au prochain jet d'attaque.",
     recommendedFor: [],
@@ -53,7 +53,7 @@ const TIER_OUTER: readonly IllithidPower[] = [
     id: "force_tunnel",
     name: "Tunnel de Force",
     tier: "outer",
-    description: "Force Tunnel",
+    description: "Tunnel de Force",
     effect:
       "Chargez en ligne droite, repoussant tous les ennemis sur votre passage (4m). Action Bonus.",
     recommendedFor: [],
@@ -62,7 +62,7 @@ const TIER_OUTER: readonly IllithidPower[] = [
     id: "psionic_overload",
     name: "Surcharge Psionique",
     tier: "outer",
-    description: "Psionic Overload",
+    description: "Surcharge Psionique",
     effect:
       "Vos attaques au corps à corps infligent 1d4 dégâts psychiques supplémentaires, mais vous subissez 1d4 dégâts psychiques par tour.",
     recommendedFor: [],

@@ -2,48 +2,35 @@
 
 // ============================================================================
 // LevelingGuide — Timeline interactive de leveling (1-12)
-// Architecture : le niveau actif est propagé via React Context.
-// LevelStep utilise du masquage CSS (hidden) au lieu de return null
-// pour éviter les problèmes de Context dans le pipeline RSC de MDXRemote.
+//
+// Architecture SANS Context — Compatible RSC / next-mdx-remote
+// Le composant injecte activeLevel directement dans chaque LevelStep
+// via React.Children + cloneElement, avec traversée profonde pour
+// gérer le wrapping automatique de MDX (fragments, paragraphes).
 // ============================================================================
 
-import { useState, createContext, useContext, type ReactNode } from "react";
+import React, { useState, type ReactNode, type ReactElement } from "react";
 
 // ---------------------------------------------------------------------------
-// Context — transmet le niveau actif aux LevelStep enfants
+// LevelStep — Visible uniquement quand __activeLevel === level
+// La prop __activeLevel est injectée par LevelingGuide (pas de Context)
 // ---------------------------------------------------------------------------
 
-const LevelContext = createContext<number | null>(null);
+interface LevelStepProps {
+  readonly level: number | string;
+  readonly children: ReactNode;
+  /** @internal — Injecté automatiquement par LevelingGuide */
+  readonly __activeLevel?: number;
+}
 
-// ---------------------------------------------------------------------------
-// LevelStep — Visible uniquement quand son `level` correspond au contexte
-// Utilise CSS (hidden) au lieu de return null pour garantir le rendu
-// même si le Context n'est pas encore disponible (SSR / RSC boundary).
-// ---------------------------------------------------------------------------
-
-export function LevelStep({
-  level,
-  children,
-}: {
-  level: number | string;
-  children: ReactNode;
-}) {
-  const activeLevel = useContext(LevelContext);
-
+export function LevelStep({ level, children, __activeLevel }: LevelStepProps) {
   const targetLevel = parseInt(String(level), 10);
-
-  // Si le Context n'est pas encore disponible (null), on affiche le niveau 1
-  // par défaut pour éviter un panneau vide au premier rendu.
-  const currentLevel = activeLevel !== null ? activeLevel : 1;
-
+  const currentLevel = __activeLevel ?? 1;
   const isActive = !Number.isNaN(targetLevel) && currentLevel === targetLevel;
 
   return (
     <div
-      className={isActive
-        ? "mt-4 text-gray-200 transition-opacity duration-300"
-        : "hidden"
-      }
+      className={isActive ? "mt-4 text-gray-200" : "hidden"}
       data-level={targetLevel}
     >
       {children}
@@ -51,11 +38,40 @@ export function LevelStep({
   );
 }
 
+// Tag for identification during deep traversal
+LevelStep.displayName = "LevelStep";
+
 // ---------------------------------------------------------------------------
-// LevelingGuide — Parent component with timeline + Context Provider
+// LevelingGuide — Parent with timeline, injects activeLevel into children
 // ---------------------------------------------------------------------------
 
 const LEVELS = Array.from({ length: 12 }, (_, i) => i + 1);
+
+/**
+ * Deep-traverse React children tree to find LevelStep components
+ * and inject __activeLevel prop. Handles MDX wrapping (fragments, divs, p).
+ */
+function injectActiveLevel(nodes: ReactNode, activeLevel: number): ReactNode {
+  return React.Children.map(nodes, (child) => {
+    if (!React.isValidElement(child)) return child;
+
+    const el = child as ReactElement<Record<string, unknown>>;
+
+    // Detect LevelStep: has a `level` prop (duck typing, works across module boundaries)
+    if ("level" in el.props) {
+      return React.cloneElement(el, { __activeLevel: activeLevel });
+    }
+
+    // Recurse into wrapper elements (MDX may wrap in fragments, divs, etc.)
+    if (el.props.children) {
+      return React.cloneElement(el, {
+        children: injectActiveLevel(el.props.children as ReactNode, activeLevel),
+      });
+    }
+
+    return child;
+  });
+}
 
 export function LevelingGuide({ children }: { children: ReactNode }) {
   const [activeLevel, setActiveLevel] = useState(1);
@@ -97,9 +113,7 @@ export function LevelingGuide({ children }: { children: ReactNode }) {
             Niveau {activeLevel} / 12
           </span>
         </div>
-        <LevelContext.Provider value={activeLevel}>
-          {children}
-        </LevelContext.Provider>
+        {injectActiveLevel(children, activeLevel)}
       </div>
 
       {/* Prev/Next buttons */}

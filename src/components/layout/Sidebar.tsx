@@ -279,7 +279,7 @@ export function Sidebar() {
       <button
         onClick={() => setMobileOpen(!mobileOpen)}
         className="lg:hidden fixed top-3.5 right-4 z-50 p-2 rounded-card bg-surface border border-border hover:border-theme/30 transition-colors"
-        aria-label={mobileOpen ? "Close menu" : "Open menu"}
+        aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
       >
         <HamburgerIcon isOpen={mobileOpen} />
       </button>

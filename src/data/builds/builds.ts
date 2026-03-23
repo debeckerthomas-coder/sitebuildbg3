@@ -91,8 +91,8 @@ export const BUILDS: Record<string, Build> = {
           },
           fallbacks: [
             {
-              itemId: "everburn_blade", // placeholder — would be a helmet
-              reason: "Ansur pas encore vaincu. Utilisez n'importe quel casque +CA.",
+              itemId: "helldusk_helmet",
+              reason: "Ansur pas encore vaincu. Utilisez le Heaume du Crépuscule Infernal en attendant.",
             },
           ],
         },

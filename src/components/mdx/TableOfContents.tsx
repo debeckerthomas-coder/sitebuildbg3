@@ -98,10 +98,10 @@ export function TableOfContents() {
   return (
     <nav
       className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-thin"
-      aria-label="Table of Contents"
+      aria-label="Table des matières"
     >
       <p className="font-display text-xs text-gold-muted uppercase tracking-widest mb-3">
-        On this page
+        Sur cette page
       </p>
       <ul className="space-y-0.5">
         {headings.map((heading) => {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 // ---------------------------------------------------------------------------
@@ -31,6 +32,10 @@ const RULES = [
 
 export function PanicButton() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // On walkthrough pages the MapGenie FAB occupies bottom-right, so shift up
+  const isWalkthrough = pathname.includes("/walkthrough");
 
   // Close on Escape
   const handleKeyDown = useCallback(
@@ -58,11 +63,12 @@ export function PanicButton() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Protocole d'urgence Mode Honneur"
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center
+        className={`fixed right-6 z-50 flex h-14 w-14 items-center justify-center
+                   ${isWalkthrough ? "bottom-[5.5rem]" : "bottom-6"}
                    rounded-full bg-gradient-to-br from-blood to-blood-dark
                    border-2 border-blood-light/30 shadow-lg shadow-blood/30
                    hover:shadow-xl hover:shadow-blood/40 hover:scale-105
-                   transition-shadow duration-300 cursor-pointer"
+                   transition-shadow duration-300 cursor-pointer`}
         animate={{ y: [0, -4, 0] }}
         transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
       >

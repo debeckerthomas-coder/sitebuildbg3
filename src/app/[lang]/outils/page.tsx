@@ -75,6 +75,13 @@ const TOOLS: readonly ToolCard[] = [
     description:
       "BG3 utilise un d4 pour l'initiative. Analysez vos probabilités de jouer en premier face à vos ennemis.",
   },
+  {
+    href: "/outils/forge",
+    icon: "🔨",
+    title: "La Forge des Caractéristiques",
+    description:
+      "Calculateur Point Buy 27 interactif. Répartissez vos points et bonus raciaux pour forger le héros parfait.",
+  },
 ];
 
 // ---------------------------------------------------------------------------

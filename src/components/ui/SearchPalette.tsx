@@ -60,6 +60,7 @@ const SEARCH_DATA_FR: readonly SearchEntry[] = [
   { id: "t_nova", label: "Calculateur Nova", category: "Outil", href: "/outils/nova", icon: "💥", keywords: "nova dégâts calculateur damage" },
   { id: "t_prep", label: "Checklist de Préparation", category: "Outil", href: "/outils/preparation", icon: "✅", keywords: "préparation checklist" },
   { id: "t_traq", label: "Traqueur de Run", category: "Outil", href: "/outils/traqueur", icon: "📋", keywords: "run traqueur tracker" },
+  { id: "t_forge", label: "La Forge des Caractéristiques", category: "Outil", href: "/outils/forge", icon: "🔨", keywords: "forge caractéristiques point buy stats statistiques" },
 ];
 
 const SEARCH_DATA_EN: readonly SearchEntry[] = [
@@ -96,6 +97,7 @@ const SEARCH_DATA_EN: readonly SearchEntry[] = [
   { id: "t_nova", label: "Nova Calculator", category: "Tool", href: "/outils/nova", icon: "💥", keywords: "nova damage calculator" },
   { id: "t_prep", label: "Preparation Checklist", category: "Tool", href: "/outils/preparation", icon: "✅", keywords: "preparation checklist" },
   { id: "t_traq", label: "Run Tracker", category: "Tool", href: "/outils/traqueur", icon: "📋", keywords: "run tracker" },
+  { id: "t_forge", label: "Character Stat Forge", category: "Tool", href: "/outils/forge", icon: "🔨", keywords: "forge character point buy stats abilities" },
 ];
 
 const SEARCH_BY_LANG: Record<string, readonly SearchEntry[]> = {

@@ -50,7 +50,9 @@ export function Footer({ lang = "fr" }: { lang?: string }) {
               {t.support}
             </p>
             <a
-              href="#"
+              href="https://ko-fi.com/sitebuildbg3"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-theme/70 hover:text-theme transition-colors"
             >
               <span aria-hidden>&#x2764;</span>

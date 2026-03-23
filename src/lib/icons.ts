@@ -5,10 +5,10 @@
 import type { Rarity } from "@/types";
 
 /**
- * Maps an English item/spell name to its BG3 Wiki icon URL.
- * Format: spaces → underscores, each word capitalized, suffix `_Icon.png`.
+ * Maps an English item/spell name to its local icon path.
+ * Format: spaces → underscores, each word capitalized, suffix `_Icon.svg`.
  *
- * Example: "Magic Missile" → "Magic_Missile_Icon.png"
+ * Example: "Magic Missile" → "/assets/items/Magic_Missile_Icon.svg"
  */
 export function getIconUrl(itemName: string): string {
   const formatted = itemName
@@ -17,7 +17,7 @@ export function getIconUrl(itemName: string): string {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join("_");
 
-  return `https://bg3.wiki/wiki/Special:FilePath/${formatted}_Icon.png`;
+  return `/assets/items/${formatted}_Icon.svg`;
 }
 
 /**

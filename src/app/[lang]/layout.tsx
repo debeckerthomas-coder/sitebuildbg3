@@ -5,6 +5,7 @@ import { PanicButton } from "@/components/ui/PanicButton";
 import { Footer } from "@/components/layout/Footer";
 import { LangUpdater } from "@/components/layout/LangUpdater";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { GlobalSearch } from "@/components/ui/SearchPalette";
 import { i18n, getDictionary, type Locale } from "@/dictionaries";
 
 export function generateStaticParams() {
@@ -37,7 +38,10 @@ export default async function LangLayout({
               <p className="text-[9px] font-data text-gray-500 -mt-0.5">{dict.header.subtitle}</p>
             </div>
           </Link>
-          <LanguageSwitcher />
+          <div className="flex items-center gap-2">
+            <GlobalSearch />
+            <LanguageSwitcher />
+          </div>
         </div>
       </header>
 

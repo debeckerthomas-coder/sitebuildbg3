@@ -1,20 +1,16 @@
 // ============================================================================
 // BG3 Icon Helper — Resolves local icon paths from item/spell names
-// Assets live in public/assets/items/ (PNG real icons or SVG placeholders)
+// Assets live in public/assets/items/ (SVG icons served locally)
 // ============================================================================
 
 /**
  * Returns the local icon path for a given item or spell name.
  *
- * Checks for PNG first (real downloaded icon), falls back to SVG placeholder.
- * Assets are stored in `public/assets/items/{Name}_Icon.{png,svg}`.
- *
- * To download real PNGs from bg3.wiki:
- *   node scripts/download-assets.js --force
+ * Assets are stored in `public/assets/items/{Name}_Icon.svg`.
  *
  * @example
  *   getBg3WikiIconUrl("Markoheshkir")
- *   // → "/assets/items/Markoheshkir_Icon.png" (or .svg if PNG absent)
+ *   // → "/assets/items/Markoheshkir_Icon.svg"
  */
 export function getBg3WikiIconUrl(itemName: string): string {
   const formatted = itemName.trim().replace(/\s+/g, "_");

@@ -2,21 +2,23 @@
 
 // ============================================================================
 // LevelingGuide — Timeline interactive de leveling (1-12)
-// Architecture Context : le niveau actif est propagé via React Context,
-// éliminant les problèmes de parsing MDX avec React.Children.map.
+// Architecture : le niveau actif est propagé via React Context.
+// LevelStep utilise du masquage CSS (hidden) au lieu de return null
+// pour éviter les problèmes de Context dans le pipeline RSC de MDXRemote.
 // ============================================================================
 
-import React, { useState, createContext, useContext, type ReactNode } from "react";
-
+import { useState, createContext, useContext, type ReactNode } from "react";
 
 // ---------------------------------------------------------------------------
 // Context — transmet le niveau actif aux LevelStep enfants
 // ---------------------------------------------------------------------------
 
-const LevelContext = createContext<number>(1);
+const LevelContext = createContext<number | null>(null);
 
 // ---------------------------------------------------------------------------
-// LevelStep — S'affiche uniquement quand son `level` correspond au contexte
+// LevelStep — Visible uniquement quand son `level` correspond au contexte
+// Utilise CSS (hidden) au lieu de return null pour garantir le rendu
+// même si le Context n'est pas encore disponible (SSR / RSC boundary).
 // ---------------------------------------------------------------------------
 
 export function LevelStep({
@@ -28,14 +30,22 @@ export function LevelStep({
 }) {
   const activeLevel = useContext(LevelContext);
 
-  // SÉCURITÉ ANTI-MDX : forçage en entier pour éviter les comparaisons string !== number
-  const targetLevel = typeof level !== "undefined" ? parseInt(String(level), 10) : NaN;
-  const currentLevel = typeof activeLevel !== "undefined" ? parseInt(String(activeLevel), 10) : NaN;
+  const targetLevel = parseInt(String(level), 10);
 
-  if (Number.isNaN(targetLevel) || Number.isNaN(currentLevel) || currentLevel !== targetLevel) return null;
+  // Si le Context n'est pas encore disponible (null), on affiche le niveau 1
+  // par défaut pour éviter un panneau vide au premier rendu.
+  const currentLevel = activeLevel !== null ? activeLevel : 1;
+
+  const isActive = !Number.isNaN(targetLevel) && currentLevel === targetLevel;
 
   return (
-    <div className="mt-4 text-gray-200 opacity-100 transition-opacity duration-300">
+    <div
+      className={isActive
+        ? "mt-4 text-gray-200 transition-opacity duration-300"
+        : "hidden"
+      }
+      data-level={targetLevel}
+    >
       {children}
     </div>
   );

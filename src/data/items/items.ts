@@ -1,23 +1,23 @@
 import type { Item } from "@/types";
 
 export const ITEMS: Record<string, Item> = {
-  // ---- ACT 1 ----
+  // ---- ACTE 1 ----
   everburn_blade: {
     id: "everburn_blade",
-    name: "Everburn Blade",
+    name: "Épée de Flammes Éternelles",
     icon: "/icons/items/everburn_blade.webp",
     rarity: "uncommon",
     slot: "main_hand",
     description:
-      "This blade is wreathed in magical flame — it deals an additional 1d4 fire damage on each hit.",
-    flavourText: "Taken from Commander Zhalk on the Nautiloid.",
+      "Cette lame est enveloppée de flammes magiques — elle inflige 1d4 dégâts de feu supplémentaires à chaque coup.",
+    flavourText: "Récupérée sur le Commandant Zhalk dans le Nautiloïde.",
     act: 1,
-    location: "Nautiloid — loot Commander Zhalk",
+    location: "Nautiloïde — butin du Commandant Zhalk",
     passives: [],
     damageRiders: [
       {
         id: "everburn_fire",
-        source: "Everburn Blade",
+        source: "Épée de Flammes Éternelles",
         damage: { count: 1, die: 4 },
         type: "fire",
       },
@@ -27,29 +27,29 @@ export const ITEMS: Record<string, Item> = {
     tags: ["greatsword", "two-handed", "fire"],
   },
 
-  // ---- ACT 2 ----
+  // ---- ACTE 2 ----
   flail_of_ages: {
     id: "flail_of_ages",
-    name: "Flail of Ages",
+    name: "Fléau des Âges",
     icon: "/icons/items/flail_of_ages.webp",
     rarity: "very_rare",
     slot: "main_hand",
     description:
-      "A legendary flail forged by Dammon from infernal iron. Deals bonus fire damage and slows enemies.",
+      "Un fléau légendaire forgé par Dammon à partir de fer infernal. Inflige des dégâts de feu bonus et ralentit les ennemis.",
     act: 2,
-    location: "Dammon at Last Light Inn — requires Infernal Iron",
-    requirements: "Dammon must be alive",
+    location: "Dammon à l'Auberge de la Dernière Lumière — nécessite du Fer Infernal",
+    requirements: "Dammon doit être en vie",
     passives: [
       {
         id: "flail_slow",
-        name: "Scorching Slow",
-        description: "On hit, targets must succeed a CON save or be Slowed.",
+        name: "Ralentissement Brûlant",
+        description: "Sur un coup, les cibles doivent réussir un JdS CON ou être Ralenties.",
       },
     ],
     damageRiders: [
       {
         id: "flail_fire",
-        source: "Flail of Ages",
+        source: "Fléau des Âges",
         damage: { count: 1, die: 6 },
         type: "fire",
       },
@@ -59,29 +59,29 @@ export const ITEMS: Record<string, Item> = {
     tags: ["flail", "one-handed", "fire", "dammon"],
   },
 
-  // ---- ACT 3 ----
+  // ---- ACTE 3 ----
   baldurans_giantslayer: {
     id: "baldurans_giantslayer",
-    name: "Balduran's Giantslayer",
+    name: "Pourfendeuse de Géant de Baldur",
     icon: "/icons/items/giantslayer.webp",
     rarity: "legendary",
     slot: "main_hand",
     description:
-      "This legendary greatsword doubles your Strength modifier on damage rolls and grants Advantage on Attack Rolls against Large, Huge, or Gargantuan creatures.",
+      "Cette épée à deux mains légendaire double le modificateur de Force sur les jets de dégâts et confère l'Avantage aux jets d'attaque contre les créatures Grande, Énorme ou Gargantuesque.",
     act: 3,
-    location: "Wyrmway — defeat Ansur",
+    location: "Voie du Wyrm — vaincre Ansur",
     passives: [
       {
         id: "giant_form",
-        name: "Giant Form",
+        name: "Forme de Géant",
         description:
-          "Grow to enormous size. Gain 27 Temporary Hit Points and deal an additional 1d6 damage.",
+          "Grandissez à une taille énorme. Gagnez 27 Points de Vie temporaires et infligez 1d6 dégâts supplémentaires.",
       },
       {
         id: "topple_the_big_folk",
-        name: "Topple the Big Folk",
+        name: "Terrasser les Grands",
         description:
-          "Advantage on Attack Rolls against Large, Huge, or Gargantuan creatures.",
+          "Avantage aux jets d'attaque contre les créatures Grande, Énorme ou Gargantuesque.",
       },
     ],
     damageRiders: [],
@@ -92,19 +92,19 @@ export const ITEMS: Record<string, Item> = {
 
   helmet_of_balduran: {
     id: "helmet_of_balduran",
-    name: "Helmet of Balduran",
+    name: "Heaume de Balduran",
     icon: "/icons/items/helmet_balduran.webp",
     rarity: "legendary",
     slot: "helmet",
     description:
-      "Heals 2 HP at the start of every turn. Grants +1 to AC and Saving Throws. Prevents Critical Hits against the wearer.",
+      "Soigne 2 PV au début de chaque tour. Confère +1 à la CA et aux Jets de Sauvegarde. Empêche les Coups Critiques contre le porteur.",
     act: 3,
-    location: "Wyrmway — defeat Ansur",
+    location: "Voie du Wyrm — vaincre Ansur",
     passives: [
       {
         id: "balduran_heal",
-        name: "Balduran's Vitality",
-        description: "At the start of each turn, the wearer regains 2 HP.",
+        name: "Vitalité de Balduran",
+        description: "Au début de chaque tour, le porteur récupère 2 PV.",
       },
     ],
     damageRiders: [],
@@ -114,14 +114,14 @@ export const ITEMS: Record<string, Item> = {
 
   fallback_greatsword: {
     id: "fallback_greatsword",
-    name: "Sword of Chaos",
+    name: "Épée du Chaos",
     icon: "/icons/items/sword_chaos.webp",
     rarity: "rare",
     slot: "main_hand",
     description:
-      "A chaotic greatsword that heals the wielder for 1d6 HP on each hit.",
+      "Une épée à deux mains chaotique qui soigne le porteur de 1d6 PV à chaque coup.",
     act: 2,
-    location: "Loot from Sarevok in Bhaal Temple (Act 3 alternate)",
+    location: "Butin de Sarevok au Temple de Bhaal (alternative Acte 3)",
     passives: [],
     damageRiders: [],
     weaponDamage: { count: 2, die: 6 },

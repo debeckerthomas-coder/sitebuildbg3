@@ -3,14 +3,14 @@ import type { Spell } from "@/types";
 export const SPELLS: Record<string, Spell> = {
   divine_smite: {
     id: "divine_smite",
-    name: "Divine Smite",
+    name: "Châtiment Divin",
     icon: "/icons/spells/divine_smite.webp",
     school: "evocation",
     level: 1,
     castingTime: "bonus_action",
     range: "self",
     description:
-      "Expend a spell slot to deal 2d8 radiant damage (+ 1d8 per slot level above 1st). Extra 1d8 vs Undead/Fiend. All dice doubled on critical hit.",
+      "Dépensez un emplacement de sort pour infliger 2d8 dégâts radiants (+1d8 par niveau d'emplacement au-dessus du 1er). +1d8 supplémentaire contre les Morts-vivants/Fiélons. Tous les dés doublés sur un coup critique.",
     damage: { count: 2, die: 8 },
     damageType: "radiant",
     concentration: false,
@@ -20,14 +20,14 @@ export const SPELLS: Record<string, Spell> = {
 
   eldritch_blast: {
     id: "eldritch_blast",
-    name: "Eldritch Blast",
+    name: "Décharge Occulte",
     icon: "/icons/spells/eldritch_blast.webp",
     school: "evocation",
     level: 0,
     castingTime: "action",
     range: 120,
     description:
-      "Fire a beam of crackling energy. At higher levels, fire additional beams (2 at level 5, 3 at level 10).",
+      "Projette un rayon d'énergie crépitante. Aux niveaux supérieurs, projette des rayons supplémentaires (2 au niveau 5, 3 au niveau 10).",
     damage: { count: 1, die: 10 },
     damageType: "force",
     concentration: false,
@@ -37,14 +37,14 @@ export const SPELLS: Record<string, Spell> = {
 
   haste: {
     id: "haste",
-    name: "Haste",
+    name: "Hâte",
     icon: "/icons/spells/haste.webp",
     school: "transmutation",
     level: 3,
     castingTime: "action",
     range: 30,
     description:
-      "Target gains +2 AC, Advantage on DEX saves, and an additional Action each turn. When the spell ends, the target is Lethargic and cannot move or act for 1 turn.",
+      "La cible gagne +2 CA, Avantage aux JdS DEX, et une Action supplémentaire à chaque tour. Quand le sort prend fin, la cible est Léthargique et ne peut ni bouger ni agir pendant 1 tour.",
     concentration: true,
     resource: { type: "spell_slot", level: 3 },
     tags: ["buff", "concentration", "action-economy"],
@@ -52,14 +52,14 @@ export const SPELLS: Record<string, Spell> = {
 
   counterspell: {
     id: "counterspell",
-    name: "Counterspell",
+    name: "Contresort",
     icon: "/icons/spells/counterspell.webp",
     school: "abjuration",
     level: 3,
     castingTime: "reaction",
     range: 60,
     description:
-      "Interrupt a creature casting a spell. If the spell is 3rd level or lower, it fails automatically. Higher-level spells require an Ability Check.",
+      "Interrompez une créature en train de lancer un sort. Si le sort est de niveau 3 ou inférieur, il échoue automatiquement. Les sorts de niveau supérieur nécessitent un jet de Caractéristique.",
     concentration: false,
     resource: { type: "spell_slot", level: 3 },
     tags: ["reaction", "counter", "abjuration"],

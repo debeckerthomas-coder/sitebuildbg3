@@ -3,10 +3,10 @@ import type { Boss } from "@/types";
 export const BOSSES: Record<string, Boss> = {
   netherbrain: {
     id: "netherbrain",
-    name: "The Netherbrain",
+    name: "Le Cerveau Primitif",
     icon: "/icons/bosses/netherbrain.webp",
     act: 3,
-    location: "Morphic Pool — Final Battle",
+    location: "Bassin Morphique — Combat Final",
     hitPoints: 450,
     armourClass: 18,
     initiativeBonus: 2,
@@ -20,28 +20,28 @@ export const BOSSES: Record<string, Boss> = {
     },
     phases: [
       {
-        name: "Phase 1 — Crown Assault",
+        name: "Phase 1 — Assaut de la Couronne",
         description:
-          "The Netherbrain launches psychic assaults. Destroy the Netherese constructs to progress.",
+          "Le Cerveau Primitif lance des assauts psychiques. Détruisez les constructions Néthérisses pour progresser.",
         actions: [
           {
-            name: "Psychic Blast",
+            name: "Explosion Psychique",
             description:
-              "All creatures within 30ft must succeed a DC 18 INT save or take 4d10 psychic damage and be Stunned for 1 turn.",
+              "Toutes les créatures dans un rayon de 9m doivent réussir un JdS INT DD 18 ou subir 4d10 dégâts psychiques et être Étourdies pendant 1 tour.",
             damage: "4d10 psychic",
             isLegendary: false,
           },
           {
-            name: "Tentacle Slam",
+            name: "Coup de Tentacule",
             description:
-              "Melee attack. +14 to hit, 3d8+8 bludgeoning damage. On hit, target is knocked Prone.",
+              "Attaque de mêlée. +14 au toucher, 3d8+8 contondants. Sur un hit, la cible est mise À terre.",
             damage: "3d8+8 bludgeoning",
             isLegendary: false,
           },
           {
-            name: "Dominate (Legendary)",
+            name: "Domination (Action Légendaire)",
             description:
-              "Target must succeed a DC 20 WIS save or be Dominated until end of their next turn. Dominated allies attack your party.",
+              "La cible doit réussir un JdS SAG DD 20 ou être Dominée jusqu'à la fin de son prochain tour. Les alliés dominés attaquent votre groupe.",
             isLegendary: true,
           },
         ],
@@ -49,22 +49,22 @@ export const BOSSES: Record<string, Boss> = {
         resistances: ["bludgeoning", "piercing", "slashing"],
       },
       {
-        name: "Phase 2 — Desperate Thrashing",
+        name: "Phase 2 — Convulsions Désespérées",
         hpThreshold: 50,
         description:
-          "The Netherbrain becomes desperate. Gains Multiattack (3) and Retributive Psychic damage.",
+          "Le Cerveau Primitif devient désespéré. Obtient Attaque Multiple (3) et des dégâts psychiques rétributifs.",
         actions: [
           {
-            name: "Retributive Immunity",
+            name: "Immunité Rétributive",
             description:
-              "When hit by a melee attack, the attacker takes 2d8 psychic damage. NO SAVE.",
+              "Quand il est touché par une attaque de mêlée, l'attaquant subit 2d8 dégâts psychiques. PAS de JdS.",
             damage: "2d8 psychic",
             isLegendary: false,
           },
           {
-            name: "Mind Flayer Reinforcements",
+            name: "Renforts Flagelleurs Mentaux",
             description:
-              "Summons 2 Mind Flayer Fanatics with 40 HP each at the start of each round.",
+              "Invoque 2 Flagelleurs Mentaux Fanatiques avec 40 PV chacun au début de chaque round.",
             isLegendary: true,
           },
         ],
@@ -106,10 +106,10 @@ export const BOSSES: Record<string, Boss> = {
 
   ansur: {
     id: "ansur",
-    name: "Ansur, the Undead Dragon",
+    name: "Ansur, le Dragon Mort-Vivant",
     icon: "/icons/bosses/ansur.webp",
     act: 3,
-    location: "Wyrmway — beneath Wyrm's Rock",
+    location: "Voie du Wyrm — sous la Roche du Wyrm",
     hitPoints: 400,
     armourClass: 17,
     initiativeBonus: 1,
@@ -123,29 +123,29 @@ export const BOSSES: Record<string, Boss> = {
     },
     phases: [
       {
-        name: "Full Fight",
+        name: "Combat Complet",
         description:
-          "Ansur is an undead bronze dragon. His most dangerous ability is Stormheart Nova — a massive lightning AoE.",
+          "Ansur est un dragon de bronze mort-vivant. Sa capacité la plus dangereuse est Nova Cœur de Tempête — une AoE de foudre massive.",
         actions: [
           {
-            name: "Stormheart Nova",
+            name: "Nova Cœur de Tempête",
             description:
-              "Ansur charges for 1 turn, then unleashes a massive AoE dealing 10d8 lightning damage (DEX save DC 18 for half). Destroys all nearby cover.",
+              "Ansur charge pendant 1 tour, puis déchaîne une AoE massive infligeant 10d8 dégâts de foudre (JdS DEX DD 18 pour moitié). Détruit toutes les couvertures proches.",
             damage: "10d8 lightning",
-            recharge: "Charges for 1 turn",
+            recharge: "Charge pendant 1 tour",
             isLegendary: false,
           },
           {
-            name: "Multiattack",
+            name: "Attaque Multiple",
             description:
-              "3 attacks: Bite (2d10+7), Claw (2d6+7), Claw (2d6+7).",
+              "3 attaques : Morsure (2d10+7), Griffe (2d6+7), Griffe (2d6+7).",
             damage: "2d10+7 / 2d6+7 / 2d6+7",
             isLegendary: false,
           },
           {
-            name: "Hoarding Breath",
+            name: "Souffle Avide",
             description:
-              "Cone AoE. 8d8 lightning damage (DEX save DC 18). On fail, also Stunned for 1 turn.",
+              "AoE cône. 8d8 dégâts de foudre (JdS DEX DD 18). En cas d'échec, également Étourdi pendant 1 tour.",
             damage: "8d8 lightning",
             recharge: "5-6",
             isLegendary: false,
@@ -158,12 +158,12 @@ export const BOSSES: Record<string, Boss> = {
     mechanics: [
       {
         id: "stormheart_nova",
-        name: "Stormheart Nova — Total Party Kill Threat",
+        name: "Nova Cœur de Tempête — Menace de TPK",
         severity: "lethal",
         description:
-          "When Ansur flies up and begins channeling, he will unleash Stormheart Nova next turn. 10d8 lightning (avg 45 damage) in a massive AoE. Can kill entire party.",
+          "Quand Ansur s'envole et commence à canaliser, il déchaîne Nova Cœur de Tempête au tour suivant. 10d8 foudre (moy. 45 dégâts) en AoE massive. Peut tuer tout le groupe.",
         counterplay:
-          "Use the Water Myrmidon's ice ability or Globe of Invulnerability. Alternatively: Counterspell does NOT work — it's an ability, not a spell. Best bet: everyone Dash behind the farthest pillar or use Lightning Resistance gear/spells.",
+          "Utilisez la capacité de glace du Myrmidon d'Eau ou Globe d'Invulnérabilité. Attention : Contresort NE FONCTIONNE PAS — c'est une capacité, pas un sort. Meilleure option : tout le monde Foncer derrière le pilier le plus éloigné ou utiliser de l'équipement/sorts de Résistance à la Foudre.",
       },
     ],
     loot: ["baldurans_giantslayer", "helmet_of_balduran"],

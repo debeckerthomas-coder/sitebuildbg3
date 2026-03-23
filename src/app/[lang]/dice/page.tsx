@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import { DiceSimulatorUI } from "@/components/dice/DiceSimulatorUI";
 
 export const metadata: Metadata = {
-  title: "Dice Simulator — BG3 Honor Companion",
+  title: "Simulateur de Dés — BG3 Compagnon Mode Honneur",
   description:
-    "3D dice roller with advantage, disadvantage, Karmic Dice, and exact probability distributions.",
+    "Lanceur de dés 3D avec avantage, désavantage, Dés Karmiques et distributions de probabilité exactes.",
 };
 
 export default function DicePage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
       <div>
-        <h1 className="font-display text-3xl text-gold">Dice Simulator</h1>
+        <h1 className="font-display text-3xl text-gold">Simulateur de Dés</h1>
         <p className="text-sm font-body text-gray-400 mt-1">
-          Roll with Karmic Dice, advantage/disadvantage, and see exact probability
-          distributions. Powered by a physics-inspired 3D engine.
+          Lancez avec les Dés Karmiques, avantage/désavantage, et visualisez les distributions
+          de probabilité exactes. Propulsé par un moteur 3D physique.
         </p>
       </div>
 

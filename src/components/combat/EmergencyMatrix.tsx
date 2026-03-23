@@ -26,7 +26,7 @@ const SEVERITY_STYLES = {
     border: "border-yellow-500/50",
     bg: "bg-yellow-950/20",
     icon: "⚠️",
-    label: "Danger",
+    label: "DANGER",
     labelColor: "text-yellow-400",
     animation: "animate-pulse-warning",
   },

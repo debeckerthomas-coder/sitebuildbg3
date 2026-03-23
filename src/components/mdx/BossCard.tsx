@@ -22,11 +22,11 @@ const DAMAGE_TYPE_COLORS: Partial<Record<DamageType, string>> = {
 
 function AbilityScoreRow({ boss }: { readonly boss: Boss }) {
   const abilities = [
-    { key: "STR", value: boss.abilities.strength },
+    { key: "FOR", value: boss.abilities.strength },
     { key: "DEX", value: boss.abilities.dexterity },
     { key: "CON", value: boss.abilities.constitution },
     { key: "INT", value: boss.abilities.intelligence },
-    { key: "WIS", value: boss.abilities.wisdom },
+    { key: "SAG", value: boss.abilities.wisdom },
     { key: "CHA", value: boss.abilities.charisma },
   ] as const;
 
@@ -52,7 +52,7 @@ export function BossCard({ id }: { readonly id: string }) {
   if (!boss) {
     return (
       <div className="text-sm text-blood-light font-data p-4 border border-blood/30 rounded-card">
-        Boss &quot;{id}&quot; not found in database.
+        Boss &quot;{id}&quot; introuvable dans la base de données.
       </div>
     );
   }
@@ -70,15 +70,15 @@ export function BossCard({ id }: { readonly id: string }) {
           <div>
             <h3 className="font-display text-xl text-blood-light">{boss.name}</h3>
             <p className="font-data text-xs text-gray-400">
-              Act {boss.act} — {boss.location}
+              Acte {boss.act} — {boss.location}
             </p>
           </div>
           <div className="text-right">
             <div className="font-data text-sm text-gray-200">
-              HP <span className="font-bold text-blood-light">{boss.hitPoints}</span>
+              PV <span className="font-bold text-blood-light">{boss.hitPoints}</span>
             </div>
             <div className="font-data text-xs text-gray-400">
-              AC {boss.armourClass}
+              CA {boss.armourClass}
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@ export function BossCard({ id }: { readonly id: string }) {
               </h4>
               {phase.hpThreshold && (
                 <span className="text-[10px] font-data text-blood-light bg-blood/10 px-1.5 py-0.5 rounded">
-                  Below {phase.hpThreshold}% HP
+                  Sous {phase.hpThreshold}% PV
                 </span>
               )}
             </div>
@@ -119,12 +119,12 @@ export function BossCard({ id }: { readonly id: string }) {
                     </span>
                     {action.isLegendary && (
                       <span className="text-[9px] font-data text-rarity-legendary bg-rarity-legendary/10 px-1 py-0.5 rounded uppercase">
-                        Legendary
+                        Légendaire
                       </span>
                     )}
                     {action.recharge && (
                       <span className="text-[9px] font-data text-gray-500">
-                        Recharge {action.recharge}
+                        Récupération {action.recharge}
                       </span>
                     )}
                   </div>
@@ -144,7 +144,7 @@ export function BossCard({ id }: { readonly id: string }) {
             <div className="flex flex-wrap gap-3 pl-3">
               {phase.immunities && phase.immunities.length > 0 && (
                 <div>
-                  <span className="text-[10px] font-data text-gray-500 uppercase">Immune: </span>
+                  <span className="text-[10px] font-data text-gray-500 uppercase">Immunité : </span>
                   {phase.immunities.map((type) => (
                     <span
                       key={type}
@@ -157,7 +157,7 @@ export function BossCard({ id }: { readonly id: string }) {
               )}
               {phase.vulnerabilities && phase.vulnerabilities.length > 0 && (
                 <div>
-                  <span className="text-[10px] font-data text-gray-500 uppercase">Vulnerable: </span>
+                  <span className="text-[10px] font-data text-gray-500 uppercase">Vulnérable : </span>
                   {phase.vulnerabilities.map((type) => (
                     <span
                       key={type}

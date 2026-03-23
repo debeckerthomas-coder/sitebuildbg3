@@ -18,7 +18,7 @@ const DiceScene = dynamic(
     loading: () => (
       <div className="w-full h-[300px] rounded-card bg-abyss border border-border flex items-center justify-center">
         <div className="text-gold/50 font-data text-sm animate-pulse">
-          Loading 3D Engine...
+          Chargement du moteur 3D...
         </div>
       </div>
     ),
@@ -41,7 +41,7 @@ function ProbabilityChart({ histogram }: { histogram: DiceSimulatorResult["histo
   return (
     <div className="space-y-1">
       <p className="text-xs font-data text-gray-400 uppercase tracking-wider">
-        Probability Distribution
+        Distribution de Probabilité
       </p>
       <div className="flex items-end gap-px h-24">
         {histogram.map((entry) => (
@@ -117,7 +117,7 @@ export function DiceSimulatorUI() {
           {/* Die Type */}
           <div className="space-y-1.5">
             <label className="text-xs font-data text-gray-400 uppercase tracking-wider">
-              Die Type
+              Type de Dé
             </label>
             <div className="flex gap-2">
               {DIE_OPTIONS.map((d) => (
@@ -142,7 +142,7 @@ export function DiceSimulatorUI() {
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
               <label className="text-xs font-data text-gray-400 uppercase tracking-wider">
-                Count
+                Nombre
               </label>
               <input
                 type="number"
@@ -155,7 +155,7 @@ export function DiceSimulatorUI() {
             </div>
             <div className="space-y-1.5">
               <label className="text-xs font-data text-gray-400 uppercase tracking-wider">
-                Modifier
+                Modificateur
               </label>
               <input
                 type="number"
@@ -171,7 +171,7 @@ export function DiceSimulatorUI() {
           {/* DC */}
           <div className="space-y-1.5">
             <label className="text-xs font-data text-gray-400 uppercase tracking-wider">
-              Target DC (optional)
+              DD Cible (optionnel)
             </label>
             <input
               type="number"
@@ -187,9 +187,9 @@ export function DiceSimulatorUI() {
           {/* Toggles */}
           <div className="flex flex-wrap gap-2">
             {[
-              { label: "Advantage", active: advantage, toggle: () => { setAdvantage(!advantage); if (!advantage) setDisadvantage(false); } },
-              { label: "Disadvantage", active: disadvantage, toggle: () => { setDisadvantage(!disadvantage); if (!disadvantage) setAdvantage(false); } },
-              { label: "Karmic Dice", active: karmicDice, toggle: () => setKarmicDice(!karmicDice) },
+              { label: "Avantage", active: advantage, toggle: () => { setAdvantage(!advantage); if (!advantage) setDisadvantage(false); } },
+              { label: "Désavantage", active: disadvantage, toggle: () => { setDisadvantage(!disadvantage); if (!disadvantage) setAdvantage(false); } },
+              { label: "Dés Karmiques", active: karmicDice, toggle: () => setKarmicDice(!karmicDice) },
             ].map(({ label, active, toggle }) => (
               <button
                 key={label}
@@ -220,17 +220,17 @@ export function DiceSimulatorUI() {
               }
             `}
           >
-            {rolling ? "Rolling..." : `Roll ${count}d${die}${modifier >= 0 ? "+" : ""}${modifier !== 0 ? modifier : ""}`}
+            {rolling ? "Lancer en cours..." : `Lancer ${count}d${die}${modifier >= 0 ? "+" : ""}${modifier !== 0 ? modifier : ""}`}
           </button>
 
           <p className="text-xs font-data text-gray-500 text-center">
-            Expected value: {ev.toFixed(1)}
+            Valeur attendue : {ev.toFixed(1)}
           </p>
         </div>
 
         {/* Results */}
         <div className="bg-surface-raised border border-border rounded-card p-5 space-y-4">
-          <h3 className="font-display text-sm text-gold">Results</h3>
+          <h3 className="font-display text-sm text-gold">Résultats</h3>
 
           <AnimatePresence mode="wait">
             {result ? (
@@ -247,7 +247,7 @@ export function DiceSimulatorUI() {
                     {result.finalValue}
                   </p>
                   <p className="text-xs font-data text-gray-400 mt-1">
-                    Rolls: [{result.rolls.join(", ")}]
+                    Lancers : [{result.rolls.join(", ")}]
                     {modifier !== 0 && ` ${modifier >= 0 ? "+" : ""}${modifier}`}
                   </p>
                 </div>
@@ -263,7 +263,7 @@ export function DiceSimulatorUI() {
                       }
                     `}
                   >
-                    {result.succeeded ? "SUCCESS" : "FAILURE"} vs DC {dc}
+                    {result.succeeded ? "RÉUSSITE" : "ÉCHEC"} vs DD {dc}
                   </div>
                 )}
 
@@ -271,7 +271,7 @@ export function DiceSimulatorUI() {
                 {dc !== undefined && (
                   <div className="text-center">
                     <p className="text-xs font-data text-gray-500">
-                      Success probability: {(result.successProbability * 100).toFixed(1)}%
+                      Probabilité de réussite : {(result.successProbability * 100).toFixed(1)}%
                     </p>
                   </div>
                 )}
@@ -285,7 +285,7 @@ export function DiceSimulatorUI() {
                 animate={{ opacity: 1 }}
                 className="text-center py-12 text-gray-600 font-data text-sm"
               >
-                Roll the dice to see results
+                Lancez les dés pour voir les résultats
               </motion.div>
             )}
           </AnimatePresence>

@@ -1,0 +1,480 @@
+---
+title: "Act 2: The Cursed Lands & The Apostle of Myrkul"
+act: 2
+slug: "acte-2"
+description: "Complete Honour Mode guide for the Cursed Lands. Light management, Kar'niss ambush, Moonrise Towers, Gauntlet of Shar, and the most dangerous fight in the game — the Apostle of Myrkul. No margin for error."
+order: 2
+---
+
+## Arrival in Darkness — The Shadow Curse
+
+The air changes when you cross the mountain pass. The sky, a brilliant blue just metres ago, turns to ashen grey then to inky black. Sunlight no longer penetrates. The trees are twisted skeletons, their bare branches reaching toward a sky they will never see again. Welcome to the **Cursed Lands** — the domain of Shar's Shadow Curse, where light dies and the unprepared die with it.
+
+The Cursed Lands are the **graveyard of Honour Mode runs**. More runs are lost here than in any other act — not because of the bosses, but because of **light management**. Without an active light source, your party permanently suffers:
+
+- **Disadvantage on ALL Attack Rolls** (hit rate reduced from ~50% to ~25%)
+- **Disadvantage on ALL Perception checks** (ambushes impossible to detect)
+- **2d6 necrotic damage per turn** in deep shadow zones (average 7 damage/turn = death in 3-4 turns on a spellcaster)
+
+> **BRUTAL STATISTIC:** A character with 40 HP (typical level 5-6) dies in **6 turns** just by standing in deep shadow without light. Add the Disadvantage on attacks and the inability to perceive enemies, and every unprepared combat is a death sentence.
+
+The first and only priority upon arrival is to obtain a **permanent light source**. Two options exist, and one is vastly superior.
+
+---
+
+## The Pixie's Blessing vs The Moon Lantern
+
+### Option A (RECOMMENDED): The Kar'niss Ambush — The Pixie's Blessing
+
+Kar'niss is a **Drider** — a half-drow, half-spider abomination — who carries a <CodexTooltipById id="lanterne_lunaire" text="Moon Lantern" /> containing a captive Pixie. He leads a convoy through the Cursed Lands. You can intercept him on the road between the pass and the Last Light Inn.
+
+**How to trigger the ambush:** Talk to the Harpers at the pass camp. They offer to set up an ambush on the convoy. Accept, position yourself at the marked points, and wait.
+
+<SingleStepTracker stepId="acte2_embuscade_position" label="Position the party at the Harper ambush markers before the convoy arrives" />
+
+**The fight against Kar'niss:**
+- **Kar'niss**: 120 HP, AC 17, 3 melee attacks (+8, 2d8+4 each), casts <CodexTooltipById id="tenebres" text="Darkness" /> on himself as a Reaction
+- **Escort**: 2 Shadows (40 HP, AC 12) + 3 Goblins (7 HP)
+- **Harper Allies**: 4 Harper Rangers (~30 HP each) who fight alongside you
+
+> **Turn 1 Strategy:** Focus **all** DPS on Kar'niss. The Harpers handle the escort. With <CodexTooltipById id="great_weapon_master" text="Great Weapon Master" /> active and a <CodexTooltipById id="elixir_geant_collines" text="Strength Elixir" />, your main DPS deals ~22 damage per attack. In 2 turns with Extra Attack, that is ~88 damage — 73% of Kar'niss's HP. Add a level 2 <CodexTooltipById id="divine_smite" text="Divine Smite" /> on the first hit (3d8 radiant = ~13.5 damage), and Kar'niss falls on Turn 2.
+
+<SingleStepTracker stepId="acte2_karniss_kill" label="Eliminate Kar'niss in 2-3 turns — focus DPS, Harpers handle the escort" />
+
+**After the fight:** Pick up the <CodexTooltipById id="lanterne_lunaire" text="Moon Lantern" />. **DO NOT EQUIP IT.** Open it and **free the Pixie**. She grants you the **Pixie's Blessing** — a permanent protection against the Shadow Curse that applies to **the entire party** and **takes no equipment slot**.
+
+<SingleStepTracker stepId="acte2_lumiere_pixie" label="Free the Pixie from the Lantern — permanent Blessing for the entire party" />
+
+> **Why free the Pixie?** The <CodexTooltipById id="lanterne_lunaire" text="Moon Lantern" /> also works, but it must be **held in hand** by a character. This means that character loses their shield or second weapon — a loss of 2 AC on a tank or massive damage loss on a DPS. The Pixie's Blessing is **passive and free**. The choice is mathematical.
+
+### Option B (FAILSAFE): Balthazar's Moon Lantern
+
+If you miss the ambush (it is timed — waiting too long at the pass lets the convoy pass), the backup <CodexTooltipById id="lanterne_lunaire" text="Moon Lantern" /> is found in **Balthazar's quarters** at Moonrise Towers.
+
+<SingleStepTracker stepId="acte2_lumiere_lanterne" label="Option B: Steal the Moon Lantern from Balthazar's quarters at Moonrise Towers" />
+
+<FailsafeCard missing="Pixie's Blessing (Kar'niss missed or Pixie killed)" fallback="Balthazar's Moon Lantern via infiltration at Moonrise Towers — must be held in hand" condition="If the convoy ambush is missed or the Pixie is accidentally killed" />
+
+If you have **neither** option, the <CodexTooltipById id="lumiere_du_jour" text="Daylight" /> spell (level 3) works as a temporary substitute — but it consumes a Spell Slot AND your caster's Concentration. It is a plan C, not a viable plan.
+
+---
+
+## The Last Light Inn — The Survival HQ
+
+The Last Light Inn is the only safe location in the Cursed Lands. Protected by the blessing of **Dame Isobel**, it is bathed in a supernatural golden light that repels the Shadow Curse. It is your base camp, your merchant hub, your rest location — and your **point of no return** if Isobel dies.
+
+### Isobel — The Absolute Protection
+
+<SingleStepTracker stepId="acte2_traverse_isobel" label="Talk to Isobel on the 2nd floor of the Inn — obtain her blessing" />
+
+Isobel is a Cleric of Selûne who maintains the light barrier around the Inn. If she dies, **the entire Inn falls into shadow** — the Harpers, the Tieflings, the merchants, everyone is cursed and becomes hostile Shadows. Your base camp is destroyed. Your merchants are lost. Your run is nearly impossible to finish.
+
+> **RED ALERT: Marcus's attack is a scripted event.** Shortly after your arrival, Marcus — a winged vampiric spawn — attacks the Inn with the explicit order to kidnap Isobel. If Marcus hits Isobel even once with his teleportation ability, **she disappears and dies**.
+
+### Marcus's Attack — Defence Protocol
+
+<EmergencyMatrix bossId="marcus_attaque" />
+
+Marcus arrives with 2-3 flying spawn. The fight itself is not difficult (Marcus has ~90 HP, AC 15), but **a single round where Isobel is unprotected can end your run**.
+
+**4-step defence protocol:**
+
+<SingleStepTracker stepId="acte2_marcus_sanctuaire" label="Turn 0: Cast Sanctuary on Isobel BEFORE Marcus attacks" />
+
+As soon as the dialogue with Isobel ends, cast <CodexTooltipById id="sanctuary" text="Sanctuary" /> on her **immediately**. <CodexTooltipById id="sanctuary" text="Sanctuary" /> is a level 1 Bonus Action — it forces Marcus to succeed on a Wisdom Saving Throw (DC = your spell DC, typically 14-15) to target Isobel. If he fails, he **must** choose another target. This is your safety net.
+
+<SingleStepTracker stepId="acte2_marcus_barricade" label="Pre-combat: Place crates and barrels in front of the 2nd floor windows" />
+
+> **Advanced tip:** Before triggering the dialogue, place **crates** and **barrels** in front of the 2nd floor windows where Isobel is located. Marcus enters through the windows — if he has to spend his movement getting around obstacles, he loses an entire turn reaching Isobel. One more turn for your party = Marcus eliminated before he touches her.
+
+<SingleStepTracker stepId="acte2_marcus_contresort" label="Turn 1: Prepare Counterspell as a Reaction if Marcus attempts a spell on Isobel" />
+
+Keep <CodexTooltipById id="counterspell" text="Counterspell" /> in reserve. Marcus can cast **Hold Person** on Isobel to paralyse her, then teleport her. If your caster has <CodexTooltipById id="counterspell" text="Counterspell" /> prepared and is within range (18m), block this spell **immediately**. Marcus's spell is level 2 — your level 3 <CodexTooltipById id="counterspell" text="Counterspell" /> succeeds automatically.
+
+<SingleStepTracker stepId="acte2_marcus_kill" label="Turns 2-3: Eliminate Marcus — 90 HP, AC 15, vulnerable to Radiant" />
+
+Marcus is undead. Radiant damage is **doubled** on him. A level 2 <CodexTooltipById id="divine_smite" text="Divine Smite" /> on a critical hit deals 6d8 radiant = **27 average damage**, doubled to **54**. Add weapon damage, and Marcus falls in a single critical hit.
+
+<FailsafeCard missing="Sanctuary fails or is not prepared" fallback="Physically position a tank character BETWEEN Marcus and Isobel — block the passage with your body + Opportunity Attack" condition="If no caster has Sanctuary prepared" />
+
+### Recruitment and Inn Merchants
+
+<SingleStepTracker stepId="acte2_traverse_jaheira" label="Recruit Jaheira — Level 7 Druid, secondary tank and versatile healer" />
+
+**Jaheira** is a high-level Druid. Her main asset is her versatility: she can tank in Wild Shape (Bear = 30 temporary HP + AC 11 + Resistance to everything except Psychic), heal with Healing Word, and control with area spells. **Do NOT bring her into optional fights** — if she dies, you lose a critical ally for Act 3.
+
+**Dammon** (Tiefling blacksmith) is the most important merchant at the Inn. He sells the <CodexTooltipById id="flail_of_ages" text="Flail of Ages" /> — a +2 flail with 1d6 extra fire damage and slow. Excellent on a Cleric or Paladin in the off-hand. Dammon also forges weapons from **Infernal Iron** if you brought some from Act 1.
+
+<SingleStepTracker stepId="acte2_dammon_fleau" label="Buy the Flail of Ages from Dammon — 1d8+2 bludgeoning + 1d6 fire" />
+
+> **Rest Management at the Inn:** The Inn is your safe rest base. Take advantage: take a Long Rest after each significant exploration. <CodexTooltipById id="elixir_geant_collines" text="Strength Elixirs" /> expire on rest, so only consume them before a planned fight. Save your Short Rests for Hit Dice recovery between explorations.
+
+<BuildTactic target="barde_controleur">
+  **🎯 Agility Armour (Bard):** Dammon sells the Yuan-Ti Armour. If you do not have Agility Armour, take it. It adds your full Dexterity modifier to your AC, making you untouchable.
+</BuildTactic>
+
+<BuildTactic target="throwzerker">
+  **🔱 Transition Weapon (Throwzerker):** Quartermaster Talli sells an excellent Halberd (+2) if you want to vary from the <Rule term="lance_de_retour">Returning Pike</Rule> while waiting for Act 3. Also buy all her Hill Giant Strength Elixirs!
+</BuildTactic>
+
+<BuildTactic target="barde_controleur">
+  **🛡️ Untouchable AC (Bard):** Buy the **Yuan-Ti Scale Mail** from Quartermaster Talli. It lets you add your full Dexterity modifier to your Armour Class. With a shield, you will become an untouchable tank while staying at range.
+</BuildTactic>
+
+<BuildTactic target="moine_bagarreur">
+  **🥋 Key Equipment (Monk):** Buy the **Hat of Uninhibited Kushigo** from Quartermaster Talli. It adds a bonus to Saving Throws and your unarmed attacks. This is your definitive helmet.
+</BuildTactic>
+
+<BuildTactic target="clerc_lumiere">
+  **☀️ The Rings of Light (Cleric):** In the cellar beneath the Inn, behind a destructible wall, find the **Coruscation Ring**. It applies even more Radiant Orbs to enemies. You become a blinding spotlight.
+</BuildTactic>
+
+<BuildTactic target="storm_sorcerer">
+  **🧙‍♂️ The Ultimate Robe (Sorcerer / Warlock):** Absolutely save the Tieflings from the Moonrise Towers prison! Upon returning to the Inn, Alfira will reward you with the **<Rule term="robe_puissante">Potent Robe</Rule>**. It adds your Charisma modifier to your Cantrips (like Eldritch Blast). This is colossal.
+</BuildTactic>
+
+---
+
+## Rosymorn Monastery — The Blood of Lathander
+
+Before diving into Moonrise Towers or the Gauntlet of Shar, make a detour to **Rosymorn Monastery** northeast of the Cursed Lands. This is where the <CodexTooltipById id="sang_de_lathandre" text="Blood of Lathander" /> is found — the weapon that **transforms the Apostle of Myrkul fight** from a nightmare into a manageable encounter.
+
+### The Stained Glass Puzzle
+
+The Monastery is a placement puzzle. Four ceremonial weapons must be placed on the corresponding altars before the stained glass windows. The weapons are scattered throughout the monastery — two on the ground floor, one in the basement, one carried by a wandering Ghost Knight.
+
+<SingleStepTracker stepId="acte2_monastere_puzzle" label="Solve the stained glass puzzle — place the 4 ceremonial weapons on the altars" />
+
+<SingleStepTracker stepId="acte2_monastere_lathandre" label="Retrieve the Blood of Lathander from the secret chamber" />
+
+**<CodexTooltipById id="sang_de_lathandre" text="Blood of Lathander" /> Statistics:**
+- **Damage:** 1d6+3 bludgeoning + 1d6 radiant = **average 10.5 per hit**
+- **Blinding Aura:** All Undead within a 6m radius are automatically **Blinded** at the start of each turn (no Saving Throw!)
+- **Solar Shield:** 1×/Long Rest — resistance to all damage + reflects 2d8 radiant to melee attackers for 3 turns
+- **Emergency Resurrection:** If the bearer drops to 0 HP, they are automatically restored to 1 HP (1×/Long Rest)
+
+> **Why this is the most important weapon of Act 2:** The Blinding Aura works on the Apostle of Myrkul — an Undead boss. A blinded boss cannot use its **Gaze of the Dead** (requires line of sight), cannot target your allies individually, and has **Disadvantage on all its attacks**. This is the difference between a 15-minute fight and a wipe on Turn 3.
+
+<FailsafeCard missing="Blood of Lathander (Monastery puzzle unsolved)" fallback="+2 radiant mace from the Last Light Inn merchant — no Blinding Aura, but radiant damage remains effective against Undead" condition="If the Monastery puzzle is unsolved or the Ghost Knights are too difficult" />
+
+<BuildTactic target="barde_controleur">
+  **👑 THE BARD'S GRAIL (Absolute Control):** In the basement of the Mason's Guild in Reithwin, search for the **<Rule term="casque_acuite">Helmet of Arcane Acuity</Rule>**. This is the build's centrepiece: each weapon attack increases the DC of your spells. You will be able to paralyse any boss with a 100% success rate after a single round of shooting.
+</BuildTactic>
+
+<BuildTactic target="gloom_assassin">
+  **🗡️ The Execution Amulet (Assassin):** Kill the surgeon Malus Thorm and loot his corpse for the **Surgeon's Subjugation Amulet**. Since the Assassin guarantees critical hits on surprise attacks, this amulet will let you paralyse your primary target on the very first turn, sealing their fate.
+</BuildTactic>
+
+---
+
+## Moonrise Towers — The Cursed Citadel
+
+Moonrise Towers is a ruined city, once thriving, now transformed into the bastion of Ketheric Thorm and his Absolute Moon fanatics. The atmosphere is oppressive: greenish torches illuminate streets paved with corpses, cultists whisper prayers to Shar, and the shadow of the Gauntlet of Shar looms above everything.
+
+### Entering Moonrise Towers
+
+<SingleStepTracker stepId="acte2_hautelune_entree" label="Enter Moonrise Towers — Persuasion DC 14 at the guard OR cultist disguise" />
+
+The entrance is guarded. Two options:
+1. **Persuasion DC 14**: With CHA 16 (+3 Persuasion + 3 Proficiency = +6), you need an 8+ on the d20 = **65% success rate**. If you wear Charisma equipment (CHA +1 Amulet, etc.), the DC drops further.
+2. **Cultist disguise**: If you recovered an Absolute Moon cultist robe (from Act 1 enemies), equip it. Entry is then **automatic**, no dice roll.
+
+> **Honour Mode:** Always take the option without a dice roll. A failure at the Moonrise Towers gate triggers a fight against 8+ guards — a fight you can win, but which consumes precious resources and can cost a life if the dice are unfavourable.
+
+### Moonrise Towers Merchants
+
+Moonrise Towers contains three essential merchants. Buy **everything** you need before triggering anything in the city — once hostilities begin, the merchants disappear.
+
+**Roah Moonglow** — The main arms dealer. She sells:
+- The <CodexTooltipById id="hallebarde_vigilance" text="Halberd of Vigilance" />: 1d10+2 slashing, **permanent Advantage on Initiative**, **Surprise Immunity**. This is the most underrated weapon in the game. Initiative determines who acts first in combat — with Advantage, your average initiative goes from **10.5 to 13.8** (calculation: E[max(d20,d20)] = 13.825). Going first means buffing before the enemy acts, which in Honour Mode is the difference between life and death.
+
+<SingleStepTracker stepId="acte2_roah_hallebarde" label="Buy the Halberd of Vigilance from Roah Moonglow (~800 GP)" />
+
+**Araj Oblodra** — The Drow alchemist. Two critical items:
+- **Astarion's Vigour Potion**: If Astarion is in your party, you can ask him to bite Araj. She then crafts a potion that gives Astarion +2 to Attack Rolls for 3 Long Rests. It is a free, unique buff.
+- The <CodexTooltipById id="gants_maitre_armes" text="Martial Exertion Gloves" />: Proficiency with ALL weapons. Perfect if your spellcaster wants to use a martial weapon without multiclassing.
+
+<SingleStepTracker stepId="acte2_araj_potion" label="Have Astarion bite Araj — Vigour Potion (+2 attack, 3 rests)" />
+
+<SingleStepTracker stepId="acte2_araj_gants" label="Buy the Martial Exertion Gloves from Araj Oblodra" />
+
+**Lann Tarv** — The goblin quartermaster. He sells enchanted ammunition (+2 Arrows, +1 Crossbow Bolts) and alchemical components. Less of a priority than the previous two, but +2 Arrows are excellent on a Ranger or archer Rogue.
+
+<SingleStepTracker stepId="acte2_lann_munitions" label="Buy +2 Arrows and +1 Bolts from Lann Tarv" />
+
+<BuildTactic target="throwzerker">
+  **💪 The Permanent Strength Serum (+2):** Go see Araj Oblodra on the ground floor. Force Astarion to bite her. As a reward, she will give you the **Potion of Everlasting Vigour**. Drink it with your Barbarian for a permanent +2 to Strength, breaking the 20 cap!
+</BuildTactic>
+
+<BuildTactic target="lockadin">
+  **💍 The Critical Hit Engine (Lockadin):** At Araj Oblodra's, you must buy the **<Rule term="anneau_risque">Risky Ring</Rule>**. You will have <Rule term="avantage">Advantage</Rule> on ALL your attacks. This is what lets you guarantee your critical hits to trigger your devastating Divine Smites. Also buy the **Halberd of Vigilance** from Lann Tarv.
+</BuildTactic>
+
+<BuildTactic target="barde_controleur">
+  **🔫 The Magic Crossbow (Bard):** Buy **Ne'er Misser** from Roah Moonglow. It is a hand crossbow that deals force damage (bypassing physical resistance of Act 2 and 3 bosses).
+</BuildTactic>
+
+### The <Rule term="robe_puissante">Potent Robe</Rule>
+
+In Balthazar's quarters (accessible via Stealth or after his elimination), you will find the **<Rule term="robe_puissante">Potent Robe</Rule>** — a light armour that grants +22 temporary HP at the start of each combat AND a +1 bonus to spell DC. It is the best armour for a spellcaster until Act 3.
+
+<SingleStepTracker stepId="acte2_hautelune_robe" label="Retrieve the Potent Robe from Balthazar's quarters" />
+
+> **Rest Management at Moonrise Towers:** Do NOT take a Long Rest inside Moonrise Towers. Random night events can trigger fights against cultists. Return to the Last Light Inn for your rests — the journey is short and danger-free if you have the Pixie's Blessing.
+
+---
+
+## The Gauntlet of Shar — Zero Risk, Zero Improvisation
+
+The Gauntlet of Shar is a dungeon dedicated to the goddess of shadow. Three trials, a necromancer's laboratory, and access to the Shadowfell depths. In Honour Mode, the objective is simple: **complete the trials with minimum risk** and retrieve the Nightstones without triggering any optional combat.
+
+### Trial of Faith — The Maze of Darkness
+
+The Trial of Faith is a maze in total darkness. The floor is a chasm except for an invisible path. One misstep = falling into the void = **instant death in Honour Mode**.
+
+**The risk-free solution:** The <CodexTooltipById id="pas_brumeux" text="Misty Step" /> spell (level 2, Bonus Action) lets you teleport a character directly to the arrival platform — visible from the entrance. No maze, no invisible path, no fall risk.
+
+<SingleStepTracker stepId="acte2_gantelet_foi" label="Trial of Faith: Misty Step directly to the final platform" />
+
+> **Alternative:** The Fly spell (level 3) also works, but consumes a higher-level slot. If you have neither <CodexTooltipById id="pas_brumeux" text="Misty Step" /> nor Fly, cast <CodexTooltipById id="lumiere_du_jour" text="Daylight" /> to reveal the path — the safe tiles glow faintly under magical light.
+
+### Trial of Cunning — Infiltration
+
+The Trial of Cunning requires you to cross a room filled with hostile Shadows without being detected. The Shadows have a passive Perception of 14 — against a typical Stealth of +5 to +7, that is a roll of 7-9+ needed = ~55-65% success rate per character. With 4 characters, the probability that ALL pass is ~11-18%. **Unacceptable in Honour Mode.**
+
+**The solution:** <CodexTooltipById id="invisibilite" text="Invisibility" /> (level 2, Concentration) renders a character invisible. Cast it on each character individually and cross one by one. <CodexTooltipById id="invisibilite" text="Invisibility" /> nullifies all visual detection — only noise (Stealth) counts, and the Shadows do not have enhanced auditory Perception.
+
+<SingleStepTracker stepId="acte2_gantelet_ruse" label="Trial of Cunning: Invisibility on each character, cross one by one" />
+
+> **Slot calculation:** 4 castings of <CodexTooltipById id="invisibilite" text="Invisibility" /> = 4 level 2 Spell Slots. At this stage of the game (level 6-7), your party should have 6-8 level 2 slots across all casters. It is a heavy investment but eliminates **100% of the risk**.
+
+### Trial of Pain — The Controlled Fight
+
+The only trial that requires combat. You face mirrors of yourselves — dark copies of your party with your stats but without your magic items. The fight is calibrated to be doable, but in Honour Mode, a crit from your own copy can be devastating.
+
+<SingleStepTracker stepId="acte2_gantelet_douleur" label="Trial of Pain: Eliminate the copies — prioritise the spellcaster copies" />
+
+**Strategy:** Focus DPS on the copy of your spellcaster first — it can cast control spells (Gale's copy = <CodexTooltipById id="counterspell" text="Counterspell" /> + AoE). Then the tank's copy (harmless but takes long to kill). Save the Rogue's copy for last — its Sneak Attacks hurt but it is fragile.
+
+---
+
+## Balthazar — The Shadowfell Trap
+
+Balthazar, necromancer of Myrkul, is Act 2's intermediate boss. He is a spellcaster with 180 HP, AC 16, and the ability to summon undead continuously. But the real threat is not Balthazar himself — it is **where you fight him**.
+
+### ABSOLUTE RULE: NEVER Fight in the Shadowfell
+
+<BossCard id="balthazar" />
+
+<EmergencyMatrix bossId="balthazar" />
+
+> **RED ALERT — INSTANT GAME OVER:** If you fight Balthazar in the Nightsong prison (Shadowfell), his undead minions **push you into the void**. There is no Saving Throw. There is no Reaction. It is an infinite fall — **instant death**, end of the Honour Mode run. Hundreds of players have lost 30+ hour runs to this trap.
+
+### Strategy: Kill Him in His Office
+
+The only viable strategy is to trigger the fight in **Balthazar's laboratory** within the Gauntlet of Shar — an enclosed space with walls and solid ground, no chasm.
+
+<SingleStepTracker stepId="acte2_balthazar_lieu" label="CONFIRM: The fight takes place in Balthazar's laboratory, NOT in the Shadowfell" />
+
+**Engagement protocol:**
+
+<SingleStepTracker stepId="acte2_balthazar_porte" label="Turn 0: Close the laboratory door behind you — prevent reinforcements" />
+
+Before engaging, close the laboratory door. The undead reinforcements patrolling the corridor will not be able to enter. This reduces the fight from 8 enemies to 4: Balthazar, his Flesh Golem, and 2 initial skeletons.
+
+<SingleStepTracker stepId="acte2_balthazar_silence" label="Turn 1: Cast Silence centred on Balthazar — blocks ALL his spells" />
+
+Balthazar is a pure spellcaster. **All** his spells have a verbal component — meaning <CodexTooltipById id="silence" text="Silence" /> completely negates them. Centre <CodexTooltipById id="silence" text="Silence" /> directly on him. As long as the 6m radius zone covers his position, he cannot cast **any spell**: no <CodexTooltipById id="fletrir" text="Blight" /> (8d8 necrotic), no Necrotic Ray (3d8), no summons. He is reduced to his pathetic melee attacks (+2 to hit, 1d6 damage).
+
+> **What if Balthazar leaves the Silence zone?** He spends his movement action to exit the zone, costing him an entire turn of spells. Reposition the zone on your next turn via Concentration. Alternatively, use <CodexTooltipById id="injonction" text="Command: Halt" /> to force him to remain motionless within the zone.
+
+<SingleStepTracker stepId="acte2_balthazar_golem" label="Turns 1-2: Eliminate the Flesh Golem first (vulnerable to Fire)" />
+
+The Flesh Golem has ~60 HP and a **Fire vulnerability** — fire damage is doubled. The <CodexTooltipById id="epee_flammes_eternelles" text="Everburn Blade" /> deals 1d4 fire per hit, doubled to 2d4. A Fireball (8d6 fire = 28 average, doubled to 56) one-shots it.
+
+<SingleStepTracker stepId="acte2_balthazar_kill" label="Turns 3-4: Finish Balthazar — without spells, he is harmless" />
+
+**Alternative — Death by void (Poetic irony):** If you want a quick and stylish method, cast <CodexTooltipById id="injonction" text="Command: Approach" /> to force Balthazar toward a ledge, then use Shove (STR DC 13) or the Repulsion spell to push him off. Instant death, full XP. The necromancer who pushed players into the void dies by his own mechanic.
+
+<FailsafeCard missing="Silence fails (Balthazar manages to leave the zone)" fallback="Blindness + Darkness combo: he can no longer individually target your allies and has Disadvantage on attacks" condition="If your spell DC is below 15 or Concentration is lost" />
+
+<BuildTactic target="clerc_lumiere">
+  **💥 Continuous Damage (Cleric):** In the chest room just next to Balthazar, open the heavy chest. You will find the **Callous Glow Ring**. It adds 2 radiant damage to every illuminated creature. Perfect synergy with your Radiant Orbs!
+</BuildTactic>
+
+---
+
+## The Apostle of Myrkul — The Run Killer
+
+This is the **most dangerous fight in the game in Honour Mode**. More runs are lost here than against the Elder Brain in Act 3. The Apostle of Myrkul is a multi-layered trap: a deceptively simple Phase 1 that lulls your vigilance, followed by a Phase 2 that annihilates unprepared parties in 2-3 turns.
+
+**The boss has 280 HP, AC 18, and 3 Honour Mode mechanics that combine into a death machine:**
+
+1. **Bone Chill Aura** — anti-healing zone of 6m around the central platform
+2. **Gaze of the Dead** — automatic retaliation: 3d8 necrotic + Frightened 2 turns (no Saving Throw)
+3. **Finger of Death** — 7d8+30 necrotic (average **61 damage**) = one-shot on 95% of characters
+
+<BossCard id="apotre_myrkul" />
+
+### Mandatory Preparation — BEFORE the Fight
+
+Every minute invested in preparation here saves you hours of frustration. **NEVER** trigger this fight without checking every point below.
+
+<SingleStepTracker stepId="acte2_apotre_elixir" label="Necrotic Resistance Elixirs on ALL party members" />
+
+Necrotic Resistance Elixirs reduce necrotic damage by **50%**. <CodexTooltipById id="doigt_de_mort" text="Finger of Death" /> drops from 61 average damage to **30.5** — survivable for a character with 35+ HP. The Bone Chill Aura and Gaze of the Dead are also necrotic — resistance reduces ALL damage sources in this fight.
+
+<SingleStepTracker stepId="acte2_apotre_lathandre" label="Blood of Lathander equipped on the most aggressive character (Paladin/Cleric)" />
+
+The <CodexTooltipById id="sang_de_lathandre" text="Blood of Lathander" /> is your primary weapon here. Its Blinding Aura (6m) makes the Apostle **automatically blinded** at the start of each turn — disabling the Gaze of the Dead and granting Advantage on all your attacks. Combined with level 3+ <CodexTooltipById id="divine_smite" text="Divine Smite" /> (4d8 radiant, doubled against Undead = **36 average damage**), every hit is devastating.
+
+<SingleStepTracker stepId="acte2_apotre_contresort" label="Counterspell prepared on at least 1 caster — against Finger of Death" />
+
+<CodexTooltipById id="counterspell" text="Counterspell" /> is your last line of defence against <CodexTooltipById id="doigt_de_mort" text="Finger of Death" />. This spell is level 7 — your level 3 <CodexTooltipById id="counterspell" text="Counterspell" /> will require an ability check DC 17. With an INT/CHA bonus of +4, you need a 13+ = **40% success rate**. If you have a level 4 or 5 slot, upcast <CodexTooltipById id="counterspell" text="Counterspell" /> to increase your chances.
+
+<SingleStepTracker stepId="acte2_apotre_invisibilite" label="Invisibility prepared on the most mobile character (to free Aylin)" />
+
+<SingleStepTracker stepId="acte2_apotre_positions" label="Position the party BEFORE the dialogue — healer at 9m+ from the platform" />
+
+---
+
+### Emergency Matrix — The Apostle
+
+<EmergencyMatrix bossId="apotre_myrkul" />
+
+---
+
+### Phase 1 — Ketheric Thorm & The Mind Flayer
+
+Phase 1 is a **cognitive trap**. Ketheric Thorm in humanoid form seems manageable: 3 melee attacks (+10, 2d6+6) and a Necrotic Blast in a cone (6d6, CON DC 16). But the real danger is the **Mind Flayer** at his side.
+
+> **KILL THE MIND FLAYER ON TURN 1.** This is the most important rule of this fight. The Mind Flayer casts <CodexTooltipById id="doigt_de_mort" text="Finger of Death" /> on Turn 2 — 7d8+30 necrotic = average **61 damage**. If your healer takes this spell without necrotic resistance, it is a **guaranteed one-shot**. Worse: if the target dies, they rise as a **hostile zombie** — your own companion turned against you.
+
+**Phase 1 Mathematics:**
+- The Mind Flayer has **~75 HP** and an AC of 15
+- Your main DPS with <CodexTooltipById id="great_weapon_master" text="GWM" /> + <CodexTooltipById id="elixir_geant_collines" text="Strength Elixir" /> deals ~22 damage/attack × 2 (Extra Attack) = **44 damage/turn**
+- Add a level 2 <CodexTooltipById id="divine_smite" text="Divine Smite" /> on the first hit (3d8 = 13.5): **57.5 damage on Turn 1**
+- A second attacker with even just 2 attacks at ~10 damage = 20 more = **77.5 total**
+- The Mind Flayer is **dead on Turn 1** before it even acts
+
+<SingleStepTracker stepId="acte2_apotre_flagelleur" label="Turn 1: Focus ALL DPS on the Mind Flayer — it MUST die this turn" />
+
+**Simultaneously on Turn 1:** Your most mobile character (ideally under <CodexTooltipById id="invisibilite" text="Invisibility" /> cast before the dialogue) teleports behind Dame Aylin and frees her from her chains. Aylin joins the fight as an ally with ~100 HP and massive radiant damage — she can tank Ketheric while you finish the Mind Flayer.
+
+<SingleStepTracker stepId="acte2_apotre_aylin" label="Turn 1: Free Dame Aylin (invisible character positioned behind her)" />
+
+**Phase 1 should last 3-4 turns.** Ketheric has ~280 HP in Phase 1 but Aylin helps massively. Do not waste your high-level Spell Slots here — you will need them in Phase 2.
+
+---
+
+### Phase 2 — The Apostle of Myrkul (The Transformation)
+
+When Ketheric drops to 0 HP, he transforms into **the Apostle of Myrkul** — a giant 10-metre-tall skeleton, avatar of the God of Death. The music changes. The atmosphere changes. And the rules of combat change radically.
+
+**Apostle Statistics:**
+- **280 HP**, AC 18
+- **Immunity**: Poison, Necrotic
+- **Vulnerability**: Radiant (damage ×2)
+- **3 Legendary Actions** per round
+
+### Mechanic 1: Bone Chill Aura (Anti-Healing)
+
+Within a **6-metre** radius around the central platform, **healing and resurrection are IMPOSSIBLE**. Your healing potions, <CodexTooltipById id="sanctuary" text="Sanctuary" />, Healing Word, and Revivify are disabled in this zone. A character who drops to 0 HP within the aura is **permanently dead** — no death Saving Throws, no stabilisation. Dead.
+
+> **RULE #1:** Your healer MUST stay **outside** the aura, at 9m+ from the platform. They heal at range with long-range spells. If an ally falls within the aura, use <CodexTooltipById id="pas_brumeux" text="Misty Step" /> to teleport them out of the zone **BEFORE** any healing attempt.
+
+<SingleStepTracker stepId="acte2_apotre_healer" label="Position the healer at 9m+ from the platform — OUTSIDE the Bone Chill Aura" />
+
+### Mechanic 2: Gaze of the Dead (Automatic Retaliation)
+
+Every time the Apostle is attacked in **line of sight**, it triggers **Gaze of the Dead** as a Reaction: a necrotic ray dealing **3d8 necrotic** (average 13.5, reduced to 6.75 with resistance) AND applying the **Frightened** condition for 2 turns. Frightened forces the character to flee — a frightened tank who abandons the front line exposes your backline.
+
+> **THE COUNTER-MEASURE:** <CodexTooltipById id="cecite" text="Blindness" /> or <CodexTooltipById id="tenebres" text="Darkness" /> directly on the Apostle. A blinded boss **cannot** use Gaze of the Dead (requires line of sight). The <CodexTooltipById id="sang_de_lathandre" text="Blood of Lathander" /> does this **automatically** with its Blinding Aura — this is why it is the mandatory weapon here.
+
+<SingleStepTracker stepId="acte2_apotre_cecite" label="Turn 1 Phase 2: Apply Blindness/Darkness on the Apostle OR position the Blood of Lathander within 6m" />
+
+**If you do not have the <CodexTooltipById id="sang_de_lathandre" text="Blood of Lathander" />:** Cast <CodexTooltipById id="cecite" text="Blindness" /> (level 2, CON Saving Throw). The Apostle has CON +6 — against a DC of 15, it resists on a 9+ = **60% resistance**. This is insufficient. Recast each turn. With <CodexTooltipById id="tenebres" text="Darkness" /> (no Saving Throw, 4.5m zone), you can cover the Apostle without it being able to resist — but beware, your melee attackers will also have Disadvantage within the zone.
+
+### Mechanic 3: Finger of Death (Potential One-Shot)
+
+The Apostle uses **Necromites** (small wandering skeletons, ~15 HP each) as fuel to cast <CodexTooltipById id="doigt_de_mort" text="Finger of Death" />. Each casting consumes one Necromite. If there are no more Necromites, it can **no longer cast** this spell.
+
+> **7d8+30 = range of 37-86 damage, average 61.** With necrotic resistance, the average drops to **30.5** — survivable but painful. Without resistance, a spellcaster with 40 HP has a **78% chance of dying** (probability that 7d8+30 > 40).
+
+<SingleStepTracker stepId="acte2_apotre_nechromites" label="Priority: Kill the Necromites before they reach the Apostle — no fuel = no Finger of Death" />
+
+---
+
+### Turn-by-Turn Rotation — Phase 2
+
+<SingleStepTracker stepId="acte2_apotre_t1" label="Turn 1 Phase 2: Blindness/Darkness + Blood of Lathander in position + kill the Necromites" />
+
+**Turn 1:** The control caster applies <CodexTooltipById id="cecite" text="Blindness" /> or <CodexTooltipById id="tenebres" text="Darkness" /> on the Apostle. The <CodexTooltipById id="sang_de_lathandre" text="Blood of Lathander" /> bearer positions themselves within 6m (Blinding Aura range). Secondary DPS characters eliminate the Necromites (15 HP, AC 10 — one hit is enough).
+
+<SingleStepTracker stepId="acte2_apotre_t2" label="Turn 2 Phase 2: Maximum DPS on the Apostle — radiant Divine Smite (damage ×2)" />
+
+**Turn 2:** The Apostle is blinded. This is the moment to use your high-level Spell Slots. Level 3 <CodexTooltipById id="divine_smite" text="Divine Smite" /> = 4d8 radiant = 18 average, **×2 vulnerability = 36 per Smite**. Weapon attack (<CodexTooltipById id="sang_de_lathandre" text="Blood of Lathander" />): 1d6+3 + 1d6 radiant (×2) = 3.5+3+7 = **13.5 per hit**. With 2 attacks + 2 Smites = (13.5 + 36) × 2 = **99 damage in one turn** from a single Paladin. The Apostle has 280 HP — with Aylin helping, it is **3-4 turns** to finish it.
+
+<SingleStepTracker stepId="acte2_apotre_t3" label="Turn 3+ Phase 2: Maintain blindness, finish off — Counterspell if Finger of Death" />
+
+**Turn 3 and beyond:** Maintain blindness (recast <CodexTooltipById id="cecite" text="Blindness" /> if necessary or stay within Aura range). Keep <CodexTooltipById id="counterspell" text="Counterspell" /> as a permanent Reaction. Eliminate spawning Necromites. Continue radiant DPS until the Apostle falls.
+
+<SingleStepTracker stepId="acte2_apotre_kill" label="Finish the Apostle of Myrkul — Retrieve the Helm of Ketheric" />
+
+<FailsafeCard missing="Blood of Lathander + Counterspell (neither available)" fallback="Shield of Faith on the healer (+2 AC), Necrotic Resistance on all, and pure DPS — riskier but doable if the Apostle is blinded by Darkness" condition="If the Monastery puzzle AND Counterspell slots are unavailable" />
+
+### Kill-Cam — The Apostle of Myrkul
+
+<BossTimeline>
+  <Turn number={1} title="Eliminating the Threats">
+    Use *Misty Step* or fly up to the Mind Flayer perched in the upper right and eliminate it immediately. Send your fastest character to free Nightsong to cancel Ketheric's invulnerability.
+  </Turn>
+  <Turn number={2} title="The Radiant Deluge">
+    Regroup your characters outside of Myrkul's scythe range. Use your Cleric to cast *Wall of Fire* or constant radiant attacks. Cast *Blindness* on the Apostle (it is not immune!).
+  </Turn>
+  <Turn number={3} title="The Execution">
+    Myrkul will absorb the Necromites to heal. This is the moment to use your Darkness arrows or Ilmater arrows to block its healing, and to unleash all your Divine Smites.
+  </Turn>
+</BossTimeline>
+
+---
+
+## Exit Checklist — Act 2
+
+Act 2 is complete. Before moving on to Baldur's Gate, confirm every point. Act 3 forgives no oversights.
+
+### Levels and Equipment
+
+<SingleStepTracker stepId="acte2_exit_level8" label="Entire party is at least Level 8" />
+
+<SingleStepTracker stepId="acte2_exit_lathandre" label="The Blood of Lathander is in inventory" />
+
+<SingleStepTracker stepId="acte2_exit_hallebarde" label="The Halberd of Vigilance is equipped (Initiative Advantage + Anti-Surprise)" />
+
+<SingleStepTracker stepId="acte2_exit_casque" label="The Helmet of Arcane Acuity is equipped on a control caster" />
+
+### Companions and Quests
+
+<SingleStepTracker stepId="acte2_exit_isobel" label="Isobel is alive and the Last Light Inn is intact" />
+
+<SingleStepTracker stepId="acte2_exit_jaheira" label="Jaheira is recruited and alive" />
+
+<SingleStepTracker stepId="acte2_exit_dammon" label="Dammon is alive (he forges in Act 3 — crucial for certain builds)" />
+
+### Inventory
+
+<SingleStepTracker stepId="acte2_exit_elixirs" label="Stock of Hill Giant Strength Elixirs + Necrotic Resistance Elixirs" />
+
+<SingleStepTracker stepId="acte2_exit_parchemins" label="Counterspell, Sanctuary, and Misty Step Scrolls" />
+
+<SingleStepTracker stepId="acte2_exit_potions" label="15+ Greater Healing Potions" />
+
+### Final Rest
+
+<SingleStepTracker stepId="acte2_exit_repos" label="Full Long Rest BEFORE entering Baldur's Gate" />
+
+> **POINT OF NO RETURN**: Entering Baldur's Gate is **final**. The Cursed Lands and Moonrise Towers become **inaccessible**. Verify that the <CodexTooltipById id="sang_de_lathandre" text="Blood of Lathander" />, the <CodexTooltipById id="hallebarde_vigilance" text="Halberd of Vigilance" />, the <CodexTooltipById id="casque_acuite_arcanique" text="Helmet of Arcane Acuity" />, and your <CodexTooltipById id="elixir_geant_collines" text="Strength Elixirs" /> are in your inventory. Every forgotten item is a **permanent** handicap for Act 3.
+
+---
+
+**[Continue to Act 3: Baldur's Gate & The Endgame](/walkthrough/acte-3)**

@@ -25,6 +25,7 @@ import { LevelingGuide, LevelStep } from "./LevelingGuide";
 import { BossTimeline, Turn } from "./BossTimeline";
 import { RuleTooltip } from "./RuleTooltip";
 import { SkillCheck } from "./SkillCheck";
+import { ChecklistItem } from "./ChecklistItem";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -70,4 +71,5 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   Turn,
   Rule: RuleTooltip,
   SkillCheck,
+  ChecklistItem,
 };

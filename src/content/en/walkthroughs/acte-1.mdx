@@ -1,0 +1,354 @@
+---
+title: "Act 1: The Peaceful Route (Levels 1 to 4)"
+act: 1
+slug: "acte-1"
+description: "Reach Level 4 without rolling the dice. Nautiloid Prologue, Peaceful Route, Goblin Camp, and Grymforge — the foundation of every successful Honour Mode run."
+order: 1
+---
+
+## Prologue: The Nautiloid Crash
+
+The light is red. Alarms blare through the bowels of the Illithid vessel as organic tentacles contract around you. The Nautiloid is in freefall above the Sword Coast, and you have exactly **six minutes** to collect the most important items of the early game — or lose them forever.
+
+The Nautiloid is not a tutorial. It is the **first test of discipline** for your Honour Mode run. Every item missed here is a handicap you will carry throughout all of Act 1.
+
+### The Command Room — Zhalk's Sword
+
+The first room of the Nautiloid contains Commander Zhalk, a cambion in the middle of a fight against a Mind Flayer. Zhalk holds in his right hand the <CodexTooltipById id="epee_flammes_eternelles" text="Everburn Blade" /> — the best two-handed weapon you will see before the Grymforge, dozens of hours of gameplay later.
+
+**Sword Statistics:** 2d6 slashing + 1d4 fire = **average 11 damage per hit**. For comparison, the best longsword found in the wild in Act 1 deals 1d8+1 = average 5.5. That is **double** the base damage.
+
+> **How to obtain it:** Cast <CodexTooltipById id="injonction" text="Command: Drop" /> on Commander Zhalk. It is a level 1 Cleric/Paladin spell with a Wisdom Saving Throw. Zhalk has a WIS of 14 (+2), so against a spell DC of 13 (CHA 16 + Proficiency 2), you have a **50% chance of success**. If you have Shadowheart in the party, she can cast it on Turn 1.
+
+<SingleStepTracker stepId="nautiloid_command" label="Cast Command: Drop on Zhalk — retrieve the Everburn Blade" />
+
+**If Command fails**: Do not panic. You have a Turn 2. Zhalk and the Mind Flayer fight each other — they will not target you unless you attack them. Recast <CodexTooltipById id="injonction" text="Command" /> with your second Spell Slot. With two attempts, the combined probability of retrieving the sword rises to **75%**.
+
+> **HONOUR MODE RULE:** NEVER hit Zhalk in melee. He has an AC of 18 and 3 attacks per turn at +9 to hit. A single turn of retaliation can kill a level 1 character (20 HP on average). <CodexTooltipById id="injonction" text="Command" /> is the only risk-free approach.
+
+<FailsafeCard missing="Command fails twice (no Cleric/Paladin)" fallback="Retrieve the sword from Zhalk's corpse — he dies automatically on Turn 5 when the Nautiloid crashes. Stay at range and wait." condition="If you have no level 1 spellcaster with Command" />
+
+<SingleStepTracker stepId="nautiloid_us" label="Loot Us's corpse (Mind Flayer) — retrieve the Intellect Devourer Brain" />
+
+### The Brain in a Jar — Us, the Illithid Servant
+
+In the second room, a brain floats in a jar. This is Us, an Intellect Devourer. **Free it.** It joins you as a temporary companion with 21 HP, an AC of 10, and most importantly a melee attack dealing 1d6+3 damage + stun (INT Saving Throw DC 12). In Honour Mode, an enemy stunned for 1 free turn is invaluable.
+
+Us is a sacrificial meat shield. Put it in front, let it absorb damage, and take advantage of its stun to secure the first scripted fights of the Nautiloid.
+
+<SingleStepTracker stepId="nautiloid_us_liberer" label="Free Us in the brain room — recruit it as a temporary companion" />
+
+### Rest Management — Nautiloid
+
+The Nautiloid allows **no resting**. You have your starting Spell Slots and that is it. For a Cleric with 2 level 1 slots, this means: 1 for <CodexTooltipById id="injonction" text="Command" /> on Zhalk, 1 for <CodexTooltipById id="sanctuary" text="Sanctuary" /> or <CodexTooltipById id="shield_of_faith" text="Shield of Faith" /> on your most fragile character during the bridge combat sequence.
+
+> **Survival calculation:** A level 1 character has on average 10 HP (d10 class) or 8 HP (d8 class). <CodexTooltipById id="shield_of_faith" text="Shield of Faith" /> adds +2 AC, which against an enemy with +5 to hit against a base AC of 16 (chain mail) turns a 50% hit rate into **40%**. Over 3 enemy attacks, that is statistically **1 avoided hit** — meaning 7 to 10 damage saved.
+
+---
+
+## The Crash Beach — First Steps on the Coast
+
+You wake up facing the sea, the Nautiloid in pieces behind you. The salty air of the Sword Coast replaces the oppressive atmosphere of the vessel. This is the true beginning of your run.
+
+The first reflex is to **take a Long Rest immediately**. The crash costs no narrative resources, and your Spell Slots are empty after the Nautiloid. Before talking to a single NPC, before exploring anything: click Long Rest.
+
+<SingleStepTracker stepId="acte1_plage_repos" label="Immediate Long Rest after the crash — recover all Spell Slots" />
+
+<SingleStepTracker stepId="acte1_plage_shadowheart" label="Recruit Shadowheart on the beach (if not already done on the Nautiloid)" />
+
+<SingleStepTracker stepId="acte1_plage_astarion" label="Recruit Astarion — north of the beach (event: he attacks you, choose dialogue)" />
+
+<SingleStepTracker stepId="acte1_plage_gale" label="Recruit Gale — teleportation portal east of the beach (help pull him out)" />
+
+---
+
+## Why the Peaceful Route?
+
+In **Honour Mode**, your run is a one-shot — one save, one attempt. Dying in Act 1 because a goblin rolled a crit on your level 2 Monk is not a strategy failure, it is a **planning** failure.
+
+The Peaceful Route is the optimal meta: **reach level 4 without triggering a single non-scripted combat**. Why level 4? Because it is the **feat** threshold — and feats like <CodexTooltipById id="great_weapon_master" text="Great Weapon Master" /> transform a mediocre character into a war machine.
+
+**The math is unforgiving:** A level 2 character with a longsword +0 deals 1d8+3 = **7.5 average damage per attack**. That same character at level 4 with <CodexTooltipById id="great_weapon_master" text="GWM" /> active and the <CodexTooltipById id="elixir_geant_collines" text="Elixir of Hill Giant Strength" /> (STR 21, +5) deals 2d6+15 = **22 average damage per attack** with the <CodexTooltipById id="epee_flammes_eternelles" text="Everburn Blade" />. That is a **3x** multiplication of your DPS.
+
+> **Honour Mode golden rule**: Every XP point earned through diplomacy, exploration, and quest completion is an XP point earned without risk. You have literally **zero reason** to fight before level 4.
+
+---
+
+## The Vendor Refresh Exploit — The Economy of Survival
+
+This is the most important technique of Act 1. In Honour Mode, merchants restock their inventory **at each level up**. This means you can buy multiple copies of normally limited items.
+
+The <CodexTooltipById id="elixir_geant_collines" text="Elixir of Hill Giant Strength" /> is the most broken item in Act 1. It sets your Strength to **21** until the next Long Rest, regardless of your base score. Combined with <CodexTooltipById id="great_weapon_master" text="Great Weapon Master" /> at level 4, each attack gains **+10 to damage** with only -5 to hit — offset by Strength 21 (+5 to hit) and Proficiency (+2).
+
+**Full Vendor Refresh calculation:**
+
+| Level | Source | Priority Purchases | Estimated Cost |
+|--------|--------|-------------------|-------------|
+| 2 | Auntie Ethel | 3× <CodexTooltipById id="elixir_geant_collines" text="Strength Elixir" />, 2× <CodexTooltipById id="sanctuary" text="Sanctuary" /> Scroll | ~300 GP |
+| 3 | Auntie Ethel (refresh) | 3× <CodexTooltipById id="elixir_geant_collines" text="Strength Elixir" />, +1 Arrows | ~350 GP |
+| 4 | Auntie Ethel (refresh) | 3× <CodexTooltipById id="elixir_geant_collines" text="Strength Elixir" />, Greater Healing Potions | ~400 GP |
+
+<SingleStepTracker stepId="vendor_ethel" label="Buy 3 Strength Elixirs from Auntie Ethel at each level up" />
+
+<SingleStepTracker stepId="vendor_refresh_1" label="Level 2: Buy Strength Elixir + Sanctuary Scrolls from Auntie Ethel" />
+
+<SingleStepTracker stepId="vendor_refresh_2" label="Level 3: Rebuy refreshed stock (Elixirs + +1 Arrows)" />
+
+<SingleStepTracker stepId="vendor_refresh_3" label="Level 4: Last refresh before Goblin Camp — ensure you have 9+ Elixirs total" />
+
+**How to fund these purchases?** The Nautiloid contains ~200 GP worth of sellable items (gems, dead Illithid equipment). The beach and adjacent caves add ~150 GP. Peaceful quests in the Ravaged Village yield ~100 GP in rewards. Total: **~450 GP before your first fight**, enough for the first Vendor Refresh cycle.
+
+> **Long Rest Management:** Each Long Rest consumes 1 <CodexTooltipById id="elixir_geant_collines" text="Elixir" /> (they expire on rest). Limit your Long Rests to the strict minimum — ideally 1 per level up. Use Short Rests (Hit Dice recovery) between explorations.
+
+<BuildTactic target="lockadin">
+  **🧬 Min-Max Optimisation (Lockadin):** Accept Ethel's deal and choose the **+1 to Charisma**. Coupled with the level 4 Feat, this propels you to 20 Charisma from the very start of the game.
+</BuildTactic>
+
+---
+
+## Peaceful Completion Quests
+
+<ZoneBanner title="The Emerald Grove" subtitle="Druid Sanctuary — Ravaged Village" />
+
+### 1. The Ravaged Village — The Way of Persuasion
+
+The stone walls of the Ravaged Village rise above the plain, a last bulwark against the chaos of the Wilderness. Behind these makeshift fortifications, a community of Tieflings flees persecution — and Druids are trying to expel them by sealing the Grove. The atmosphere is electric.
+
+The Ravaged Village is your first source of massive XP without combat. Each successful interaction yields between 20 and 75 XP. The level 2 threshold is at **300 XP** — you can reach it by resolving **4 to 5 dialogue quests**.
+
+<SingleStepTracker stepId="acte1_village_zevlor" label="Talk to Zevlor — Accept to help him (Persuasion DC 10)" />
+
+**Zevlor** is the Tiefling leader. His quest is the simplest: accept to help him, and you receive 25 XP + his +1 sword as a reward. The <SkillCheck skill="Persuasion" dc={10} /> is trivial with CHA 14+ (bonus of +2, roll of 8+ = success). With CHA 16, the success rate rises to **65%**.
+
+<SingleStepTracker stepId="acte1_village_kagha" label="Confront Kagha — Find the Shadow Weave evidence in her chest" />
+
+**Kagha** is the Druidess who wants to expel the Tieflings. The proof of her corruption by the Shadow Weave is found in a trapped chest at the back of the Grove (Stealth DC 12 to approach, Lockpicking DC 10 for the chest). Once the letter is in hand, confront Kagha before the assembly: the XP is **doubled** (50 XP instead of 25).
+
+<Accordion title="Optional Quest: Save Arabella (Persuasion DC 15)">
+
+<SingleStepTracker stepId="acte1_village_arabella" label="Save Arabella — Persuasion DC 15 or Kagha's evidence" />
+
+**Arabella** is the Tiefling child that Kagha threatens with a venomous snake. If you have the Shadow Weave evidence, the confrontation is automatic. Without evidence, it is a <SkillCheck skill="Persuasion" dc={15} /> check — a failure means Arabella dies, which locks out several side quests.
+
+> **Honour Mode Tip:** If your CHA is low, use <CodexTooltipById id="sanctuary" text="Sanctuary" /> before risky dialogues. In case of a critical Persuasion failure that triggers combat, <CodexTooltipById id="sanctuary" text="Sanctuary" /> prevents NPCs from targeting you for 10 turns (it is a Bonus Action!) — enough time to flee and reload the zone.
+
+</Accordion>
+
+<BuildTactic target="throwzerker">
+  **🎯 Mandatory Purchase (Throwzerker):** Buy the **Ring of Flinging** from Arron. It adds 1d4 damage to each throw. Then, buy ALL the **Elixirs of Hill Giant Strength** from Auntie Ethel (she restocks 3 at each Long Rest or level up). This is your build's fuel.
+</BuildTactic>
+
+<BuildTactic target="moine_bagarreur">
+  **🥊 Fuel (Monk):** Do not buy weapons. Save all your gold for Auntie Ethel at the Grove and clean out her stock of **Elixirs of Hill Giant Strength**. You will drink one every morning to compensate for your 8 Strength, which will make your Tavern Brawler feat devastating at level 4.
+</BuildTactic>
+
+<BuildTactic target="barde_controleur">
+  **🔫 Equipment (Bard):** Dammon sometimes sells a **Hand Crossbow +1**. Take it. The goal is to have one in each hand as soon as possible to use your Bonus Action to shoot.
+</BuildTactic>
+
+<BuildTactic target="lockadin">
+  **⚔️ Tactical Alert (Lockadin):** At Dammon's, look for good Heavy Armour if you do not have one yet, and save your gold for future two-handed weapons. No need to break the bank now, your Divine Smite will do the job.
+</BuildTactic>
+
+---
+
+### 2. Waukeen's Rest — Florrick's Rescue
+
+Thick black smoke rises in columns above the Waukeen's Rest inn. Through the shattered windows, flames lick the first-floor beams. Counsellor Florrick, emissary of Duke Ravengard, is trapped on the second floor — and you have **8 turns** before the building collapses.
+
+This is **free** XP if you know the route.
+
+<SingleStepTracker stepId="acte1_waukeen_florrick" label="Save Florrick — Destroy the 2nd floor door (Strength DC 15 or lockpicking)" />
+
+**Optimal route:** Enter through the back of the building (the north door is not on fire). Go straight to the second floor. Florrick's room door is locked — a character with STR 16+ breaks it down in one try (DC 15, bonus +3 = 60% success rate). Alternative: lockpicking DC 10, more reliable but costs a turn.
+
+**Critical timer:** The fire advances 2 tiles per turn. By Turn 4, the staircase becomes difficult terrain (+movement cost). By Turn 6, it is blocked. By Turn 8, the building collapses and everyone dies. **Do not waste time looting the ground floor first.**
+
+<SingleStepTracker stepId="acte1_waukeen_coffre" label="Retrieve the basement chest AFTER securing Florrick (timer)" />
+
+The basement contains a chest with ~80 GP and a mace +1 — retrieve it **after** saving Florrick, using <CodexTooltipById id="pas_brumeux" text="Misty Step" /> or a water spell to extinguish the flames blocking access.
+
+<FailsafeCard missing="Florrick dies in the fire" fallback="The rescue XP is lost but the quest continues via Duke Ravengard in Act 2" condition="If you do not reach the 2nd floor within 8 turns" />
+
+**Long Rest after Florrick:** Take a Long Rest after this event. The camp dialogue with Florrick unlocks information about Duke Ravengard that will be crucial in Act 2. This is also the time to talk to all your companions — Shadowheart, Astarion, and Gale have loyalty dialogues that increase their approval.
+
+<SingleStepTracker stepId="acte1_waukeen_repos" label="Long Rest after the rescue — camp dialogues with all companions" />
+
+<BuildTactic target="gloom_assassin">
+  **🏹 The Broken Bow (Gloomstalker Assassin):** Save the Zhentarim on the Risen Road to unlock Brem's secret inventory. Buy the **<Rule term="arc_titan">Titanstring Bow</Rule>** from him. This bow adds both your Strength AND Dexterity modifier to damage. Later, we will pair it with the Arcane Tower's Strength Stool for colossal damage.
+</BuildTactic>
+
+<BuildTactic target="nuke_tempete">
+  **⚡ The Lightning Staff (Storm Sorcerer / Tempest):** By saving Counsellor Florrick from the flames at Waukeen's Rest, choose **The Sparky Sweetspark** as your reward. This staff generates lightning charges with every spell, which synergises perfectly with your domain.
+</BuildTactic>
+
+---
+
+### 3. The Goblin Camp — Illithid Infiltration
+
+The entrance to the Absolute's Moon temple is guarded by thirty-odd armed-to-the-teeth goblins, worgs prowling between the tents, and three warlords who are just itching to crush you. The atmosphere is festive — the goblins are celebrating a recent victory — but a single wrong word and this party turns into your execution.
+
+The Goblin Camp is the **big challenge** of Act 1. This is where you can earn the most XP without combat — but a single misstep and 30+ goblins descend on you. In Honour Mode, a fight against 30 goblins at level 3 is a **guaranteed wipe**: their numbers compensate for their individual weakness, and the action economy (30 actions against your 4) is insurmountable.
+
+**Infiltration strategy:**
+
+<SingleStepTracker stepId="acte1_gobelin_porte" label="Use the Illithid tadpole to pass the gate (free Illithid choice)" />
+
+The Illithid tadpole grants you a **free psychic persuasion power** on goblins. This is not a dice roll — it is an automatic success. Use it at the main gate, then a second time on the inner guard. Each tadpole use yields **15 XP** (counted as quest resolution).
+
+> **Should you use Illithid powers?** In Honour Mode, **yes, without hesitation**. Act 1 Illithid powers have no negative consequences at this stage. The Illithid transformation only becomes a problem in Act 2. The free XP and risk-free infiltration are well worth the narrative "cost".
+
+<SingleStepTracker stepId="acte1_gobelin_priestesse" label="Convince Priestess Gut to 'heal' you — then eliminate her in an isolated 1v1" />
+
+**Priestess Gut** is one of the three goblin leaders. She offers to "heal" you of your tadpole — in reality, she wants to knock you out and deliver you to the Absolute. Accept her offer, follow her to her private chamber, and when she tries to put you to sleep (CON Saving Throw DC 12 — trivial at this stage), turn around and eliminate her in a 1v1. She only has **52 HP** and an AC of 13. Even a level 3 character kills her in 2-3 turns. Reward: **75 XP** + access to her laboratory.
+
+<SingleStepTracker stepId="acte1_gobelin_dror" label="Poison Dror Ragzlin's barrel (Stealth DC 14)" />
+
+**Dror Ragzlin** is the most dangerous goblin leader — a Hobgoblin necromancer with 113 HP. Direct combat is extremely risky. The solution: poison the beer barrel in his throne room. Stealth DC 14 to approach the barrel (use <CodexTooltipById id="invisibilite" text="Invisibility" /> if available), then add any poison from your inventory. On the next turn, Dror Ragzlin drinks and suffers **Poisoned** (Disadvantage on attacks + Saving Throws for 3 turns).
+
+**Poison mathematics:** Dror Ragzlin has +7 to hit. Against an AC of 16, he hits at 45% (9+ on a d20). With Poisoned (Disadvantage), his hit rate drops to **20%** (calculated as P = 0.45² ≈ 0.20). This is the difference between a deadly fight and a manageable one.
+
+The <CodexTooltipById id="etincelle_electrique" text="Sparky Sweetspark" /> is found at the goblin merchant inside the temple. Do not forget to buy it **before** triggering anything — once the goblins are hostile, the merchant disappears. This staff is excellent on Gale: it grants the Witch Bolt Cantrip (1d8 lightning at range) in addition to his own Cantrips.
+
+<FailsafeCard missing="The goblin merchant has turned hostile" fallback="The Sparky Sweetspark can be found on the merchant's corpse after the fight" condition="If you trigger the alert before buying" />
+
+<BuildTactic target="throwzerker">
+  **🔱 The Ultimate Act 1 Weapon (Throwzerker):** Go see the goblin Grat in the outer courtyard and buy the **<Rule term="lance_de_retour">Returning Pike</Rule>**. This is the weapon that validates your build. It returns to your hand after every throw. Do not lose it!
+</BuildTactic>
+
+<BuildTactic target="lockadin">
+  **🛡️ Equipment (Lockadin):** In the treasure room behind Dror Ragzlin (or in the Paladins of Tyr cellar on the Risen Road), retrieve the **Gauntlets of Heroism**. They grant you the Bane spell and provide a vital Advantage.
+</BuildTactic>
+
+### The Third Leader: Minthara
+
+**Minthara** is the Drow planning the attack on the Grove. Two radically different approaches are available to you:
+
+<ParallelRoutes>
+  <Route type="peaceful" title="Peaceful Path — Betrayal at the Grove">
+
+Accept Minthara's proposal to help her attack the Grove. Return to the Ravaged Village and **warn Zevlor** of the imminent attack. When Minthara launches her assault, the Grove defenders help you — turning a 4v8 fight into **15v8**. The action economy is massively in your favour. Minthara (75 HP, AC 17) falls in 2-3 rounds with no risk to your party. **Recommended in Honour Mode** — zero wipe risk.
+
+  </Route>
+  <Route type="assault" title="Bloodbath — Stealth Elimination">
+
+Eliminate Minthara directly in the Goblin Camp. **Prerequisite:** Invisibility or Stealth DC 16+. Isolate her from her Drow guards by luring her into the adjacent room (Illithid dialogue). In a 1v1, her 75 HP and AC 17 are manageable — but if the Drow guards intervene (+3 enemies with AC 15), the fight becomes very dangerous. Position your characters in ambush **before** triggering the dialogue, and open with a <CodexTooltipById id="immobilisation_personne" text="Hold Person" /> to neutralise her on Turn 1.
+
+  </Route>
+</ParallelRoutes>
+
+<SingleStepTracker stepId="acte1_gobelin_minthara" label="Resolve Minthara — betrayal during the Grove attack OR stealth elimination" />
+
+> **Rest Management at the Goblin Camp:** Do NOT take a Long Rest while inside the temple. A Long Rest in the Goblin Camp triggers a night encounter event that can alert the guards. Rest at the beach camp instead, then come back.
+
+---
+
+## The Grymforge — The Adamantine Forge
+
+Deep beneath the mountain, accessible via the giant mushrooms of the Underdark, the Grymforge is an abandoned dwarven workshop hiding one of the most powerful forges in Faerûn. The oppressive heat of the magma, the distant hammering of ancient mechanisms, and the dancing shadows of the Duergar create an atmosphere of constant menace.
+
+The Grymforge is the last dungeon of Act 1 and contains two of the most important items in the game: the <CodexTooltipById id="casque_acuite_arcanique" text="Helmet of Arcane Acuity" /> and access to the Adamantine Forge itself.
+
+<BuildTactic target="barde_controleur">
+  **💍 Damage Spike (Bard):** Buy the **<Rule term="anneau_caustique">Caustic Band</Rule>** from Derryth. It adds +2 acid damage to each weapon attack. With your dual crossbows and Flourish attack, the damage gain is colossal.
+</BuildTactic>
+
+<BuildTactic target="moine_bagarreur">
+  **📿 The Amulet of Wisdom (Monk):** If you give the Owlbear Egg to Lady Esther (Mountain Pass), buy the **Graceful Cloth** (+2 Dexterity) from her. Then, in the Adamantine Forge, retrieve the Sentient Amulet to restore your Ki.
+</BuildTactic>
+
+<BuildTactic target="clerc_irradiation">
+  **☀️ The Build Engine (Light Cleric / Radiant Orbs):** In the secret room of the Selûnite Outpost (behind the illusion), open the trapped chest. You will find the **<Rule term="armure_lumineuse">Luminous Armour</Rule>**. This is the single most important piece of equipment in your entire game. It applies Radiant Orbs (attack penalty) to all nearby enemies when you deal radiant damage.
+</BuildTactic>
+
+<BuildTactic target="sorcadin">
+  **🛡️ Smite Synergy (Sorcadin):** Thoroughly loot the chests in the Selûnite Outpost to find the **Helmet of Smiting**. It grants you Temporary Hit Points every time you cast a Smite spell, compensating for your Sorcerer's lack of HP in melee.
+</BuildTactic>
+
+<BuildTactic target="gloom_assassin">
+  **💪 The Strength Trick (Gloomstalker Assassin):** On the top floor of the Arcane Tower, sit on the Hill Giant Strength Stool, then break it! You will obtain the **Club of Hill Giant Strength**. Equip it as a melee weapon (off-hand). It permanently sets your Strength to 19, which will massively boost the damage of your <Rule term="arc_titan">Titanstring Bow</Rule>.
+</BuildTactic>
+
+### The <Rule term="casque_acuite">Helmet of Arcane Acuity</Rule>
+
+<SingleStepTracker stepId="acte1_equip_casque" label="Helmet of Arcane Acuity — Grymforge (fight against the Guardian)" />
+
+The <CodexTooltipById id="casque_acuite_arcanique" text="Helmet of Arcane Acuity" /> is an item you will keep **until the end of the game** — from Act 1 all the way to the Elder Brain. Here is why:
+
+Every control spell you cast applies **Arcane Acuity** on the target: -1 to Saving Throws per stack, stackable up to **-7**. This means that after 3 control spells (even missed ones!), a boss with a +5 Saving Throw ends up at +2. After 5 spells, they are at +0. Your <CodexTooltipById id="immobilisation_personne" text="Hold Person" /> casts become nearly unstoppable.
+
+**Concrete example (Act 3):** Gortash has a WIS Saving Throw of +2. With 5 stacks of Arcane Acuity, his effective Saving Throw drops to **-3**. Against a spell DC of 17, he must roll a **natural 20** to resist <CodexTooltipById id="immobilisation_personne" text="Hold Person" />. That is a 5% chance of resistance — in other words, **95% guaranteed paralysis**.
+
+### The Adamantine Forge
+
+The Adamantine Forge produces adamantine weapons and armour — a metal that makes enemy crits impossible on the wearer and has an implicit +1 bonus. For an Honour Mode tank, the Adamantine Shield (AC +2, crit immunity) is one of the best items in Act 1.
+
+<SingleStepTracker stepId="acte1_grymforge_forge" label="Activate the Adamantine Forge — craft the Adamantine Shield" />
+
+> **Guardian Fight (Grym):** The Forge Guardian is a golem with 300 HP and immunity to all physical damage. The only way to hurt it is to position it on the lava plate at the centre of the forge, then activate the hammer. Each hammer strike deals **100 damage** — 3 hits are enough. Use <CodexTooltipById id="injonction" text="Command: Approach" /> to force it onto the plate if necessary.
+
+<BuildTactic target="moine_bagarreur">
+  **👊 BiS Armour (Monk):** Do not forge weapons in the Adamantine Forge! Forge the **Adamantine Medium Armour** instead. It grants immunity to critical hits, perfect for a Monk who fights in melee.
+</BuildTactic>
+
+---
+
+## Critical Act 1 Equipment
+
+Before leaving Act 1, make sure you have collected these essential items. Each missed item is a handicap in Acts 2 and 3:
+
+<SingleStepTracker stepId="acte1_equip_everburn" label="Everburn Blade — Nautiloid (Command: Drop on Zhalk)" />
+
+The <CodexTooltipById id="everburn_blade" text="Everburn Blade" /> is retrievable on the Nautiloid by using <CodexTooltipById id="injonction" text="Command: Drop" /> on Commander Zhalk. It is the best two-handed weapon in Act 1 with its 2d6 slashing + 1d4 fire = **average 11 damage per hit**. With <CodexTooltipById id="great_weapon_master" text="GWM" /> active and the <CodexTooltipById id="elixir_geant_collines" text="Strength Elixir" />, this weapon reaches **average 23.5 damage per hit** at level 4.
+
+<SingleStepTracker stepId="acte1_equip_gants" label="Gloves of Dexterity (STR 23) — Theft in the Grove Basement (Stealth)" />
+
+<SingleStepTracker stepId="acte1_equip_ombrecoeur" label="Shar's Spear of Evening (Shadowheart) — +1 necrotic mace for Act 2" />
+
+The <CodexTooltipById id="ombrecoeur" text="Shar's Spear of Evening" /> is Shadowheart's personal mace. It deals 1d6+1 bludgeoning + 1d6 necrotic against enemies outside of light — which represents **all enemies in Act 2** in the Cursed Lands. It is the perfect weapon for the transition.
+
+<FailsafeCard missing="Gloves of Dexterity (failed theft at the Grove)" fallback="Elixir of Hill Giant Strength (STR 21) — available from Auntie Ethel. Not as good (-2 STR) but sufficient." condition="If the theft fails or if the Druids are hostile" />
+
+---
+
+## Exit Checklist — Act 1
+
+Before moving on to Act 2, confirm each point. A single oversight can compromise your run:
+
+### Levels and Feats
+
+<SingleStepTracker stepId="acte1_exit_level4" label="Entire party is at least Level 4" />
+
+<SingleStepTracker stepId="acte1_exit_dons" label="All critical feats are taken (GWM, Tavern Brawler, Sharpshooter, Extra Attack)" />
+
+**Recommended feats at level 4:**
+- **Martial DPS:** <CodexTooltipById id="great_weapon_master" text="Great Weapon Master" /> (+10 damage / -5 to hit)
+- **Monk:** Tavern Brawler (STR to unarmed attacks + object throwing)
+- **Archer:** Sharpshooter (+10 damage / -5 to hit, ranged variant)
+- **Spellcaster:** Ability Score Improvement (CHA/INT 18 → spell DC 14)
+
+### Inventory
+
+<SingleStepTracker stepId="acte1_exit_elixirs" label="Stock of 9+ Hill Giant Strength Elixirs (3 Vendor Refresh cycles)" />
+
+<SingleStepTracker stepId="acte1_exit_parchemins" label="Stock of Sanctuary and Shield of Faith Scrolls" />
+
+<SingleStepTracker stepId="acte1_exit_potions" label="10+ Healing Potions (Regular or Greater)" />
+
+### Quests and Relationships
+
+<SingleStepTracker stepId="acte1_exit_compagnons" label="All available companions are recruited (Shadowheart, Astarion, Gale, Lae'zel, Wyll, Karlach)" />
+
+<SingleStepTracker stepId="acte1_exit_florrick" label="Florrick saved at Waukeen's Rest" />
+
+<SingleStepTracker stepId="acte1_exit_bosquet" label="The Grove is saved (Kagha confronted or Minthara eliminated)" />
+
+### Final Rest
+
+<SingleStepTracker stepId="acte1_exit_repos" label="Take a FINAL Long Rest — camp dialogues, last purchases, last Elixirs" />
+
+> **POINT OF NO RETURN**: Once you cross the Mountains to the Cursed Lands, there is **no going back** to Act 1. Every forgotten item is permanently lost. Verify that the <CodexTooltipById id="epee_flammes_eternelles" text="Everburn Blade" />, the <CodexTooltipById id="casque_acuite_arcanique" text="Helmet of Arcane Acuity" />, and your <CodexTooltipById id="elixir_geant_collines" text="Strength Elixirs" /> are in your inventory. The <CodexTooltipById id="casque_acuite_arcanique" text="Helmet of Arcane Acuity" /> in particular is **irreplaceable** — no Act 2 or 3 item replicates its effect.
+
+---
+
+**[Continue to Act 2: The Cursed Lands & Moonrise Towers](/walkthrough/acte-2)**

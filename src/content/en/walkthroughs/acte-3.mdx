@@ -1,0 +1,516 @@
+---
+title: "Act 3: Baldur's Gate & The Chosen — The Honour Mode Endgame"
+act: 3
+slug: "acte-3"
+description: "The Honour Mode Endgame. Race to level 12, Sorcerous Sundries Vault, Foundry, Iron Throne, three Chosen, an Archdevil, an Undead Dragon, and the Elder Brain. No margin for error."
+order: 3
+---
+
+## I — The Race to Level 12: Baldur's Gate in Pillage Mode
+
+Act 3 is a trap. The city of Baldur's Gate overflows with quests and exploration, but also with **impossible fights if you are not at maximum level**. Every Act 3 boss has Honour Mode mechanics that assume a party at the power ceiling.
+
+> **CARDINAL RULE: DO NOT TRIGGER any boss fight before your entire party is Level 12.** Not 11. Not 11 and a half. **Twelve.** Level 12 unlocks level 6 Spell Slots (<CodexTooltipById id="globe_invulnerabilite" text="Globe of Invulnerability" />), the 3rd Extra Attack (Fighter), and final feats. Without them, you are under-equipped for every boss in this act.
+
+### Peaceful XP Route (Lower City → Upper City)
+
+The Lower City is a treasure trove of combat-free XP. Explore **everything** before triggering a single hostile scenario.
+
+<SingleStepTracker stepId="acte3_xp_rivington" label="Explore Rivington completely — NPCs, merchants, side quests (~8,000 XP)" />
+
+**Rivington** is Act 3's welcome zone. Talk to every NPC, resolve conflicts through diplomacy. The Tiefling refugee quest (Persuasion DC 12) yields 75 XP without combat. Akabi's circus offers 200 XP + legendary loot (see below). Rivington merchants sell <CodexTooltipById id="counterspell" text="Counterspell" /> Scrolls and Greater Healing Potions — **buy everything**.
+
+<SingleStepTracker stepId="acte3_xp_lower_city" label="Explore the Lower City — cemetery, taverns, guild quests (~12,000 XP)" />
+
+The **Lower City** is the densest XP zone in the game. Baldur's Gate Cemetery contains necromantic quests (~3,000 XP). The guilds (Thieves' Guild via Mol, the Counting House via the Zhentarim) offer entire narrative arcs resolvable without combat. Every tavern has at least one NPC with a quest. Expect ~12,000 XP from exploration and dialogue alone.
+
+<SingleStepTracker stepId="acte3_xp_upper_city" label="Explore the Upper City — manors, diplomacy, political quests (~6,000 XP)" />
+
+<SingleStepTracker stepId="acte3_xp_undercity" label="Undercity — exploration + hidden merchants (~4,000 XP)" />
+
+<SingleStepTracker stepId="acte3_level12" label="Confirm: ENTIRE party is Level 12" />
+
+**Total calculation:** Rivington (8,000) + Lower City (12,000) + Upper City (6,000) + Undercity (4,000) = **~30,000 XP** available without major combat. The Level 11 → 12 threshold requires ~14,000 XP per character. With the XP accumulated from Acts 1 and 2, this is more than sufficient.
+
+<BuildTactic target="clerc_lumiere">
+  **🛐 The Double Miracle (Light Cleric):** Descend into the secret basement of the Tabernacle (watch out for curse traps!). Open your deity's chest to steal the **Amulet of the Devout**. It increases your spell DC by +2 AND gives you an extra Channel Divinity charge. You can cast Radiance of the Dawn twice per combat!
+</BuildTactic>
+
+---
+
+### Raiding the Sorcerous Sundries Vault
+
+The Sorcerous Sundries Vault (Ramazith's Tower) contains the two most powerful Act 3 items for a spellcaster: the <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> and the <CodexTooltipById id="robe_de_la_trame" text="Robe of the Weave" />.
+
+#### The Door Puzzle — Complete Solution
+
+The Vault is protected by a system of magically locked doors. Each room is a trap or puzzle. Here is the optimal route without combat:
+
+<SingleStepTracker stepId="acte3_vault_entree" label="Enter Ramazith's Tower — pass the guards (Persuasion DC 14 or Invisibility)" />
+
+**Room 1 — The Lava Room:** The floor is covered in lava. Use <CodexTooltipById id="pas_brumeux" text="Misty Step" /> to teleport each character onto the raised platforms. Alternative: the Fly spell (level 3) on the whole party. **Do NOT walk through the lava** — 3d10 fire/turn, even with Fire Resistance that is 16.5 average damage/turn.
+
+<SingleStepTracker stepId="acte3_vault_lave" label="Room 1: Cross the lava via Misty Step or Fly" />
+
+**Room 2 — The Lever Puzzle:** Four levers control four doors. The correct sequence is: Lever 3 → Lever 1 → Lever 4 → Lever 2. An incorrect lever summons a Lava Golem (180 HP). In Honour Mode, the fight is doable but consumes resources. **Follow the sequence.**
+
+<SingleStepTracker stepId="acte3_vault_leviers" label="Room 2: Sequence Lever 3 → 1 → 4 → 2 — DO NOT make mistakes" />
+
+**Room 3 — The Guardian Chamber:** An Elemental Guardian stands watch before the main vault. If you have a character with Stealth +9 or more, sneak past it (Guardian's passive Perception: 16). Otherwise, use <CodexTooltipById id="invisibilite" text="Invisibility" /> and steal the vault contents without engaging combat.
+
+<SingleStepTracker stepId="acte3_vault_gardien" label="Room 3: Bypass the Guardian (Stealth or Invisibility)" />
+
+**The Vault:** Contains the <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> (legendary +3 staff) and the <CodexTooltipById id="robe_de_la_trame" text="Robe of the Weave" /> (+1 spell DC, +1 spell attack, permanent Mage Armour).
+
+<SingleStepTracker stepId="acte3_vault_markoheshkir" label="Retrieve the Markoheshkir — best staff in the game" />
+
+<SingleStepTracker stepId="acte3_vault_robe" label="Retrieve the Robe of the Weave — best caster armour" />
+
+The <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> is the best staff in the game. Its **Karsus Element** lets you choose an elemental damage type per Long Rest (Fire, Cold, Lightning, Thunder, Necrotic, or Force), and it grants <CodexTooltipById id="globe_invulnerabilite" text="Globe of Invulnerability" /> for free — a spell normally level 6 that consumes a precious slot. Against Raphael and Ansur, this Globe is the difference between a wipe and a victory.
+
+**The Karsus + Lightning synergy:** If you set the Karsus Element to Lightning, all spells channelled through the staff deal Lightning damage. Against the <CodexTooltipById id="steel_watch_titan" text="Steel Watch Titan" /> (Lightning vulnerable), this automatically doubles all damage. Plan your Element based on the next boss.
+
+<FailsafeCard missing="Markoheshkir (Ramazith's Tower not completed)" fallback="Battle Mage Staff +2 — available from the Undercity merchant. No free Globe of Invulnerability." condition="If the Tower puzzle is unsolved or Lorroakan is hostile" />
+
+<BuildTactic target="sorcadin">
+  **🔮 Absolute Power (Sorcadin):** Buy the **Cloak of the Weave** from Lorroakan's projection, and steal the Book of Karsus from the vault to unlock the ultimate scrolls.
+</BuildTactic>
+
+<BuildTactic target="storm_sorcerer">
+  **⚡ The Ultimate Staff (Storm Sorcerer):** In Ramazith's Tower (lower level), use the invisibility button to pass through the magical barriers and retrieve **Markoheshkir**. This is the absolute legendary staff. Use its Kereska ability to bind to Lightning: free spells, resistance, and increased damage!
+</BuildTactic>
+
+---
+
+### Endgame Equipment — Final Acquisitions
+
+Before engaging bosses, finalise your equipment. Every slot counts.
+
+<SingleStepTracker stepId="acte3_equip_nyrulna" label="Nyrulna retrieved (Akabi's Circus — Wheel of Fortune)" />
+
+The <CodexTooltipById id="nyrulna" text="Nyrulna" /> is a legendary +3 trident that automatically returns after a throw and generates an **AoE thunder explosion** on impact. It is hidden behind the Wheel of Fortune mini-game of the djinn Akabi at the Travelling Circus. Tip: the djinn cheats. Use Pickpocket (Stealth DC 15) to steal his loaded die **before** playing, and the wheel always lands on the jackpot.
+
+<SingleStepTracker stepId="acte3_equip_heritage" label="Legacy of the Masters retrieved (Dammon — if he survived)" />
+
+The <CodexTooltipById id="heritage_maitres" text="Legacy of the Masters" /> (+2 attack and damage with weapons) is purchasable from Dammon **only if he survived** Acts 1 and 2. If Dammon is dead, these gloves are permanently lost — this is why protecting Dammon is listed in the exit checklists of previous acts.
+
+<SingleStepTracker stepId="acte3_equip_anneau" label="Ring of Regeneration purchased (Sorcerous Sundries)" />
+
+The <CodexTooltipById id="anneau_regeneration" text="Ring of Regeneration" /> (1d4 HP/turn) stacks with the <CodexTooltipById id="helmet_of_balduran" text="Helm of Balduran" /> (2 HP/turn) for a total of **2 + 2.5 = 4.5 HP/turn** on average. On a tank with 100 HP, that is 4.5% of their HP restored each turn without spending resources.
+
+<FailsafeCard missing="Nyrulna (Akabi's Circus missed)" fallback="Returning Handaxe +2 forged by Dammon in Act 2 — no AoE explosion, but the automatic return remains useful" condition="If the djinn is killed or the throw is missed" />
+
+<BuildTactic target="throwzerker">
+  **🔱 The Definitive Weapon (Throwzerker):** Steal Akabi the Djinn's ring to win the jackpot and be teleported to the jungle. At the end of the path, open the chest to obtain **<Rule term="nyrulna">Nyrulna</Rule>**. This legendary trident deals area thunder damage on every throw and returns to your hand. You have become a god of destruction.
+</BuildTactic>
+
+<BuildTactic target="barde_controleur">
+  **💍 THE CENTREPIECE (Bard):** In Akabi's jungle, DO NOT LEAVE RIGHT AWAY. Search the skeleton near the ledge to find the **<Rule term="anneau_gredin">Band of the Mystic Scoundrel</Rule>**. This ring lets you cast illusion/enchantment spells as a Bonus Action after a weapon attack. Paired with the <Rule term="casque_acuite">Helmet of Arcane Acuity</Rule>, you can attack 4 times then paralyse any boss with 100% success in the same turn. The game is over.
+</BuildTactic>
+
+---
+
+## II — Dismantling Gortash's Empire
+
+Gortash controls Baldur's Gate through two pillars of power: the **Steel Watch Foundry** (his golem army) and the **Iron Throne** (his underwater prison). Destroying both bastions BEFORE confronting Gortash himself is the optimal strategy — it eliminates his reinforcements and unlocks crucial allies.
+
+### A — The Steel Watch Foundry
+
+The Foundry is the factory producing the Steel Watchers — the metal golems patrolling Baldur's Gate. Destroying it is a major story objective, but the Foundry boss is the **Steel Watch Titan** — a giant golem with 300 HP that can crush a character in a single turn.
+
+<BossCard id="steel_watch_titan" />
+
+<EmergencyMatrix bossId="steel_watch_titan" />
+
+#### Detailed Strategy — Steel Watch Titan
+
+The Titan has **300 HP, AC 20, and a Lightning vulnerability**. This is your primary lever.
+
+<SingleStepTracker stepId="acte3_fonderie_karsus" label="Set Markoheshkir to Lightning (Karsus Element) BEFORE entering the Foundry" />
+
+**Lightning DPS Calculation:**
+- <CodexTooltipById id="eclair" text="Lightning Bolt" /> (level 3): 8d6 = avg. 28, **×2 vulnerability = 56 damage**
+- Lightning Bolt upcast (level 5): 10d6 = avg. 35, **×2 = 70 damage**
+- Call Lightning (level 3, Concentration, 3d10/turn): avg. 16.5, **×2 = 33/turn**
+- <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> attack with Karsus Lightning: 1d8+3 bludgeoning + bonus Lightning damage, **×2 on the bonus**
+
+**With two Lightning-specialised casters:** Turn 1 = 2× upcast Lightning Bolt = **140 damage**. Turn 2 = Call Lightning + Lightning Bolt = **103 damage**. Total in 2 turns: **243/300 HP**. The Titan is nearly dead by Turn 3.
+
+<SingleStepTracker stepId="acte3_fonderie_t1" label="Turn 1: Double Lightning Bolt (upcast if possible) — exploit Lightning vulnerability" />
+
+<SingleStepTracker stepId="acte3_fonderie_prise" label="Prepare Misty Step or Freedom of Movement against Crushing Grip" />
+
+> **MELEE TRAP:** The Titan's Crushing Grip grapples a character (STR Saving Throw DC 18) and deals 2d8+8 bludgeoning **automatically** each turn. A grappled martial loses their turn AND takes damage. The solution: <CodexTooltipById id="liberte_de_mouvement" text="Freedom of Movement" /> (grapple immunity) on your tank BEFORE combat, or <CodexTooltipById id="pas_brumeux" text="Misty Step" /> as a Reaction (teleportation breaks grapples).
+
+<SingleStepTracker stepId="acte3_fonderie_gondiens" label="Free the Gondian prisoners AFTER the fight — allies for the Iron Throne" />
+
+<SingleStepTracker stepId="acte3_fonderie_detruire" label="Destroy the Foundry Core — No going back (confirm)" />
+
+---
+
+### B — The Iron Throne (Underwater Prison)
+
+The Iron Throne is Gortash's underwater prison. **Duke Ravengard** is held prisoner there. Rescuing him is mandatory for Wyll's narrative path and unlocks a powerful ally for the final battle.
+
+> **5-TURN TIMER.** As soon as you enter the Iron Throne, a **5-turn countdown** triggers before the structure collapses. Every second counts. No optional combat, no exploration, no hesitation.
+
+#### Mandatory Preparation — BEFORE Diving
+
+<SingleStepTracker stepId="acte3_trone_hate" label="Prepare Haste on 2 characters BEFORE entering — extra Action + doubled movement" />
+
+<CodexTooltipById id="haste" text="Haste" /> is **non-negotiable** here. The spell doubles movement and grants an extra Action. A character under <CodexTooltipById id="haste" text="Haste" /> covers 18m/turn instead of 9m — the difference between reaching the Duke's cell on Turn 2 and reaching it on Turn 4 (too late).
+
+<SingleStepTracker stepId="acte3_trone_brumeux" label="Prepare Misty Step on the fastest character — teleportation through doors" />
+
+<CodexTooltipById id="pas_brumeux" text="Misty Step" /> (18m teleportation as a Bonus Action) passes through **locked doors and walls**. The character under <CodexTooltipById id="haste" text="Haste" /> + <CodexTooltipById id="pas_brumeux" text="Misty Step" /> can reach the Duke's cell in **a single turn**: Movement (18m Hasted) → Misty Step (18m) → Dash Action (18m) = **54m total movement**. The prison is ~45m long. More than enough.
+
+#### Turn-by-Turn Rotation
+
+<SingleStepTracker stepId="acte3_trone_t1" label="Turn 1: Fast character → Sprint to the Duke's cell. Rest of party → free nearby prisoners" />
+
+<SingleStepTracker stepId="acte3_trone_t2" label="Turn 2: Open the Duke's cell (Lockpicking DC 15 or Knock). Eliminate corridor guards if needed" />
+
+<SingleStepTracker stepId="acte3_trone_t3" label="Turn 3: Duke freed — EVERYONE sprints to the exit. No looting, no detours" />
+
+<SingleStepTracker stepId="acte3_trone_sanctuaire" label="Failsafe: Cast Sanctuary on the Duke if guards attack him during the escape" />
+
+> **CRITICAL FAILSAFE:** If the Duke is targeted by guards during the retreat, <CodexTooltipById id="sanctuary" text="Sanctuary" /> (Bonus Action, level 1) protects him entirely — guards must succeed on a WIS Saving Throw to target him, otherwise they choose another target. This is your absolute safety net.
+
+<FailsafeCard missing="Haste not prepared or Concentration lost" fallback="Speed Potion (identical effect to Haste, 3 turns) — purchasable from the Lower City merchant" condition="If the level 3 Spell Slot is already consumed or Concentration is broken" />
+
+<SingleStepTracker stepId="acte3_trone_escape" label="Turns 4-5: TOTAL EVACUATION — The submarine leaves. Do not leave anyone behind" />
+
+---
+
+## III — The Chosen: Gortash & Orin (Emergency Matrices)
+
+### Recommended Combat Order
+
+The order in which you face the Chosen **matters**. Each fight tests a different skill, and the difficulty is calibrated as an escalation.
+
+<SingleStepTracker stepId="acte3_ordre_gortash" label="1st: Gortash (the simplest — tests anti-curse preparation)" />
+
+<SingleStepTracker stepId="acte3_ordre_orin" label="2nd: Orin (requires Magic Missile prepared — tests timing)" />
+
+<SingleStepTracker stepId="acte3_ordre_optionnels" label="3rd: Optional Bosses (Raphael, Ansur) — the hardest in the game" />
+
+---
+
+### BOSS: Gortash, Chosen of Bane (250 HP)
+
+Gortash is the "cleanest" boss in Act 3 — a single enemy, a single deadly mechanic. He is the perfect test to validate that your party is ready for what follows.
+
+<BossCard id="gortash" />
+
+<EmergencyMatrix bossId="gortash" />
+
+#### The Deadly Mechanic — Tyrannical Brand
+
+**Tyrannical Brand** is the only thing that can kill you here. Gortash brands a character on Turn 1, and after **2 turns**, the curse explodes for **~110 force damage**. This is a one-shot on 95% of characters — only a Bear Totem Barbarian with 130+ HP would survive, and barely.
+
+**Calculation:** A typical level 12 character has 80-100 HP (Martial with CON 16 = 12d10+36 = avg. 102 HP). 110 force damage = **guaranteed death** on any character with less than 111 HP. Force damage bypasses most resistances — there is NO Force Resistance in the base game.
+
+<SingleStepTracker stepId="acte3_gortash_prep" label="Prepare Remove Curse on the Cleric BEFORE the fight" />
+
+The solution is straightforward: <CodexTooltipById id="delivrance_maledictions" text="Remove Curse" /> purges the Brand **instantly**. Cast it **as soon as** the debuff appears — not next turn, not when it is "convenient". **Immediately.** The spell is level 3, range Touch — the Cleric must be adjacent to the branded character. Position your Cleric accordingly **before** the fight.
+
+> **COMMON FATAL ERROR:** Forgetting to prepare <CodexTooltipById id="delivrance_maledictions" text="Remove Curse" /> on the Cleric because this spell is rarely useful in the rest of the game. Check your prepared spells. **Now.**
+
+<SingleStepTracker stepId="acte3_gortash_position_clerc" label="Position the Cleric within touch range of the likely Brand target" />
+
+#### Turn 1 Execution — Hold + Burst
+
+Once the Brand is purged, exploit Gortash's great weakness: he is a **humanoid**. <CodexTooltipById id="immobilisation_personne" text="Hold Person" /> paralyses him, guaranteeing **automatic critical hits in melee** as long as the paralysis holds.
+
+**Turn 1 burst kill calculation:**
+
+1. <CodexTooltipById id="immobilisation_personne" text="Hold Person" /> → Gortash paralysed (WIS Saving Throw +2 vs DC 17 = 75% paralysis with <CodexTooltipById id="casque_acuite_arcanique" text="Helmet of Arcane Acuity" /> active)
+2. Paladin → Attack 1: 2d6+5 slashing (auto crit) + level 4 <CodexTooltipById id="divine_smite" text="Divine Smite" /> (10d8 radiant crit) = **2×(7+5) + 2×(45) = 24 + 90 = 114 damage**
+3. Paladin → Attack 2: same calculation with level 3 Smite = **~95 damage**
+4. **Turn 1 total from a single Paladin = ~209 damage.** Gortash has 250 HP. A second attacker finishes the job.
+
+<SingleStepTracker stepId="acte3_gortash_immo" label="Cast Hold Person as soon as the Brand is purged" />
+
+<SingleStepTracker stepId="acte3_gortash_burst" label="Maximum DPS — Level 4+ Divine Smite on guaranteed crits" />
+
+<SingleStepTracker stepId="acte3_gortash_kill" label="Finish Gortash in 1-2 turns" />
+
+<FailsafeCard missing="Hold Person fails" fallback="Helmet of Arcane Acuity: each failed control spell applies -1 to Gortash's Saving Throws. After 3 attempts, his WIS Save drops from +2 to -1, making paralysis near-certain." condition="If the first Hold Person fails (25% chance)" />
+
+---
+
+### BOSS: Orin the Red, Chosen of Bhaal (200 HP → Slayer Form)
+
+Orin is a cognitive trap. Her Phase 1 is trivial — a few poisoned daggers, minor cultists. The real fight begins when she transforms into the **Slayer** at 50% HP. And that is where runs die.
+
+<BossCard id="orin" />
+
+<EmergencyMatrix bossId="orin" />
+
+#### Phase 1 — Human Orin (200 → 100 HP)
+
+Phase 1 is a standard fight. Orin has 4 dagger attacks (+12, 1d4+5 piercing + 2d6 poison × 4), but her Poison immunity makes her cultists more dangerous than she is. Focus DPS on Orin to bring her to 100 HP as quickly as possible. Do not waste **any** level 5+ Spell Slots here — you will need them in Phase 2.
+
+<SingleStepTracker stepId="acte3_orin_phase1" label="Phase 1: Bring Orin to 50% HP normally — save high-level spells" />
+
+#### Phase 2 — The "Unstoppable" Mechanic (12 Invulnerability Charges)
+
+At 100 HP, Orin transforms into the **Bhaal Slayer**. She immediately activates **Unstoppable**: each attack she receives is reduced to **1 damage** and consumes 1 charge. She has **12 charges**.
+
+**The mathematical problem:**
+- If you attack normally: 12 charges ÷ 2 attacks/character/turn ÷ 4 characters = **1.5 turns** just to exhaust the charges. But during this time, her Slayer Claws (2d8+6 × 3 = **avg. 45 damage/turn**) shred your party.
+- In reality, with misses (AC 17), it is closer to **2-3 turns** for the charges. Unacceptable in Honour Mode.
+
+> **THE SOLUTION: <CodexTooltipById id="projectile_magique" text="Magic Missile" />.** Each missile of <CodexTooltipById id="projectile_magique" text="Magic Missile" /> counts as a **separate attack**. Each missile consumes one Unstoppable charge. And <CodexTooltipById id="projectile_magique" text="Magic Missile" /> **never misses** — no Attack Roll, auto-hit.
+
+**Optimal calculation:**
+- <CodexTooltipById id="projectile_magique" text="Magic Missile" /> level 5 = **7 missiles** = 7 charges burned in one Action
+- <CodexTooltipById id="projectile_magique" text="Magic Missile" /> level 6 = **8 missiles** = 8 charges burned in one Action
+- Two castings (2 casters, or 1 caster + Scroll): 7 + 7 = **14 charges burned** → all 12 Unstoppable charges are exhausted with margin
+- **Total time: 1 turn.** Compare to 2-3 turns with normal attacks.
+
+<SingleStepTracker stepId="acte3_orin_missiles_prep" label="BEFORE the fight: Confirm 2 characters have Magic Missile prepared (level 5 or 6)" />
+
+<SingleStepTracker stepId="acte3_orin_missiles" label="Phase 2 Turn 1: Cast upcast Magic Missile (Level 5 or 6) × 2 characters" />
+
+<SingleStepTracker stepId="acte3_orin_burst" label="Phase 2 Turn 2: Charges exhausted → maximum physical DPS to finish the remaining 100 HP" />
+
+> **ADVANCED TIP:** If only one character has <CodexTooltipById id="projectile_magique" text="Magic Missile" />, use a **Magic Missile Scroll** (level 5, purchasable from Lower City merchants ~400 GP) on a second character. Any class can use a scroll if they succeed on an Arcana check (DC 15). With INT 14+, that is 55% success rate.
+
+<FailsafeCard missing="Magic Missile (neither spell nor scroll available)" fallback="Use multi-hit attacks: Scorching Ray (3 rays), Eldritch Blast (3 rays at level 11+), or bonus attacks + Action Surge. Slower but it works." condition="If no caster has Magic Missile prepared and no scroll is available" />
+
+<BuildTactic target="gloom_assassin">
+  **🩸 The Death Aura (Assassin):** Become an Unholy Assassin of Bhaal (accept Valeria's murder) to access the merchant Echo of Abazigal. Buy from him the **<Rule term="armure_bhaal">Bhaalist Armor</Rule>**. It makes all enemies within 2 metres VULNERABLE to piercing damage (damage ×2). With your daggers and point-blank bow, you will one-shot entire bosses.
+</BuildTactic>
+
+---
+
+## IV — The Deadly Optional Bosses
+
+These two fights are the hardest in the game. They are **optional** — but the rewards are so powerful that they transform the final fight against the Elder Brain from a nightmare into a precision exercise.
+
+---
+
+### OPTIONAL BOSS: Raphael, Archdevil (666 HP)
+
+The hardest fight in the game. **666 HP**, <CodexTooltipById id="counterspell" text="Counterspell" /> as a Reaction (+8 to the check), massive fire AoE, and 4 Soul Pillars that make him nearly invincible. Only attempt this fight if you want the <CodexTooltipById id="helldusk_armour" text="Helldusk Armour" /> (21 AC, -2 reduction to all damage, Burning immunity).
+
+<BossCard id="raphael" />
+
+<EmergencyMatrix bossId="raphael" />
+
+#### Rule 1 — Soul Pillars (ABSOLUTE PRIORITY)
+
+4 Soul Pillars permanently strengthen Raphael: +2 AC, 20 HP/turn regeneration, resistance to all damage. **As long as a single pillar stands, Raphael is unbeatable.** Each pillar has ~40 HP — individually fragile, but there are 4 scattered across the arena.
+
+<SingleStepTracker stepId="acte3_raphael_piliers" label="Turn 1: Destroy the 4 Soul Pillars — AoE (Fireball, Lightning Bolt) on pillar clusters" />
+
+**Turn 1 Strategy:** Split your party. Two characters on the north pillars, two on the south pillars. Each Fireball (8d6 = avg. 28) can hit 2 pillars if you aim between them. Two Fireballs = 4 pillars destroyed in one turn. If you only have one AoE caster, use <CodexTooltipById id="eclair" text="Lightning Bolt" /> (line that passes through multiple pillars) as a complement.
+
+#### Rule 2 — ABSOLUTE BAN on Radiant Damage Against Minions
+
+> **DEADLY TRAP**: Raphael's demonic minions possess a **doubled fire damage reflection**. If you use <CodexTooltipById id="divine_smite" text="Divine Smite" /> (Radiant) on a minion, the demon converts your damage to fire and reflects **double**. A level 3 Smite = 4d8 radiant → 4d8 × 2 = **8d8 fire reflected** = avg. 36 damage to YOUR attacker.
+
+<SingleStepTracker stepId="acte3_raphael_radiant" label="NEVER use radiant damage on minions — Reserve Radiant for Raphael ONLY" />
+
+**Inform the entire team BEFORE the fight.** A Paladin who reflexively Smites a minion can kill themselves in one hit.
+
+#### Rule 3 — Globe of Invulnerability (Mandatory Phase 2)
+
+In Phase 2, Raphael transforms into an Archdevil and unleashes his **Infernal Breath** (10d8 fire, DEX Saving Throw DC 20 = avg. **45 damage**). Against a grouped party, this is a **potential wipe** in a single turn.
+
+<SingleStepTracker stepId="acte3_raphael_globe" label="Phase 2: Deploy Globe of Invulnerability — nullifies Infernal Breath and AoE ≤ level 5" />
+
+The <CodexTooltipById id="globe_invulnerabilite" text="Globe of Invulnerability" /> nullifies any spell/ability of level 5 or less within its 3m zone. Infernal Breath is a level 5 spell — it is **completely neutralised**. Group your characters inside the Globe during Breath phases, exit to strike when Raphael is on cooldown.
+
+**The <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> grants the Globe for free** — you do not even have to consume a level 6 Spell Slot. This is the reason the Sorcerous Sundries Vault is listed before Raphael in this act.
+
+<FailsafeCard missing="Globe of Invulnerability (Spell Slot used or Markoheshkir not retrieved)" fallback="Fire Resistance (level 3 spell) on the entire party — reduces Infernal Breath from 45 to ~22.5. Not ideal but survivable with 60+ HP." condition="If the level 6 Spell Slot is already consumed and the Markoheshkir is missing" />
+
+<SingleStepTracker stepId="acte3_raphael_kill" label="Finish Raphael — retrieve the Helldusk Armour (21 AC, -2 damage, Burning immunity)" />
+
+<BuildTactic target="moine_bagarreur">
+  **🥊 The Fists of God (Monk):** Save Hope and kill Raphael. She will give you the **Gloves of Soul Catching**. These gloves add 1d10 force damage to your unarmed attacks and heal you for 10 HP per hit. You are now invincible in 1v1.
+</BuildTactic>
+
+<BuildTactic target="lockadin">
+  **🛡️ The Helldusk Armour (Lockadin):** By killing Raphael, you obtain the **Helldusk Armour**. Not only does it offer 21 AC, but you are considered proficient even if you lack the proficiency (though you have it as a Paladin). This is your final armour.
+</BuildTactic>
+
+---
+
+### OPTIONAL BOSS: Ansur, the Undead Dragon (400 HP)
+
+Ansur is a bronze dragon turned undead, lurking beneath the Wyrmway below Wyrm's Rock. The fight is brutal but rewards with the two best defensive items in the game: <CodexTooltipById id="baldurans_giantslayer" text="Balduran's Giantslayer" /> and the <CodexTooltipById id="helmet_of_balduran" text="Helm of Balduran" />.
+
+<BossCard id="ansur" />
+
+<EmergencyMatrix bossId="ansur" />
+
+#### The Central Mechanic — Stormheart Nova
+
+Ansur possesses a unique ability: **Stormheart Nova**. When he takes flight and begins channelling, he is preparing to unleash a **massive AoE of 10d8 lightning damage** (avg. **45 damage**, DEX Saving Throw DC 18 for half) that covers nearly the entire arena.
+
+**This is NOT a spell.** <CodexTooltipById id="counterspell" text="Counterspell" /> **does NOT work** against Stormheart Nova. It is an innate ability — no verbal component, no interruptible targeting.
+
+<SingleStepTracker stepId="acte3_ansur_nova_detect" label="Detect the channelling — Ansur takes flight and glows with lightning (1 turn warning)" />
+
+**You have 1 turn of warning.** When Ansur takes flight and begins to glow, the Nova arrives next turn. This turn is your survival window.
+
+#### Nova Survival Strategy
+
+<SingleStepTracker stepId="acte3_ansur_globe" label="Option A: Globe of Invulnerability — completely nullifies the Nova" />
+
+The <CodexTooltipById id="globe_invulnerabilite" text="Globe of Invulnerability" /> nullifies the Nova **if it is classified as a level 5 or lower ability**. In BG3, Stormheart Nova is treated as a level 5 spell — the Globe neutralises it entirely. Group your 4 characters inside the Globe during the channelling turn, then exit to strike.
+
+<SingleStepTracker stepId="acte3_ansur_resist" label="Option B: Lightning Resistance on the entire party + Dash behind pillars" />
+
+**If you do not have the Globe:** Lightning Resistance (spell, potion, or equipment) reduces the 45 damage to ~22.5. Combine with a Dash behind the furthest pillars. The pillars provide partial cover (+5 to DEX Saving Throw = 70-80% chance of halving = ~11 final damage with resistance + cover + successful Save).
+
+> **ANSUR'S IMMUNITIES:** Lightning (obviously), Poison, Necrotic. **Vulnerability: Radiant.** Unlike Raphael's minions, radiant damage is **your best friend** here. <CodexTooltipById id="divine_smite" text="Divine Smite" /> is doubled. The <CodexTooltipById id="sang_de_lathandre" text="Blood of Lathander" /> continues to blind undead — including Ansur.
+
+<SingleStepTracker stepId="acte3_ansur_radiant" label="Maximum Radiant DPS — Divine Smite + Blood of Lathander (damage ×2 vulnerability)" />
+
+**Radiant burst calculation:**
+- Level 3 <CodexTooltipById id="divine_smite" text="Divine Smite" /> + Undead bonus: 4d8 + 1d8 = 5d8 radiant = avg. 22.5, **×2 vulnerability = 45 per Smite**
+- 2 attacks + 2 Smites in one turn = **90 radiant damage** from a single Paladin
+- Ansur has 400 HP. In 4-5 turns of concentrated radiant DPS, he falls.
+
+<SingleStepTracker stepId="acte3_ansur_kill" label="Finish Ansur — retrieve Balduran's Giantslayer + Helm of Balduran" />
+
+<CodexTooltipById id="baldurans_giantslayer" text="Balduran's Giantslayer" /> (doubles Strength modifier on damage) and the <CodexTooltipById id="helmet_of_balduran" text="Helm of Balduran" /> (regenerates 2 HP/turn + anti-crit) make your tank **nearly immortal** for the remaining fights. These two items alone justify the risk of the Ansur fight.
+
+<FailsafeCard missing="Globe of Invulnerability against the Nova" fallback="Lightning Resistance Potion (entire party) + Dash behind pillars. If a character falls, immediate Healing Word from the backline." condition="If the Globe is already consumed or the Markoheshkir is unavailable" />
+
+<BuildTactic target="lockadin">
+  **🗡️ The Giantslayer (Lockadin):** Defeat the undead dragon Ansur to retrieve **Balduran's Giantslayer**. It is the best two-handed weapon in the game. If you use Cloud Giant Strength Elixirs (Strength 27), this weapon's damage reaches absurd heights.
+</BuildTactic>
+
+---
+
+## V — The Point of No Return
+
+> After defeating the Chosen and retrieving the Netherstones, you can face the Elder Brain. **This decision is IRREVERSIBLE.** Make sure you have completed EVERYTHING you wanted to do in Baldur's Gate.
+
+<SingleStepTracker stepId="acte3_pnr_equip" label="All BiS equipment is equipped and optimised" />
+
+<SingleStepTracker stepId="acte3_pnr_elixirs" label="Full stock of elixirs, scrolls, and greater healing potions" />
+
+<SingleStepTracker stepId="acte3_pnr_sorts" label="Check prepared spells of EVERY character — last chance to modify" />
+
+**Mandatory prepared spells checklist:**
+- <CodexTooltipById id="haste" text="Haste" /> on at least 1 caster
+- <CodexTooltipById id="counterspell" text="Counterspell" /> on at least 1 caster
+- <CodexTooltipById id="liberte_de_mouvement" text="Freedom of Movement" /> on at least 1 caster (anti-Domination)
+- <CodexTooltipById id="globe_invulnerabilite" text="Globe of Invulnerability" /> via <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> or level 6 slot
+
+<SingleStepTracker stepId="acte3_pnr_enchantements" label="REMOVE all elemental enchantments from melee weapons (see Brain section)" />
+
+<SingleStepTracker stepId="acte3_pnr_repos" label="FINAL Long Rest before the Morphic Pool — consume Strength Elixirs AFTER the rest" />
+
+---
+
+## VI — The Elder Brain — Final Battle (Netherbrain — 450 HP)
+
+This is the last fight of your Honour Mode run. Everything you have built — the builds, the equipment, the failsafes — converges here. The Elder Brain is not the hardest boss in the game (Raphael is worse), but its exclusive Honour Mode mechanic demands **absolute tactical discipline** that is tested nowhere else.
+
+<BossCard id="netherbrain" />
+
+### RED ALERT — EXCLUSIVE HONOUR MODE MECHANIC
+
+> **RETRIBUTIVE IMMUNITY**: At the end of each round, the Elder Brain becomes **totally immune to ALL damage types** it suffered during that round, for the following round. If you mix Lightning + Radiant + Slashing on Turn 1, the Brain is **immune to all three** on Turn 2. A single character who attacks with the wrong damage type on the wrong turn **ruins the entire rotation**.
+
+**Why this is devastating:** Imagine your Paladin strikes with a fire-enchanted sword on Turn 1 (the "Magical" Turn). The sword deals Slashing + Fire. The Brain becomes immune to Slashing AND Fire on Turn 2. On Turn 2 (the "Martial" Turn), your martials can no longer deal Slashing damage. Your rotation is **broken**.
+
+<EmergencyMatrix bossId="netherbrain" />
+
+### The Damage Segmentation Protocol
+
+This is the most important strategy in the game. Every character must know **exactly** which turn they attack and which turn they simply buff/heal.
+
+#### Turn 1 — Magical Damage ONLY
+
+<SingleStepTracker stepId="brain_t1" label="Turn 1: Magical Damage ONLY (Lightning, Cold, Force)" />
+
+On Turn 1, **only your spellcasters attack**. Allowed damage types:
+- **Lightning**: <CodexTooltipById id="eclair" text="Lightning Bolt" />, Call Lightning
+- **Cold**: Cone of Cold, Ray of Frost
+- **Force**: <CodexTooltipById id="eldritch_blast" text="Eldritch Blast" />, <CodexTooltipById id="projectile_magique" text="Magic Missile" />
+
+**Your martials on Turn 1:** They do **NOT** attack. They position, consume their <CodexTooltipById id="elixir_geant_collines" text="Strength Elixirs" />, cast <CodexTooltipById id="shield_of_faith" text="Shield of Faith" />, and prepare <CodexTooltipById id="haste" text="Haste" /> on Turn 2 attackers.
+
+#### Turn 2 — Martial Damage ONLY
+
+<SingleStepTracker stepId="brain_t2" label="Turn 2: Martial Damage ONLY (Radiant, Bludgeoning, Slashing)" />
+
+On Turn 2, **your martials attack**. Allowed damage types:
+- **Radiant**: <CodexTooltipById id="divine_smite" text="Divine Smite" />
+- **Slashing**: Weapon attacks (sword, axe)
+- **Bludgeoning**: Weapon attacks (mace, hammer)
+
+**Your casters on Turn 2:** They deal **no damage**. They heal, buff (<CodexTooltipById id="haste" text="Haste" />), or use non-offensive utility spells.
+
+#### Turn 3+ — Alternate the Cycle
+
+<SingleStepTracker stepId="brain_t3" label="Turn 3+: Alternate the cycle — back to Magical damage" />
+
+The cycle repeats: Turn 3 = Magical, Turn 4 = Martial, etc. Each turn, the Brain loses the previous turn's immunities and gains those of the current turn. **Perfect** segmentation = 0 wasted turns.
+
+#### THE MOST COMMON FATAL ERROR
+
+> **REMOVE ALL ELEMENTAL ENCHANTMENTS FROM YOUR WEAPONS BEFORE THIS FIGHT.**
+
+A character with an elemental weapon enchantment (e.g. +1d6 fire on a sword, <CodexTooltipById id="everburn_blade" text="Everburn Blade" /> with its passive 1d4 fire) who attacks on the "wrong" turn adds the Fire type to the Brain's immunity list. **Yes, even 1 fire damage is enough.** The immunity is binary — 1 fire damage = total Fire immunity.
+
+**FORBIDDEN weapons on the Martial Turn:**
+- <CodexTooltipById id="everburn_blade" text="Everburn Blade" /> (passive fire)
+- Any weapon with Fire, Cold, Lightning, or Acid enchantment
+- <CodexTooltipById id="nyrulna" text="Nyrulna" /> (thunder explosion = Thunder damage = Thunder immunity next turn)
+
+**ALLOWED weapons on the Martial Turn:**
+- <CodexTooltipById id="baldurans_giantslayer" text="Balduran's Giantslayer" /> (pure Slashing + Force bonus)
+- +3 weapons without elemental enchantment
+- <CodexTooltipById id="divine_smite" text="Divine Smite" /> (Radiant — allowed on the Martial Turn only)
+
+---
+
+### Phase 2 — Below 50% HP: Retributive Damage
+
+Below 225 HP, the Brain deals **2d8 psychic** (avg. 9) to every melee attacker, **no Saving Throw**. This is NOT a Reaction — it triggers on **every hit**. A martial with 3 attacks per turn takes 3 × 9 = **27 automatic psychic damage per turn** just from attacking.
+
+<SingleStepTracker stepId="brain_phase2_range" label="Phase 2: Switch to RANGED attacks exclusively" />
+
+**Solution:** Switch entirely to ranged attacks.
+- <CodexTooltipById id="eldritch_blast" text="Eldritch Blast" /> (Force, ranged, 3 rays at level 11+)
+- <CodexTooltipById id="projectile_magique" text="Magic Missile" /> (Force, auto-hit)
+- Bows and crossbows for martials (Slashing/Piercing)
+- Weapon throws (<CodexTooltipById id="nyrulna" text="Nyrulna" /> returns automatically — perfect here, but beware of Thunder on the wrong turn)
+
+<SingleStepTracker stepId="brain_phase2_dom" label="Prepare Freedom of Movement against Domination (WIS Saving Throw DC 20)" />
+
+The Brain uses **Domination** (WIS Saving Throw DC 20) as a Legendary Action in Phase 2. A dominated character attacks your allies for 1 turn. A dominated Paladin with <CodexTooltipById id="great_weapon_master" text="Great Weapon Master" /> active can **one-shot your healer** in a single strike (2d6+15 × 2 = avg. 44 damage).
+
+<CodexTooltipById id="liberte_de_mouvement" text="Freedom of Movement" /> before the fight immunises the most dangerous character (your main DPS) to Domination. For the others, stack Wisdom Saving Throw bonuses: Paladin 6 Aura of Protection (+CHA to Saves), Cloak of Protection (+1 Saves), Ring of Protection (+1 Saves).
+
+<FailsafeCard missing="Freedom of Movement (slot used)" fallback="Paladin 6 Aura of Protection (CHA to Saves) + Cloak of Protection + Ring of Protection = +5-7 to WIS Saves. Against DC 20, with WIS +2 and bonus +6, you need a 12+ = 45% resistance." condition="If no level 4 slot is available" />
+
+---
+
+### Final Execution
+
+<SingleStepTracker stepId="brain_final_dps" label="Focus remaining DPS — alternate types until 0 HP" />
+
+**Phase 2 rotation reminder:**
+- Odd turns (1, 3, 5...): **Ranged magical** damage (Force, Lightning, Cold) — casters only
+- Even turns (2, 4, 6...): **Ranged physical** damage (Piercing via bows, Radiant via ranged spells) — martials only
+- **Nobody attacks in melee** after the 50% HP threshold
+
+With perfect rotation, every turn deals non-immunised damage. The Brain falls in **5-7 turns** with a well-equipped party.
+
+<SingleStepTracker stepId="brain_victory" label="VICTORY — The Elder Brain is destroyed. Honour Mode completed." />
+
+---
+
+## Epilogue
+
+> Congratulations, Commander. If you are reading these lines and your save file displays "Victory — Honour Mode", you have accomplished one of the most demanding challenges in modern RPGs. Every build planned, every failsafe prepared, every damage type segmented — all of it converged toward this moment. The Race to Level 12 gave you the power. The Sorcerous Sundries Vault gave you the tools. The discipline of the rotation gave you the victory. May the dice ever be in your favour.

@@ -6,7 +6,7 @@ const FOOTER_I18N = {
     codex: "Codex des Règles",
     legal: "Mentions Légales",
     support: "Soutien",
-    supportLink: "Soutenir la Taverne (Ko-fi)",
+    supportLink: "\uD83C\uDF77 Offrez-moi une Potion (Ko-fi)",
     copyright: "© 2026 Faerun Tactics. Non affilié à Larian Studios ou Wizards of the Coast.",
   },
   en: {
@@ -14,7 +14,7 @@ const FOOTER_I18N = {
     codex: "Rules Codex",
     legal: "Legal Notice",
     support: "Support",
-    supportLink: "Support the Tavern (Ko-fi)",
+    supportLink: "\uD83C\uDF77 Buy me a Potion (Ko-fi)",
     copyright: "© 2026 Faerun Tactics. Not affiliated with Larian Studios or Wizards of the Coast.",
   },
 } as const;
@@ -53,9 +53,8 @@ export function Footer({ lang = "fr" }: { lang?: string }) {
               href="https://ko-fi.com/sitebuildbg3"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-theme/70 hover:text-theme transition-colors"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#fbbf24] px-5 py-2.5 text-sm font-bold text-black shadow-[0_0_15px_rgba(251,191,36,0.3)] transition-all duration-200 hover:bg-yellow-500 hover:scale-105"
             >
-              <span aria-hidden>&#x2764;</span>
               {t.supportLink}
             </a>
           </div>

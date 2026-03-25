@@ -5,7 +5,7 @@
 // Usage: <ChecklistItem id="nautiloid-zhalk">Kill Commander Zhalk for his sword.</ChecklistItem>
 // ============================================================================
 
-import type { ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { useProgressStore } from "@/store/useProgressStore";
 
 interface ChecklistItemProps {
@@ -14,15 +14,26 @@ interface ChecklistItemProps {
 }
 
 export function ChecklistItem({ id, children }: ChecklistItemProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const checked = useProgressStore((s) => s.checkedItems[id] ?? false);
   const toggle = useProgressStore((s) => s.toggleItem);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // SSR / pre-hydration: render unchecked to match server output
+  const isChecked = isMounted && checked;
 
   return (
     <div
       role="checkbox"
-      aria-checked={checked}
+      aria-checked={isChecked}
       tabIndex={0}
-      onClick={() => toggle(id)}
+      onClick={(e) => {
+        e.stopPropagation();
+        toggle(id);
+      }}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -34,12 +45,12 @@ export function ChecklistItem({ id, children }: ChecklistItemProps) {
       {/* Checkbox square */}
       <span
         className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors ${
-          checked
+          isChecked
             ? "border-[#fbbf24] bg-[#fbbf24]"
             : "border-gray-500 bg-transparent"
         }`}
       >
-        {checked && (
+        {isChecked && (
           <svg
             className="h-3 w-3 text-black"
             viewBox="0 0 12 12"
@@ -57,7 +68,7 @@ export function ChecklistItem({ id, children }: ChecklistItemProps) {
       {/* Label */}
       <span
         className={`text-sm leading-relaxed transition-all duration-300 ${
-          checked
+          isChecked
             ? "text-gray-500 line-through opacity-70"
             : "text-gray-200"
         }`}

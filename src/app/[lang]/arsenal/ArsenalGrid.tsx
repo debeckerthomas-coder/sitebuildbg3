@@ -13,6 +13,15 @@ import {
   type TypeCategory,
 } from "@/data/arsenal";
 import { LootCard } from "@/components/cards/LootCard";
+import { ItemDetailCard } from "@/components/arsenal/ItemDetailCard";
+
+// Map arsenal.ts rarity strings to ItemDetailCard rarity prop
+const RARITY_MAP: Record<ArsenalItem["rarity"], "legendary" | "very_rare" | "rare" | "uncommon"> = {
+  Legendary: "legendary",
+  "Very Rare": "very_rare",
+  Rare: "rare",
+  Uncommon: "uncommon",
+};
 
 type ActFilter = "all" | 1 | 2 | 3;
 type RarityFilter = "all" | ArsenalItem["rarity"];
@@ -278,7 +287,13 @@ export function ArsenalGrid() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: shelfIdx * 0.1 + i * 0.03, duration: 0.35 }}
                     >
-                      <LootCard item={item} />
+                      <ItemDetailCard
+                        name={item.name}
+                        rarity={RARITY_MAP[item.rarity]}
+                        type={item.type}
+                        description={item.effect}
+                        acquisition={`Acte ${item.act} — ${item.location}`}
+                      />
                     </motion.div>
                   ))}
                 </div>

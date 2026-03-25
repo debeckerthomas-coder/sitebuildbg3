@@ -8,12 +8,15 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   itemsBiS,
+  itemsBilingualV2,
   getTypeCategory,
   type ArsenalItem,
+  type ArsenalItemV2,
   type TypeCategory,
 } from "@/data/arsenal";
 import { LootCard } from "@/components/cards/LootCard";
 import { ItemDetailCard } from "@/components/arsenal/ItemDetailCard";
+import type { Locale } from "@/dictionaries";
 
 // Map arsenal.ts rarity strings to ItemDetailCard rarity prop
 const RARITY_MAP: Record<ArsenalItem["rarity"], "legendary" | "very_rare" | "rare" | "uncommon"> = {
@@ -22,6 +25,9 @@ const RARITY_MAP: Record<ArsenalItem["rarity"], "legendary" | "very_rare" | "rar
   Rare: "rare",
   Uncommon: "uncommon",
 };
+
+// Set of V2-migrated item IDs (to avoid duplicates)
+const V2_IDS = new Set(itemsBilingualV2.map((i) => i.id));
 
 type ActFilter = "all" | 1 | 2 | 3;
 type RarityFilter = "all" | ArsenalItem["rarity"];
@@ -87,14 +93,21 @@ const RARITY_SHELVES: {
   },
 ];
 
-export function ArsenalGrid() {
+export function ArsenalGrid({ lang = "fr" }: { lang?: Locale }) {
+  const l = lang === "en" ? "en" : "fr";
   const [actFilter, setActFilter] = useState<ActFilter>("all");
   const [rarityFilter, setRarityFilter] = useState<RarityFilter>("all");
   const [typeFilter, setTypeFilter] = useState<TypeFilter>("all");
   const [search, setSearch] = useState("");
 
+  // Legacy items that have NOT been migrated to V2
+  const legacyOnly = useMemo(
+    () => itemsBiS.filter((item) => !V2_IDS.has(item.id)),
+    [],
+  );
+
   const filtered = useMemo(() => {
-    return itemsBiS.filter((item) => {
+    return legacyOnly.filter((item) => {
       if (actFilter !== "all" && item.act !== actFilter) return false;
       if (rarityFilter !== "all" && item.rarity !== rarityFilter) return false;
       if (typeFilter !== "all" && getTypeCategory(item.type) !== typeFilter) return false;
@@ -110,7 +123,25 @@ export function ArsenalGrid() {
       }
       return true;
     });
-  }, [actFilter, rarityFilter, typeFilter, search]);
+  }, [legacyOnly, actFilter, rarityFilter, typeFilter, search]);
+
+  // V2 bilingual items — filtered by search on the active language
+  const filteredV2 = useMemo(() => {
+    return itemsBilingualV2.filter((item) => {
+      if (actFilter !== "all" && item.act !== actFilter) return false;
+      if (search) {
+        const q = search.toLowerCase();
+        return (
+          item.name[l].toLowerCase().includes(q) ||
+          item.description[l].toLowerCase().includes(q) ||
+          item.type[l].toLowerCase().includes(q) ||
+          item.location[l].toLowerCase().includes(q) ||
+          item.usedBy.some((b) => b.toLowerCase().includes(q))
+        );
+      }
+      return true;
+    });
+  }, [l, actFilter, search]);
 
   // Group filtered items by rarity for shelf display
   const shelves = useMemo(() => {
@@ -229,8 +260,8 @@ export function ArsenalGrid() {
 
         {/* Result count */}
         <p className="text-center text-[11px] font-data text-gray-600">
-          {filtered.length} objet{filtered.length !== 1 ? "s" : ""} trouvé
-          {filtered.length !== 1 ? "s" : ""}
+          {filtered.length + filteredV2.length} objet{(filtered.length + filteredV2.length) !== 1 ? "s" : ""} trouvé
+          {(filtered.length + filteredV2.length) !== 1 ? "s" : ""}
           {(actFilter !== "all" || rarityFilter !== "all" || typeFilter !== "all" || search) && (
             <button
               onClick={() => {
@@ -247,7 +278,33 @@ export function ArsenalGrid() {
         </p>
       </div>
 
-      {/* ===== SHELVES — Sections par rareté ===== */}
+      {/* ===== V2 BILINGUAL ITEMS ===== */}
+      {filteredV2.length > 0 && (
+        <section className="space-y-6">
+          <div className="text-center space-y-2">
+            <h2 className="font-display text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-gold to-amber-600">
+              {l === "fr" ? "Collection Bilingue" : "Bilingual Collection"}
+            </h2>
+            <p className="text-[10px] font-data text-gray-600">
+              {filteredV2.length} objet{filteredV2.length !== 1 ? "s" : ""}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {filteredV2.map((item) => (
+              <ItemDetailCard
+                key={item.id}
+                name={item.name[l]}
+                rarity={item.rarity}
+                type={item.type[l]}
+                description={item.description[l]}
+                acquisition={item.acquisition?.[l]}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ===== SHELVES — Sections par rareté (legacy) ===== */}
       <AnimatePresence mode="wait">
         {shelves.length > 0 ? (
           <div className="space-y-12">

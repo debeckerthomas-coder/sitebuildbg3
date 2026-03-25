@@ -623,3 +623,104 @@ export function getArsenalByAct(act: 1 | 2 | 3): readonly ArsenalItem[] {
 export function getArsenalByRarity(rarity: ArsenalItem["rarity"]): readonly ArsenalItem[] {
   return itemsBiS.filter((item) => item.rarity === rarity);
 }
+
+// ============================================================================
+// V2 — Format bilingue (migration progressive)
+// ============================================================================
+
+interface I18nText {
+  readonly fr: string;
+  readonly en: string;
+}
+
+export interface ArsenalItemV2 {
+  readonly id: string;
+  readonly wikiName: string;
+  readonly name: I18nText;
+  readonly type: I18nText;
+  readonly description: I18nText;
+  readonly rarity: "legendary" | "very_rare" | "rare" | "uncommon";
+  readonly act: 1 | 2 | 3;
+  readonly location: I18nText;
+  readonly usedBy: readonly string[];
+  readonly lore?: I18nText;
+  readonly acquisition?: I18nText;
+}
+
+export const itemsBilingualV2: readonly ArsenalItemV2[] = [
+  {
+    id: "markoheshkir",
+    wikiName: "Markoheshkir",
+    name: { fr: "Markoheshkir", en: "Markoheshkir" },
+    type: { fr: "Arme", en: "Weapon" },
+    description: {
+      fr: "Bâton légendaire. Faveur de Kereska : Éclair en Chaîne ou Boule de Feu gratuit 1×/repos court. +1 au DD des sorts.",
+      en: "Legendary staff. Kereska's Favour: free Chain Lightning or Fireball 1×/short rest. +1 to spell save DC.",
+    },
+    rarity: "legendary",
+    act: 3,
+    location: { fr: "Tour de Ramazith — Chambre Forte", en: "Ramazith's Tower — Vault" },
+    usedBy: ["Nuke Tempête", "Fire Sorlock", "Barde Contrôleur"],
+    acquisition: { fr: "Acte 3 — Tour de Ramazith, Chambre Forte", en: "Act 3 — Ramazith's Tower, Vault" },
+  },
+  {
+    id: "baldurans_giantslayer",
+    wikiName: "Balduran's Giantslayer",
+    name: { fr: "Pourfendeuse de Géant de Baldur", en: "Balduran's Giantslayer" },
+    type: { fr: "Arme", en: "Weapon" },
+    description: {
+      fr: "Épée à deux mains. Double les dégâts bonus de Force. Avantage contre les créatures Grandes+. +3 enchantement.",
+      en: "Two-handed sword. Doubles Strength bonus damage. Advantage against Large+ creatures. +3 enchantment.",
+    },
+    rarity: "legendary",
+    act: 3,
+    location: { fr: "Caverne de Wyrm — Vaincre Ansur", en: "Wyrm's Cave — Defeat Ansur" },
+    usedBy: ["Sorcadin", "Bardadin"],
+    acquisition: { fr: "Acte 3 — Caverne de Wyrm, vaincre Ansur", en: "Act 3 — Wyrm's Cave, defeat Ansur" },
+  },
+  {
+    id: "nyrulna",
+    wikiName: "Nyrulna",
+    name: { fr: "Nyrulna", en: "Nyrulna" },
+    type: { fr: "Arme", en: "Weapon" },
+    description: {
+      fr: "Trident légendaire de retour. +3, +1d6 tonnerre, immunité recul. Explosion de 3d4 tonnerre à l'impact.",
+      en: "Legendary returning trident. +3, +1d6 thunder, knockback immunity. 3d4 thunder burst on impact.",
+    },
+    rarity: "legendary",
+    act: 3,
+    location: { fr: "Cirque du Dernier Jour — Génie Akabi", en: "Circus of the Last Days — Djinn Akabi" },
+    usedBy: ["Throwzerker"],
+    acquisition: { fr: "Acte 3 — Cirque du Dernier Jour, Génie Akabi", en: "Act 3 — Circus of the Last Days, Djinn Akabi" },
+  },
+  {
+    id: "helldusk_armour",
+    wikiName: "Helldusk Armour",
+    name: { fr: "Armure du Crépuscule Infernal", en: "Helldusk Armour" },
+    type: { fr: "Armure", en: "Heavy Armour" },
+    description: {
+      fr: "CA 21. Résistance au feu. Réduit tous les dégâts de 3. Sort Vol gratuit. Brûle les attaquants en mêlée (1d4 feu).",
+      en: "AC 21. Fire resistance. Reduces all damage by 3. Free Fly spell. Burns melee attackers for 1d4 fire.",
+    },
+    rarity: "legendary",
+    act: 3,
+    location: { fr: "Maison de l'Espoir — Vaincre Raphaël", en: "House of Hope — Defeat Raphael" },
+    usedBy: ["Sorcadin", "Lockadin", "Throwzerker"],
+    acquisition: { fr: "Acte 3 — Maison de l'Espoir, vaincre Raphaël", en: "Act 3 — House of Hope, defeat Raphael" },
+  },
+  {
+    id: "helmet_of_balduran",
+    wikiName: "Helmet of Balduran",
+    name: { fr: "Heaume de Baldur", en: "Helmet of Balduran" },
+    type: { fr: "Tête", en: "Helmet" },
+    description: {
+      fr: "Guérit 2 PV/tour. Immunité critique et étourdissement. +1 CA, +1 JdS. Le tank ultime.",
+      en: "Heals 2 HP/turn. Critical hit and stun immunity. +1 AC, +1 saving throws. The ultimate tank helmet.",
+    },
+    rarity: "legendary",
+    act: 3,
+    location: { fr: "Caverne de Wyrm — Vaincre Ansur", en: "Wyrm's Cave — Defeat Ansur" },
+    usedBy: ["Sorcadin", "Bardadin"],
+    acquisition: { fr: "Acte 3 — Caverne de Wyrm, vaincre Ansur", en: "Act 3 — Wyrm's Cave, defeat Ansur" },
+  },
+];

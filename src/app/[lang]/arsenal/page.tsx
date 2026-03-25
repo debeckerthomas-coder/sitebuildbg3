@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Locale } from "@/dictionaries";
 import { ArsenalGrid } from "./ArsenalGrid";
 
 export const metadata: Metadata = {
@@ -7,7 +8,12 @@ export const metadata: Metadata = {
     "L'encyclopédie visuelle des équipements Best-in-Slot de Baldur's Gate 3. Vestiges Légendaires, Trésors Très Rares, et les meilleurs objets par acte pour le Mode Honneur.",
 };
 
-export default function ArsenalPage() {
+interface PageProps {
+  params: Promise<{ lang: Locale }>;
+}
+
+export default async function ArsenalPage({ params }: PageProps) {
+  const { lang } = await params;
   return (
     <div className="max-w-7xl space-y-10">
       {/* ===== EN-TÊTE D'EXPOSITION PREMIUM ===== */}
@@ -41,7 +47,7 @@ export default function ArsenalPage() {
       </div>
 
       {/* ===== GRILLE INTERACTIVE ===== */}
-      <ArsenalGrid />
+      <ArsenalGrid lang={lang} />
     </div>
   );
 }

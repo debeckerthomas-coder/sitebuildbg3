@@ -1,7 +1,7 @@
 "use client";
 
 // ============================================================================
-// Sidebar — Navigation latérale responsive avec hamburger mobile
+// Sidebar — Navigation Rail rétractable + hamburger mobile
 // ============================================================================
 
 import { useState, useEffect } from "react";
@@ -81,63 +81,114 @@ function prefixItems(items: readonly NavItem[], lang: string): NavItem[] {
 }
 
 // ---------------------------------------------------------------------------
-// Composant NavGroup (avec sous-menus)
+// Chevron Toggle Button
+// ---------------------------------------------------------------------------
+
+function CollapseToggle({
+  isCollapsed,
+  onClick,
+}: {
+  isCollapsed: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className="flex items-center justify-center w-7 h-7 rounded-md text-gray-500 hover:text-gray-300 hover:bg-gray-800 transition-all duration-200"
+      aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={`w-4 h-4 transition-transform duration-300 ${isCollapsed ? "rotate-180" : ""}`}
+      >
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    </button>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Composant NavGroup (avec sous-menus) — collapse-aware
 // ---------------------------------------------------------------------------
 
 function NavGroup({
   item,
   pathname,
+  isCollapsed,
   onNavigate,
 }: {
   item: NavItem;
   pathname: string;
+  isCollapsed: boolean;
   onNavigate?: () => void;
 }) {
   const hasChildren = item.children && item.children.length > 0;
   const isActive = item.href === pathname || item.children?.some((c) => c.href === pathname);
   const [isOpen, setIsOpen] = useState(isActive || false);
 
+  // Simple link (no children)
   if (!hasChildren && item.href) {
     const active = pathname === item.href;
     return (
       <Link
         href={item.href}
         onClick={onNavigate}
+        title={isCollapsed ? item.label : undefined}
         className={`
-          flex items-center gap-3 px-3 py-2.5 rounded-card text-sm font-data transition-all duration-200
+          flex items-center gap-3 rounded-card text-sm font-data transition-all duration-200
+          ${isCollapsed ? "justify-center px-2 py-2.5" : "px-3 py-2.5"}
           ${active
             ? "bg-theme/10 text-theme border border-theme/20"
             : "text-gray-400 hover:text-gray-200 hover:bg-surface-raised"}
         `}
       >
-        <span className="text-base" aria-hidden>{item.icon}</span>
-        <span>{item.label}</span>
+        <span className="text-base shrink-0" aria-hidden>{item.icon}</span>
+        {!isCollapsed && <span className="truncate">{item.label}</span>}
       </Link>
     );
   }
 
+  // Group with children
   return (
     <div>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          if (isCollapsed) {
+            // In collapsed mode, toggle open and let the parent handle expansion
+            setIsOpen(!isOpen);
+          } else {
+            setIsOpen(!isOpen);
+          }
+        }}
+        title={isCollapsed ? item.label : undefined}
         className={`
-          w-full flex items-center gap-3 px-3 py-2.5 rounded-card text-sm font-data transition-all duration-200
+          w-full flex items-center gap-3 rounded-card text-sm font-data transition-all duration-200
+          ${isCollapsed ? "justify-center px-2 py-2.5" : "px-3 py-2.5"}
           ${isActive ? "text-theme" : "text-gray-400 hover:text-gray-200 hover:bg-surface-raised"}
         `}
       >
-        <span className="text-base" aria-hidden>{item.icon}</span>
-        <span className="flex-1 text-left">{item.label}</span>
-        <motion.span
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-          className="text-xs text-gray-500"
-        >
-          ▼
-        </motion.span>
+        <span className="text-base shrink-0" aria-hidden>{item.icon}</span>
+        {!isCollapsed && (
+          <>
+            <span className="flex-1 text-left truncate">{item.label}</span>
+            <motion.span
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
+              className="text-xs text-gray-500"
+            >
+              ▼
+            </motion.span>
+          </>
+        )}
       </button>
 
       <AnimatePresence>
-        {isOpen && item.children && (
+        {isOpen && item.children && !isCollapsed && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
@@ -169,6 +220,31 @@ function NavGroup({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Collapsed mode: show children as a tooltip-style popover on hover */}
+      {isCollapsed && isOpen && item.children && (
+        <div className="pl-1 mt-1 space-y-0.5">
+          {item.children.map((child) => {
+            const childActive = child.href === pathname;
+            return (
+              <Link
+                key={child.href}
+                href={child.href!}
+                onClick={onNavigate}
+                title={child.label}
+                className={`
+                  flex items-center justify-center py-1.5 rounded text-sm transition-all duration-200
+                  ${childActive
+                    ? "bg-theme/10 text-theme"
+                    : "text-gray-500 hover:text-gray-300 hover:bg-surface-raised"}
+                `}
+              >
+                <span aria-hidden>{child.icon}</span>
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -208,7 +284,13 @@ const FOOTER_TEXT = {
   en: { version: "BG3 Honor Companion v0.1", subtitle: "Honour Mode \u2014 No margin for error" },
 } as const;
 
-function NavContent({ onNavigate }: { onNavigate?: () => void }) {
+function NavContent({
+  onNavigate,
+  isCollapsed = false,
+}: {
+  onNavigate?: () => void;
+  isCollapsed?: boolean;
+}) {
   const pathname = usePathname();
   const lang = extractLang(pathname);
   const navItems = prefixItems(NAV_BY_LANG[lang] ?? NAV_ITEMS_FR, lang);
@@ -216,33 +298,45 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
 
   return (
     <>
-      <div className="p-4 space-y-1">
-        <div className="px-3 py-3 mb-2">
-          <p className="text-[10px] font-data uppercase tracking-widest text-gray-500">
-            Navigation
-          </p>
-        </div>
+      <div className={`space-y-1 ${isCollapsed ? "p-2" : "p-4"}`}>
+        {!isCollapsed && (
+          <div className="px-3 py-3 mb-2">
+            <p className="text-[10px] font-data uppercase tracking-widest text-gray-500">
+              Navigation
+            </p>
+          </div>
+        )}
 
         {navItems.map((item) => (
-          <NavGroup key={item.label} item={item} pathname={pathname} onNavigate={onNavigate} />
+          <NavGroup
+            key={item.label}
+            item={item}
+            pathname={pathname}
+            isCollapsed={isCollapsed}
+            onNavigate={onNavigate}
+          />
         ))}
       </div>
 
-      <div className="px-4 py-3 border-t border-border">
-        <p className="text-[10px] font-data uppercase tracking-widest text-gray-500 mb-2 px-1">
-          Smart Guide
-        </p>
-        <BuildSelector />
-      </div>
+      {!isCollapsed && (
+        <div className="px-4 py-3 border-t border-border">
+          <p className="text-[10px] font-data uppercase tracking-widest text-gray-500 mb-2 px-1">
+            Smart Guide
+          </p>
+          <BuildSelector />
+        </div>
+      )}
 
-      <div className="p-4 mt-auto border-t border-border">
-        <p className="text-[10px] font-data text-gray-600 text-center">
-          {footer.version}
-        </p>
-        <p className="text-[10px] font-data text-gray-600 text-center mt-0.5">
-          {footer.subtitle}
-        </p>
-      </div>
+      {!isCollapsed && (
+        <div className="p-4 mt-auto border-t border-border">
+          <p className="text-[10px] font-data text-gray-600 text-center">
+            {footer.version}
+          </p>
+          <p className="text-[10px] font-data text-gray-600 text-center mt-0.5">
+            {footer.subtitle}
+          </p>
+        </div>
+      )}
     </>
   );
 }
@@ -253,6 +347,7 @@ function NavContent({ onNavigate }: { onNavigate?: () => void }) {
 
 export function Sidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const pathname = usePathname();
 
   // Close mobile menu on route change
@@ -284,9 +379,18 @@ export function Sidebar() {
         <HamburgerIcon isOpen={mobileOpen} />
       </button>
 
-      {/* Desktop sidebar */}
-      <aside className="hidden lg:block w-64 shrink-0 border-r border-border bg-surface h-[calc(100vh-3.5rem)] sticky top-14 overflow-y-auto scrollbar-thin">
-        <NavContent />
+      {/* Desktop sidebar — Navigation Rail */}
+      <aside
+        className={`hidden lg:flex flex-col shrink-0 border-r border-border bg-surface h-[calc(100vh-3.5rem)] sticky top-14 overflow-y-auto overflow-x-hidden scrollbar-thin transition-all duration-300 ease-in-out ${
+          isCollapsed ? "w-16" : "w-64"
+        }`}
+      >
+        {/* Toggle button */}
+        <div className={`flex items-center border-b border-border/50 ${isCollapsed ? "justify-center p-2" : "justify-end px-3 py-2"}`}>
+          <CollapseToggle isCollapsed={isCollapsed} onClick={() => setIsCollapsed(!isCollapsed)} />
+        </div>
+
+        <NavContent isCollapsed={isCollapsed} />
       </aside>
 
       {/* Mobile overlay + drawer */}

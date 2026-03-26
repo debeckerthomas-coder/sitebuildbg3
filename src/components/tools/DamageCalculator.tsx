@@ -1,11 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { itemsBilingualV2 } from "@/data/arsenal";
+import type { Locale } from "@/dictionaries";
 
 // ---------------------------------------------------------------------------
 // Dice faces options
 // ---------------------------------------------------------------------------
 const DICE_OPTIONS = [4, 6, 8, 10, 12] as const;
+
+// ---------------------------------------------------------------------------
+// Filter weapons only (type "Arme" / "Weapon")
+// ---------------------------------------------------------------------------
+const WEAPONS = itemsBilingualV2.filter(
+  (item) => item.type.fr === "Arme" || item.type.en === "Weapon",
+);
+
+// ---------------------------------------------------------------------------
+// Parse dice pattern & enchantment bonus from description
+// ---------------------------------------------------------------------------
+function parseDamageFromDescription(desc: string): {
+  diceCount: number | null;
+  diceFaces: number | null;
+  flatBonus: number | null;
+} {
+  // Look for enchantment bonus like "+3" or "+2" or "+1" standalone
+  const enchantMatch = desc.match(/\+(\d+)\s*(?:enchant|$)/i)
+    ?? desc.match(/(?:^|\.\s|\s)\+(\d+)(?:\s|,|\.|$)/)
+    ?? desc.match(/\+(\d+)\b/);
+  const flatBonus = enchantMatch?.[1] ? parseInt(enchantMatch[1], 10) : null;
+
+  // Look for primary dice pattern like "1d8", "2d6" — take the first one
+  const diceMatch = desc.match(/(\d+)d(\d+)/);
+  const diceCount = diceMatch?.[1] ? parseInt(diceMatch[1], 10) : null;
+  const diceFaces = diceMatch?.[2] ? parseInt(diceMatch[2], 10) : null;
+
+  return { diceCount, diceFaces, flatBonus };
+}
 
 // ---------------------------------------------------------------------------
 // Stepper control component
@@ -104,11 +135,26 @@ function DiceSelector({
 // ---------------------------------------------------------------------------
 // Main calculator
 // ---------------------------------------------------------------------------
-export default function DamageCalculator() {
+export default function DamageCalculator({ lang }: { lang: Locale }) {
   const [diceCount, setDiceCount] = useState(1);
   const [diceFaces, setDiceFaces] = useState(8);
   const [statModifier, setStatModifier] = useState(3);
   const [flatBonus, setFlatBonus] = useState(1);
+  const [selectedWeaponId, setSelectedWeaponId] = useState<string | null>(null);
+
+  const selectedWeapon = selectedWeaponId
+    ? WEAPONS.find((w) => w.id === selectedWeaponId) ?? null
+    : null;
+
+  // Auto-fill stats when a weapon is selected
+  useEffect(() => {
+    if (!selectedWeapon) return;
+    const desc = selectedWeapon.description[lang];
+    const parsed = parseDamageFromDescription(desc);
+    if (parsed.diceCount !== null) setDiceCount(parsed.diceCount);
+    if (parsed.diceFaces !== null) setDiceFaces(parsed.diceFaces);
+    if (parsed.flatBonus !== null) setFlatBonus(parsed.flatBonus);
+  }, [selectedWeaponId, selectedWeapon, lang]);
 
   // Derived values
   const minDamage = diceCount * 1 + statModifier + flatBonus;
@@ -124,8 +170,35 @@ export default function DamageCalculator() {
           <h3 className="font-display text-lg text-gold">Paramètres</h3>
         </div>
 
+        {/* Weapon selector */}
+        <div className="space-y-2">
+          <span className="text-sm font-data text-gray-400">
+            {lang === "fr" ? "Arme de l'Armurerie" : "Weapon from the Armory"}
+          </span>
+          <select
+            value={selectedWeaponId ?? ""}
+            onChange={(e) =>
+              setSelectedWeaponId(e.target.value || null)
+            }
+            className="w-full px-4 py-3 rounded-lg bg-[#111827] border border-gray-700 text-gray-200
+              focus:outline-none focus:border-[#fbbf24] focus:ring-1 focus:ring-[#fbbf24]/50
+              transition-colors appearance-none cursor-pointer text-sm font-data"
+          >
+            <option value="">
+              {lang === "fr"
+                ? "— Choisir une arme de l'Armurerie —"
+                : "— Choose a weapon from the Armory —"}
+            </option>
+            {WEAPONS.map((w) => (
+              <option key={w.id} value={w.id}>
+                {w.name[lang]}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <Stepper
-          label="Nombre de dés"
+          label={lang === "fr" ? "Nombre de dés" : "Dice count"}
           value={diceCount}
           min={1}
           max={10}
@@ -136,7 +209,7 @@ export default function DamageCalculator() {
         <DiceSelector value={diceFaces} onChange={setDiceFaces} />
 
         <Stepper
-          label="Modificateur de caractéristique"
+          label={lang === "fr" ? "Modificateur de caractéristique" : "Ability modifier"}
           value={statModifier}
           min={-1}
           max={8}
@@ -145,7 +218,7 @@ export default function DamageCalculator() {
         />
 
         <Stepper
-          label="Bonus fixe (arme / enchantement)"
+          label={lang === "fr" ? "Bonus fixe (arme / enchantement)" : "Flat bonus (weapon / enchantment)"}
           value={flatBonus}
           min={0}
           max={10}
@@ -156,7 +229,7 @@ export default function DamageCalculator() {
         {/* Formula recap */}
         <div className="pt-4 border-t border-border">
           <p className="text-xs font-data text-gray-500 text-center">
-            Formule : {diceCount}d{diceFaces}{" "}
+            {lang === "fr" ? "Formule" : "Formula"} : {diceCount}d{diceFaces}{" "}
             {statModifier >= 0 ? `+ ${statModifier}` : `- ${Math.abs(statModifier)}`}{" "}
             {flatBonus > 0 && `+ ${flatBonus}`}
           </p>
@@ -170,8 +243,26 @@ export default function DamageCalculator() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#fbbf24]/5 via-transparent to-transparent pointer-events-none" />
 
         <div className="relative z-10 text-center space-y-6">
+          {/* Selected weapon display */}
+          {selectedWeapon && (
+            <div className="flex flex-col items-center gap-2">
+              {selectedWeapon.icon && (
+                <img
+                  src={selectedWeapon.icon}
+                  alt={selectedWeapon.name[lang]}
+                  width={64}
+                  height={64}
+                  className="rounded-lg border-2 border-[#fbbf24]/40 bg-[#111827]"
+                />
+              )}
+              <p className="text-sm font-display text-[#fbbf24]/80">
+                {selectedWeapon.name[lang]}
+              </p>
+            </div>
+          )}
+
           <p className="text-xs font-data uppercase tracking-[0.25em] text-gray-500">
-            Dégâts Moyens
+            {lang === "fr" ? "Dégâts Moyens" : "Average Damage"}
           </p>
 
           {/* Big average number */}

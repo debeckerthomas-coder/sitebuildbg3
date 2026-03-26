@@ -49,9 +49,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const build = getBuildTierS(id);
   if (!build) return { title: "Build introuvable" };
 
+  const title = `Build ${build.name} — Baldur's Gate 3 (Mode Honneur) | BG3 Honor Companion`;
+  const description = `Découvrez le meilleur build ${build.name} (${build.classes}) pour le Mode Honneur de BG3. ${build.coreRole}. Stats, équipement, sorts et stratégie complète.`;
+
   return {
-    title: `${build.name} — ${build.classes} | BG3 Honor Companion`,
-    description: `${build.coreRole}. ${build.keyMechanic.slice(0, 140)}…`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+    },
   };
 }
 
@@ -91,8 +99,21 @@ export default async function BuildPage({ params }: PageProps) {
   const mdxSlug = BUILD_MDX_SLUGS[id];
   const mdxData = mdxSlug ? getBuildMDX(mdxSlug) : null;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: build.name,
+    description: `Découvrez le meilleur build ${build.name} (${build.classes}) pour le Mode Honneur de BG3. ${build.coreRole}. Stats, équipement, sorts et stratégie complète.`,
+    author: { "@type": "Organization", name: "BG3 Honor Companion" },
+    about: { "@type": "VideoGame", name: "Baldur's Gate 3" },
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* ── Header ────────────────────────────────────────────────── */}
       <header className="space-y-4">

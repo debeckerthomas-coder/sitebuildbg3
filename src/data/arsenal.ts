@@ -645,6 +645,7 @@ export interface ArsenalItemV2 {
   readonly usedBy: readonly string[];
   readonly lore?: I18nText;
   readonly acquisition?: I18nText;
+  readonly icon?: string;
 }
 
 export const itemsBilingualV2: readonly ArsenalItemV2[] = [

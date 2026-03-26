@@ -11,6 +11,7 @@ interface ItemDetailCardProps {
   readonly description: string;
   readonly lore?: string;
   readonly acquisition?: string;
+  readonly icon?: string;
 }
 
 const RARITY_THEME = {
@@ -63,6 +64,7 @@ export function ItemDetailCard({
   description,
   lore,
   acquisition,
+  icon,
 }: ItemDetailCardProps) {
   const theme = RARITY_THEME[rarity];
 
@@ -76,7 +78,17 @@ export function ItemDetailCard({
       />
 
       {/* Header */}
-      <div className="mb-3">
+      <div className="mb-3 flex items-start gap-3">
+        {icon && (
+          <img
+            src={icon}
+            alt={name}
+            width={48}
+            height={48}
+            className="h-12 w-12 shrink-0 rounded-md border border-gray-700 object-cover"
+          />
+        )}
+        <div>
         <h3 className={`text-lg font-bold leading-tight ${theme.name}`}>
           {name}
         </h3>
@@ -87,6 +99,7 @@ export function ItemDetailCard({
           >
             {theme.label}
           </span>
+        </div>
         </div>
       </div>
 

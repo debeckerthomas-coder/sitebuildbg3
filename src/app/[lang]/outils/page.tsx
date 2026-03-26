@@ -82,6 +82,13 @@ const TOOLS: readonly ToolCard[] = [
     description:
       "Calculateur Point Buy 27 interactif. Répartissez vos points et bonus raciaux pour forger le héros parfait.",
   },
+  {
+    href: "/outils/calculateur",
+    icon: "🧮",
+    title: "Theorycraft Engine",
+    description:
+      "Calculateur de dégâts interactif. Paramétrez vos dés, modificateurs et bonus pour visualiser min, max et moyenne en temps réel.",
+  },
 ];
 
 // ---------------------------------------------------------------------------

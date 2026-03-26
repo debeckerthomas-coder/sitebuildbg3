@@ -9,6 +9,7 @@ import { getBuildTierS, BUILDS_TIER_S } from "@/data/builds/tier-s";
 import { getBuildMDX } from "@/lib/builds-mdx";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 import type { Metadata } from "next";
+import NewsletterCTA from "@/components/ui/NewsletterCTA";
 
 // ---------------------------------------------------------------------------
 // Map build ID → MDX slug (filename without .mdx)
@@ -258,6 +259,9 @@ export default async function BuildPage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      {/* ── Newsletter CTA ──────────────────────────────────────── */}
+      <NewsletterCTA />
     </div>
   );
 }

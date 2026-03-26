@@ -1,631 +1,5 @@
 // ============================================================================
-// L'Armurerie — Collections d'équipements BG3 organisées par rareté et par acte
-// ============================================================================
-
-export interface ArsenalItem {
-  readonly id: string;
-  readonly name: string;
-  readonly wikiName: string;
-  readonly type: "Arme" | "Armure" | "Tête" | "Gants" | "Bottes" | "Anneau" | "Amulette" | "Cape" | "Bouclier";
-  readonly rarity: "Legendary" | "Very Rare" | "Rare" | "Uncommon";
-  readonly act: 1 | 2 | 3;
-  readonly location: string;
-  readonly effect: string;
-  readonly usedBy: readonly string[];
-}
-
-// Type category helper for filters
-export type TypeCategory = "Arme" | "Armure" | "Accessoire";
-
-export function getTypeCategory(type: ArsenalItem["type"]): TypeCategory {
-  if (type === "Arme" || type === "Bouclier") return "Arme";
-  if (type === "Armure") return "Armure";
-  return "Accessoire";
-}
-
-// ============================================================================
-// COLLECTION : LÉGENDAIRES
-// ============================================================================
-
-export const itemsLegendary: readonly ArsenalItem[] = [
-  {
-    id: "markoheshkir",
-    name: "Markoheshkir",
-    wikiName: "Markoheshkir",
-    type: "Arme",
-    rarity: "Legendary",
-    act: 3,
-    location: "Tour de Ramazith — Chambre Forte",
-    effect: "Bâton légendaire. Faveur de Kereska : Éclair en Chaîne ou Boule de Feu gratuit 1×/repos court. +1 au DD des sorts.",
-    usedBy: ["Nuke Tempête", "Fire Sorlock", "Barde Contrôleur"],
-  },
-  {
-    id: "baldurans_giantslayer",
-    name: "Pourfendeuse de Géant de Baldur",
-    wikiName: "Balduran's Giantslayer",
-    type: "Arme",
-    rarity: "Legendary",
-    act: 3,
-    location: "Caverne de Wyrm — Vaincre Ansur",
-    effect: "Épée à deux mains. Double les dégâts bonus de Force. Avantage contre les créatures Grandes+. +3 enchantement.",
-    usedBy: ["Sorcadin", "Bardadin"],
-  },
-  {
-    id: "nyrulna",
-    name: "Nyrulna",
-    wikiName: "Nyrulna",
-    type: "Arme",
-    rarity: "Legendary",
-    act: 3,
-    location: "Cirque du Dernier Jour — Génie Akabi",
-    effect: "Trident légendaire de retour. +3, +1d6 tonnerre, immunité recul. Explosion de 3d4 tonnerre à l'impact.",
-    usedBy: ["Throwzerker"],
-  },
-  {
-    id: "helldusk_armour",
-    name: "Armure du Crépuscule Infernal",
-    wikiName: "Helldusk Armour",
-    type: "Armure",
-    rarity: "Legendary",
-    act: 3,
-    location: "Maison de l'Espoir — Vaincre Raphaël",
-    effect: "CA 21. Résistance au feu. Réduit tous les dégâts de 3. Sort Vol gratuit. Brûle les attaquants en mêlée (1d4 feu).",
-    usedBy: ["Sorcadin", "Lockadin", "Throwzerker"],
-  },
-  {
-    id: "helmet_of_balduran",
-    name: "Heaume de Baldur",
-    wikiName: "Helmet of Balduran",
-    type: "Tête",
-    rarity: "Legendary",
-    act: 3,
-    location: "Caverne de Wyrm — Vaincre Ansur",
-    effect: "Guérit 2 PV/tour. Immunité critique et étourdissement. +1 CA, +1 JdS. Le tank ultime.",
-    usedBy: ["Sorcadin", "Bardadin"],
-  },
-  {
-    id: "sang_de_lathandre",
-    name: "Le Sang de Lathandre",
-    wikiName: "The Blood of Lathander",
-    type: "Arme",
-    rarity: "Legendary",
-    act: 2,
-    location: "Monastère de Rosymorn — Puzzle du Vitrail",
-    effect: "Masse +3. Lumière aveuglante (6m AoE). Si vos PV tombent à 0 : résurrection avec 2d6 PV 1×/repos long.",
-    usedBy: ["Clerc Orbes"],
-  },
-  {
-    id: "crimson_mischief",
-    name: "Malice Écarlate",
-    wikiName: "Crimson Mischief",
-    type: "Arme",
-    rarity: "Legendary",
-    act: 3,
-    location: "Vaincre Orin dans le Temple de Bhaal",
-    effect: "Épée courte. Main dominante : +7 dégâts perforants sur cible à PV max. Main secondaire : +1d4 nécrotique + mod. de Charisme aux dégâts.",
-    usedBy: ["Gloom Assassin", "Bardadin"],
-  },
-  {
-    id: "helldusk_helmet",
-    name: "Heaume du Crépuscule Infernal",
-    wikiName: "Helldusk Helmet",
-    type: "Tête",
-    rarity: "Legendary",
-    act: 3,
-    location: "Maison de l'Espoir — Coffre de Raphaël",
-    effect: "Immunité à l'Aveuglement, Critique et Étourdissement. +2 DD pour les JdS de sorts. Riposte de feu.",
-    usedBy: ["Lockadin", "Fire Sorlock"],
-  },
-  {
-    id: "helldusk_gloves",
-    name: "Gants du Crépuscule Infernal",
-    wikiName: "Helldusk Gloves",
-    type: "Gants",
-    rarity: "Legendary",
-    act: 3,
-    location: "Maison de l'Espoir — Coffre de Raphaël",
-    effect: "+1 au DD des sorts. Les attaques d'arme infligent +1d6 dégâts de feu. Rayon Brûlant gratuit 1×/repos court.",
-    usedBy: ["Sorcadin", "Throwzerker"],
-  },
-  {
-    id: "helldusk_boots",
-    name: "Bottes du Crépuscule Infernal",
-    wikiName: "Helldusk Boots",
-    type: "Bottes",
-    rarity: "Legendary",
-    act: 3,
-    location: "Maison de l'Espoir — Coffre de Raphaël",
-    effect: "Immunité au Déplacement Forcé. Téléportation infernale (Action Bonus). Réussite automatique aux JdS vs surfaces.",
-    usedBy: ["Sorcadin", "Lockadin"],
-  },
-  {
-    id: "gontr_mael",
-    name: "Gontr Mael",
-    wikiName: "Gontr Mael",
-    type: "Arme",
-    rarity: "Legendary",
-    act: 3,
-    location: "Fonderie d'Acier — Vaincre le Titan",
-    effect: "Arc long +3. Les flèches infligent +1d4 tonnerre et provoquent Éblouissement (JdS CON). Confère Bénédiction 1×/repos court.",
-    usedBy: ["Gloom Assassin"],
-  },
-  {
-    id: "devotees_mace",
-    name: "Masse du Dévot",
-    wikiName: "Devotee's Mace",
-    type: "Arme",
-    rarity: "Legendary",
-    act: 3,
-    location: "Porte de Baldur — Quête du Temple de Lathander",
-    effect: "Masse +3. Ajoute le mod. de CHA aux dégâts. Lumière Éblouissante en AoE (1×/repos court). Idéal Clerc/Paladin.",
-    usedBy: ["Clerc Orbes", "Sorcadin"],
-  },
-];
-
-// ============================================================================
-// COLLECTION : TRÈS RARES
-// ============================================================================
-
-export const itemsVeryRare: readonly ArsenalItem[] = [
-  {
-    id: "casque_acuite_arcanique",
-    name: "Casque d'Acuité Arcanique",
-    wikiName: "Birthright",
-    type: "Tête",
-    rarity: "Very Rare",
-    act: 1,
-    location: "Grymforge — Gardien de la Forge",
-    effect: "Chaque attaque d'arme applique Acuité Arcanique : -1 JdS par charge (cumul -7). Rend vos sorts imparables.",
-    usedBy: ["Barde Contrôleur", "Bardadin", "Fire Sorlock"],
-  },
-  {
-    id: "ring_mystic_scoundrel",
-    name: "Anneau du Gredin Mystique",
-    wikiName: "Risky Ring",
-    type: "Anneau",
-    rarity: "Very Rare",
-    act: 3,
-    location: "Sous-sol de l'Auberge Dernière Lumière",
-    effect: "Après une attaque d'arme, permet de lancer un sort d'illusion/enchantement en Action Bonus.",
-    usedBy: ["Barde Contrôleur", "Bardadin"],
-  },
-  {
-    id: "legacy_masters",
-    name: "Héritage des Maîtres",
-    wikiName: "Legacy of the Masters",
-    type: "Gants",
-    rarity: "Very Rare",
-    act: 3,
-    location: "Chambres Funéraires — Porte de Baldur",
-    effect: "+2 aux jets d'attaque et aux jets de dégâts d'arme. S'applique à TOUTES les attaques.",
-    usedBy: ["Lockadin", "Gloom Assassin"],
-  },
-  {
-    id: "diadem_arcane_synergy",
-    name: "Diadème de Synergie Arcanique",
-    wikiName: "Circlet of Fire",
-    type: "Tête",
-    rarity: "Very Rare",
-    act: 2,
-    location: "Crèche Y'llek — Inquisiteur",
-    effect: "Infliger une condition active Synergie Arcanique : ajoute le mod. de Charisme aux dégâts d'arme.",
-    usedBy: ["Lockadin"],
-  },
-  {
-    id: "armor_persistence",
-    name: "Armure de la Persévérance",
-    wikiName: "Armour of Persistence",
-    type: "Armure",
-    rarity: "Very Rare",
-    act: 3,
-    location: "Porte de Baldur — Marchand Dammon",
-    effect: "Armure lourde CA 20. Résistance Tranchant/Perforant/Contondant. Réduit les dégâts permanents.",
-    usedBy: ["Lockadin"],
-  },
-  {
-    id: "robe_de_la_trame",
-    name: "Robe de la Trame",
-    wikiName: "Robe of the Weave",
-    type: "Armure",
-    rarity: "Very Rare",
-    act: 3,
-    location: "Tour de Ramazith — Chambre de Lorroakan",
-    effect: "CA 10 + DEX + 2. +1 au DD des sorts et jets d'attaque de sorts. Restaure des emplacements 1×/repos.",
-    usedBy: ["Nuke Tempête", "Fire Sorlock"],
-  },
-  {
-    id: "sword_of_chaos",
-    name: "Épée du Chaos",
-    wikiName: "Sword of Chaos",
-    type: "Arme",
-    rarity: "Very Rare",
-    act: 3,
-    location: "Tribunal du Meurtre — Sarevok",
-    effect: "Épée à deux mains +2. Soigne 1d6 PV à chaque coup. Les soins + résistances du Paladin Parjure = quasi-immortel.",
-    usedBy: ["Lockadin"],
-  },
-  {
-    id: "anneau_regeneration",
-    name: "Anneau de Régénération",
-    wikiName: "Ring of Regeneration",
-    type: "Anneau",
-    rarity: "Very Rare",
-    act: 3,
-    location: "Magasin des Sorcelleries — Ville Basse",
-    effect: "Régénère 1d4 PV au début de chaque tour. Se cumule avec le Heaume de Baldur.",
-    usedBy: ["Sorcadin", "Lockadin"],
-  },
-  {
-    id: "killer_sweetheart",
-    name: "Killer's Sweetheart",
-    wikiName: "Killer's Sweetheart",
-    type: "Anneau",
-    rarity: "Very Rare",
-    act: 2,
-    location: "Temple de la Lune Obscure — Gouffre sans Fond",
-    effect: "Si vous tuez une créature, votre prochaine attaque est un coup critique automatique. 1×/repos court.",
-    usedBy: ["Gloom Assassin", "Sorcadin"],
-  },
-  {
-    id: "cloak_displacement",
-    name: "Cape de Déplacement",
-    wikiName: "Cloak of Displacement",
-    type: "Cape",
-    rarity: "Very Rare",
-    act: 2,
-    location: "Tours de Hautelune — Marchand",
-    effect: "Les attaques contre vous ont le Désavantage. L'effet prend fin si vous êtes touché, puis revient au début de votre tour.",
-    usedBy: ["Barde Contrôleur", "Fire Sorlock"],
-  },
-  {
-    id: "gauntlets_hill_giant",
-    name: "Gantelets de Force de Géant des Collines",
-    wikiName: "Gauntlets of Hill Giant Strength",
-    type: "Gants",
-    rarity: "Very Rare",
-    act: 1,
-    location: "Crèche Githyanki — Pièce secrète",
-    effect: "Fixe la Force à 23. Permet à n'importe quelle classe de frapper comme un Barbare sans élixir.",
-    usedBy: ["Throwzerker", "Sorcadin"],
-  },
-  {
-    id: "amulet_greater_health",
-    name: "Amulette de Vigueur Supérieure",
-    wikiName: "Amulet of Greater Health",
-    type: "Amulette",
-    rarity: "Very Rare",
-    act: 3,
-    location: "Maison de l'Espoir — Chambre de Raphaël",
-    effect: "Fixe la Constitution à 23. +29 PV maximaux typiquement. Avantage aux JdS de Constitution.",
-    usedBy: ["Barde Contrôleur", "Fire Sorlock"],
-  },
-  {
-    id: "boots_of_speed",
-    name: "Bottes de Vitesse",
-    wikiName: "Boots of Speed",
-    type: "Bottes",
-    rarity: "Very Rare",
-    act: 2,
-    location: "Grymforge — Trésor caché",
-    effect: "Action Bonus : vitesse de déplacement doublée. Les attaques d'opportunité contre vous ont le Désavantage.",
-    usedBy: ["Gloom Assassin", "Throwzerker"],
-  },
-  {
-    id: "shield_devotion",
-    name: "Bouclier de la Dévotion",
-    wikiName: "Shield of Devotion",
-    type: "Bouclier",
-    rarity: "Very Rare",
-    act: 1,
-    location: "Crèche Githyanki — Inquisiteur",
-    effect: "+2 CA. Confère le sort Aide (niv. 2) 1×/repos long, +5 PV max à 3 alliés. Idéal tank Acte 1.",
-    usedBy: ["Sorcadin", "Clerc Orbes"],
-  },
-];
-
-// ============================================================================
-// COLLECTION : ACTE 1 BiS (Meilleurs objets accessibles en Acte 1)
-// ============================================================================
-
-export const itemsAct1BiS: readonly ArsenalItem[] = [
-  {
-    id: "titanstring_bow",
-    name: "Arc à Cordes de Titan",
-    wikiName: "Titanstring Bow",
-    type: "Arme",
-    rarity: "Rare",
-    act: 1,
-    location: "Repaire des Zhentarim — Brem",
-    effect: "Arc long. Ajoute le modificateur de Force AUX dégâts en plus de la Dextérité. Parfait avec Élixir de Force.",
-    usedBy: ["Gloom Assassin"],
-  },
-  {
-    id: "etincelle_electrique",
-    name: "Étincelle Électrique",
-    wikiName: "The Sparkle Hands",
-    type: "Arme",
-    rarity: "Rare",
-    act: 1,
-    location: "Camp Gobelin — Marchand Gobelin",
-    effect: "Bâton. Octroie le sort mineur Éclair de Sorcière (1d8 foudre à distance). Excellent sur Gale dès l'Acte 1.",
-    usedBy: ["Nuke Tempête"],
-  },
-  {
-    id: "everburn_blade",
-    name: "Lame Toujours Ardente",
-    wikiName: "Everburn Blade",
-    type: "Arme",
-    rarity: "Uncommon",
-    act: 1,
-    location: "Nautiloïde — Piller le Cdt. Zhalk",
-    effect: "Épée à deux mains. +1d4 feu par coup. Gratuite dès le tutoriel. Meilleure arme 2H de l'Acte 1.",
-    usedBy: ["Sorcadin", "Bardadin"],
-  },
-  {
-    id: "sword_justice",
-    name: "Épée de la Justice",
-    wikiName: "Sword of Justice",
-    type: "Arme",
-    rarity: "Uncommon",
-    act: 1,
-    location: "Anders — Toll House",
-    effect: "Épée à deux mains +1. Confère Bouclier de la Foi (1×/repos long). Excellent combo tank dès l'Acte 1.",
-    usedBy: ["Sorcadin"],
-  },
-  {
-    id: "mourning_frost",
-    name: "Givre du Deuil",
-    wikiName: "Mourning Frost",
-    type: "Arme",
-    rarity: "Rare",
-    act: 1,
-    location: "Outre-Terre — Assembler 3 fragments",
-    effect: "Bâton +1. Chaque sort de froid inflige +1d4 froid. En combinaison : permet de geler en chaîne.",
-    usedBy: ["Nuke Tempête", "Fire Sorlock"],
-  },
-  {
-    id: "ring_protection",
-    name: "Anneau de Protection",
-    wikiName: "Ring of Protection",
-    type: "Anneau",
-    rarity: "Rare",
-    act: 1,
-    location: "Tatie Ethel — Négociation à la Théière",
-    effect: "+1 CA et +1 aux jets de sauvegarde. Le meilleur anneau défensif de l'Acte 1.",
-    usedBy: ["Sorcadin", "Barde Contrôleur"],
-  },
-  {
-    id: "amulet_misty_step",
-    name: "Amulette de Pas Brumeux",
-    wikiName: "Amulet of Misty Step",
-    type: "Amulette",
-    rarity: "Uncommon",
-    act: 1,
-    location: "Coffre du Druide Halsin — Bosquet des Druides",
-    effect: "Confère Pas Brumeux 1×/repos court. Mobilité gratuite pour n'importe quelle classe.",
-    usedBy: ["Nuke Tempête", "Fire Sorlock", "Barde Contrôleur"],
-  },
-  {
-    id: "gloves_power",
-    name: "Gants de Pouvoir",
-    wikiName: "Gloves of Power",
-    type: "Gants",
-    rarity: "Uncommon",
-    act: 1,
-    location: "Camp Gobelin — Pillé sur le corps",
-    effect: "Attaques d'arme infligent +1d4 nécrotique (nécessite la Marque de l'Absolue). Fonctionne avec Throwzerker.",
-    usedBy: ["Throwzerker"],
-  },
-  {
-    id: "spear_of_night",
-    name: "Lance de la Nuit",
-    wikiName: "Selûne's Spear of Night",
-    type: "Arme",
-    rarity: "Rare",
-    act: 1,
-    location: "Temple de Shar — Puzzle des Ombres",
-    effect: "Lance +1, +1d6 psychique. Avantage aux JdS de Sagesse. Excellente arme de progression pour Shadowheart.",
-    usedBy: ["Clerc Orbes"],
-  },
-  {
-    id: "cloak_protection",
-    name: "Cape de Protection",
-    wikiName: "Cloak of Protection",
-    type: "Cape",
-    rarity: "Uncommon",
-    act: 1,
-    location: "Bosquet des Druides — Marchand Tiefelin",
-    effect: "+1 CA et +1 aux jets de sauvegarde. Se cumule avec l'Anneau de Protection.",
-    usedBy: ["Sorcadin", "Fire Sorlock"],
-  },
-  {
-    id: "adamantine_splint",
-    name: "Armure d'Adamantine (Éclisses)",
-    wikiName: "Adamantine Splint Armour",
-    type: "Armure",
-    rarity: "Rare",
-    act: 1,
-    location: "Grymforge — Forge d'Adamantine",
-    effect: "CA 18, réduction -2 sur tous les dégâts. Les attaquants ne peuvent pas réussir de critique. Meilleure armure Acte 1.",
-    usedBy: ["Sorcadin", "Lockadin"],
-  },
-  {
-    id: "adamantine_shield",
-    name: "Bouclier d'Adamantine",
-    wikiName: "Adamantine Shield",
-    type: "Bouclier",
-    rarity: "Rare",
-    act: 1,
-    location: "Grymforge — Forge d'Adamantine",
-    effect: "+2 CA. Renvoie les coups critiques en attaques normales. Si touché : l'attaquant est Étourdi 1 tour.",
-    usedBy: ["Sorcadin", "Clerc Orbes"],
-  },
-];
-
-// ============================================================================
-// COLLECTION : ACTE 2 BiS (Meilleurs objets des Terres Maudites)
-// ============================================================================
-
-export const itemsAct2BiS: readonly ArsenalItem[] = [
-  {
-    id: "ring_risky",
-    name: "Anneau Risqué",
-    wikiName: "Risky Ring",
-    type: "Anneau",
-    rarity: "Uncommon",
-    act: 2,
-    location: "Sous-sol du Dernier Havre de Lumière",
-    effect: "Avantage permanent sur TOUS les jets d'attaque. Contrepartie : Désavantage aux jets de sauvegarde.",
-    usedBy: ["Lockadin", "Gloom Assassin"],
-  },
-  {
-    id: "moonlight_glaive",
-    name: "Glaive de la Lune Sélénite",
-    wikiName: "Selûne's Spear of Night",
-    type: "Arme",
-    rarity: "Rare",
-    act: 2,
-    location: "Gaveau de la Lune Obscure — Récompense de Shadowheart",
-    effect: "Arme d'hast +2, +1d4 radiant. Avantage aux JdS de Sagesse. Évolue selon le choix de Shadowheart.",
-    usedBy: ["Clerc Orbes"],
-  },
-  {
-    id: "lanterne_lunaire",
-    name: "Lanterne Lunaire",
-    wikiName: "Moonlantern",
-    type: "Arme",
-    rarity: "Rare",
-    act: 2,
-    location: "Convoi de Kar'niss / Tours de Hautelune",
-    effect: "Protection contre la Malédiction d'Ombre. Libérer la Pixie = immunité permanente pour tout le groupe.",
-    usedBy: ["Clerc Orbes", "Barde Contrôleur"],
-  },
-  {
-    id: "gloves_weapon_master",
-    name: "Gants du Maître d'Armes",
-    wikiName: "Gloves of Battlemage's Power",
-    type: "Gants",
-    rarity: "Rare",
-    act: 2,
-    location: "Araj Oblodra — Tours de Hautelune",
-    effect: "Confèrent la maîtrise de TOUTES les armes. Idéal pour les lanceurs de sorts utilisant des armes martiales.",
-    usedBy: ["Barde Contrôleur", "Fire Sorlock"],
-  },
-  {
-    id: "halberd_vigilance",
-    name: "Hallebarde de Vigilance",
-    wikiName: "Halberd of Vigilance",
-    type: "Arme",
-    rarity: "Rare",
-    act: 2,
-    location: "Roah Moonglow — Tours de Hautelune",
-    effect: "Hallebarde +2. Avantage aux jets d'initiative et immunité à la Surprise. Positionne parfaitement le DPS en premier.",
-    usedBy: ["Sorcadin", "Bardadin"],
-  },
-  {
-    id: "ring_of_free_action",
-    name: "Anneau de Libre Action",
-    wikiName: "Ring of Free Action",
-    type: "Anneau",
-    rarity: "Rare",
-    act: 2,
-    location: "Temple de la Lune Obscure — Coffre caché",
-    effect: "Immunité au Ralentissement, Paralysie et restrictions de mouvement. Contre essentiel de Grym et des mages.",
-    usedBy: ["Sorcadin", "Lockadin"],
-  },
-  {
-    id: "boots_striding",
-    name: "Bottes de Marche Assurée",
-    wikiName: "Boots of Striding",
-    type: "Bottes",
-    rarity: "Uncommon",
-    act: 2,
-    location: "Tours de Hautelune — Marchand",
-    effect: "Vitesse +3m. Immunité au terrain difficile si concentré sur un sort. Excellent pour les lanceurs de sorts.",
-    usedBy: ["Nuke Tempête", "Barde Contrôleur"],
-  },
-  {
-    id: "viconia_shield",
-    name: "Bouclier de Viconia",
-    wikiName: "Viconia's Walking Fortress",
-    type: "Bouclier",
-    rarity: "Rare",
-    act: 2,
-    location: "Temple de Shar — Quête de Shadowheart",
-    effect: "+3 CA. Réfléchit les projectiles magiques. Avantage aux JdS contre les sorts. Le meilleur bouclier avant l'Acte 3.",
-    usedBy: ["Sorcadin", "Clerc Orbes"],
-  },
-  {
-    id: "flail_of_ages",
-    name: "Fléau des Âges",
-    wikiName: "Flail of Ages",
-    type: "Arme",
-    rarity: "Rare",
-    act: 2,
-    location: "Dammon — Auberge de la Dernière Lumière",
-    effect: "Fléau +2. +1d6 feu par coup. Ralentit les ennemis touchés (JdS CON). Excellent DPS Acte 2.",
-    usedBy: ["Lockadin"],
-  },
-  {
-    id: "amulet_silvanus",
-    name: "Amulette de Silvanus",
-    wikiName: "Amulet of Silvanus",
-    type: "Amulette",
-    rarity: "Uncommon",
-    act: 2,
-    location: "Auberge de la Dernière Lumière — Halsin",
-    effect: "Résistance au Poison. Sort Protection contre le Poison 1×/repos long. Utile contre les sbires de Balthazar.",
-    usedBy: ["Clerc Orbes"],
-  },
-  {
-    id: "shadow_lantern_amulet",
-    name: "Amulette de l'Ombre Rampante",
-    wikiName: "Shadow-Cloaked Ring",
-    type: "Amulette",
-    rarity: "Rare",
-    act: 2,
-    location: "Terres Maudites — Récompense de quête",
-    effect: "Confère Invisibilité 1×/repos court. Permet un repositionnement furtif gratuit chaque combat.",
-    usedBy: ["Gloom Assassin", "Barde Contrôleur"],
-  },
-  {
-    id: "armor_moonbasking",
-    name: "Armure de Bain de Lune",
-    wikiName: "Armour of Moonbasking",
-    type: "Armure",
-    rarity: "Rare",
-    act: 2,
-    location: "Temple de la Lune Obscure — Coffre rituel",
-    effect: "Armure intermédiaire CA 15 + DEX (max 2). +40 PV temporaires après un repos long. Énorme survie.",
-    usedBy: ["Barde Contrôleur", "Clerc Orbes"],
-  },
-];
-
-// ============================================================================
-// COLLECTION FUSIONNÉE — Tous les objets
-// ============================================================================
-
-export const itemsBiS: readonly ArsenalItem[] = [
-  ...itemsLegendary,
-  ...itemsVeryRare,
-  ...itemsAct1BiS,
-  ...itemsAct2BiS,
-];
-
-// ============================================================================
-// Helpers
-// ============================================================================
-
-export function getArsenalByAct(act: 1 | 2 | 3): readonly ArsenalItem[] {
-  return itemsBiS.filter((item) => item.act === act);
-}
-
-export function getArsenalByRarity(rarity: ArsenalItem["rarity"]): readonly ArsenalItem[] {
-  return itemsBiS.filter((item) => item.rarity === rarity);
-}
-
-// ============================================================================
-// V2 — Format bilingue (migration progressive)
+// L'Armurerie — Collections d'équipements BG3 (format bilingue unique)
 // ============================================================================
 
 interface I18nText {
@@ -652,6 +26,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "markoheshkir",
     wikiName: "Markoheshkir",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Markoheshkir_Icon.png",
     name: { fr: "Markoheshkir", en: "Markoheshkir" },
     type: { fr: "Arme", en: "Weapon" },
     description: {
@@ -667,6 +42,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "baldurans_giantslayer",
     wikiName: "Balduran's Giantslayer",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Balduran's_Giantslayer_Icon.png",
     name: { fr: "Pourfendeuse de Géant de Baldur", en: "Balduran's Giantslayer" },
     type: { fr: "Arme", en: "Weapon" },
     description: {
@@ -682,6 +58,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "nyrulna",
     wikiName: "Nyrulna",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Nyrulna_Icon.png",
     name: { fr: "Nyrulna", en: "Nyrulna" },
     type: { fr: "Arme", en: "Weapon" },
     description: {
@@ -697,6 +74,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "helldusk_armour",
     wikiName: "Helldusk Armour",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Helldusk_Armour_Icon.png",
     name: { fr: "Armure du Crépuscule Infernal", en: "Helldusk Armour" },
     type: { fr: "Armure", en: "Heavy Armour" },
     description: {
@@ -712,6 +90,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "helmet_of_balduran",
     wikiName: "Helmet of Balduran",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Helmet_of_Balduran_Icon.png",
     name: { fr: "Heaume de Baldur", en: "Helmet of Balduran" },
     type: { fr: "Tête", en: "Helmet" },
     description: {
@@ -728,6 +107,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "sang_de_lathandre",
     wikiName: "The Blood of Lathander",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/The_Blood_of_Lathander_Icon.png",
     name: { fr: "Le Sang de Lathandre", en: "The Blood of Lathander" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Masse +3. Lumière aveuglante (6m AoE). Si vos PV tombent à 0 : résurrection avec 2d6 PV 1×/repos long.", en: "Mace +3. Blinding light (6m AoE). If your HP drops to 0: revive with 2d6 HP 1×/long rest." },
@@ -739,6 +119,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "crimson_mischief",
     wikiName: "Crimson Mischief",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Crimson_Mischief_Icon.png",
     name: { fr: "Malice Écarlate", en: "Crimson Mischief" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Épée courte. Main dominante : +7 dégâts perforants sur cible à PV max. Main secondaire : +1d4 nécrotique + mod. de Charisme aux dégâts.", en: "Short sword. Main hand: +7 piercing damage against full HP targets. Off-hand: +1d4 necrotic + Charisma modifier to damage." },
@@ -750,6 +131,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "helldusk_helmet",
     wikiName: "Helldusk Helmet",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Helldusk_Helmet_Icon.png",
     name: { fr: "Heaume du Crépuscule Infernal", en: "Helldusk Helmet" },
     type: { fr: "Tête", en: "Helmet" },
     description: { fr: "Immunité à l'Aveuglement, Critique et Étourdissement. +2 DD pour les JdS de sorts. Riposte de feu.", en: "Immunity to Blindness, Critical Hits, and Stun. +2 to spell save DC. Fire retaliation." },
@@ -761,6 +143,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "helldusk_gloves",
     wikiName: "Helldusk Gloves",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Helldusk_Gloves_Icon.png",
     name: { fr: "Gants du Crépuscule Infernal", en: "Helldusk Gloves" },
     type: { fr: "Gants", en: "Gloves" },
     description: { fr: "+1 au DD des sorts. Les attaques d'arme infligent +1d6 dégâts de feu. Rayon Brûlant gratuit 1×/repos court.", en: "+1 to spell save DC. Weapon attacks deal +1d6 fire damage. Free Scorching Ray 1×/short rest." },
@@ -772,6 +155,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "helldusk_boots",
     wikiName: "Helldusk Boots",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Helldusk_Boots_Icon.png",
     name: { fr: "Bottes du Crépuscule Infernal", en: "Helldusk Boots" },
     type: { fr: "Bottes", en: "Boots" },
     description: { fr: "Immunité au Déplacement Forcé. Téléportation infernale (Action Bonus). Réussite automatique aux JdS vs surfaces.", en: "Immunity to Forced Movement. Infernal Teleportation (Bonus Action). Auto-succeed on saving throws vs surfaces." },
@@ -783,6 +167,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "gontr_mael",
     wikiName: "Gontr Mael",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Gontr_Mael_Icon.png",
     name: { fr: "Gontr Mael", en: "Gontr Mael" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Arc long +3. Les flèches infligent +1d4 tonnerre et provoquent Éblouissement (JdS CON). Confère Bénédiction 1×/repos court.", en: "Longbow +3. Arrows deal +1d4 thunder and inflict Dazzled (CON save). Grants Bless 1×/short rest." },
@@ -794,6 +179,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "devotees_mace",
     wikiName: "Devotee's Mace",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Devotee's_Mace_Icon.png",
     name: { fr: "Masse du Dévot", en: "Devotee's Mace" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Masse +3. Ajoute le mod. de CHA aux dégâts. Lumière Éblouissante en AoE (1×/repos court). Idéal Clerc/Paladin.", en: "Mace +3. Adds CHA modifier to damage. Dazzling Light AoE (1×/short rest). Ideal for Cleric/Paladin." },
@@ -805,6 +191,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "casque_acuite_arcanique",
     wikiName: "Birthright",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Birthright_Icon.png",
     name: { fr: "Casque d'Acuité Arcanique", en: "Helmet of Arcane Acuity" },
     type: { fr: "Tête", en: "Helmet" },
     description: { fr: "Chaque attaque d'arme applique Acuité Arcanique : -1 JdS par charge (cumul -7). Rend vos sorts imparables.", en: "Each weapon attack applies Arcane Acuity: -1 to saving throws per stack (up to -7). Makes your spells nearly impossible to resist." },
@@ -816,6 +203,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "ring_mystic_scoundrel",
     wikiName: "Risky Ring",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Risky_Ring_Icon.png",
     name: { fr: "Anneau du Gredin Mystique", en: "Band of the Mystic Scoundrel" },
     type: { fr: "Anneau", en: "Ring" },
     description: { fr: "Après une attaque d'arme, permet de lancer un sort d'illusion/enchantement en Action Bonus.", en: "After a weapon attack, cast an Illusion or Enchantment spell as a Bonus Action." },
@@ -827,6 +215,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "legacy_masters",
     wikiName: "Legacy of the Masters",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Legacy_of_the_Masters_Icon.png",
     name: { fr: "Héritage des Maîtres", en: "Legacy of the Masters" },
     type: { fr: "Gants", en: "Gloves" },
     description: { fr: "+2 aux jets d'attaque et aux jets de dégâts d'arme. S'applique à TOUTES les attaques.", en: "+2 to weapon attack rolls and weapon damage rolls. Applies to ALL attacks." },
@@ -838,6 +227,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "diadem_arcane_synergy",
     wikiName: "Circlet of Fire",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Circlet_of_Fire_Icon.png",
     name: { fr: "Diadème de Synergie Arcanique", en: "Diadem of Arcane Synergy" },
     type: { fr: "Tête", en: "Helmet" },
     description: { fr: "Infliger une condition active Synergie Arcanique : ajoute le mod. de Charisme aux dégâts d'arme.", en: "Inflicting a condition triggers Arcane Synergy: adds Charisma modifier to weapon damage." },
@@ -849,6 +239,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "armor_persistence",
     wikiName: "Armour of Persistence",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Armour_of_Persistence_Icon.png",
     name: { fr: "Armure de la Persévérance", en: "Armour of Persistence" },
     type: { fr: "Armure", en: "Heavy Armour" },
     description: { fr: "Armure lourde CA 20. Résistance Tranchant/Perforant/Contondant. Réduit les dégâts permanents.", en: "Heavy armour AC 20. Resistance to Slashing/Piercing/Bludgeoning. Reduces persistent damage." },
@@ -860,6 +251,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "robe_de_la_trame",
     wikiName: "Robe of the Weave",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Robe_of_the_Weave_Icon.png",
     name: { fr: "Robe de la Trame", en: "Robe of the Weave" },
     type: { fr: "Armure", en: "Clothing" },
     description: { fr: "CA 10 + DEX + 2. +1 au DD des sorts et jets d'attaque de sorts. Restaure des emplacements 1×/repos.", en: "AC 10 + DEX + 2. +1 to spell save DC and spell attack rolls. Restores spell slots 1×/rest." },
@@ -871,6 +263,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "sword_of_chaos",
     wikiName: "Sword of Chaos",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Sword_of_Chaos_Icon.png",
     name: { fr: "Épée du Chaos", en: "Sword of Chaos" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Épée à deux mains +2. Soigne 1d6 PV à chaque coup. Les soins + résistances du Paladin Parjure = quasi-immortel.", en: "Two-handed sword +2. Heals 1d6 HP on each hit. Combined with Oathbreaker Paladin healing and resistances, near-unkillable." },
@@ -883,6 +276,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "anneau_regeneration",
     wikiName: "Ring of Regeneration",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Ring_of_Regeneration_Icon.png",
     name: { fr: "Anneau de Régénération", en: "Ring of Regeneration" },
     type: { fr: "Anneau", en: "Ring" },
     description: { fr: "Régénère 1d4 PV au début de chaque tour. Se cumule avec le Heaume de Baldur.", en: "Regenerates 1d4 HP at the start of each turn. Stacks with the Helmet of Balduran." },
@@ -894,6 +288,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "killer_sweetheart",
     wikiName: "Killer's Sweetheart",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Killer's_Sweetheart_Icon.png",
     name: { fr: "Killer's Sweetheart", en: "Killer's Sweetheart" },
     type: { fr: "Anneau", en: "Ring" },
     description: { fr: "Si vous tuez une créature, votre prochaine attaque est un coup critique automatique. 1×/repos court.", en: "When you kill a creature, your next attack is an automatic critical hit. 1×/short rest." },
@@ -905,6 +300,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "cloak_displacement",
     wikiName: "Cloak of Displacement",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Cloak_of_Displacement_Icon.png",
     name: { fr: "Cape de Déplacement", en: "Cloak of Displacement" },
     type: { fr: "Cape", en: "Cloak" },
     description: { fr: "Les attaques contre vous ont le Désavantage. L'effet prend fin si vous êtes touché, puis revient au début de votre tour.", en: "Attacks against you have Disadvantage. The effect ends when you are hit, then resets at the start of your turn." },
@@ -916,6 +312,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "gauntlets_hill_giant",
     wikiName: "Gauntlets of Hill Giant Strength",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Gauntlets_of_Hill_Giant_Strength_Icon.png",
     name: { fr: "Gantelets de Force de Géant des Collines", en: "Gauntlets of Hill Giant Strength" },
     type: { fr: "Gants", en: "Gloves" },
     description: { fr: "Fixe la Force à 23. Permet à n'importe quelle classe de frapper comme un Barbare sans élixir.", en: "Sets Strength to 23. Allows any class to hit like a Barbarian without an elixir." },
@@ -927,6 +324,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "amulet_greater_health",
     wikiName: "Amulet of Greater Health",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Amulet_of_Greater_Health_Icon.png",
     name: { fr: "Amulette de Vigueur Supérieure", en: "Amulet of Greater Health" },
     type: { fr: "Amulette", en: "Amulet" },
     description: { fr: "Fixe la Constitution à 23. +29 PV maximaux typiquement. Avantage aux JdS de Constitution.", en: "Sets Constitution to 23. Typically +29 max HP. Advantage on Constitution saving throws." },
@@ -938,6 +336,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "boots_of_speed",
     wikiName: "Boots of Speed",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Boots_of_Speed_Icon.png",
     name: { fr: "Bottes de Vitesse", en: "Boots of Speed" },
     type: { fr: "Bottes", en: "Boots" },
     description: { fr: "Action Bonus : vitesse de déplacement doublée. Les attaques d'opportunité contre vous ont le Désavantage.", en: "Bonus Action: doubled movement speed. Attacks of opportunity against you have Disadvantage." },
@@ -949,6 +348,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "shield_devotion",
     wikiName: "Shield of Devotion",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Shield_of_Devotion_Icon.png",
     name: { fr: "Bouclier de la Dévotion", en: "Shield of Devotion" },
     type: { fr: "Bouclier", en: "Shield" },
     description: { fr: "+2 CA. Confère le sort Aide (niv. 2) 1×/repos long, +5 PV max à 3 alliés. Idéal tank Acte 1.", en: "+2 AC. Grants Aid (level 2) 1×/long rest, +5 max HP to 3 allies. Ideal Act 1 tank shield." },
@@ -960,6 +360,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "titanstring_bow",
     wikiName: "Titanstring Bow",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Titanstring_Bow_Icon.png",
     name: { fr: "Arc à Cordes de Titan", en: "Titanstring Bow" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Arc long. Ajoute le modificateur de Force AUX dégâts en plus de la Dextérité. Parfait avec Élixir de Force.", en: "Longbow. Adds Strength modifier to damage on top of Dexterity. Perfect with Elixir of Hill Giant Strength." },
@@ -971,6 +372,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "etincelle_electrique",
     wikiName: "The Sparkle Hands",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/The_Sparkle_Hands_Icon.png",
     name: { fr: "Étincelle Électrique", en: "The Sparkle Hands" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Bâton. Octroie le sort mineur Éclair de Sorcière (1d8 foudre à distance). Excellent sur Gale dès l'Acte 1.", en: "Staff. Grants the Witch Bolt cantrip (1d8 lightning at range). Excellent on Gale from Act 1." },
@@ -982,6 +384,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "everburn_blade",
     wikiName: "Everburn Blade",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Everburn_Blade_Icon.png",
     name: { fr: "Lame Toujours Ardente", en: "Everburn Blade" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Épée à deux mains. +1d4 feu par coup. Gratuite dès le tutoriel. Meilleure arme 2H de l'Acte 1.", en: "Greatsword. +1d4 fire per hit. Free from the tutorial. Best two-handed weapon in Act 1." },
@@ -993,6 +396,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "sword_justice",
     wikiName: "Sword of Justice",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Sword_of_Justice_Icon.png",
     name: { fr: "Épée de la Justice", en: "Sword of Justice" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Épée à deux mains +1. Confère Bouclier de la Foi (1×/repos long). Excellent combo tank dès l'Acte 1.", en: "Greatsword +1. Grants Shield of Faith (1×/long rest). Excellent tank combo from Act 1." },
@@ -1004,6 +408,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "mourning_frost",
     wikiName: "Mourning Frost",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Mourning_Frost_Icon.png",
     name: { fr: "Givre du Deuil", en: "Mourning Frost" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Bâton +1. Chaque sort de froid inflige +1d4 froid. En combinaison : permet de geler en chaîne.", en: "Staff +1. Each cold spell deals +1d4 cold. In combination: enables chain freezing." },
@@ -1015,6 +420,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "ring_protection",
     wikiName: "Ring of Protection",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Ring_of_Protection_Icon.png",
     name: { fr: "Anneau de Protection", en: "Ring of Protection" },
     type: { fr: "Anneau", en: "Ring" },
     description: { fr: "+1 CA et +1 aux jets de sauvegarde. Le meilleur anneau défensif de l'Acte 1.", en: "+1 AC and +1 to saving throws. The best defensive ring in Act 1." },
@@ -1026,6 +432,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "amulet_misty_step",
     wikiName: "Amulet of Misty Step",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Amulet_of_Misty_Step_Icon.png",
     name: { fr: "Amulette de Pas Brumeux", en: "Amulet of Misty Step" },
     type: { fr: "Amulette", en: "Amulet" },
     description: { fr: "Confère Pas Brumeux 1×/repos court. Mobilité gratuite pour n'importe quelle classe.", en: "Grants Misty Step 1×/short rest. Free mobility for any class." },
@@ -1037,6 +444,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "gloves_power",
     wikiName: "Gloves of Power",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Gloves_of_Power_Icon.png",
     name: { fr: "Gants de Pouvoir", en: "Gloves of Power" },
     type: { fr: "Gants", en: "Gloves" },
     description: { fr: "Attaques d'arme infligent +1d4 nécrotique (nécessite la Marque de l'Absolue). Fonctionne avec Throwzerker.", en: "Weapon attacks deal +1d4 necrotic (requires Brand of the Absolute). Works with Throwzerker." },
@@ -1049,6 +457,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "spear_of_night",
     wikiName: "Selûne's Spear of Night",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Selûne's_Spear_of_Night_Icon.png",
     name: { fr: "Lance de la Nuit", en: "Selûne's Spear of Night" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Lance +1, +1d6 psychique. Avantage aux JdS de Sagesse. Excellente arme de progression pour Shadowheart.", en: "Spear +1, +1d6 psychic. Advantage on Wisdom saving throws. Excellent progression weapon for Shadowheart." },
@@ -1060,6 +469,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "cloak_protection",
     wikiName: "Cloak of Protection",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Cloak_of_Protection_Icon.png",
     name: { fr: "Cape de Protection", en: "Cloak of Protection" },
     type: { fr: "Cape", en: "Cloak" },
     description: { fr: "+1 CA et +1 aux jets de sauvegarde. Se cumule avec l'Anneau de Protection.", en: "+1 AC and +1 to saving throws. Stacks with the Ring of Protection." },
@@ -1071,6 +481,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "adamantine_splint",
     wikiName: "Adamantine Splint Armour",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Adamantine_Splint_Armour_Icon.png",
     name: { fr: "Armure d'Adamantine (Éclisses)", en: "Adamantine Splint Armour" },
     type: { fr: "Armure", en: "Heavy Armour" },
     description: { fr: "CA 18, réduction -2 sur tous les dégâts. Les attaquants ne peuvent pas réussir de critique. Meilleure armure Acte 1.", en: "AC 18, -2 damage reduction on all hits. Attackers cannot land critical hits. Best armour in Act 1." },
@@ -1082,6 +493,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "adamantine_shield",
     wikiName: "Adamantine Shield",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Adamantine_Shield_Icon.png",
     name: { fr: "Bouclier d'Adamantine", en: "Adamantine Shield" },
     type: { fr: "Bouclier", en: "Shield" },
     description: { fr: "+2 CA. Renvoie les coups critiques en attaques normales. Si touché : l'attaquant est Étourdi 1 tour.", en: "+2 AC. Reduces critical hits to normal attacks. When hit: attacker is Stunned for 1 turn." },
@@ -1093,6 +505,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "ring_risky",
     wikiName: "Risky Ring",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Risky_Ring_Icon.png",
     name: { fr: "Anneau Risqué", en: "Risky Ring" },
     type: { fr: "Anneau", en: "Ring" },
     description: { fr: "Avantage permanent sur TOUS les jets d'attaque. Contrepartie : Désavantage aux jets de sauvegarde.", en: "Permanent Advantage on ALL attack rolls. Drawback: Disadvantage on saving throws." },
@@ -1104,6 +517,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "moonlight_glaive",
     wikiName: "Selûne's Spear of Night",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Selûne's_Spear_of_Night_Icon.png",
     name: { fr: "Glaive de la Lune Sélénite", en: "Moonlight Glaive" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Arme d'hast +2, +1d4 radiant. Avantage aux JdS de Sagesse. Évolue selon le choix de Shadowheart.", en: "Glaive +2, +1d4 radiant. Advantage on Wisdom saving throws. Evolves based on Shadowheart's choice." },
@@ -1115,6 +529,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "lanterne_lunaire",
     wikiName: "Moonlantern",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Moonlantern_Icon.png",
     name: { fr: "Lanterne Lunaire", en: "Moonlantern" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Protection contre la Malédiction d'Ombre. Libérer la Pixie = immunité permanente pour tout le groupe.", en: "Protection against the Shadow Curse. Freeing the Pixie = permanent immunity for the whole party." },
@@ -1126,6 +541,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "gloves_weapon_master",
     wikiName: "Gloves of Battlemage's Power",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Gloves_of_Battlemage's_Power_Icon.png",
     name: { fr: "Gants du Maître d'Armes", en: "Gloves of Battlemage's Power" },
     type: { fr: "Gants", en: "Gloves" },
     description: { fr: "Confèrent la maîtrise de TOUTES les armes. Idéal pour les lanceurs de sorts utilisant des armes martiales.", en: "Grants proficiency with ALL weapons. Ideal for spellcasters using martial weapons." },
@@ -1137,6 +553,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "halberd_vigilance",
     wikiName: "Halberd of Vigilance",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Halberd_of_Vigilance_Icon.png",
     name: { fr: "Hallebarde de Vigilance", en: "Halberd of Vigilance" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Hallebarde +2. Avantage aux jets d'initiative et immunité à la Surprise. Positionne parfaitement le DPS en premier.", en: "Halberd +2. Advantage on initiative rolls and immunity to Surprise. Perfectly positions the DPS first." },
@@ -1148,6 +565,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "ring_of_free_action",
     wikiName: "Ring of Free Action",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Ring_of_Free_Action_Icon.png",
     name: { fr: "Anneau de Libre Action", en: "Ring of Free Action" },
     type: { fr: "Anneau", en: "Ring" },
     description: { fr: "Immunité au Ralentissement, Paralysie et restrictions de mouvement. Contre essentiel de Grym et des mages.", en: "Immunity to Slow, Paralysis and movement restrictions. Essential counter to Grym and mages." },
@@ -1159,6 +577,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "boots_striding",
     wikiName: "Boots of Striding",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Boots_of_Striding_Icon.png",
     name: { fr: "Bottes de Marche Assurée", en: "Boots of Striding" },
     type: { fr: "Bottes", en: "Boots" },
     description: { fr: "Vitesse +3m. Immunité au terrain difficile si concentré sur un sort. Excellent pour les lanceurs de sorts.", en: "Speed +3m. Immunity to difficult terrain while concentrating on a spell. Excellent for spellcasters." },
@@ -1170,6 +589,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "viconia_shield",
     wikiName: "Viconia's Walking Fortress",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Viconia's_Walking_Fortress_Icon.png",
     name: { fr: "Bouclier de Viconia", en: "Viconia's Walking Fortress" },
     type: { fr: "Bouclier", en: "Shield" },
     description: { fr: "+3 CA. Réfléchit les projectiles magiques. Avantage aux JdS contre les sorts. Le meilleur bouclier avant l'Acte 3.", en: "+3 AC. Reflects magical projectiles. Advantage on saving throws against spells. Best shield before Act 3." },
@@ -1181,6 +601,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "flail_of_ages",
     wikiName: "Flail of Ages",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Flail_of_Ages_Icon.png",
     name: { fr: "Fléau des Âges", en: "Flail of Ages" },
     type: { fr: "Arme", en: "Weapon" },
     description: { fr: "Fléau +2. +1d6 feu par coup. Ralentit les ennemis touchés (JdS CON). Excellent DPS Acte 2.", en: "Flail +2. +1d6 fire per hit. Slows hit enemies (CON save). Excellent Act 2 DPS." },
@@ -1192,6 +613,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "amulet_silvanus",
     wikiName: "Amulet of Silvanus",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Amulet_of_Silvanus_Icon.png",
     name: { fr: "Amulette de Silvanus", en: "Amulet of Silvanus" },
     type: { fr: "Amulette", en: "Amulet" },
     description: { fr: "Résistance au Poison. Sort Protection contre le Poison 1×/repos long. Utile contre les sbires de Balthazar.", en: "Poison Resistance. Protection from Poison spell 1×/long rest. Useful against Balthazar's minions." },
@@ -1203,6 +625,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "shadow_lantern_amulet",
     wikiName: "Shadow-Cloaked Ring",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Shadow-Cloaked_Ring_Icon.png",
     name: { fr: "Amulette de l'Ombre Rampante", en: "Shadow-Cloaked Amulet" },
     type: { fr: "Amulette", en: "Amulet" },
     description: { fr: "Confère Invisibilité 1×/repos court. Permet un repositionnement furtif gratuit chaque combat.", en: "Grants Invisibility 1×/short rest. Allows free stealthy repositioning each combat." },
@@ -1214,6 +637,7 @@ export const itemsBilingualV2: readonly ArsenalItemV2[] = [
   {
     id: "armor_moonbasking",
     wikiName: "Armour of Moonbasking",
+    icon: "https://bg3.wiki/wiki/Special:FilePath/Armour_of_Moonbasking_Icon.png",
     name: { fr: "Armure de Bain de Lune", en: "Armour of Moonbasking" },
     type: { fr: "Armure", en: "Medium Armour" },
     description: { fr: "Armure intermédiaire CA 15 + DEX (max 2). +40 PV temporaires après un repos long. Énorme survie.", en: "Medium armour AC 15 + DEX (max 2). +40 temporary HP after a long rest. Massive survivability." },

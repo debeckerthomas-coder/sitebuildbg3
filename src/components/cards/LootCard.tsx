@@ -9,7 +9,18 @@ import { useState } from "react";
 import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { getBg3WikiIconUrl } from "@/lib/iconHelper";
-import type { ArsenalItem } from "@/data/arsenal";
+// Legacy interface kept locally — LootCard is no longer actively used
+interface ArsenalItem {
+  readonly id: string;
+  readonly name: string;
+  readonly wikiName: string;
+  readonly type: "Arme" | "Armure" | "Tête" | "Gants" | "Bottes" | "Anneau" | "Amulette" | "Cape" | "Bouclier";
+  readonly rarity: "Legendary" | "Very Rare" | "Rare" | "Uncommon";
+  readonly act: 1 | 2 | 3;
+  readonly location: string;
+  readonly effect: string;
+  readonly usedBy: readonly string[];
+}
 
 // ---------------------------------------------------------------------------
 // Rarity theming — intensified for Exhibition Panel

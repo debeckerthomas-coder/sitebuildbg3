@@ -7,31 +7,21 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  itemsBiS,
   itemsBilingualV2,
-  getTypeCategory,
-  type ArsenalItem,
   type ArsenalItemV2,
-  type TypeCategory,
 } from "@/data/arsenal";
-import { LootCard } from "@/components/cards/LootCard";
 import { ItemDetailCard } from "@/components/arsenal/ItemDetailCard";
 import type { Locale } from "@/dictionaries";
 
-// Map arsenal.ts rarity strings to ItemDetailCard rarity prop
-const RARITY_MAP: Record<ArsenalItem["rarity"], "legendary" | "very_rare" | "rare" | "uncommon"> = {
-  Legendary: "legendary",
-  "Very Rare": "very_rare",
-  Rare: "rare",
-  Uncommon: "uncommon",
-};
-
-// Set of V2-migrated item IDs (to avoid duplicates)
-const V2_IDS = new Set(itemsBilingualV2.map((i) => i.id));
-
 type ActFilter = "all" | 1 | 2 | 3;
-type RarityFilter = "all" | ArsenalItem["rarity"];
-type TypeFilter = "all" | TypeCategory;
+type RarityFilter = "all" | ArsenalItemV2["rarity"];
+type TypeFilter = "all" | "Arme" | "Armure" | "Accessoire";
+
+function getTypeCategory(typeFr: string): "Arme" | "Armure" | "Accessoire" {
+  if (typeFr === "Arme" || typeFr === "Bouclier") return "Arme";
+  if (typeFr === "Armure") return "Armure";
+  return "Accessoire";
+}
 
 const ACT_OPTIONS: { value: ActFilter; label: string }[] = [
   { value: "all", label: "Tous" },
@@ -42,10 +32,10 @@ const ACT_OPTIONS: { value: ActFilter; label: string }[] = [
 
 const RARITY_OPTIONS: { value: RarityFilter; label: string; color: string }[] = [
   { value: "all", label: "Toutes", color: "text-gray-400 border-gray-600 hover:border-gray-400" },
-  { value: "Legendary", label: "Légendaire", color: "text-yellow-400 border-yellow-500/40 hover:border-yellow-500" },
-  { value: "Very Rare", label: "Très Rare", color: "text-fuchsia-400 border-fuchsia-500/40 hover:border-fuchsia-500" },
-  { value: "Rare", label: "Rare", color: "text-blue-400 border-blue-500/40 hover:border-blue-500" },
-  { value: "Uncommon", label: "Peu Commun", color: "text-green-400 border-green-500/40 hover:border-green-500" },
+  { value: "legendary", label: "Légendaire", color: "text-yellow-400 border-yellow-500/40 hover:border-yellow-500" },
+  { value: "very_rare", label: "Très Rare", color: "text-fuchsia-400 border-fuchsia-500/40 hover:border-fuchsia-500" },
+  { value: "rare", label: "Rare", color: "text-blue-400 border-blue-500/40 hover:border-blue-500" },
+  { value: "uncommon", label: "Peu Commun", color: "text-green-400 border-green-500/40 hover:border-green-500" },
 ];
 
 const TYPE_OPTIONS: { value: TypeFilter; label: string }[] = [
@@ -57,35 +47,35 @@ const TYPE_OPTIONS: { value: TypeFilter; label: string }[] = [
 
 // Rarity display config for shelf sections
 const RARITY_SHELVES: {
-  rarity: ArsenalItem["rarity"];
+  rarity: ArsenalItemV2["rarity"];
   title: string;
   subtitle: string;
   gradient: string;
   barGradient: string;
 }[] = [
   {
-    rarity: "Legendary",
+    rarity: "legendary",
     title: "Vestiges Légendaires",
     subtitle: "Les artefacts qui forgent les légendes de Faerûn",
     gradient: "from-yellow-200 via-gold to-amber-600",
     barGradient: "from-transparent via-yellow-500/50 to-transparent",
   },
   {
-    rarity: "Very Rare",
+    rarity: "very_rare",
     title: "Trésors Très Rares",
     subtitle: "Des reliques convoitées par les aventuriers les plus aguerris",
     gradient: "from-fuchsia-300 via-fuchsia-400 to-purple-600",
     barGradient: "from-transparent via-fuchsia-500/50 to-transparent",
   },
   {
-    rarity: "Rare",
+    rarity: "rare",
     title: "Artefacts Rares",
     subtitle: "Des objets remarquables qui changent le cours d'un combat",
     gradient: "from-blue-300 via-blue-400 to-indigo-600",
     barGradient: "from-transparent via-blue-500/50 to-transparent",
   },
   {
-    rarity: "Uncommon",
+    rarity: "uncommon",
     title: "Trouvailles Peu Communes",
     subtitle: "Les fondations solides d'un arsenal victorieux",
     gradient: "from-green-300 via-green-400 to-emerald-600",
@@ -100,35 +90,12 @@ export function ArsenalGrid({ lang = "fr" }: { lang?: Locale }) {
   const [typeFilter, setTypeFilter] = useState<TypeFilter>("all");
   const [search, setSearch] = useState("");
 
-  // Legacy items that have NOT been migrated to V2
-  const legacyOnly = useMemo(
-    () => itemsBiS.filter((item) => !V2_IDS.has(item.id)),
-    [],
-  );
-
+  // Filter all items
   const filtered = useMemo(() => {
-    return legacyOnly.filter((item) => {
-      if (actFilter !== "all" && item.act !== actFilter) return false;
-      if (rarityFilter !== "all" && item.rarity !== rarityFilter) return false;
-      if (typeFilter !== "all" && getTypeCategory(item.type) !== typeFilter) return false;
-      if (search) {
-        const q = search.toLowerCase();
-        return (
-          item.name.toLowerCase().includes(q) ||
-          item.effect.toLowerCase().includes(q) ||
-          item.type.toLowerCase().includes(q) ||
-          item.location.toLowerCase().includes(q) ||
-          item.usedBy.some((b) => b.toLowerCase().includes(q))
-        );
-      }
-      return true;
-    });
-  }, [legacyOnly, actFilter, rarityFilter, typeFilter, search]);
-
-  // V2 bilingual items — filtered by search on the active language
-  const filteredV2 = useMemo(() => {
     return itemsBilingualV2.filter((item) => {
       if (actFilter !== "all" && item.act !== actFilter) return false;
+      if (rarityFilter !== "all" && item.rarity !== rarityFilter) return false;
+      if (typeFilter !== "all" && getTypeCategory(item.type.fr) !== typeFilter) return false;
       if (search) {
         const q = search.toLowerCase();
         return (
@@ -141,7 +108,7 @@ export function ArsenalGrid({ lang = "fr" }: { lang?: Locale }) {
       }
       return true;
     });
-  }, [l, actFilter, search]);
+  }, [l, actFilter, rarityFilter, typeFilter, search]);
 
   // Group filtered items by rarity for shelf display
   const shelves = useMemo(() => {
@@ -260,8 +227,8 @@ export function ArsenalGrid({ lang = "fr" }: { lang?: Locale }) {
 
         {/* Result count */}
         <p className="text-center text-[11px] font-data text-gray-600">
-          {filtered.length + filteredV2.length} objet{(filtered.length + filteredV2.length) !== 1 ? "s" : ""} trouvé
-          {(filtered.length + filteredV2.length) !== 1 ? "s" : ""}
+          {filtered.length} objet{filtered.length !== 1 ? "s" : ""} trouvé
+          {filtered.length !== 1 ? "s" : ""}
           {(actFilter !== "all" || rarityFilter !== "all" || typeFilter !== "all" || search) && (
             <button
               onClick={() => {
@@ -278,33 +245,7 @@ export function ArsenalGrid({ lang = "fr" }: { lang?: Locale }) {
         </p>
       </div>
 
-      {/* ===== V2 BILINGUAL ITEMS ===== */}
-      {filteredV2.length > 0 && (
-        <section className="space-y-6">
-          <div className="text-center space-y-2">
-            <h2 className="font-display text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-gold to-amber-600">
-              {l === "fr" ? "Collection Bilingue" : "Bilingual Collection"}
-            </h2>
-            <p className="text-[10px] font-data text-gray-600">
-              {filteredV2.length} objet{filteredV2.length !== 1 ? "s" : ""}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {filteredV2.map((item) => (
-              <ItemDetailCard
-                key={item.id}
-                name={item.name[l]}
-                rarity={item.rarity}
-                type={item.type[l]}
-                description={item.description[l]}
-                acquisition={item.acquisition?.[l]}
-              />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* ===== SHELVES — Sections par rareté (legacy) ===== */}
+      {/* ===== SHELVES — Sections par rareté ===== */}
       <AnimatePresence mode="wait">
         {shelves.length > 0 ? (
           <div className="space-y-12">
@@ -345,11 +286,12 @@ export function ArsenalGrid({ lang = "fr" }: { lang?: Locale }) {
                       transition={{ delay: shelfIdx * 0.1 + i * 0.03, duration: 0.35 }}
                     >
                       <ItemDetailCard
-                        name={item.name}
-                        rarity={RARITY_MAP[item.rarity]}
-                        type={item.type}
-                        description={item.effect}
-                        acquisition={`Acte ${item.act} — ${item.location}`}
+                        name={item.name[l]}
+                        rarity={item.rarity}
+                        type={item.type[l]}
+                        description={item.description[l]}
+                        acquisition={item.acquisition?.[l]}
+                        icon={item.icon}
                       />
                     </motion.div>
                   ))}

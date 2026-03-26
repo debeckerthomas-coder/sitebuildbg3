@@ -1,5 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllEntries, type CodexEntry } from "@/data/database";
+
+export const metadata: Metadata = {
+  title: "Le Codex — Baldur's Gate 3 (Mode Honneur) | BG3 Honor Companion",
+  description:
+    "Encyclopédie complète des objets, sorts et capacités référencés dans le guide du Mode Honneur de BG3. Statistiques détaillées et synergies.",
+  openGraph: {
+    title: "Le Codex — Baldur's Gate 3 (Mode Honneur) | BG3 Honor Companion",
+    description:
+      "Encyclopédie complète des objets, sorts et capacités référencés dans le guide du Mode Honneur de BG3. Statistiques détaillées et synergies.",
+    type: "website",
+  },
+};
 
 function CodexCard({ entry }: { entry: CodexEntry }) {
   const rarityColors: Record<string, string> = {
@@ -50,8 +63,23 @@ export default function CodexPage() {
   const sorts = allEntries.filter((e) => e.type === "sort");
   const capacites = allEntries.filter((e) => e.type === "capacité");
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Le Codex",
+    description:
+      "Encyclopédie complète des objets, sorts et capacités référencés dans le guide du Mode Honneur de BG3.",
+    author: { "@type": "Organization", name: "BG3 Honor Companion" },
+    about: { "@type": "VideoGame", name: "Baldur's Gate 3" },
+  };
+
   return (
     <div className="max-w-5xl space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <div className="space-y-3">
         <h1 className="font-display text-3xl text-gold tracking-wide">Le Codex</h1>
         <p className="font-body text-base text-gray-400 max-w-2xl leading-relaxed">

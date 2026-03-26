@@ -28,12 +28,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Guide introuvable | BG3 Honor Companion" };
   }
 
+  const title = `Guide ${walkthrough.meta.title} — Baldur's Gate 3 (Mode Honneur) | BG3 Honor Companion`;
+  const description = walkthrough.meta.description;
+
   return {
-    title: `${walkthrough.meta.title} | BG3 Honor Companion`,
-    description: walkthrough.meta.description,
+    title,
+    description,
     openGraph: {
-      title: `${walkthrough.meta.title} | BG3 Honor Companion`,
-      description: walkthrough.meta.description,
+      title,
+      description,
       type: "article",
     },
   };
@@ -49,8 +52,22 @@ export default async function WalkthroughPage({ params }: PageProps) {
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: walkthrough.meta.title,
+    description: walkthrough.meta.description,
+    author: { "@type": "Organization", name: "BG3 Honor Companion" },
+    about: { "@type": "VideoGame", name: "Baldur's Gate 3" },
+  };
+
   return (
     <div className="relative max-w-5xl mx-auto px-4 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Floating Table of Contents — fixed right on xl screens */}
       <FloatingTOC />
 

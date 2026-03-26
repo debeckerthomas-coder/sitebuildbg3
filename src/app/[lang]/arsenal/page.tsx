@@ -3,9 +3,15 @@ import type { Locale } from "@/dictionaries";
 import { ArsenalGrid } from "./ArsenalGrid";
 
 export const metadata: Metadata = {
-  title: "L'Arsenal des Héros | BG3 Honor Companion",
+  title: "Armurerie & Loot — Baldur's Gate 3 (Mode Honneur) | BG3 Honor Companion",
   description:
-    "L'encyclopédie visuelle des équipements Best-in-Slot de Baldur's Gate 3. Vestiges Légendaires, Trésors Très Rares, et les meilleurs objets par acte pour le Mode Honneur.",
+    "Découvrez la base de données ultime des objets, armes et armures pour le Mode Honneur de BG3. Statistiques, synergies et localisations exactes.",
+  openGraph: {
+    title: "Armurerie & Loot — Baldur's Gate 3 (Mode Honneur) | BG3 Honor Companion",
+    description:
+      "Découvrez la base de données ultime des objets, armes et armures pour le Mode Honneur de BG3. Statistiques, synergies et localisations exactes.",
+    type: "website",
+  },
 };
 
 interface PageProps {
@@ -14,8 +20,24 @@ interface PageProps {
 
 export default async function ArsenalPage({ params }: PageProps) {
   const { lang } = await params;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Armurerie & Loot — Baldur's Gate 3 (Mode Honneur)",
+    description:
+      "Découvrez la base de données ultime des objets, armes et armures pour le Mode Honneur de BG3. Statistiques, synergies et localisations exactes.",
+    author: { "@type": "Organization", name: "BG3 Honor Companion" },
+    about: { "@type": "VideoGame", name: "Baldur's Gate 3" },
+  };
+
   return (
     <div className="max-w-7xl space-y-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* ===== EN-TÊTE D'EXPOSITION PREMIUM ===== */}
       <div className="text-center space-y-4 pt-4">
         <p className="text-[10px] font-data uppercase tracking-[0.4em] text-gold/40">

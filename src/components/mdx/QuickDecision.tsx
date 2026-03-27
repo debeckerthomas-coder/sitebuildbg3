@@ -146,7 +146,7 @@ export function QuickDecision(props: QuickDecisionProps) {
       <div className="h-[2px] bg-gradient-to-r from-transparent via-slate-500/40 to-transparent" />
 
       {/* Header */}
-      <div className="px-5 pt-4 pb-2 flex items-center gap-2">
+      <div className="px-3 pt-3 pb-2 sm:px-5 sm:pt-4 flex items-center gap-2">
         <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 text-slate-400">
           <path
             d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"
@@ -164,11 +164,7 @@ export function QuickDecision(props: QuickDecisionProps) {
 
       {/* Grid */}
       <div
-        className={`grid gap-px bg-slate-700/15 px-5 pb-5 ${
-          visibleSections.length >= 3
-            ? "grid-cols-1 sm:grid-cols-2"
-            : "grid-cols-1 sm:grid-cols-2"
-        }`}
+        className="grid gap-px bg-slate-700/15 px-3 pb-4 sm:px-5 sm:pb-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
       >
         {visibleSections.map((section) => (
           <div

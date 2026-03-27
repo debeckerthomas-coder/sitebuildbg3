@@ -70,7 +70,7 @@ export function ItemDetailCard({
 
   return (
     <div
-      className={`relative overflow-hidden rounded-lg border bg-[#0b0f19]/90 p-4 backdrop-blur-sm ${theme.border} ${theme.shadow}`}
+      className={`relative overflow-hidden rounded-lg border bg-[#0b0f19]/90 p-3 md:p-4 backdrop-blur-sm ${theme.border} ${theme.shadow}`}
     >
       {/* Rarity bar — top edge */}
       <div
@@ -99,8 +99,8 @@ export function ItemDetailCard({
             </svg>
           </div>
         )}
-        <div>
-        <h3 className={`text-lg font-bold leading-tight ${theme.name}`}>
+        <div className="min-w-0">
+        <h3 className={`text-lg font-bold leading-tight break-words ${theme.name}`}>
           {name}
         </h3>
         <div className="mt-1 flex items-center gap-2">

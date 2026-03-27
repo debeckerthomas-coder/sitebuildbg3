@@ -27,6 +27,7 @@ import { RuleTooltip } from "./RuleTooltip";
 import { SkillCheck } from "./SkillCheck";
 import { ChecklistItem } from "./ChecklistItem";
 import { QuickDecision } from "./QuickDecision";
+import { BuildEquipment } from "./BuildEquipment";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -74,4 +75,5 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   SkillCheck,
   ChecklistItem,
   QuickDecision,
+  BuildEquipment,
 };

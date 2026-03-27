@@ -18,6 +18,7 @@ interface NavItem {
   readonly label: string;
   readonly href?: string;
   readonly icon: string;
+  readonly badge?: string;
   readonly children?: readonly NavItem[];
 }
 
@@ -46,6 +47,7 @@ const NAV_ITEMS_FR: readonly NavItem[] = [
       { label: "Calculateur de Dégâts", href: "/outils/calculateur", icon: "🧮" },
     ],
   },
+  { label: "Planificateur", href: "/planner", icon: "🔮", badge: "New" },
 ];
 
 const NAV_ITEMS_EN: readonly NavItem[] = [
@@ -73,6 +75,7 @@ const NAV_ITEMS_EN: readonly NavItem[] = [
       { label: "Damage Calculator", href: "/outils/calculateur", icon: "🧮" },
     ],
   },
+  { label: "Party Planner", href: "/planner", icon: "🔮", badge: "New" },
 ];
 
 const NAV_BY_LANG: Record<string, readonly NavItem[]> = { fr: NAV_ITEMS_FR, en: NAV_ITEMS_EN };
@@ -160,7 +163,16 @@ function NavGroup({
         `}
       >
         <span className="text-base shrink-0" aria-hidden>{item.icon}</span>
-        {!isCollapsed && <span className="truncate">{item.label}</span>}
+        {!isCollapsed && (
+          <>
+            <span className="truncate">{item.label}</span>
+            {item.badge && (
+              <span className="ml-auto text-[10px] font-bold uppercase tracking-wider bg-red-600 text-white px-1.5 py-0.5 rounded shrink-0">
+                {item.badge}
+              </span>
+            )}
+          </>
+        )}
       </Link>
     );
   }

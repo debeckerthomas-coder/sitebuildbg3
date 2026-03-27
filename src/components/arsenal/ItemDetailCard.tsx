@@ -79,7 +79,7 @@ export function ItemDetailCard({
 
       {/* Header */}
       <div className="mb-3 flex items-start gap-3">
-        {icon && (
+        {icon ? (
           <img
             src={icon}
             alt={name}
@@ -87,6 +87,17 @@ export function ItemDetailCard({
             height={48}
             className="h-12 w-12 shrink-0 rounded-md border border-gray-700 object-cover"
           />
+        ) : (
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-gray-700 bg-gray-800">
+            <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5 text-gray-600">
+              <path
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         )}
         <div>
         <h3 className={`text-lg font-bold leading-tight ${theme.name}`}>

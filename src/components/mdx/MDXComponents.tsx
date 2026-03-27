@@ -26,6 +26,7 @@ import { BossTimeline, Turn } from "./BossTimeline";
 import { RuleTooltip } from "./RuleTooltip";
 import { SkillCheck } from "./SkillCheck";
 import { ChecklistItem } from "./ChecklistItem";
+import { QuickDecision } from "./QuickDecision";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -72,4 +73,5 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   Rule: RuleTooltip,
   SkillCheck,
   ChecklistItem,
+  QuickDecision,
 };

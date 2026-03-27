@@ -36,7 +36,7 @@ export interface PowerSpike {
 
 export interface UnifiedBuild {
   readonly id: string;
-  readonly title: string;
+  readonly title: { readonly fr: string; readonly en: string };
   readonly class: BG3Class;
   readonly subclass?: BG3Subclass;
   readonly role: "striker" | "controller" | "support" | "tank" | "face";

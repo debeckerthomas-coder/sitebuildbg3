@@ -70,7 +70,7 @@ export const buildRegistry: Record<string, UnifiedBuild> = {
   // =========================================================================
   gloom_assassin: {
     id: "gloom_assassin",
-    title: "L'Alpha Strike (Gloom Assassin)",
+    title: { fr: "L'Alpha Strike (Gloom Assassin)", en: "The Alpha Strike (Gloom Assassin)" },
     class: "ranger",
     subclass: "gloom_stalker",
     role: "striker",
@@ -99,7 +99,7 @@ export const buildRegistry: Record<string, UnifiedBuild> = {
   // =========================================================================
   sorcadin: {
     id: "sorcadin",
-    title: "Le Sorcadin",
+    title: { fr: "Le Sorcadin", en: "The Sorcadin" },
     class: "paladin",
     subclass: "vengeance",
     role: "tank",
@@ -128,7 +128,7 @@ export const buildRegistry: Record<string, UnifiedBuild> = {
   // =========================================================================
   honour_paladin: {
     id: "honour_paladin",
-    title: "Paladin Honneur — Châtiment Nucléaire",
+    title: { fr: "Paladin Honneur — Châtiment Nucléaire", en: "Honour Paladin — Nuclear Smite" },
     class: "paladin",
     subclass: "vengeance",
     role: "striker",
@@ -155,7 +155,7 @@ export const buildRegistry: Record<string, UnifiedBuild> = {
   // =========================================================================
   nuke_tempete: {
     id: "nuke_tempete",
-    title: "Le Nuke Tempête",
+    title: { fr: "Le Nuke Tempête", en: "The Storm Nuke" },
     class: "sorcerer",
     subclass: "storm",
     role: "striker",
@@ -182,7 +182,7 @@ export const buildRegistry: Record<string, UnifiedBuild> = {
   // =========================================================================
   throwzerker: {
     id: "throwzerker",
-    title: "Le Lanceur Fou (Throwzerker)",
+    title: { fr: "Le Lanceur Fou (Throwzerker)", en: "The Throwzerker" },
     class: "barbarian",
     subclass: "berserker",
     role: "striker",

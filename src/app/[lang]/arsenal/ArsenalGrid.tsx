@@ -292,6 +292,8 @@ export function ArsenalGrid({ lang = "fr" }: { lang?: Locale }) {
                         description={item.description[l]}
                         acquisition={item.acquisition?.[l]}
                         icon={item.icon}
+                        itemId={item.id}
+                        lang={l}
                       />
                     </motion.div>
                   ))}

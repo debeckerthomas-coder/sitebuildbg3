@@ -4,6 +4,10 @@
 // ItemDetailCard — Fiche d'objet premium style BG3 tooltip
 // ============================================================================
 
+import Link from "next/link";
+import { getBuildsUsingItem } from "@/data/registry";
+import type { Locale } from "@/dictionaries";
+
 interface ItemDetailCardProps {
   readonly name: string;
   readonly rarity: "common" | "uncommon" | "rare" | "very_rare" | "legendary";
@@ -12,6 +16,8 @@ interface ItemDetailCardProps {
   readonly lore?: string;
   readonly acquisition?: string;
   readonly icon?: string;
+  readonly itemId?: string;
+  readonly lang?: Locale;
 }
 
 const RARITY_THEME = {
@@ -65,8 +71,11 @@ export function ItemDetailCard({
   lore,
   acquisition,
   icon,
+  itemId,
+  lang = "fr",
 }: ItemDetailCardProps) {
   const theme = RARITY_THEME[rarity];
+  const relatedBuilds = itemId ? getBuildsUsingItem(itemId) : [];
 
   return (
     <div
@@ -133,6 +142,26 @@ export function ItemDetailCard({
             <circle cx="12" cy="10" r="3" />
           </svg>
           <span>{acquisition}</span>
+        </div>
+      )}
+
+      {/* Synergy badges — builds recommandés */}
+      {relatedBuilds.length > 0 && (
+        <div className="mt-3 border-t border-gray-800 pt-3">
+          <p className="mb-1.5 text-xs font-semibold text-gray-400">
+            {lang === "fr" ? "⚔️ Recommandé pour :" : "⚔️ Best for:"}
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {relatedBuilds.map((build) => (
+              <Link
+                key={build.id}
+                href={`/${lang}/builds/${build.id}`}
+                className="text-xs px-2 py-1 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 hover:border-[#fbbf24] transition-all text-gray-200"
+              >
+                {build.title[lang]}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
 

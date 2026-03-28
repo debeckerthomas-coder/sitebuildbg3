@@ -5,7 +5,7 @@
 // Bouée de sauvetage stylisée : affiche l'objet manqué + l'alternative
 // ============================================================================
 
-import { motion } from "framer-motion";
+import { Card } from "@/components/ui-system";
 
 interface FailsafeCardProps {
   /** Objet manqué */
@@ -19,7 +19,6 @@ interface FailsafeCardProps {
 function ShieldIcon() {
   return (
     <div className="relative flex items-center justify-center w-9 h-9 shrink-0">
-      {/* Glow backdrop */}
       <div className="absolute inset-0 rounded-full bg-amber-500/10 blur-sm" />
       <svg viewBox="0 0 24 24" fill="none" className="relative w-5 h-5 text-amber-400">
         <path
@@ -57,25 +56,19 @@ function ArrowDown() {
 
 export function FailsafeCard({ missing, fallback, condition }: FailsafeCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="my-6 rounded-lg overflow-hidden
-                 bg-gradient-to-br from-amber-950/25 via-surface-raised to-surface
-                 border border-amber-700/20
-                 shadow-lg shadow-amber-950/20
-                 font-sans [&_p]:!font-sans [&_span]:!font-sans"
+    <Card
+      noPadding
+      className="my-6 font-sans [&_p]:!font-sans [&_span]:!font-sans"
     >
-      {/* Top accent bar */}
+      {/* Amber accent bar */}
       <div className="h-[2px] bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
 
-      <div className="p-5">
+      <div className="p-4">
         {/* Header — Shield icon + missing item */}
         <div className="flex items-center gap-3">
           <ShieldIcon />
           <div className="min-w-0 flex-1">
-            <p className="text-[10px] font-data uppercase tracking-[0.15em] text-amber-500/50 mb-0.5">
+            <p className="text-[10px] font-data uppercase tracking-wider text-amber-500/50 mb-0.5">
               Objet manqué
             </p>
             <p className="text-amber-200 font-semibold text-base leading-snug tracking-wide">
@@ -112,7 +105,7 @@ export function FailsafeCard({ missing, fallback, condition }: FailsafeCardProps
             </svg>
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-[10px] font-data uppercase tracking-[0.15em] text-emerald-500/50 mb-0.5">
+            <p className="text-[10px] font-data uppercase tracking-wider text-emerald-500/50 mb-0.5">
               Plan B — Alternative
             </p>
             <p className="text-gray-200 leading-relaxed text-sm">
@@ -137,6 +130,6 @@ export function FailsafeCard({ missing, fallback, condition }: FailsafeCardProps
           </div>
         )}
       </div>
-    </motion.div>
+    </Card>
   );
 }

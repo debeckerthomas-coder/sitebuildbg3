@@ -74,6 +74,8 @@ interface CardProps extends Omit<HTMLMotionProps<"div">, "children"> {
   readonly accentBar?: boolean;
   /** Disable entry animation */
   readonly noAnimation?: boolean;
+  /** Skip the default p-4 content wrapper (for custom internal layouts) */
+  readonly noPadding?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -86,6 +88,7 @@ export function Card({
   rarity,
   accentBar = false,
   noAnimation = false,
+  noPadding = false,
   className = "",
   ...rest
 }: CardProps) {
@@ -111,7 +114,7 @@ export function Card({
           className={`h-[2px] bg-gradient-to-r from-transparent ${styles.bar} to-transparent`}
         />
       )}
-      <div className="p-4">{children}</div>
+      {noPadding ? children : <div className="p-4">{children}</div>}
     </motion.div>
   );
 }

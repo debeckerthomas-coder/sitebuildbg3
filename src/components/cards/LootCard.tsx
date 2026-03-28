@@ -9,6 +9,9 @@ import { useState } from "react";
 import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { getBg3WikiIconUrl } from "@/lib/iconHelper";
+import { Card } from "@/components/ui-system";
+import type { Rarity } from "@/types";
+
 // Legacy interface kept locally — LootCard is no longer actively used
 interface ArsenalItem {
   readonly id: string;
@@ -23,48 +26,48 @@ interface ArsenalItem {
 }
 
 // ---------------------------------------------------------------------------
-// Rarity theming — intensified for Exhibition Panel
+// Map legacy PascalCase rarity to design system Rarity
 // ---------------------------------------------------------------------------
 
-const RARITY_STYLES = {
+const RARITY_MAP: Record<ArsenalItem["rarity"], Rarity> = {
+  Legendary: "legendary",
+  "Very Rare": "very_rare",
+  Rare: "rare",
+  Uncommon: "uncommon",
+};
+
+// ---------------------------------------------------------------------------
+// Per-rarity styles for content elements (icon border, badge, text)
+// Card-level border/glow/bar are now handled by the design system Card.
+// ---------------------------------------------------------------------------
+
+const RARITY_CONTENT = {
   Legendary: {
-    card: "border-yellow-500/50 hover:border-yellow-400/80",
-    glow: "hover:shadow-[0_0_40px_rgba(234,179,8,0.2),inset_0_0_30px_rgba(234,179,8,0.06)]",
     iconBorder: "border-yellow-500/70 shadow-[0_0_20px_rgba(234,179,8,0.35),inset_0_0_12px_rgba(234,179,8,0.15)]",
     iconGlowBg: "bg-yellow-500/10",
     badge: "bg-yellow-500/20 text-yellow-300 border-yellow-500/40",
     text: "text-yellow-400",
-    bar: "from-yellow-500/70 via-yellow-400/40 to-yellow-500/70",
     label: "Légendaire",
   },
   "Very Rare": {
-    card: "border-fuchsia-500/40 hover:border-fuchsia-400/70",
-    glow: "hover:shadow-[0_0_40px_rgba(217,70,239,0.2),inset_0_0_30px_rgba(217,70,239,0.06)]",
     iconBorder: "border-fuchsia-500/70 shadow-[0_0_20px_rgba(217,70,239,0.35),inset_0_0_12px_rgba(217,70,239,0.15)]",
     iconGlowBg: "bg-fuchsia-500/10",
     badge: "bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/40",
     text: "text-fuchsia-400",
-    bar: "from-fuchsia-500/70 via-fuchsia-400/40 to-fuchsia-500/70",
     label: "Très Rare",
   },
   Rare: {
-    card: "border-blue-500/40 hover:border-blue-400/70",
-    glow: "hover:shadow-[0_0_40px_rgba(59,130,246,0.2),inset_0_0_30px_rgba(59,130,246,0.06)]",
     iconBorder: "border-blue-500/70 shadow-[0_0_20px_rgba(59,130,246,0.35),inset_0_0_12px_rgba(59,130,246,0.15)]",
     iconGlowBg: "bg-blue-500/10",
     badge: "bg-blue-500/20 text-blue-300 border-blue-500/40",
     text: "text-blue-400",
-    bar: "from-blue-500/70 via-blue-400/40 to-blue-500/70",
     label: "Rare",
   },
   Uncommon: {
-    card: "border-green-500/40 hover:border-green-400/70",
-    glow: "hover:shadow-[0_0_40px_rgba(34,197,94,0.2),inset_0_0_30px_rgba(34,197,94,0.06)]",
     iconBorder: "border-green-500/70 shadow-[0_0_20px_rgba(34,197,94,0.35),inset_0_0_12px_rgba(34,197,94,0.15)]",
     iconGlowBg: "bg-green-500/10",
     badge: "bg-green-500/20 text-green-300 border-green-500/40",
     text: "text-green-400",
-    bar: "from-green-500/70 via-green-400/40 to-green-500/70",
     label: "Peu Commun",
   },
 } as const;
@@ -172,7 +175,8 @@ interface LootCardProps {
 }
 
 export function LootCard({ item }: LootCardProps) {
-  const style = RARITY_STYLES[item.rarity];
+  const content = RARITY_CONTENT[item.rarity];
+  const mappedRarity = RARITY_MAP[item.rarity];
   const [imgError, setImgError] = useState(false);
 
   return (
@@ -187,93 +191,82 @@ export function LootCard({ item }: LootCardProps) {
       transitionSpeed={2000}
       className="h-full"
     >
-    <div
-      className={`group flex flex-row h-full w-full bg-[#111520]/60 backdrop-blur-md rounded-xl overflow-hidden
-                  border ${style.card}
-                  transition-all duration-300 ease-out
-                  hover:-translate-y-1 ${style.glow}`}
-    >
-      {/* Top rarity bar */}
-      <div className={`absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r ${style.bar}`} />
-
-      {/* ===== LEFT COLUMN — Image (1/3) ===== */}
-      <div className="w-1/3 min-w-[100px] flex-shrink-0 flex items-center justify-center bg-black/50 p-4 relative">
-        {/* Ambient glow behind icon */}
-        <div
-          className={`absolute inset-0 ${style.iconGlowBg} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`}
-        />
-
-        {/* Icon container with rarity border and glow */}
-        <div
-          className={`relative w-20 h-20 md:w-24 md:h-24 rounded-xl border-2 ${style.iconBorder}
-                      bg-abyss/80 flex items-center justify-center overflow-hidden
-                      transition-all duration-300
-                      group-hover:scale-105`}
-        >
-          <Image
-            src={imgError ? "/assets/fallback-loot.svg" : getBg3WikiIconUrl(item.wikiName)}
-            alt={item.name}
-            width={96}
-            height={96}
-            className="relative z-10 w-full h-full object-contain p-1"
-            onError={() => setImgError(true)}
-            unoptimized
-          />
-        </div>
-      </div>
-
-      {/* ===== RIGHT COLUMN — Text (2/3) ===== */}
-      <div className="w-2/3 flex flex-col p-4 overflow-hidden">
-        {/* Title — plain h3, no tooltip */}
-        <h3 className="font-display text-sm leading-tight text-gradient-gold">
-          {item.name}
-        </h3>
-
-        {/* Effect description — clamped to 3 lines */}
-        <p className="text-sm font-body text-gray-300 leading-relaxed mt-1.5 line-clamp-3 text-ellipsis overflow-hidden">
-          {item.effect}
-        </p>
-
-        {/* Badges: Location + Act — pushed to bottom */}
-        <div className="mt-auto pt-4 flex flex-col gap-1.5">
-          {/* Location */}
-          <div className="flex items-center gap-1 text-[10px] font-data text-gray-500">
-            <LocationIcon />
-            <span className="truncate">{item.location}</span>
-          </div>
-
-          {/* Badge row: Rarity + Type + Act */}
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <span
-              className={`inline-flex items-center text-[8px] font-data font-bold px-1.5 py-0.5 rounded border uppercase tracking-[0.15em] ${style.badge}`}
+      <Card
+        rarity={mappedRarity}
+        accentBar
+        noPadding
+        noAnimation
+        className="h-full transition-transform duration-300 ease-out hover:-translate-y-1"
+      >
+        <div className="flex flex-row h-full w-full">
+          {/* ===== LEFT COLUMN — Image (1/3) ===== */}
+          <div className="w-1/3 min-w-[100px] flex-shrink-0 flex items-center justify-center bg-black/50 p-4 relative">
+            <div
+              className={`absolute inset-0 ${content.iconGlowBg} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`}
+            />
+            <div
+              className={`relative w-20 h-20 md:w-24 md:h-24 rounded-xl border-2 ${content.iconBorder}
+                          bg-abyss/80 flex items-center justify-center overflow-hidden
+                          transition-all duration-300 group-hover:scale-105`}
             >
-              {style.label}
-            </span>
-            <span className="inline-flex items-center gap-0.5 text-[9px] font-data text-gray-500">
-              <TypeIcon type={item.type} />
-              {item.type}
-            </span>
-            <span className="text-[9px] font-data text-gold/60 bg-gold/8 px-1.5 py-0.5 rounded">
-              Acte {item.act}
-            </span>
+              <Image
+                src={imgError ? "/assets/fallback-loot.svg" : getBg3WikiIconUrl(item.wikiName)}
+                alt={item.name}
+                width={96}
+                height={96}
+                className="relative z-10 w-full h-full object-contain p-1"
+                onError={() => setImgError(true)}
+                unoptimized
+              />
+            </div>
           </div>
 
-          {/* Used by builds */}
-          {item.usedBy.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {item.usedBy.map((build) => (
+          {/* ===== RIGHT COLUMN — Text (2/3) ===== */}
+          <div className="w-2/3 flex flex-col p-4 overflow-hidden">
+            <h3 className="font-display text-sm leading-tight text-gradient-gold">
+              {item.name}
+            </h3>
+            <p className="text-sm font-body text-gray-300 leading-relaxed mt-1.5 line-clamp-3 text-ellipsis overflow-hidden">
+              {item.effect}
+            </p>
+
+            <div className="mt-auto pt-4 flex flex-col gap-1.5">
+              <div className="flex items-center gap-1 text-[10px] font-data text-gray-500">
+                <LocationIcon />
+                <span className="truncate">{item.location}</span>
+              </div>
+
+              <div className="flex items-center gap-1.5 flex-wrap">
                 <span
-                  key={build}
-                  className="text-[9px] font-data text-gray-400/80 bg-abyss/80 px-1.5 py-0.5 rounded border border-border/30"
+                  className={`inline-flex items-center text-xs font-data font-bold px-2 py-0.5 rounded-xl border uppercase tracking-wider ${content.badge}`}
                 >
-                  {build}
+                  {content.label}
                 </span>
-              ))}
+                <span className="inline-flex items-center gap-0.5 text-[9px] font-data text-gray-500">
+                  <TypeIcon type={item.type} />
+                  {item.type}
+                </span>
+                <span className="text-[9px] font-data text-gold/60 bg-gold/8 px-1.5 py-0.5 rounded">
+                  Acte {item.act}
+                </span>
+              </div>
+
+              {item.usedBy.length > 0 && (
+                <div className="flex flex-wrap gap-1">
+                  {item.usedBy.map((build) => (
+                    <span
+                      key={build}
+                      className="text-[9px] font-data text-gray-400/80 bg-abyss/80 px-1.5 py-0.5 rounded border border-border/30"
+                    >
+                      {build}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
-      </div>
-    </div>
+      </Card>
     </Tilt>
   );
 }

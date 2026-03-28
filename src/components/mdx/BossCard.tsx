@@ -5,8 +5,8 @@
 // Usage in MDX: <BossCard id="netherbrain" />
 // ============================================================================
 
-import { motion } from "framer-motion";
 import { getBoss } from "@/data/bosses/bosses";
+import { Card } from "@/components/ui-system";
 import type { Boss, DamageType } from "@/types";
 
 const DAMAGE_TYPE_COLORS: Partial<Record<DamageType, string>> = {
@@ -51,21 +51,19 @@ export function BossCard({ id }: { readonly id: string }) {
 
   if (!boss) {
     return (
-      <div className="text-sm text-blood-light font-data p-4 border border-blood/30 rounded-card">
+      <div className="text-sm text-blood-light font-data p-4 border border-blood/30 rounded-xl">
         Boss &quot;{id}&quot; introuvable dans la base de données.
       </div>
     );
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="border-2 border-blood/40 rounded-card bg-[#111520]/60 backdrop-blur-md shadow-lg shadow-black/50 overflow-hidden my-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blood/20"
+    <Card
+      noPadding
+      className="my-6 !border-blood/40"
     >
       {/* Header */}
-      <div className="bg-gradient-to-r from-blood-dark/60 to-abyss-200/80 px-5 py-4">
+      <div className="bg-gradient-to-r from-blood-dark/60 to-abyss-200/80 px-4 py-4">
         <div className="flex items-center justify-between">
           <div>
             <h3 className="font-display text-xl text-blood-light">{boss.name}</h3>
@@ -84,7 +82,7 @@ export function BossCard({ id }: { readonly id: string }) {
         </div>
       </div>
 
-      <div className="p-5 space-y-4">
+      <div className="p-4 space-y-4">
         {/* Ability Scores */}
         <AbilityScoreRow boss={boss} />
 
@@ -184,6 +182,6 @@ export function BossCard({ id }: { readonly id: string }) {
           ))}
         </div>
       </div>
-    </motion.div>
+    </Card>
   );
 }

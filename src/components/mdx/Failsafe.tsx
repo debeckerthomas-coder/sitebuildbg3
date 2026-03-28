@@ -11,6 +11,7 @@ import { useAppStore } from "@/store";
 import { getBuild } from "@/data/builds/builds";
 import { getItem } from "@/data/items/items";
 import { resolveFailsafeChain } from "@/lib/failsafe-engine";
+import { Card } from "@/components/ui-system";
 import type { ItemSlot, RunWorldState } from "@/types";
 
 interface FailsafeProps {
@@ -48,17 +49,11 @@ export function Failsafe({ slot, buildId }: FailsafeProps) {
   const hasWarnings = skippedReasons.length > 0;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35 }}
-      className="my-3 rounded-lg overflow-hidden
-                 bg-gradient-to-br from-surface-raised to-surface
-                 border border-border
-                 shadow-md shadow-black/20
-                 font-sans [&_p]:!font-sans [&_span]:!font-sans"
+    <Card
+      noPadding
+      className="my-3 font-sans [&_p]:!font-sans [&_span]:!font-sans"
     >
-      {/* Top accent */}
+      {/* Gold accent */}
       <div className="h-[2px] bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
 
       <div className="px-4 py-3 flex items-center gap-3">
@@ -69,7 +64,7 @@ export function Failsafe({ slot, buildId }: FailsafeProps) {
         </div>
 
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] font-data text-gray-500 uppercase tracking-[0.12em]">
+          <p className="text-[10px] font-data text-gray-500 uppercase tracking-wider">
             {slot.replace("_", " ")} — Best Available
           </p>
           <p className="text-sm font-display text-gold-light tracking-wide mt-0.5">
@@ -107,6 +102,6 @@ export function Failsafe({ slot, buildId }: FailsafeProps) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </Card>
   );
 }

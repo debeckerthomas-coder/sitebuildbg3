@@ -9,6 +9,7 @@ import { useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as Accordion from "@radix-ui/react-accordion";
 import { simulateAttack, type AttackRollResult, rollAttack } from "@/engine/CombatLogEngine";
+import { Badge, Button } from "@/components/ui-system";
 import type { AttackContext, DamageBreakdownStep, DamageType, FightingStyle } from "@/types";
 
 // ---------------------------------------------------------------------------
@@ -234,12 +235,9 @@ export function CombatLogSimulator() {
 
       {/* Bouton Simuler */}
       <div className="px-5 py-3 border-b border-border/50">
-        <button
-          onClick={handleSimulate}
-          className="w-full py-2.5 rounded-card font-display text-sm tracking-wide bg-gold text-abyss hover:bg-gold-light active:scale-[0.98] transition-all duration-200"
-        >
+        <Button onClick={handleSimulate} fullWidth>
           Simuler l&apos;Attaque
-        </button>
+        </Button>
       </div>
 
       {/* Résultats */}
@@ -264,14 +262,10 @@ export function CombatLogSimulator() {
                     (Total: {results.attackRoll.total})
                   </span>
                   {results.attackRoll.isCritical && (
-                    <span className="text-xs font-data font-bold px-2 py-0.5 rounded bg-gold/20 text-gold animate-pulse">
-                      CRITIQUE !
-                    </span>
+                    <Badge variant="warning" className="animate-pulse">CRITIQUE !</Badge>
                   )}
                   {results.attackRoll.isCriticalFail && (
-                    <span className="text-xs font-data font-bold px-2 py-0.5 rounded bg-blood/20 text-blood-light">
-                      ÉCHEC CRITIQUE
-                    </span>
+                    <Badge variant="danger">ÉCHEC CRITIQUE</Badge>
                   )}
                 </div>
                 {results.attackRoll.advantageRolls && (

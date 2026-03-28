@@ -8,6 +8,7 @@
 import { motion } from "framer-motion";
 import type { BossMechanic } from "@/types";
 import { getBoss } from "@/data/bosses/bosses";
+import { Badge } from "@/components/ui-system";
 
 // ---------------------------------------------------------------------------
 // Severity Styling
@@ -72,15 +73,9 @@ function MechanicCard({ mechanic, index }: MechanicCardProps) {
             <h4 className="font-display text-sm text-gray-100">
               {mechanic.name}
             </h4>
-            <span
-              className={`
-                text-[10px] font-data font-bold uppercase tracking-widest
-                px-1.5 py-0.5 rounded ${style.labelColor}
-                ${mechanic.severity === "lethal" ? "bg-blood/20" : "bg-white/5"}
-              `}
-            >
+            <Badge variant={mechanic.severity === "lethal" ? "danger" : mechanic.severity === "warning" ? "warning" : "default"}>
               {style.label}
-            </span>
+            </Badge>
           </div>
         </div>
       </div>
@@ -143,15 +138,9 @@ function InlineMatrix({ title, severity, children }: { title: string; severity: 
       <div className="flex items-center gap-2">
         <span className="text-lg" aria-hidden>{style.icon}</span>
         <h4 className="font-display text-sm text-gray-100">{title}</h4>
-        <span
-          className={`
-            text-[10px] font-data font-bold uppercase tracking-widest
-            px-1.5 py-0.5 rounded ${style.labelColor}
-            ${severity === "lethal" ? "bg-blood/20" : "bg-white/5"}
-          `}
-        >
+        <Badge variant={severity === "lethal" ? "danger" : severity === "warning" ? "warning" : "default"}>
           {style.label}
-        </span>
+        </Badge>
       </div>
       <div className="text-sm font-body text-gray-200 leading-relaxed prose-gold">
         {children}

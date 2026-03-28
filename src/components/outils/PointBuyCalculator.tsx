@@ -12,6 +12,7 @@ import {
   ABILITY_LABELS,
   type AbilityKey,
 } from "@/hooks/usePointBuy";
+import { Button } from "@/components/ui-system";
 
 // ---------------------------------------------------------------------------
 // Modifier display helper
@@ -165,13 +166,9 @@ export function PointBuyCalculator() {
             </p>
           </div>
 
-          <button
-            onClick={reset}
-            className="px-3 py-1.5 rounded-lg border border-border bg-surface-raised text-xs font-data text-gray-400
-                       hover:text-red-400 hover:border-red-400/30 transition-colors"
-          >
+          <Button variant="ghost" size="sm" onClick={reset}>
             Réinitialiser
-          </button>
+          </Button>
         </div>
 
         {/* Progress bar */}

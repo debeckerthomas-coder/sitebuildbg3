@@ -8,7 +8,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LONG_REST_BUFFS, type PreparationBuff } from "@/data/preparation";
-import { Checkbox } from "@/components/ui-system";
+import { Checkbox, Badge, Button } from "@/components/ui-system";
 
 const STORAGE_KEY = "bg3_checklist_long_rest_buffs";
 
@@ -51,9 +51,7 @@ function BuffRow({
           >
             {buff.label}
           </span>
-          <span className="text-[9px] font-data uppercase tracking-wider text-amber-600/80 px-1.5 py-0.5 rounded bg-amber-900/20">
-            {buff.source}
-          </span>
+          <Badge variant="warning">{buff.source}</Badge>
         </div>
         <p
           className={`text-xs font-data mt-0.5 leading-relaxed transition-colors duration-300 ${
@@ -167,18 +165,14 @@ export function PreparationChecklist() {
 
       {/* Reset button */}
       <div className="mt-6 pt-4 border-t border-amber-700/20 flex justify-end">
-        <button
-          type="button"
+        <Button
+          variant="secondary"
+          size="sm"
           onClick={resetAll}
           disabled={doneCount === 0}
-          className="text-xs font-data uppercase tracking-wider px-4 py-2 rounded-card
-                     border border-amber-700/30 text-amber-400/80
-                     hover:bg-amber-900/20 hover:text-amber-300
-                     disabled:opacity-30 disabled:cursor-not-allowed
-                     transition-colors"
         >
           Reset du Repos
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { BuildSelector } from "@/components/ui/BuildSelector";
+import { Badge } from "@/components/ui-system";
 
 // ---------------------------------------------------------------------------
 // Structure de navigation
@@ -167,9 +168,9 @@ function NavGroup({
           <>
             <span className="truncate">{item.label}</span>
             {item.badge && (
-              <span className="ml-auto text-[10px] font-bold uppercase tracking-wider bg-red-600 text-white px-1.5 py-0.5 rounded shrink-0">
+              <Badge variant="danger" className="ml-auto shrink-0">
                 {item.badge}
-              </span>
+              </Badge>
             )}
           </>
         )}

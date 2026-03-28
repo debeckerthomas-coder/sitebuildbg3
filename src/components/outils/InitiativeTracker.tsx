@@ -8,6 +8,7 @@
 import { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { rollPartyInitiative, analyzeFirstTurnProbabilities } from "@/engine/InitiativeSyncCalculator";
+import { Button } from "@/components/ui-system";
 import type { InitiativeActor, InitiativeResult } from "@/types";
 
 // ---------------------------------------------------------------------------
@@ -262,12 +263,9 @@ export function InitiativeTracker() {
       </div>
 
       {/* Bouton Lancer */}
-      <button
-        onClick={handleLancer}
-        className="w-full py-3 rounded-card font-display text-sm tracking-wide bg-gold text-abyss hover:bg-gold-light active:scale-[0.98] transition-all duration-200"
-      >
+      <Button onClick={handleLancer} fullWidth>
         Lancer l&apos;Initiative (1d4)
-      </button>
+      </Button>
 
       {/* Résultat du lancer */}
       <AnimatePresence mode="wait">

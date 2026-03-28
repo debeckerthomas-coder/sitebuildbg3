@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/store";
 import type { PlaythroughStep } from "@/data/playthrough";
 import { getEntry } from "@/data/database";
-import { Checkbox } from "@/components/ui-system";
+import { Checkbox, Badge } from "@/components/ui-system";
 
 // ---------------------------------------------------------------------------
 // Icônes par type d'étape
@@ -118,13 +118,9 @@ function StepRow({ step, checked, onToggle, index }: StepRowProps) {
             </AnimatePresence>
           </span>
           {step.critique && (
-            <span className="text-[9px] font-data font-bold uppercase tracking-widest px-1.5 py-0.5 rounded bg-blood/20 text-blood-light">
-              Critique
-            </span>
+            <Badge variant="danger">Critique</Badge>
           )}
-          <span className="text-[9px] font-data uppercase tracking-wider text-gray-500 px-1 py-0.5 rounded bg-abyss-200">
-            {TYPE_LABELS[step.type]}
-          </span>
+          <Badge>{TYPE_LABELS[step.type]}</Badge>
         </div>
 
         <p className={`text-xs font-data mt-1 leading-relaxed transition-colors duration-300 ${checked ? "text-gray-600" : "text-gray-400"}`}>
@@ -135,19 +131,9 @@ function StepRow({ step, checked, onToggle, index }: StepRowProps) {
         {codexItems.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mt-2">
             {codexItems.map((entry) => entry && (
-              <span
-                key={entry.id}
-                className={`
-                  text-[10px] font-data px-2 py-0.5 rounded border
-                  ${entry.rarity === "legendary" ? "border-rarity-legendary/40 text-rarity-legendary" :
-                    entry.rarity === "very_rare" ? "border-rarity-very_rare/40 text-rarity-very_rare" :
-                    entry.rarity === "rare" ? "border-rarity-rare/40 text-rarity-rare" :
-                    entry.rarity === "uncommon" ? "border-rarity-uncommon/40 text-rarity-uncommon" :
-                    "border-rarity-common/40 text-rarity-common"}
-                `}
-              >
+              <Badge key={entry.id} variant="rarity" rarity={entry.rarity}>
                 {entry.name}
-              </span>
+              </Badge>
             ))}
           </div>
         )}

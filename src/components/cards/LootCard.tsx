@@ -9,7 +9,7 @@ import { useState } from "react";
 import Tilt from "react-parallax-tilt";
 import Image from "next/image";
 import { getBg3WikiIconUrl } from "@/lib/iconHelper";
-import { Card } from "@/components/ui-system";
+import { Card, Badge } from "@/components/ui-system";
 import type { Rarity } from "@/types";
 
 // Legacy interface kept locally — LootCard is no longer actively used
@@ -237,29 +237,22 @@ export function LootCard({ item }: LootCardProps) {
               </div>
 
               <div className="flex items-center gap-1.5 flex-wrap">
-                <span
-                  className={`inline-flex items-center text-xs font-data font-bold px-2 py-0.5 rounded-xl border uppercase tracking-wider ${content.badge}`}
-                >
+                <Badge variant="rarity" rarity={mappedRarity}>
                   {content.label}
-                </span>
+                </Badge>
                 <span className="inline-flex items-center gap-0.5 text-[9px] font-data text-gray-500">
                   <TypeIcon type={item.type} />
                   {item.type}
                 </span>
-                <span className="text-[9px] font-data text-gold/60 bg-gold/8 px-1.5 py-0.5 rounded">
+                <Badge className="bg-gold/10 text-gold/60 border-gold/20">
                   Acte {item.act}
-                </span>
+                </Badge>
               </div>
 
               {item.usedBy.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {item.usedBy.map((build) => (
-                    <span
-                      key={build}
-                      className="text-[9px] font-data text-gray-400/80 bg-abyss/80 px-1.5 py-0.5 rounded border border-border/30"
-                    >
-                      {build}
-                    </span>
+                    <Badge key={build}>{build}</Badge>
                   ))}
                 </div>
               )}

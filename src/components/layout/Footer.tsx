@@ -24,7 +24,7 @@ export function Footer({ lang = "fr" }: { lang?: string }) {
   const prefix = `/${lang}`;
 
   return (
-    <footer className="mt-auto border-t border-[#fbbf24]/10 bg-[#0b0f19]/80 backdrop-blur-sm">
+    <footer className="mt-auto border-t border-gold/10 bg-abyss/80 backdrop-blur-sm">
       <div className="max-w-[1600px] mx-auto px-6 py-8">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
           <div className="space-y-2">
@@ -53,7 +53,7 @@ export function Footer({ lang = "fr" }: { lang?: string }) {
               href="https://ko-fi.com/sitebuildbg3"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-[#fbbf24] px-5 py-2.5 text-sm font-bold text-black shadow-[0_0_15px_rgba(251,191,36,0.3)] transition-all duration-200 hover:bg-yellow-500 hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-2.5 text-sm font-data font-semibold text-abyss tracking-wider uppercase shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all duration-200 hover:bg-gold-light hover:scale-105 active:scale-[0.98]"
             >
               {t.supportLink}
             </a>

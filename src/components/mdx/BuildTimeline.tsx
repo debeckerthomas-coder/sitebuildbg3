@@ -5,6 +5,7 @@
 // ============================================================================
 
 import { getBuildWithItems } from "@/data/registry";
+import { Badge } from "@/components/ui-system";
 
 interface BuildTimelineProps {
   readonly buildId: string;
@@ -29,12 +30,12 @@ export function BuildTimeline({ buildId, lang = "fr" }: BuildTimelineProps) {
         {build.powerSpikes.map((spike) => (
           <div key={spike.level} className="relative pl-6">
             {/* Dot lumineux sur la ligne */}
-            <div className="absolute -left-[0.5625rem] top-1 w-4 h-4 rounded-full bg-[#fbbf24] border-4 border-[#0b0f19] shadow-[0_0_10px_rgba(251,191,36,0.5)]" />
+            <div className="absolute -left-[0.5625rem] top-1 w-4 h-4 rounded-full bg-gold border-4 border-abyss shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
 
             {/* Badge niveau */}
-            <span className="inline-block text-xs font-bold px-2 py-0.5 rounded bg-[#fbbf24]/15 text-[#fbbf24] border border-[#fbbf24]/30 mb-1">
+            <Badge className="bg-gold/15 text-gold border-gold/30 mb-1">
               {l === "fr" ? `Niveau ${spike.level}` : `Level ${spike.level}`}
-            </span>
+            </Badge>
 
             {/* Description */}
             <p className="text-sm leading-relaxed text-gray-300">

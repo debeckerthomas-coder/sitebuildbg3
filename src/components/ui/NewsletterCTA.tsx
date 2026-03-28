@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { Button } from "@/components/ui-system";
 
 export default function NewsletterCTA() {
   const [email, setEmail] = useState("");
@@ -13,12 +14,12 @@ export default function NewsletterCTA() {
 
   return (
     <section className="w-full max-w-2xl mx-auto my-12">
-      <div className="relative overflow-hidden bg-[#0b0f19] border border-[#fbbf24]/30 rounded-xl p-8">
+      <div className="relative overflow-hidden bg-abyss border border-gold/30 rounded-xl p-8">
         {/* Glow background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#fbbf24]/5 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/5 to-transparent pointer-events-none" />
 
         <div className="relative z-10">
-          <h3 className="font-display text-2xl text-[#fbbf24] mb-2">
+          <h3 className="font-display text-2xl text-gold mb-2">
             🛡️ Survivez aux prochains Patchs
           </h3>
           <p className="text-gray-400 mb-6 font-body leading-relaxed">
@@ -27,7 +28,7 @@ export default function NewsletterCTA() {
           </p>
 
           {submitted ? (
-            <p className="text-[#fbbf24] font-semibold">
+            <p className="text-gold font-semibold">
               ✓ Merci ! Vous serez notifié des prochaines mises à jour.
             </p>
           ) : (
@@ -38,16 +39,12 @@ export default function NewsletterCTA() {
                 placeholder="votre@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-3 rounded-lg bg-[#111827] border border-gray-700 text-gray-200 placeholder-gray-500
-                  focus:outline-none focus:border-[#fbbf24] focus:ring-1 focus:ring-[#fbbf24]/50 transition-colors"
+                className="flex-1 px-4 py-3 rounded-xl bg-surface border border-gray-700 text-gray-200 placeholder-gray-500
+                  focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/50 transition-colors"
               />
-              <button
-                type="submit"
-                className="px-6 py-3 rounded-lg bg-[#fbbf24] text-black font-semibold
-                  hover:scale-105 active:scale-95 transition-transform whitespace-nowrap"
-              >
+              <Button type="submit" size="lg" className="whitespace-nowrap">
                 S&apos;inscrire
-              </button>
+              </Button>
             </form>
           )}
         </div>

@@ -6,7 +6,7 @@
 // ============================================================================
 
 import { getBoss } from "@/data/bosses/bosses";
-import { Card } from "@/components/ui-system";
+import { Card, Badge } from "@/components/ui-system";
 import type { Boss, DamageType } from "@/types";
 
 const DAMAGE_TYPE_COLORS: Partial<Record<DamageType, string>> = {
@@ -95,9 +95,7 @@ export function BossCard({ id }: { readonly id: string }) {
                 {phase.name}
               </h4>
               {phase.hpThreshold && (
-                <span className="text-[10px] font-data text-blood-light bg-blood/10 px-1.5 py-0.5 rounded">
-                  Sous {phase.hpThreshold}% PV
-                </span>
+                <Badge variant="danger">Sous {phase.hpThreshold}% PV</Badge>
               )}
             </div>
             <p className="text-xs font-body text-gray-400 pl-3">
@@ -116,9 +114,7 @@ export function BossCard({ id }: { readonly id: string }) {
                       {action.name}
                     </span>
                     {action.isLegendary && (
-                      <span className="text-[9px] font-data text-rarity-legendary bg-rarity-legendary/10 px-1 py-0.5 rounded uppercase">
-                        Légendaire
-                      </span>
+                      <Badge variant="rarity" rarity="legendary">Légendaire</Badge>
                     )}
                     {action.recharge && (
                       <span className="text-[9px] font-data text-gray-500">
@@ -173,12 +169,7 @@ export function BossCard({ id }: { readonly id: string }) {
         {/* Tags */}
         <div className="flex flex-wrap gap-1 pt-2 border-t border-border/30">
           {boss.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-[10px] font-data px-1.5 py-0.5 rounded bg-abyss-200 text-gray-500 uppercase tracking-wider"
-            >
-              {tag}
-            </span>
+            <Badge key={tag}>{tag}</Badge>
           ))}
         </div>
       </div>

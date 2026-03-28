@@ -7,8 +7,8 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import * as Checkbox from "@radix-ui/react-checkbox";
 import { LONG_REST_BUFFS, type PreparationBuff } from "@/data/preparation";
+import { Checkbox } from "@/components/ui-system";
 
 const STORAGE_KEY = "bg3_checklist_long_rest_buffs";
 
@@ -36,38 +36,11 @@ function BuffRow({
         checked ? "bg-amber-900/5" : "hover:bg-amber-900/10"
       }`}
     >
-      <Checkbox.Root
+      <Checkbox
         checked={checked}
-        onCheckedChange={(v) => onToggle(v === true)}
-        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-all duration-200 ${
-          checked
-            ? "border-gold bg-gold/20 text-gold"
-            : "border-amber-700/40 hover:border-gold-muted"
-        }`}
-      >
-        <Checkbox.Indicator>
-          <motion.svg
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 500, damping: 25 }}
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-          >
-            <motion.path
-              d="M2 6L5 9L10 3"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-            />
-          </motion.svg>
-        </Checkbox.Indicator>
-      </Checkbox.Root>
+        onCheckedChange={(v) => onToggle(v)}
+        strikethrough={false}
+      />
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">

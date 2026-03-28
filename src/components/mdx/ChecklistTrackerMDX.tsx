@@ -9,7 +9,7 @@
 // ============================================================================
 
 import React, { useState, useEffect, useCallback, type ReactNode } from "react";
-import * as Checkbox from "@radix-ui/react-checkbox";
+import { Checkbox } from "@/components/ui-system";
 
 interface ChecklistTrackerMDXProps {
   readonly checklistId: string;
@@ -50,35 +50,15 @@ function transformChildren(
       return (
         <li
           key={idx}
-          className="flex items-start gap-3 py-1.5"
+          className="py-1.5"
           style={{ listStyle: "none" }}
         >
-          <Checkbox.Root
+          <Checkbox
             checked={isChecked}
-            onCheckedChange={(v) => toggle(idx, !!v)}
-            className={`mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors ${
-              isChecked
-                ? "border-gold bg-gold/20 text-gold"
-                : "border-gray-500 hover:border-gold/60"
-            }`}
-          >
-            <Checkbox.Indicator>
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path
-                  d="M2 6L5 9L10 3"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </Checkbox.Indicator>
-          </Checkbox.Root>
-          <span
-            className={`flex-1 ${isChecked ? "line-through opacity-50" : ""}`}
+            onCheckedChange={(v) => toggle(idx, v)}
           >
             {props.children as ReactNode}
-          </span>
+          </Checkbox>
         </li>
       );
     }

@@ -7,10 +7,10 @@
 
 import { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import * as Checkbox from "@radix-ui/react-checkbox";
 import type { ChecklistItem, Act } from "@/types";
 import { useAppStore } from "@/store";
 import { getChecklistByAct } from "@/data/checklists";
+import { Checkbox } from "@/components/ui-system";
 
 // ---------------------------------------------------------------------------
 // Circular Progress Ring
@@ -101,43 +101,11 @@ function ChecklistRow({ item, checked, onToggle, index }: ChecklistRowProps) {
         ${checked ? "bg-abyss-100/30" : "bg-surface-raised hover:bg-abyss-100/50"}
       `}
     >
-      <Checkbox.Root
+      <Checkbox
         checked={checked}
-        onCheckedChange={(val) => onToggle(val === true)}
-        className={`
-          mt-0.5 w-5 h-5 rounded border-2 flex items-center justify-center shrink-0
-          transition-all duration-200
-          ${
-            checked
-              ? "border-gold bg-gold/20"
-              : "border-border hover:border-gold-muted"
-          }
-        `}
-      >
-        <Checkbox.Indicator>
-          <motion.svg
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 500, damping: 25 }}
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-          >
-            <motion.path
-              d="M2 6l3 3 5-5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-gold"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-            />
-          </motion.svg>
-        </Checkbox.Indicator>
-      </Checkbox.Root>
+        onCheckedChange={(val) => onToggle(val)}
+        strikethrough={false}
+      />
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">

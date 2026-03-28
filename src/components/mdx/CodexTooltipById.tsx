@@ -2,12 +2,14 @@
 
 // ============================================================================
 // CodexTooltipById — MDX wrapper for CodexTooltip, resolves entry by ID
+// Enriches tooltip with flavourText from item data when available.
 // Usage: <CodexTooltipById id="elixir_colline" text="Élixir de Force" />
 // ============================================================================
 
 import type { ReactNode } from "react";
 import { CodexTooltip } from "@/components/codex/CodexTooltip";
 import { getEntry } from "@/data/database";
+import { getItem } from "@/data/items/items";
 import { getBg3WikiIconUrl } from "@/lib/iconHelper";
 
 // ---------------------------------------------------------------------------
@@ -112,6 +114,7 @@ interface CodexTooltipByIdProps {
 
 export function CodexTooltipById({ id, text, children }: CodexTooltipByIdProps) {
   const entry = getEntry(id);
+  const item = getItem(id);
 
   const label = children ?? text ?? id;
 
@@ -122,13 +125,12 @@ export function CodexTooltipById({ id, text, children }: CodexTooltipByIdProps) 
     : entry?.iconUrl ?? "";
 
   if (!entry) {
-    // Even without a codex entry, render a styled tooltip with wiki icon
     return (
       <CodexTooltip
         name={String(text ?? id)}
         icon={iconUrl}
         rarity="common"
-        description="Entrée non référencée dans le Codex."
+        description="Entree non referencee dans le Codex."
       >
         {label}
       </CodexTooltip>
@@ -141,6 +143,7 @@ export function CodexTooltipById({ id, text, children }: CodexTooltipByIdProps) 
       icon={iconUrl}
       rarity={entry.rarity}
       description={entry.description}
+      flavourText={item?.flavourText}
       stats={entry.stats}
       tags={entry.tags}
     >

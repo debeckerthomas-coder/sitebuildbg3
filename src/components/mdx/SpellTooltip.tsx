@@ -1,8 +1,28 @@
 "use client";
 
+// ============================================================================
+// SpellTooltip — MDX component wrapping CodexTooltip for spells
+// Derives rarity from spell level (cantrip=common, 1-2=uncommon, 3-5=rare,
+// 6-8=very_rare, 9=legendary) instead of hardcoding "rare".
+// Usage: <SpellTooltip id="divine_smite">Divine Smite</SpellTooltip>
+// ============================================================================
+
 import type { ReactNode } from "react";
 import { CodexTooltip } from "@/components/codex/CodexTooltip";
 import { getSpell } from "@/data/spells/spells";
+import type { Rarity } from "@/types";
+
+// ---------------------------------------------------------------------------
+// Spell level → Rarity mapping (mirrors D&D spell slot scarcity)
+// ---------------------------------------------------------------------------
+
+function spellLevelToRarity(level: number): Rarity {
+  if (level === 0) return "common";
+  if (level <= 2) return "uncommon";
+  if (level <= 5) return "rare";
+  if (level <= 8) return "very_rare";
+  return "legendary";
+}
 
 interface SpellTooltipProps {
   readonly id: string;
@@ -30,7 +50,7 @@ export function SpellTooltip({ id, children }: SpellTooltipProps) {
     <CodexTooltip
       name={spell.name}
       icon={spell.icon}
-      rarity="rare"
+      rarity={spellLevelToRarity(spell.level)}
       description={spell.description}
       stats={stats}
       tags={spell.tags}

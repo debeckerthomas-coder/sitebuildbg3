@@ -49,6 +49,7 @@ const NAV_ITEMS_FR: readonly NavItem[] = [
     ],
   },
   { label: "Planificateur", href: "/planner", icon: "🔮", badge: "New" },
+  { label: "Liste de Courses", href: "/tracker", icon: "📜", badge: "New" },
 ];
 
 const NAV_ITEMS_EN: readonly NavItem[] = [
@@ -77,6 +78,7 @@ const NAV_ITEMS_EN: readonly NavItem[] = [
     ],
   },
   { label: "Party Planner", href: "/planner", icon: "🔮", badge: "New" },
+  { label: "Loot Tracker", href: "/tracker", icon: "📜", badge: "New" },
 ];
 
 const NAV_BY_LANG: Record<string, readonly NavItem[]> = { fr: NAV_ITEMS_FR, en: NAV_ITEMS_EN };

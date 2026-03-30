@@ -2,10 +2,11 @@
 
 // ============================================================================
 // Party Planner — Interface visuelle du Party Analyzer (Registry-powered)
+// Supports URL sharing via ?party=id1,id2,id3,id4
 // ============================================================================
 
-import { useMemo } from "react";
-import { useParams } from "next/navigation";
+import { useMemo, useState, useEffect, useCallback, Suspense } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import { usePartyStore } from "@/store/usePartyStore";
 import { analyzePartyConflicts, analyzePartyRoles } from "@/lib/partyAnalyzer";
 import { buildRegistry } from "@/data/registry";
@@ -35,12 +36,90 @@ const ROLE_LABELS: Record<string, { fr: string; en: string; icon: string }> = {
 };
 
 // ---------------------------------------------------------------------------
-// Page
+// URL sync hook — reads ?party= on mount
 // ---------------------------------------------------------------------------
 
-export default function PlannerPage() {
+function usePartyFromURL() {
+  const searchParams = useSearchParams();
+  const setSlot = usePartyStore((s) => s.setSlot);
+
+  useEffect(() => {
+    const partyParam = searchParams.get("party");
+    if (!partyParam) return;
+
+    const ids = partyParam.split(",").slice(0, 4);
+    ids.forEach((id, i) => {
+      if (id && buildRegistry[id]) {
+        setSlot(i, id);
+      }
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps -- only on mount
+}
+
+// ---------------------------------------------------------------------------
+// Share button component
+// ---------------------------------------------------------------------------
+
+function ShareButton({ lang }: { lang: "fr" | "en" }) {
+  const party = usePartyStore((s) => s.party);
+  const [copied, setCopied] = useState(false);
+
+  const handleShare = useCallback(async () => {
+    const ids = party.filter(Boolean);
+    if (ids.length === 0) return;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set("party", ids.join(","));
+    // Clean other params
+    const shareUrl = url.toString();
+
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback: prompt
+      prompt(lang === "fr" ? "Copiez ce lien :" : "Copy this link:", shareUrl);
+    }
+  }, [party, lang]);
+
+  const hasParty = party.some(Boolean);
+
+  if (!hasParty) return null;
+
+  return (
+    <button
+      onClick={handleShare}
+      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-data font-bold
+                 bg-[#111520] border-2 border-[#d4af37]/50 text-[#d4af37]
+                 hover:border-[#d4af37] hover:bg-[#d4af37]/10
+                 transition-all duration-200 cursor-pointer"
+    >
+      {copied ? (
+        <>
+          <span aria-hidden>✅</span>
+          {lang === "fr" ? "Lien copié !" : "Link copied!"}
+        </>
+      ) : (
+        <>
+          <span aria-hidden>🔗</span>
+          {lang === "fr" ? "Partager mon équipe" : "Share my party"}
+        </>
+      )}
+    </button>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Inner page content (needs Suspense for useSearchParams)
+// ---------------------------------------------------------------------------
+
+function PlannerContent() {
   const { lang: rawLang } = useParams<{ lang: string }>();
   const lang = rawLang === "en" ? "en" : "fr";
+
+  // Sync party from URL on mount
+  usePartyFromURL();
 
   const party = usePartyStore((s) => s.party);
   const setSlot = usePartyStore((s) => s.setSlot);
@@ -117,15 +196,16 @@ export default function PlannerPage() {
         })}
       </div>
 
-      {/* Clear button */}
+      {/* Action bar: Clear + Share */}
       {selectedIds.length > 0 && (
-        <div className="text-center">
+        <div className="flex items-center justify-center gap-6">
           <button
             onClick={clearParty}
             className="text-xs text-gray-500 hover:text-gray-300 transition-colors underline underline-offset-2"
           >
             {lang === "fr" ? "Réinitialiser le groupe" : "Clear party"}
           </button>
+          <ShareButton lang={lang} />
         </div>
       )}
 
@@ -284,5 +364,17 @@ export default function PlannerPage() {
         </section>
       )}
     </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Page (wraps content in Suspense for useSearchParams)
+// ---------------------------------------------------------------------------
+
+export default function PlannerPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-20 text-gray-500 text-sm">Loading...</div>}>
+      <PlannerContent />
+    </Suspense>
   );
 }

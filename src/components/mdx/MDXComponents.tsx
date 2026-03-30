@@ -29,6 +29,7 @@ import { ChecklistItem } from "./ChecklistItem";
 import { QuickDecision } from "./QuickDecision";
 import { BuildEquipment } from "./BuildEquipment";
 import { BuildTimeline } from "./BuildTimeline";
+import { CoachAlert } from "./CoachAlert";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -78,4 +79,5 @@ export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType
   QuickDecision,
   BuildEquipment,
   BuildTimeline,
+  CoachAlert,
 };

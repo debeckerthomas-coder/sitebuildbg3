@@ -7,7 +7,7 @@
 import { useMemo } from "react";
 import { useParams } from "next/navigation";
 import { usePartyStore } from "@/store/usePartyStore";
-import { analyzePartyConflicts } from "@/lib/partyAnalyzer";
+import { analyzePartyConflicts, analyzePartyRoles } from "@/lib/partyAnalyzer";
 import { buildRegistry } from "@/data/registry";
 
 // ---------------------------------------------------------------------------
@@ -25,6 +25,14 @@ function getBuildTitle(buildId: string, lang: "fr" | "en"): string {
   const build = buildRegistry[buildId];
   return build ? build.title[lang] : buildId;
 }
+
+const ROLE_LABELS: Record<string, { fr: string; en: string; icon: string }> = {
+  tank: { fr: "Tank", en: "Tank", icon: "🛡️" },
+  striker: { fr: "DPS", en: "Striker", icon: "⚔️" },
+  support: { fr: "Support", en: "Support", icon: "💚" },
+  controller: { fr: "Contrôleur", en: "Controller", icon: "🎯" },
+  face: { fr: "Face", en: "Face", icon: "🗣️" },
+};
 
 // ---------------------------------------------------------------------------
 // Page
@@ -45,6 +53,11 @@ export default function PlannerPage() {
 
   const conflicts = useMemo(
     () => analyzePartyConflicts(party),
+    [party],
+  );
+
+  const roleDiagnostic = useMemo(
+    () => analyzePartyRoles(party),
     [party],
   );
 
@@ -125,6 +138,68 @@ export default function PlannerPage() {
               : "Select at least 2 characters to activate the analysis."}
           </p>
         </div>
+      )}
+
+      {/* Role Composition Diagnostic */}
+      {hasAnalysis && (
+        <section className="space-y-4">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-2xl" aria-hidden>🎭</span>
+            <div>
+              <h2 className="font-heading text-xl text-gradient-gold uppercase tracking-wide">
+                {lang === "fr" ? "Diagnostic de Composition" : "Team Composition Diagnostic"}
+              </h2>
+              <p className="text-xs text-gray-500 mt-0.5">
+                {lang === "fr" ? "Analyse des rôles couverts par votre groupe" : "Role coverage analysis for your party"}
+              </p>
+            </div>
+          </div>
+
+          {/* Present roles */}
+          <div className="flex flex-wrap gap-2">
+            {roleDiagnostic.presentRoles.map((role) => {
+              const info = ROLE_LABELS[role] ?? { fr: role, en: role, icon: "❓" };
+              return (
+                <span
+                  key={role}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-data font-bold bg-[#1c2133] border border-[#d4af37]/30 text-[#d4af37]"
+                >
+                  <span aria-hidden>{info.icon}</span>
+                  {info[lang]}
+                </span>
+              );
+            })}
+          </div>
+
+          {/* Missing roles warnings */}
+          {roleDiagnostic.missingRoles.length > 0 ? (
+            <div className="space-y-2">
+              {roleDiagnostic.missingRoles.map((role) => {
+                const info = ROLE_LABELS[role] ?? { fr: role, en: role, icon: "❓" };
+                return (
+                  <div
+                    key={role}
+                    className="flex items-center gap-3 bg-[#8b0000]/10 border border-[#8b0000]/30 rounded-lg px-4 py-3"
+                  >
+                    <span className="text-sm" aria-hidden>⚠️</span>
+                    <p className="text-sm font-data text-[#c43c3c]">
+                      {lang === "fr"
+                        ? `Risque : Votre groupe n'a aucun ${info.fr}`
+                        : `Risk: Your party has no ${info.en}`}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="bg-emerald-900/10 border border-emerald-600/20 rounded-lg p-4">
+              <p className="text-sm text-emerald-400 flex items-center gap-2">
+                <span aria-hidden>✅</span>
+                {lang === "fr" ? "Composition équilibrée — tous les rôles clés sont couverts." : "Balanced composition — all key roles are covered."}
+              </p>
+            </div>
+          )}
+        </section>
       )}
 
       {/* Conflict Dashboard */}

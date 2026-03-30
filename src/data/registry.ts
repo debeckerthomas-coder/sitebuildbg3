@@ -205,6 +205,74 @@ export const buildRegistry: Record<string, UnifiedBuild> = {
       { level: 9, description: "Champion Fighter 3 — Crit sur 19-20 + Action Surge = 5+ lancers en un tour" },
     ],
   },
+  // =========================================================================
+  // Legacy Builds — Squelettes V3 (contenu éditorial à compléter)
+  // =========================================================================
+  lockadin: {
+    id: "lockadin",
+    title: { fr: "Lockadin", en: "Lockadin" },
+    class: "paladin",
+    subclass: "oathbreaker",
+    role: "tank",
+    coreItems: [],
+    alternativeItems: [],
+    powerSpikes: [],
+  },
+
+  bardadin: {
+    id: "bardadin",
+    title: { fr: "Bardadin", en: "Bardadin" },
+    class: "paladin",
+    subclass: "vengeance",
+    role: "striker",
+    coreItems: [],
+    alternativeItems: [],
+    powerSpikes: [],
+  },
+
+  fire_sorlock: {
+    id: "fire_sorlock",
+    title: { fr: "Fire Sorlock", en: "Fire Sorlock" },
+    class: "warlock",
+    subclass: "fiend",
+    role: "striker",
+    coreItems: [],
+    alternativeItems: [],
+    powerSpikes: [],
+  },
+
+  moine_bagarreur: {
+    id: "moine_bagarreur",
+    title: { fr: "Moine Bagarreur", en: "Tavern Brawler Monk" },
+    class: "monk",
+    subclass: "open_hand",
+    role: "striker",
+    coreItems: [],
+    alternativeItems: [],
+    powerSpikes: [],
+  },
+
+  barde_controleur: {
+    id: "barde_controleur",
+    title: { fr: "Barde Contrôleur", en: "Controller Bard" },
+    class: "bard",
+    subclass: "lore",
+    role: "controller",
+    coreItems: [],
+    alternativeItems: [],
+    powerSpikes: [],
+  },
+
+  clerc_irradiation: {
+    id: "clerc_irradiation",
+    title: { fr: "Clerc Irradiation", en: "Radiance Cleric" },
+    class: "cleric",
+    subclass: "light",
+    role: "support",
+    coreItems: [],
+    alternativeItems: [],
+    powerSpikes: [],
+  },
 };
 
 // ---------------------------------------------------------------------------

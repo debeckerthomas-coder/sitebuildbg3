@@ -4,6 +4,7 @@
 // ItemDetailCard — Fiche d'objet premium style BG3 tooltip
 // ============================================================================
 
+import { useState } from "react";
 import Link from "next/link";
 import { getBuildsUsingItem } from "@/data/registry";
 import { Card } from "@/components/ui-system";
@@ -67,22 +68,24 @@ export function ItemDetailCard({
 }: ItemDetailCardProps) {
   const theme = RARITY_CONTENT[rarity];
   const relatedBuilds = itemId ? getBuildsUsingItem(itemId) : [];
+  const [imgError, setImgError] = useState(false);
 
   return (
     <Card rarity={rarity} accentBar noPadding noAnimation>
       <div className="p-4">
         {/* Header */}
         <div className="mb-3 flex items-start gap-3">
-          {icon ? (
+          {icon && !imgError ? (
             <img
               src={icon}
               alt={name}
               width={48}
               height={48}
               className="h-12 w-12 shrink-0 rounded-md border border-gray-700 object-cover"
+              onError={() => setImgError(true)}
             />
           ) : (
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-gray-700 bg-gray-800">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[#2a3048] bg-[#1c2133]">
               <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5 text-gray-600">
                 <path
                   d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"

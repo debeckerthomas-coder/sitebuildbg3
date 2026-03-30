@@ -6,7 +6,7 @@
 //   <LevelingSelector buildId="throwzerker" />
 // ============================================================================
 
-import { useState, useMemo } from "react";
+import React, { useState, useMemo, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getRegistryBuild } from "@/data/registry";
 
@@ -17,15 +17,46 @@ import { getRegistryBuild } from "@/data/registry";
 const LEVELS = Array.from({ length: 12 }, (_, i) => i + 1);
 
 // ---------------------------------------------------------------------------
+// Helpers — filter MDX children by level
+// ---------------------------------------------------------------------------
+
+/**
+ * Extracts children that match the given level.
+ * Looks for elements with a `data-level` prop (number or string).
+ * If no children have `data-level`, returns all children (backward compat).
+ */
+function filterChildrenByLevel(children: ReactNode | undefined, level: number): ReactNode {
+  if (!children) return null;
+
+  const childArray = React.Children.toArray(children);
+
+  // Check if any child has data-level — if none do, skip filtering entirely
+  const hasLevelTags = childArray.some(
+    (child) => React.isValidElement(child) && (child.props as Record<string, unknown>)["data-level"] != null,
+  );
+
+  if (!hasLevelTags) return null; // No level-tagged children — registry-only mode
+
+  return childArray.filter((child) => {
+    if (!React.isValidElement(child)) return false;
+    const props = child.props as Record<string, unknown>;
+    const childLevel = Number(props["data-level"]);
+    return childLevel === level;
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
 interface LevelingSelectorProps {
   /** Build ID from the registry */
   readonly buildId: string;
+  /** Optional MDX children — use data-level={n} on wrapper divs to filter by level */
+  readonly children?: ReactNode;
 }
 
-export function LevelingSelector({ buildId }: LevelingSelectorProps) {
+export function LevelingSelector({ buildId, children }: LevelingSelectorProps) {
   const [currentLevel, setCurrentLevel] = useState(1);
 
   const build = useMemo(() => getRegistryBuild(buildId), [buildId]);
@@ -121,6 +152,15 @@ export function LevelingSelector({ buildId }: LevelingSelectorProps) {
                 Pas de palier de puissance à ce niveau. Continuez à progresser.
               </p>
             )}
+
+            {/* Filtered MDX children for this level */}
+            {(() => {
+              const levelContent = filterChildrenByLevel(children, currentLevel);
+              if (!levelContent) return null;
+              const arr = React.Children.toArray(levelContent);
+              if (arr.length === 0) return null;
+              return <div className="mt-4 text-sm font-body text-gray-300 leading-relaxed">{levelContent}</div>;
+            })()}
           </motion.div>
         </AnimatePresence>
       </div>

@@ -31,6 +31,7 @@ import { BuildEquipment } from "./BuildEquipment";
 import { BuildTimeline } from "./BuildTimeline";
 import { CoachAlert } from "./CoachAlert";
 import { LevelingSelector } from "./LevelingSelector";
+import { MDXCheckbox } from "./MDXCheckbox";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -51,6 +52,8 @@ import type { MDXComponentMap } from "@/types";
  * <CombatLogSimulator baseDice="1d8" statModifier="5" extraDamage={[...]} />
  */
 export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType<any>> = {
+  // Native HTML overrides — style markdown-generated elements
+  input: MDXCheckbox,
   BossCard,
   ItemTooltip,
   SpellTooltip,

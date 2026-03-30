@@ -110,7 +110,10 @@ export default function TrackerPage() {
   const toggleItem = useTrackerStore((s) => s.toggleItem);
 
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- SSR hydration: must detect client after mount to avoid server/client mismatch
+    setMounted(true);
+  }, []);
 
   const hasParty = party.some(Boolean);
 

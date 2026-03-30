@@ -124,6 +124,11 @@ function PlannerContent() {
   const party = usePartyStore((s) => s.party);
   const setSlot = usePartyStore((s) => s.setSlot);
   const clearParty = usePartyStore((s) => s.clearParty);
+  const profiles = usePartyStore((s) => s.profiles);
+  const activeProfileId = usePartyStore((s) => s.activeProfileId);
+  const createProfile = usePartyStore((s) => s.createProfile);
+  const switchProfile = usePartyStore((s) => s.switchProfile);
+  const deleteProfile = usePartyStore((s) => s.deleteProfile);
 
   const selectedIds = useMemo(
     () => party.filter(Boolean) as string[],
@@ -156,6 +161,42 @@ function PlannerContent() {
             : "Build your party of 4 and instantly detect equipment conflicts powered by the Single Source of Truth."}
         </p>
         <div className="mx-auto mt-4 w-32 h-px bg-gradient-to-r from-transparent via-theme/50 to-transparent" />
+      </div>
+
+      {/* Profile Selector */}
+      <div className="bg-[#111520]/60 backdrop-blur-md border border-[#2a3048] rounded-xl p-4 flex flex-wrap items-center gap-3">
+        <span className="text-[10px] font-data uppercase tracking-widest text-[#d4af37] shrink-0">
+          {lang === "fr" ? "Profil actif" : "Active profile"}
+        </span>
+        <select
+          value={activeProfileId}
+          onChange={(e) => switchProfile(e.target.value)}
+          className="flex-1 min-w-[160px] px-3 py-2 rounded-lg text-sm bg-[#0b0f19] text-gray-200 border border-[#2a3048] hover:border-[#d4af37]/40 focus:border-[#d4af37]/60 focus:outline-none transition-colors appearance-none cursor-pointer"
+        >
+          {Object.values(profiles).map((p) => (
+            <option key={p.id} value={p.id}>{p.name}</option>
+          ))}
+        </select>
+        <button
+          onClick={() => {
+            const name = prompt(lang === "fr" ? "Nom du nouveau profil :" : "New profile name:");
+            if (name?.trim()) createProfile(name.trim());
+          }}
+          className="px-3 py-2 rounded-lg text-xs font-data font-bold bg-[#1c2133] border border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 hover:border-[#d4af37] transition-all cursor-pointer"
+        >
+          {lang === "fr" ? "+ Nouveau" : "+ New"}
+        </button>
+        {activeProfileId !== "default" && (
+          <button
+            onClick={() => {
+              const ok = confirm(lang === "fr" ? "Supprimer ce profil ?" : "Delete this profile?");
+              if (ok) deleteProfile(activeProfileId);
+            }}
+            className="px-3 py-2 rounded-lg text-xs font-data font-bold bg-[#8b0000]/10 border border-[#8b0000]/30 text-[#c43c3c] hover:bg-[#8b0000]/20 hover:border-[#8b0000] transition-all cursor-pointer"
+          >
+            {lang === "fr" ? "Supprimer" : "Delete"}
+          </button>
+        )}
       </div>
 
       {/* Party Selector Grid */}

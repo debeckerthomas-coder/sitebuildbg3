@@ -24,9 +24,10 @@ interface LevelStepProps {
 }
 
 export function LevelStep({ level, children, __activeLevel }: LevelStepProps) {
-  const targetLevel = parseInt(String(level), 10);
-  const currentLevel = __activeLevel ?? 1;
-  const isActive = !Number.isNaN(targetLevel) && currentLevel === targetLevel;
+  const targetLevel = typeof level === "number" ? level : parseInt(String(level), 10);
+  // If __activeLevel was never injected, show all steps as fallback
+  // so content is never invisible due to missing injection
+  const isActive = __activeLevel === undefined || (!Number.isNaN(targetLevel) && __activeLevel === targetLevel);
 
   return (
     <div
@@ -50,6 +51,9 @@ const LEVELS = Array.from({ length: 12 }, (_, i) => i + 1);
 /**
  * Deep-traverse React children tree to find LevelStep components
  * and inject __activeLevel prop. Handles MDX wrapping (fragments, divs, p).
+ *
+ * Detection uses both displayName and duck typing (level prop + no src/href)
+ * to reliably match LevelStep across MDX module boundaries.
  */
 function injectActiveLevel(nodes: ReactNode, activeLevel: number): ReactNode {
   return React.Children.map(nodes, (child) => {
@@ -57,8 +61,12 @@ function injectActiveLevel(nodes: ReactNode, activeLevel: number): ReactNode {
 
     const el = child as ReactElement<Record<string, unknown>>;
 
-    // Detect LevelStep: has a `level` prop (duck typing, works across module boundaries)
-    if ("level" in el.props) {
+    // Detect LevelStep via displayName (primary) or duck typing (fallback)
+    const isLevelStep =
+      (typeof el.type === "function" && (el.type as { displayName?: string }).displayName === "LevelStep") ||
+      ("level" in el.props && "__activeLevel" in el.props === false && typeof el.props.level === "number");
+
+    if (isLevelStep) {
       return React.cloneElement(el, { __activeLevel: activeLevel });
     }
 

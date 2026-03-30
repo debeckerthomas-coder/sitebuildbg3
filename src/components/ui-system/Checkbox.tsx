@@ -54,12 +54,9 @@ export function Checkbox({
         disabled={disabled}
         className={`
           mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center
-          rounded border-2 transition-all duration-200
-          ${
-            checked
-              ? "border-gold bg-gold/20"
-              : "border-border hover:border-gold-muted"
-          }
+          rounded bg-[#171b29] border border-[#2a3048] transition-colors duration-200
+          data-[state=checked]:bg-[#9b7e1e] data-[state=checked]:border-[#9b7e1e]
+          hover:border-[#3a4068]
         `}
       >
         <AnimatePresence>
@@ -81,7 +78,7 @@ export function Checkbox({
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="text-gold"
+                  className="text-[#111520]"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
                   transition={PATH_DRAW}

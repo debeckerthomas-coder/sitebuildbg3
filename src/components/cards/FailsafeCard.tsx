@@ -3,6 +3,7 @@
 // ============================================================================
 // FailsafeCard — Composant visuel "Plan B" Dark Fantasy Warning
 // Bouée de sauvetage stylisée : affiche l'objet manqué + l'alternative
+// Supporte deux niveaux de priorité : "critical" et "high" (défaut)
 // ============================================================================
 
 import { Card } from "@/components/ui-system";
@@ -14,13 +15,15 @@ interface FailsafeCardProps {
   readonly fallback: string;
   /** Condition optionnelle qui explique pourquoi l'objet est manqué */
   readonly condition?: string;
+  /** Niveau de priorité — détermine le style visuel */
+  readonly priority?: "high" | "critical";
 }
 
-function ShieldIcon() {
+function ShieldIcon({ critical }: { critical: boolean }) {
   return (
     <div className="relative flex items-center justify-center w-9 h-9 shrink-0">
-      <div className="absolute inset-0 rounded-full bg-amber-500/10 blur-sm" />
-      <svg viewBox="0 0 24 24" fill="none" className="relative w-5 h-5 text-amber-400">
+      <div className={`absolute inset-0 rounded-full blur-sm ${critical ? "bg-[#8b0000]/20" : "bg-amber-500/10"}`} />
+      <svg viewBox="0 0 24 24" fill="none" className={`relative w-5 h-5 ${critical ? "text-[#c43c3c]" : "text-amber-400"}`}>
         <path
           d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"
           fill="currentColor"
@@ -40,9 +43,9 @@ function ShieldIcon() {
   );
 }
 
-function ArrowDown() {
+function ArrowDown({ critical }: { critical: boolean }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4 text-amber-500/50">
+    <svg viewBox="0 0 24 24" fill="none" className={`w-4 h-4 ${critical ? "text-[#8b0000]/50" : "text-amber-500/50"}`}>
       <path
         d="M12 5v14M5 12l7 7 7-7"
         stroke="currentColor"
@@ -54,81 +57,92 @@ function ArrowDown() {
   );
 }
 
-export function FailsafeCard({ missing, fallback, condition }: FailsafeCardProps) {
+export function FailsafeCard({ missing, fallback, condition, priority = "high" }: FailsafeCardProps) {
+  const isCritical = priority === "critical";
+
   return (
     <Card
       noPadding
       className="my-6 font-sans [&_p]:!font-sans [&_span]:!font-sans"
     >
-      {/* Amber accent bar */}
-      <div className="h-[2px] bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
-
-      <div className="p-4">
-        {/* Header — Shield icon + missing item */}
-        <div className="flex items-center gap-3">
-          <ShieldIcon />
-          <div className="min-w-0 flex-1">
-            <p className="text-[10px] font-data uppercase tracking-wider text-amber-500/50 mb-0.5">
-              Objet manqué
-            </p>
-            <p className="text-amber-200 font-semibold text-base leading-snug tracking-wide">
-              {missing}
-            </p>
-          </div>
+      {/* Priority-aware accent bar + left border */}
+      <div className={`
+        ${isCritical ? "bg-[#8b0000]/10 border-l-4 border-[#8b0000]" : "bg-[#1c2133]/50 border-l-4 border-[#d4af37]"}
+      `}>
+        {/* Priority label */}
+        <div className="px-4 pt-3 pb-1">
+          <span className={`text-[10px] font-data uppercase tracking-widest font-bold ${isCritical ? "text-[#c43c3c]" : "text-[#d4af37]"}`}>
+            {isCritical ? "⚠️ OBJET CRITIQUE MANQUANT" : "🛡️ ALTERNATIVE"}
+          </span>
         </div>
 
-        {/* Separator with arrow */}
-        <div className="flex items-center gap-3 my-3 pl-[14px]">
-          <ArrowDown />
-          <div className="flex-1 h-px bg-gradient-to-r from-amber-700/20 to-transparent" />
-        </div>
+        <div className="p-4 pt-2">
+          {/* Header — Shield icon + missing item */}
+          <div className="flex items-center gap-3">
+            <ShieldIcon critical={isCritical} />
+            <div className="min-w-0 flex-1">
+              <p className={`text-[10px] font-data uppercase tracking-wider mb-0.5 ${isCritical ? "text-[#c43c3c]/50" : "text-amber-500/50"}`}>
+                Objet manqué
+              </p>
+              <p className={`font-semibold text-base leading-snug tracking-wide ${isCritical ? "text-[#c43c3c]" : "text-amber-200"}`}>
+                {missing}
+              </p>
+            </div>
+          </div>
 
-        {/* Fallback — Plan B */}
-        <div className="flex items-start gap-3 pl-1">
-          <div className="relative flex items-center justify-center w-9 h-9 shrink-0">
-            <div className="absolute inset-0 rounded-full bg-emerald-500/8 blur-sm" />
-            <svg viewBox="0 0 24 24" fill="none" className="relative w-5 h-5 text-emerald-400">
-              <path
-                d="M9 12l2 2 4-4"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle
-                cx="12" cy="12" r="9"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                fill="currentColor"
-                fillOpacity="0.08"
-              />
-            </svg>
+          {/* Separator with arrow */}
+          <div className="flex items-center gap-3 my-3 pl-[14px]">
+            <ArrowDown critical={isCritical} />
+            <div className={`flex-1 h-px bg-gradient-to-r to-transparent ${isCritical ? "from-[#8b0000]/30" : "from-amber-700/20"}`} />
           </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-[10px] font-data uppercase tracking-wider text-emerald-500/50 mb-0.5">
-              Plan B — Alternative
-            </p>
-            <p className="text-gray-200 leading-relaxed text-sm">
-              {fallback}
-            </p>
-          </div>
-        </div>
 
-        {/* Condition optionnelle */}
-        {condition && (
-          <div className="mt-4 pt-3 border-t border-amber-700/10 flex items-start gap-2 pl-1">
-            <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 shrink-0 mt-0.5 text-gray-500">
-              <path
-                d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 018 4zm0 7.5a.75.75 0 100-1.5.75.75 0 000 1.5z"
-                fill="currentColor"
-                fillOpacity="0.5"
-              />
-            </svg>
-            <p className="text-xs text-gray-500 leading-relaxed">
-              {condition}
-            </p>
+          {/* Fallback — Plan B */}
+          <div className="flex items-start gap-3 pl-1">
+            <div className="relative flex items-center justify-center w-9 h-9 shrink-0">
+              <div className="absolute inset-0 rounded-full bg-emerald-500/8 blur-sm" />
+              <svg viewBox="0 0 24 24" fill="none" className="relative w-5 h-5 text-emerald-400">
+                <path
+                  d="M9 12l2 2 4-4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle
+                  cx="12" cy="12" r="9"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  fill="currentColor"
+                  fillOpacity="0.08"
+                />
+              </svg>
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] font-data uppercase tracking-wider text-emerald-500/50 mb-0.5">
+                Plan B — Alternative
+              </p>
+              <p className="text-gray-200 leading-relaxed text-sm">
+                {fallback}
+              </p>
+            </div>
           </div>
-        )}
+
+          {/* Condition optionnelle */}
+          {condition && (
+            <div className={`mt-4 pt-3 border-t flex items-start gap-2 pl-1 ${isCritical ? "border-[#8b0000]/20" : "border-amber-700/10"}`}>
+              <svg viewBox="0 0 16 16" fill="none" className="w-3.5 h-3.5 shrink-0 mt-0.5 text-gray-500">
+                <path
+                  d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 018 4zm0 7.5a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                  fill="currentColor"
+                  fillOpacity="0.5"
+                />
+              </svg>
+              <p className="text-xs text-gray-500 leading-relaxed">
+                {condition}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </Card>
   );

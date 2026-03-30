@@ -30,6 +30,7 @@ function buildItemIndex(): Map<string, UnifiedItem> {
   }
 
   // Source 2 : Arsenal bilingue (items pas encore dans ITEMS)
+  // TODO: Refactor UnifiedItem to accept {fr, en} objects for full bilingual support
   for (const item of itemsBilingualV2) {
     if (!index.has(item.id)) {
       index.set(item.id, {

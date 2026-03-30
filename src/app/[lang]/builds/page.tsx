@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { BuildsGrid } from "./BuildsGrid";
 
 export const metadata: Metadata = {
-  title: "Tier List — 9 Builds Tier S | BG3 Honor Companion",
-  description: "Les 9 builds Tier S du Mode Honneur de Baldur's Gate 3. Theorycraft vérifié, équipement Best-in-Slot, failsafes.",
+  title: "Tier List — 10 Builds Tier S | BG3 Honor Companion",
+  description: "Les 10 builds Tier S du Mode Honneur de Baldur's Gate 3. Theorycraft vérifié, équipement Best-in-Slot, failsafes.",
 };
 
 export default function BuildsPage() {
@@ -14,7 +14,7 @@ export default function BuildsPage() {
           Mode Honneur — Méta Vérifiée
         </p>
         <h1 className="font-display text-4xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-gold to-amber-600">
-          Les 9 Builds Tier S
+          Les 10 Builds Tier S
         </h1>
         <p className="text-sm font-body text-gray-400 max-w-2xl mx-auto leading-relaxed">
           Chaque build a été vérifié pour le Mode Honneur avec les équipements

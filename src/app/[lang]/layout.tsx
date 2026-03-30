@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { LangUpdater } from "@/components/layout/LangUpdater";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { GlobalSearch } from "@/components/ui/SearchPalette";
+import { HeaderBuildSelector } from "@/components/ui/HeaderBuildSelector";
 import { i18n, getDictionary, type Locale } from "@/dictionaries";
 
 export function generateStaticParams() {
@@ -39,6 +40,7 @@ export default async function LangLayout({
             </div>
           </Link>
           <div className="flex items-center gap-2">
+            <HeaderBuildSelector />
             <GlobalSearch />
             <LanguageSwitcher />
           </div>

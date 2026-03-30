@@ -27,11 +27,7 @@ const NAV_ITEMS_FR: readonly NavItem[] = [
   { label: "Accueil", href: "/", icon: "🏠" },
   { label: "L'Armurerie", href: "/arsenal", icon: "🛡️" },
   {
-    label: "Tier List Builds", icon: "⚔️",
-    children: [
-      { label: "Tous les Builds (9)", href: "/builds", icon: "📊" },
-      { label: "Le Lockadin", href: "/builds/lockadin", icon: "🗡️" },
-    ],
+    label: "Tier List Builds", icon: "⚔️", href: "/builds",
   },
   {
     label: "Walkthrough", icon: "🗺️",
@@ -45,22 +41,18 @@ const NAV_ITEMS_FR: readonly NavItem[] = [
     label: "Atelier", icon: "🔧",
     children: [
       { label: "Tous les Outils", href: "/outils", icon: "🔧" },
+      { label: "Planificateur", href: "/planner", icon: "🔮", badge: "New" },
+      { label: "Liste de Courses", href: "/tracker", icon: "📜", badge: "New" },
       { label: "Calculateur de Dégâts", href: "/outils/calculateur", icon: "🧮" },
     ],
   },
-  { label: "Planificateur", href: "/planner", icon: "🔮", badge: "New" },
-  { label: "Liste de Courses", href: "/tracker", icon: "📜", badge: "New" },
 ];
 
 const NAV_ITEMS_EN: readonly NavItem[] = [
   { label: "Home", href: "/", icon: "🏠" },
   { label: "The Armory", href: "/arsenal", icon: "🛡️" },
   {
-    label: "Build Tier List", icon: "⚔️",
-    children: [
-      { label: "All Builds (9)", href: "/builds", icon: "📊" },
-      { label: "The Lockadin", href: "/builds/lockadin", icon: "🗡️" },
-    ],
+    label: "Build Tier List", icon: "⚔️", href: "/builds",
   },
   {
     label: "Walkthrough", icon: "🗺️",
@@ -74,11 +66,11 @@ const NAV_ITEMS_EN: readonly NavItem[] = [
     label: "Workshop", icon: "🔧",
     children: [
       { label: "All Tools", href: "/outils", icon: "🔧" },
+      { label: "Party Planner", href: "/planner", icon: "🔮", badge: "New" },
+      { label: "Loot Tracker", href: "/tracker", icon: "📜", badge: "New" },
       { label: "Damage Calculator", href: "/outils/calculateur", icon: "🧮" },
     ],
   },
-  { label: "Party Planner", href: "/planner", icon: "🔮", badge: "New" },
-  { label: "Loot Tracker", href: "/tracker", icon: "📜", badge: "New" },
 ];
 
 const NAV_BY_LANG: Record<string, readonly NavItem[]> = { fr: NAV_ITEMS_FR, en: NAV_ITEMS_EN };

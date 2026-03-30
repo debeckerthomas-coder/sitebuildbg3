@@ -357,8 +357,8 @@ function PlannerContent() {
             </div>
           ) : (
             <div className="space-y-3">
-              <div className="bg-red-900/10 border border-red-600/30 rounded-lg p-4 mb-4">
-                <p className="text-sm font-semibold text-red-400">
+              <div className="bg-[#8b0000]/10 border border-[#8b0000]/30 rounded-lg p-4 mb-4">
+                <p className="text-sm font-semibold text-blood-light">
                   {lang === "fr"
                     ? `⚠️ ${conflicts.length} conflit${conflicts.length > 1 ? "s" : ""} d'équipement détecté${conflicts.length > 1 ? "s" : ""}`
                     : `⚠️ ${conflicts.length} equipment conflict${conflicts.length > 1 ? "s" : ""} detected`}
@@ -368,7 +368,7 @@ function PlannerContent() {
               {conflicts.map((conflict) => (
                 <div
                   key={conflict.itemId}
-                  className="bg-red-900/5 border border-red-600/20 rounded-lg p-4"
+                  className="bg-[#8b0000]/5 border border-[#8b0000]/20 rounded-lg p-4"
                 >
                   <div className="flex items-start gap-3">
                     {conflict.itemIcon ? (
@@ -385,7 +385,7 @@ function PlannerContent() {
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-bold text-red-300">
+                      <h4 className="text-sm font-bold text-blood-light">
                         {conflict.itemName[lang]}
                       </h4>
                       <p className="text-xs text-gray-400 mt-1">

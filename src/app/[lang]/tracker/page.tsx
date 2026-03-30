@@ -40,11 +40,11 @@ const ACT_HEADERS: Record<Act, { fr: string; en: string; icon: string }> = {
 };
 
 const RARITY_COLORS: Record<string, string> = {
-  common: "text-gray-400 border-gray-600",
-  uncommon: "text-green-400 border-green-700/40",
-  rare: "text-blue-400 border-blue-700/40",
-  very_rare: "text-purple-400 border-purple-700/40",
-  legendary: "text-[#d4af37] border-[#d4af37]/40",
+  common: "text-rarity-common border-rarity-common/40",
+  uncommon: "text-rarity-uncommon border-rarity-uncommon/40",
+  rare: "text-rarity-rare border-rarity-rare/40",
+  very_rare: "text-rarity-very_rare border-rarity-very_rare/40",
+  legendary: "text-rarity-legendary border-rarity-legendary/40",
 };
 
 // ---------------------------------------------------------------------------

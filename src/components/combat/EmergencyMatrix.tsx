@@ -16,19 +16,19 @@ import { Badge } from "@/components/ui-system";
 
 const SEVERITY_STYLES = {
   info: {
-    border: "border-blue-500/40",
-    bg: "bg-blue-950/30",
+    border: "border-[#d4af37]/40",
+    bg: "bg-[#1c2133]/50",
     icon: "ℹ️",
     label: "Info",
-    labelColor: "text-blue-400",
+    labelColor: "text-[#d4af37]",
     animation: "",
   },
   warning: {
-    border: "border-yellow-500/50",
-    bg: "bg-yellow-950/20",
+    border: "border-[#d4af37]/60",
+    bg: "bg-[#1c2133]/40",
     icon: "⚠️",
     label: "DANGER",
-    labelColor: "text-yellow-400",
+    labelColor: "text-[#d4af37]",
     animation: "animate-pulse-warning",
   },
   lethal: {

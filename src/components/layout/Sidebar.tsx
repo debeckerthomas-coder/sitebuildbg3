@@ -180,49 +180,51 @@ function NavGroup({
           ${isActive ? "text-theme" : "text-gray-400 hover:text-gray-200 hover:bg-surface-raised"}
         `}
       >
-        {/* If the parent has an href, the icon+label are a link; otherwise a toggle button */}
-        {item.href ? (
-          <Link
-            href={item.href}
-            onClick={onNavigate}
-            title={isCollapsed ? item.label : undefined}
-            className="flex items-center gap-3 flex-1 min-w-0"
+        {/* Collapsed mode: icon toggles submenu (no room for link + chevron) */}
+        {isCollapsed ? (
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            title={item.label}
+            className="flex items-center justify-center flex-1"
           >
             <span className="text-base shrink-0" aria-hidden>{item.icon}</span>
-            {!isCollapsed && <span className="flex-1 text-left truncate">{item.label}</span>}
-          </Link>
+          </button>
         ) : (
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            title={isCollapsed ? item.label : undefined}
-            className="flex items-center gap-3 flex-1 min-w-0 text-left"
-          >
-            <span className="text-base shrink-0" aria-hidden>{item.icon}</span>
-            {!isCollapsed && <span className="flex-1 truncate">{item.label}</span>}
-          </button>
-        )}
-        {/* Chevron toggle — always present to expand/collapse children */}
-        {!isCollapsed && (
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="shrink-0 p-0.5 rounded hover:bg-surface-raised transition-colors"
-            aria-label={isOpen ? "Collapse" : "Expand"}
-          >
-            <motion.span
-              animate={{ rotate: isOpen ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
-              className="text-xs text-gray-500 block"
+          <>
+            {/* Expanded mode: icon+label are a link if href exists, otherwise a toggle */}
+            {item.href ? (
+              <Link
+                href={item.href}
+                onClick={onNavigate}
+                className="flex items-center gap-3 flex-1 min-w-0"
+              >
+                <span className="text-base shrink-0" aria-hidden>{item.icon}</span>
+                <span className="flex-1 text-left truncate">{item.label}</span>
+              </Link>
+            ) : (
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex items-center gap-3 flex-1 min-w-0 text-left"
+              >
+                <span className="text-base shrink-0" aria-hidden>{item.icon}</span>
+                <span className="flex-1 truncate">{item.label}</span>
+              </button>
+            )}
+            {/* Chevron toggle to expand/collapse children */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="shrink-0 p-0.5 rounded hover:bg-surface-raised transition-colors"
+              aria-label={isOpen ? "Collapse" : "Expand"}
             >
-              ▼
-            </motion.span>
-          </button>
-        )}
-        {isCollapsed && (
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="sr-only"
-            aria-label={isOpen ? "Collapse" : "Expand"}
-          />
+              <motion.span
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="text-xs text-gray-500 block"
+              >
+                ▼
+              </motion.span>
+            </button>
+          </>
         )}
       </div>
 
@@ -251,7 +253,12 @@ function NavGroup({
                     `}
                   >
                     <span className="text-sm" aria-hidden>{child.icon}</span>
-                    <span>{child.label}</span>
+                    <span className="flex-1">{child.label}</span>
+                    {child.badge && (
+                      <Badge variant="danger" className="ml-auto shrink-0">
+                        {child.badge}
+                      </Badge>
+                    )}
                   </Link>
                 );
               })}

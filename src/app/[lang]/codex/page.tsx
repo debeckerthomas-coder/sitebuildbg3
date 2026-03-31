@@ -14,21 +14,56 @@ export const metadata: Metadata = {
   },
 };
 
-function CodexCard({ entry }: { entry: CodexEntry }) {
+const PAGE_TEXT = {
+  fr: {
+    title: "Le Codex",
+    description: "Bienvenue, Commandant. Ce Codex contient l'intégralité des objets, sorts et capacités référencés dans le guide. Survolez n'importe quel nom pour voir ses statistiques détaillées.",
+    items: "Objets",
+    spells: "Sorts",
+    abilities: "Capacités",
+    rarityLabels: {
+      common: "Commun",
+      uncommon: "Inhabituel",
+      rare: "Rare",
+      very_rare: "Très Rare",
+      legendary: "Légendaire",
+    } as Record<string, string>,
+    quickLinks: {
+      lockadin: { title: "Le Lockadin", sub: "Paladin 7 / Occultiste 5 — Tier S" },
+      act1: { title: "Acte 1", sub: "Route Pacifique vers le Niveau 4" },
+      simulator: { title: "Simulateur", sub: "Calculs de dégâts en temps réel" },
+      dice: { title: "Dés", sub: "Simulateur 3D avec probabilités" },
+    },
+  },
+  en: {
+    title: "The Codex",
+    description: "Welcome, Commander. This Codex contains every item, spell and ability referenced in the guide. Hover over any name to see its detailed statistics.",
+    items: "Items",
+    spells: "Spells",
+    abilities: "Abilities",
+    rarityLabels: {
+      common: "Common",
+      uncommon: "Uncommon",
+      rare: "Rare",
+      very_rare: "Very Rare",
+      legendary: "Legendary",
+    } as Record<string, string>,
+    quickLinks: {
+      lockadin: { title: "The Lockadin", sub: "Paladin 7 / Warlock 5 — Tier S" },
+      act1: { title: "Act 1", sub: "Pacifist Route to Level 4" },
+      simulator: { title: "Simulator", sub: "Real-time damage calculations" },
+      dice: { title: "Dice", sub: "3D simulator with probabilities" },
+    },
+  },
+} as const;
+
+function CodexCard({ entry, rarityLabels }: { entry: CodexEntry; rarityLabels: Record<string, string> }) {
   const rarityColors: Record<string, string> = {
     common: "border-rarity-common/30 text-rarity-common",
     uncommon: "border-rarity-uncommon/30 text-rarity-uncommon",
     rare: "border-rarity-rare/30 text-rarity-rare",
     very_rare: "border-rarity-very_rare/30 text-rarity-very_rare",
     legendary: "border-rarity-legendary/30 text-rarity-legendary",
-  };
-
-  const rarityLabels: Record<string, string> = {
-    common: "Commun",
-    uncommon: "Inhabituel",
-    rare: "Rare",
-    very_rare: "Très Rare",
-    legendary: "Légendaire",
   };
 
   const typeIcons: Record<string, string> = {
@@ -46,7 +81,7 @@ function CodexCard({ entry }: { entry: CodexEntry }) {
           <h3 className={`font-display text-sm ${rarityColors[entry.rarity]}`}>{entry.name}</h3>
           <div className="flex items-center gap-2 mt-0.5">
             <span className={`text-[10px] font-data uppercase tracking-wider ${rarityColors[entry.rarity]}`}>
-              {rarityLabels[entry.rarity]}
+              {rarityLabels[entry.rarity] ?? entry.rarity}
             </span>
             <span className="text-[10px] font-data text-gray-500 uppercase tracking-wider">{entry.type}</span>
           </div>
@@ -57,7 +92,15 @@ function CodexCard({ entry }: { entry: CodexEntry }) {
   );
 }
 
-export default function CodexPage() {
+interface PageProps {
+  params: Promise<{ lang: string }>;
+}
+
+export default async function CodexPage({ params }: PageProps) {
+  const { lang } = await params;
+  const t = lang === "en" ? PAGE_TEXT.en : PAGE_TEXT.fr;
+  const prefix = `/${lang}`;
+
   const allEntries = getAllEntries();
   const objets = allEntries.filter((e) => e.type === "objet");
   const sorts = allEntries.filter((e) => e.type === "sort");
@@ -81,51 +124,50 @@ export default function CodexPage() {
       />
 
       <div className="space-y-3">
-        <h1 className="font-display text-3xl text-gold tracking-wide">Le Codex</h1>
+        <h1 className="font-display text-3xl text-gold tracking-wide">{t.title}</h1>
         <p className="font-body text-base text-gray-400 max-w-2xl leading-relaxed">
-          Bienvenue, Commandant. Ce Codex contient l&apos;intégralité des objets, sorts et capacités
-          référencés dans le guide. Survolez n&apos;importe quel nom pour voir ses statistiques détaillées.
+          {t.description}
         </p>
       </div>
 
       <div className="grid sm:grid-cols-4 gap-3">
-        <Link href="/builds/lockadin" className="group rounded-card border border-border bg-surface-raised p-4 hover:border-gold/40 transition-all">
-          <h3 className="font-display text-sm text-gold group-hover:text-gold-light transition-colors">Le Lockadin</h3>
-          <p className="text-xs font-data text-gray-500 mt-1">Paladin 7 / Occultiste 5 — Tier S</p>
+        <Link href={`${prefix}/builds/lockadin`} className="group rounded-card border border-border bg-surface-raised p-4 hover:border-gold/40 transition-all">
+          <h3 className="font-display text-sm text-gold group-hover:text-gold-light transition-colors">{t.quickLinks.lockadin.title}</h3>
+          <p className="text-xs font-data text-gray-500 mt-1">{t.quickLinks.lockadin.sub}</p>
         </Link>
-        <Link href="/walkthrough/acte-1" className="group rounded-card border border-border bg-surface-raised p-4 hover:border-gold/40 transition-all">
-          <h3 className="font-display text-sm text-gold group-hover:text-gold-light transition-colors">Acte 1</h3>
-          <p className="text-xs font-data text-gray-500 mt-1">Route Pacifique vers le Niveau 4</p>
+        <Link href={`${prefix}/walkthrough/acte-1`} className="group rounded-card border border-border bg-surface-raised p-4 hover:border-gold/40 transition-all">
+          <h3 className="font-display text-sm text-gold group-hover:text-gold-light transition-colors">{t.quickLinks.act1.title}</h3>
+          <p className="text-xs font-data text-gray-500 mt-1">{t.quickLinks.act1.sub}</p>
         </Link>
-        <Link href="/outils/combat" className="group rounded-card border border-border bg-surface-raised p-4 hover:border-gold/40 transition-all">
-          <h3 className="font-display text-sm text-gold group-hover:text-gold-light transition-colors">Simulateur</h3>
-          <p className="text-xs font-data text-gray-500 mt-1">Calculs de dégâts en temps réel</p>
+        <Link href={`${prefix}/outils/combat`} className="group rounded-card border border-border bg-surface-raised p-4 hover:border-gold/40 transition-all">
+          <h3 className="font-display text-sm text-gold group-hover:text-gold-light transition-colors">{t.quickLinks.simulator.title}</h3>
+          <p className="text-xs font-data text-gray-500 mt-1">{t.quickLinks.simulator.sub}</p>
         </Link>
-        <Link href="/outils/des" className="group rounded-card border border-border bg-surface-raised p-4 hover:border-gold/40 transition-all">
-          <h3 className="font-display text-sm text-gold group-hover:text-gold-light transition-colors">Dés</h3>
-          <p className="text-xs font-data text-gray-500 mt-1">Simulateur 3D avec probabilités</p>
+        <Link href={`${prefix}/outils/des`} className="group rounded-card border border-border bg-surface-raised p-4 hover:border-gold/40 transition-all">
+          <h3 className="font-display text-sm text-gold group-hover:text-gold-light transition-colors">{t.quickLinks.dice.title}</h3>
+          <p className="text-xs font-data text-gray-500 mt-1">{t.quickLinks.dice.sub}</p>
         </Link>
       </div>
 
       <section>
-        <h2 className="font-display text-xl text-gold mb-4 border-b border-border pb-2">Objets ({objets.length})</h2>
+        <h2 className="font-display text-xl text-gold mb-4 border-b border-border pb-2">{t.items} ({objets.length})</h2>
         <div className="grid sm:grid-cols-2 gap-3">
-          {objets.map((entry) => <CodexCard key={entry.id} entry={entry} />)}
+          {objets.map((entry) => <CodexCard key={entry.id} entry={entry} rarityLabels={t.rarityLabels} />)}
         </div>
       </section>
 
       <section>
-        <h2 className="font-display text-xl text-gold mb-4 border-b border-border pb-2">Sorts ({sorts.length})</h2>
+        <h2 className="font-display text-xl text-gold mb-4 border-b border-border pb-2">{t.spells} ({sorts.length})</h2>
         <div className="grid sm:grid-cols-2 gap-3">
-          {sorts.map((entry) => <CodexCard key={entry.id} entry={entry} />)}
+          {sorts.map((entry) => <CodexCard key={entry.id} entry={entry} rarityLabels={t.rarityLabels} />)}
         </div>
       </section>
 
       {capacites.length > 0 && (
         <section>
-          <h2 className="font-display text-xl text-gold mb-4 border-b border-border pb-2">Capacités ({capacites.length})</h2>
+          <h2 className="font-display text-xl text-gold mb-4 border-b border-border pb-2">{t.abilities} ({capacites.length})</h2>
           <div className="grid sm:grid-cols-2 gap-3">
-            {capacites.map((entry) => <CodexCard key={entry.id} entry={entry} />)}
+            {capacites.map((entry) => <CodexCard key={entry.id} entry={entry} rarityLabels={t.rarityLabels} />)}
           </div>
         </section>
       )}

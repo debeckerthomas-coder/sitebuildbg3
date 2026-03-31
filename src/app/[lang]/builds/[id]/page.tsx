@@ -9,6 +9,7 @@ import { getBuildTierS, BUILDS_TIER_S } from "@/data/builds/tier-s";
 import { getBuildMDX } from "@/lib/builds-mdx";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 import type { Metadata } from "next";
+import type { Locale } from "@/dictionaries";
 import NewsletterCTA from "@/components/ui/NewsletterCTA";
 
 // ---------------------------------------------------------------------------
@@ -29,6 +30,45 @@ const BUILD_MDX_SLUGS: Record<string, string> = {
 };
 
 // ---------------------------------------------------------------------------
+// i18n labels
+// ---------------------------------------------------------------------------
+
+const PAGE_TEXT = {
+  fr: {
+    notFound: "Build introuvable",
+    role: "Rôle",
+    keyMechanic: "Mécanique Clé",
+    stats: "Caractéristiques",
+    feats: "Progression des Dons",
+    bis: "Équipement Best-in-Slot",
+    act1: "Acte 1",
+    act2: "Acte 2",
+    act3: "Acte 3",
+    failsafes: "Plans de Secours (Failsafes)",
+    planB: "Plan B — Failsafe",
+    missedItem: "Objet manqué",
+    replaceWith: "Remplacer par",
+    deepDive: "Guide Approfondi",
+  },
+  en: {
+    notFound: "Build not found",
+    role: "Role",
+    keyMechanic: "Key Mechanic",
+    stats: "Ability Scores",
+    feats: "Feat Progression",
+    bis: "Best-in-Slot Gear",
+    act1: "Act 1",
+    act2: "Act 2",
+    act3: "Act 3",
+    failsafes: "Backup Plans (Failsafes)",
+    planB: "Plan B — Failsafe",
+    missedItem: "Missed item",
+    replaceWith: "Replace with",
+    deepDive: "Deep Dive Guide",
+  },
+} as const;
+
+// ---------------------------------------------------------------------------
 // Static Params
 // ---------------------------------------------------------------------------
 
@@ -41,16 +81,19 @@ export function generateStaticParams() {
 // ---------------------------------------------------------------------------
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ lang: string; id: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params;
+  const { id, lang } = await params;
   const build = getBuildTierS(id);
-  if (!build) return { title: "Build introuvable" };
+  const t = lang === "en" ? PAGE_TEXT.en : PAGE_TEXT.fr;
+  if (!build) return { title: t.notFound };
 
-  const title = `Build ${build.name} — Baldur's Gate 3 (Mode Honneur) | BG3 Honor Companion`;
-  const description = `Découvrez le meilleur build ${build.name} (${build.classes}) pour le Mode Honneur de BG3. ${build.coreRole}. Stats, équipement, sorts et stratégie complète.`;
+  const title = `Build ${build.name} — Baldur's Gate 3 (${lang === "en" ? "Honour Mode" : "Mode Honneur"}) | BG3 Honor Companion`;
+  const description = lang === "en"
+    ? `Discover the best ${build.name} build (${build.classes}) for BG3 Honour Mode. ${build.coreRole}. Stats, gear, spells and full strategy.`
+    : `Découvrez le meilleur build ${build.name} (${build.classes}) pour le Mode Honneur de BG3. ${build.coreRole}. Stats, équipement, sorts et stratégie complète.`;
 
   return {
     title,
@@ -91,19 +134,22 @@ function StatBadge({ stat, value }: { stat: string; value: number }) {
 // ---------------------------------------------------------------------------
 
 export default async function BuildPage({ params }: PageProps) {
-  const { id } = await params;
+  const { id, lang } = await params;
   const build = getBuildTierS(id);
   if (!build) notFound();
+  const t = lang === "en" ? PAGE_TEXT.en : PAGE_TEXT.fr;
 
-  // Load optional MDX deep-dive
+  // Load optional MDX deep-dive (locale-aware)
   const mdxSlug = BUILD_MDX_SLUGS[id];
-  const mdxData = mdxSlug ? getBuildMDX(mdxSlug) : null;
+  const mdxData = mdxSlug ? getBuildMDX(mdxSlug, lang) : null;
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: build.name,
-    description: `Découvrez le meilleur build ${build.name} (${build.classes}) pour le Mode Honneur de BG3. ${build.coreRole}. Stats, équipement, sorts et stratégie complète.`,
+    description: lang === "en"
+      ? `Discover the best ${build.name} build (${build.classes}) for BG3 Honour Mode. ${build.coreRole}. Stats, gear, spells and full strategy.`
+      : `Découvrez le meilleur build ${build.name} (${build.classes}) pour le Mode Honneur de BG3. ${build.coreRole}. Stats, équipement, sorts et stratégie complète.`,
     author: { "@type": "Organization", name: "BG3 Honor Companion" },
     about: { "@type": "VideoGame", name: "Baldur's Gate 3" },
   };
@@ -131,14 +177,14 @@ export default async function BuildPage({ params }: PageProps) {
         {/* Role + Key Mechanic pills */}
         <div className="flex flex-wrap gap-3 pt-1">
           <div className="bg-surface-raised rounded-card border border-border px-4 py-2.5">
-            <p className="text-[10px] font-data text-gray-500 uppercase tracking-wider mb-0.5">Rôle</p>
+            <p className="text-[10px] font-data text-gray-500 uppercase tracking-wider mb-0.5">{t.role}</p>
             <p className="text-sm font-data text-gray-200">{build.coreRole}</p>
           </div>
         </div>
 
         {/* Key Mechanic */}
         <div className="bg-surface-raised rounded-card border border-gold/20 p-5">
-          <p className="text-[10px] font-data text-gold uppercase tracking-wider mb-2">Mécanique Clé</p>
+          <p className="text-[10px] font-data text-gold uppercase tracking-wider mb-2">{t.keyMechanic}</p>
           <p className="text-sm font-body text-gray-300 leading-relaxed">{build.keyMechanic}</p>
         </div>
       </header>
@@ -146,7 +192,7 @@ export default async function BuildPage({ params }: PageProps) {
       {/* ── Stats ─────────────────────────────────────────────────── */}
       <section>
         <h2 className="font-display text-xl text-gold mb-4 border-b border-border pb-2">
-          Caractéristiques
+          {t.stats}
         </h2>
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
           {(Object.entries(build.stats) as [string, number][]).map(([stat, val]) => (
@@ -158,7 +204,7 @@ export default async function BuildPage({ params }: PageProps) {
       {/* ── Feat Progression ──────────────────────────────────────── */}
       <section>
         <h2 className="font-display text-xl text-gold mb-4 border-b border-border pb-2">
-          Progression des Dons
+          {t.feats}
         </h2>
         <div className="space-y-3">
           {build.featProgression.map((feat) => (
@@ -181,13 +227,13 @@ export default async function BuildPage({ params }: PageProps) {
       {/* ── Équipement par Acte ────────────────────────────────────── */}
       <section>
         <h2 className="font-display text-xl text-gold mb-4 border-b border-border pb-2">
-          Équipement Best-in-Slot
+          {t.bis}
         </h2>
         <div className="space-y-4">
           {(["act1", "act2", "act3"] as const).map((act) => (
             <div key={act}>
               <h3 className="font-display text-sm text-gold-muted mb-2 uppercase tracking-wider">
-                {act === "act1" ? "Acte 1" : act === "act2" ? "Acte 2" : "Acte 3"}
+                {act === "act1" ? t.act1 : act === "act2" ? t.act2 : t.act3}
               </h3>
               <div className="bg-surface-raised rounded-card border border-border p-4">
                 <ul className="space-y-1.5">
@@ -208,7 +254,7 @@ export default async function BuildPage({ params }: PageProps) {
       {build.failsafes.length > 0 && (
         <section>
           <h2 className="font-display text-xl text-blood-light mb-4 border-b border-blood/30 pb-2">
-            Plans de Secours (Failsafes)
+            {t.failsafes}
           </h2>
           <div className="space-y-3">
             {build.failsafes.map((fs, i) => (
@@ -219,7 +265,7 @@ export default async function BuildPage({ params }: PageProps) {
                 <div className="px-4 py-2 bg-gold-dark/10 border-b border-gold-dark/20 flex items-center gap-2">
                   <span className="text-sm">🔄</span>
                   <p className="text-[10px] font-data text-gold uppercase tracking-wider font-semibold">
-                    Plan B — Failsafe
+                    {t.planB}
                   </p>
                 </div>
                 <div className="px-4 py-3 space-y-2">
@@ -228,7 +274,7 @@ export default async function BuildPage({ params }: PageProps) {
                       <span className="text-[10px] text-blood-light">✗</span>
                     </span>
                     <div>
-                      <p className="text-[10px] font-data text-gray-500 uppercase tracking-wider">Objet manqué</p>
+                      <p className="text-[10px] font-data text-gray-500 uppercase tracking-wider">{t.missedItem}</p>
                       <p className="text-xs font-display text-blood-light">{fs.missingItem}</p>
                     </div>
                   </div>
@@ -240,7 +286,7 @@ export default async function BuildPage({ params }: PageProps) {
                       <span className="text-[10px] text-gold">✓</span>
                     </span>
                     <div>
-                      <p className="text-[10px] font-data text-gray-500 uppercase tracking-wider">Remplacer par</p>
+                      <p className="text-[10px] font-data text-gray-500 uppercase tracking-wider">{t.replaceWith}</p>
                       <p className="text-xs font-display text-gold-light">{fs.fallbackItem}</p>
                     </div>
                   </div>
@@ -261,7 +307,7 @@ export default async function BuildPage({ params }: PageProps) {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-1 h-8 rounded-full bg-gold" />
               <h2 className="font-display text-2xl text-gold">
-                Guide Approfondi
+                {t.deepDive}
               </h2>
             </div>
             <article className="prose prose-invert prose-gold max-w-none

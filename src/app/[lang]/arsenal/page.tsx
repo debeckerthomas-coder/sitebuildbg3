@@ -14,12 +14,28 @@ export const metadata: Metadata = {
   },
 };
 
+const PAGE_TEXT = {
+  fr: {
+    tagline: "Hub d'Exposition — Mode Honneur",
+    title: "L'Arsenal des Héros",
+    titleSub: "de la Porte de Baldur",
+    description: "L'encyclopédie visuelle de tout l'équipement qui compte. Des Vestiges Légendaires aux trouvailles de l'Acte 1, explorez chaque objet qui définit les 9 builds Tier S du Mode Honneur.",
+  },
+  en: {
+    tagline: "Showcase Hub — Honour Mode",
+    title: "The Heroes' Arsenal",
+    titleSub: "of Baldur's Gate",
+    description: "The visual encyclopedia of every piece of gear that matters. From Legendary Vestiges to Act 1 finds, explore every item that defines the 9 Tier S Honour Mode builds.",
+  },
+} as const;
+
 interface PageProps {
   params: Promise<{ lang: Locale }>;
 }
 
 export default async function ArsenalPage({ params }: PageProps) {
   const { lang } = await params;
+  const t = lang === "en" ? PAGE_TEXT.en : PAGE_TEXT.fr;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -41,20 +57,17 @@ export default async function ArsenalPage({ params }: PageProps) {
       {/* ===== EN-TÊTE D'EXPOSITION PREMIUM ===== */}
       <div className="text-center space-y-4 pt-4">
         <p className="text-[10px] font-data uppercase tracking-[0.4em] text-gold/40">
-          Hub d&apos;Exposition — Mode Honneur
+          {t.tagline}
         </p>
         <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-gold to-amber-600 leading-tight">
-          L&apos;Arsenal des H&eacute;ros
+          {t.title}
           <br />
           <span className="text-2xl md:text-3xl lg:text-4xl bg-gradient-to-r from-amber-400/80 via-yellow-300/60 to-gold/40 bg-clip-text text-transparent">
-            de la Porte de Baldur
+            {t.titleSub}
           </span>
         </h1>
         <p className="text-sm font-body text-gray-400 max-w-2xl mx-auto leading-relaxed">
-          L&apos;encyclop&eacute;die visuelle de tout l&apos;&eacute;quipement qui compte.
-          Des Vestiges L&eacute;gendaires aux trouvailles de l&apos;Acte 1,
-          explorez chaque objet qui d&eacute;finit les 9 builds Tier S
-          du Mode Honneur.
+          {t.description}
         </p>
         <div className="flex items-center justify-center gap-4 pt-1">
           <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-gold/30" />

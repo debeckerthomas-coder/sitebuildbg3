@@ -6,6 +6,7 @@
 // ============================================================================
 
 import { useState, useEffect, useCallback, useMemo } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/store";
 import { BUILDS_TIER_S } from "@/data/builds/tier-s";
@@ -16,6 +17,39 @@ import {
   type IllithidPower,
   type IllithidTier,
 } from "@/data/illithid";
+
+// ---------------------------------------------------------------------------
+// i18n
+// ---------------------------------------------------------------------------
+
+const PAGE_TEXT = {
+  fr: {
+    title: "La Matrice Illithid",
+    subtitle: "Optimisation des Têtards",
+    description: "Planifiez votre progression Illithid. Les pouvoirs recommandés sont mis en surbrillance selon votre build principal.",
+    activeBuild: "Build actif :",
+    selectBuildHint: "Sélectionnez un build dans le Conseil de Guerre pour activer les recommandations.",
+    tadpolesConsumed: "Têtards Consommés",
+    tadpolesSub: "Pouvoirs Illithids débloqués",
+    recommended: "Recommandé",
+    resetTree: "Réinitialiser l'arbre",
+  },
+  en: {
+    title: "The Illithid Matrix",
+    subtitle: "Tadpole Optimization",
+    description: "Plan your Illithid progression. Recommended powers are highlighted based on your main build.",
+    activeBuild: "Active build:",
+    selectBuildHint: "Select a build in the War Council to activate recommendations.",
+    tadpolesConsumed: "Tadpoles Consumed",
+    tadpolesSub: "Illithid Powers unlocked",
+    recommended: "Recommended",
+    resetTree: "Reset tree",
+  },
+} as const;
+
+function extractLang(pathname: string): "fr" | "en" {
+  return pathname.split("/")[1] === "en" ? "en" : "fr";
+}
 
 // ---------------------------------------------------------------------------
 // localStorage persistence
@@ -73,6 +107,7 @@ function PowerCard({
   onToggle,
   disabled,
   index,
+  recommendedLabel,
 }: {
   power: IllithidPower;
   consumed: boolean;
@@ -80,6 +115,7 @@ function PowerCard({
   onToggle: () => void;
   disabled: boolean;
   index: number;
+  recommendedLabel: string;
 }) {
   const colors = TIER_COLORS[power.tier];
 
@@ -109,7 +145,7 @@ function PowerCard({
           animate={{ scale: [1, 1.05, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          Recommandé
+          {recommendedLabel}
         </motion.div>
       )}
 
@@ -159,7 +195,7 @@ function PowerCard({
 // Tadpole Counter
 // ---------------------------------------------------------------------------
 
-function TadpoleCounter({ consumed, max }: { consumed: number; max: number }) {
+function TadpoleCounter({ consumed, max, t }: { consumed: number; max: number; t: (typeof PAGE_TEXT)[keyof typeof PAGE_TEXT] }) {
   const progress = max > 0 ? consumed / max : 0;
   const barColor =
     progress >= 0.8 ? "bg-orange-500" : progress >= 0.5 ? "bg-red-500" : "bg-purple-500";
@@ -173,10 +209,10 @@ function TadpoleCounter({ consumed, max }: { consumed: number; max: number }) {
           </span>
           <div>
             <h2 className="font-heading text-sm text-theme uppercase tracking-wide">
-              Têtards Consommés
+              {t.tadpolesConsumed}
             </h2>
             <p className="text-xs font-data text-gray-500 mt-0.5">
-              Pouvoirs Illithids débloqués
+              {t.tadpolesSub}
             </p>
           </div>
         </div>
@@ -205,6 +241,10 @@ function TadpoleCounter({ consumed, max }: { consumed: number; max: number }) {
 // ---------------------------------------------------------------------------
 
 export default function IllithidPage() {
+  const pathname = usePathname();
+  const lang = extractLang(pathname);
+  const t = lang === "en" ? PAGE_TEXT.en : PAGE_TEXT.fr;
+
   const mainBuild = useAppStore((s) => s.party.main);
   const mainBuildData = BUILDS_TIER_S.find((b) => b.id === mainBuild);
 
@@ -261,22 +301,21 @@ export default function IllithidPage() {
       {/* Header */}
       <div className="text-center">
         <h1 className="font-heading text-4xl text-gradient-gold uppercase tracking-wide">
-          La Matrice Illithid
+          {t.title}
         </h1>
         <p className="font-heading text-lg text-theme/80 mt-1 tracking-wider uppercase">
-          Optimisation des Têtards
+          {t.subtitle}
         </p>
         <p className="text-sm font-body text-gray-400 mt-3 max-w-xl mx-auto leading-relaxed">
-          Planifiez votre progression Illithid. Les pouvoirs recommandés sont
-          mis en surbrillance selon votre build principal.
+          {t.description}
           {mainBuildData && (
             <span className="block mt-1 text-theme/80 font-data text-xs">
-              Build actif : {mainBuildData.name}
+              {t.activeBuild} {mainBuildData.name}
             </span>
           )}
           {!mainBuildData && (
             <span className="block mt-1 text-gray-500 font-data text-xs italic">
-              Sélectionnez un build dans le Conseil de Guerre pour activer les recommandations.
+              {t.selectBuildHint}
             </span>
           )}
         </p>
@@ -284,7 +323,7 @@ export default function IllithidPage() {
       </div>
 
       {/* Tadpole Counter */}
-      <TadpoleCounter consumed={consumedCount} max={MAX_TADPOLES} />
+      <TadpoleCounter consumed={consumedCount} max={MAX_TADPOLES} t={t} />
 
       {/* Tier Sections */}
       {ILLITHID_TIERS.map((tier) => {
@@ -314,6 +353,7 @@ export default function IllithidPage() {
                   onToggle={() => toggle(power.id)}
                   disabled={atCapacity}
                   index={i}
+                  recommendedLabel={t.recommended}
                 />
               ))}
             </div>
@@ -333,7 +373,7 @@ export default function IllithidPage() {
                      disabled:opacity-30 disabled:cursor-not-allowed
                      transition-colors cursor-pointer"
         >
-          Réinitialiser l&apos;arbre
+          {t.resetTree}
         </button>
       </div>
     </div>

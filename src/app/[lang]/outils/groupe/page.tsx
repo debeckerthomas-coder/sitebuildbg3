@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { usePathname } from "next/navigation";
 import { useAppStore } from "@/store";
 import { BUILDS_TIER_S } from "@/data/builds/tier-s";
 import {
@@ -10,6 +11,55 @@ import {
   type LootConflict,
 } from "@/lib/party-analysis";
 import type { CompanionSlot } from "@/types";
+
+// ---------------------------------------------------------------------------
+// i18n
+// ---------------------------------------------------------------------------
+
+const PAGE_TEXT = {
+  fr: {
+    title: "Le Conseil de Guerre",
+    subtitle: "Synergie & Répartition",
+    description: "Composez votre groupe de 4 et découvrez instantanément comment répartir les reliques uniques du jeu et quels conflits de butin anticiper.",
+    mainChar: "Personnage Principal",
+    companion: "Compagnon",
+    emptySlot: "— Emplacement vide —",
+    selectHint: "Sélectionnez au moins 2 personnages pour activer l'analyse de groupe.",
+    membersSelected: "membres sélectionnés — Analyse active",
+    relicsTitle: "La Matrice des Reliques",
+    relicsSub: "Stats permanentes — Qui reçoit quoi ?",
+    recommendedTo: "Recommandé à :",
+    conflictsTitle: "Alerte de Conflits de Butin",
+    conflictsSub: "Objets uniques convoités par plusieurs membres",
+    noConflicts: "Aucun conflit de butin détecté. Cette composition est optimale !",
+    critical: "Critique",
+    buildsInvolved: "Builds concernés :",
+    resolution: "Résolution :",
+  },
+  en: {
+    title: "The War Council",
+    subtitle: "Synergy & Distribution",
+    description: "Build your party of 4 and instantly discover how to distribute the game's unique relics and which loot conflicts to anticipate.",
+    mainChar: "Main Character",
+    companion: "Companion",
+    emptySlot: "— Empty slot —",
+    selectHint: "Select at least 2 characters to activate party analysis.",
+    membersSelected: "members selected — Analysis active",
+    relicsTitle: "The Relic Matrix",
+    relicsSub: "Permanent stats — Who gets what?",
+    recommendedTo: "Recommended to:",
+    conflictsTitle: "Loot Conflict Alert",
+    conflictsSub: "Unique items coveted by multiple members",
+    noConflicts: "No loot conflicts detected. This composition is optimal!",
+    critical: "Critical",
+    buildsInvolved: "Builds involved:",
+    resolution: "Resolution:",
+  },
+} as const;
+
+function extractLang(pathname: string): "fr" | "en" {
+  return pathname.split("/")[1] === "en" ? "en" : "fr";
+}
 
 // ---------------------------------------------------------------------------
 // Build options for selectors
@@ -27,12 +77,14 @@ function SlotSelector({
   value,
   onChange,
   disabledIds,
+  emptyLabel,
 }: {
   label: string;
   icon: string;
   value: string | null;
   onChange: (id: string) => void;
   disabledIds: readonly string[];
+  emptyLabel: string;
 }) {
   return (
     <div className="bg-[#111520]/60 backdrop-blur-md border border-theme/20 rounded-xl p-4 transition-all duration-300 hover:border-theme/40">
@@ -49,7 +101,7 @@ function SlotSelector({
         onChange={(e) => onChange(e.target.value)}
         className="w-full px-3 py-2.5 rounded-lg text-sm font-data bg-abyss-100 text-gray-200 border border-border hover:border-theme/40 focus:border-theme/60 focus:outline-none transition-colors appearance-none cursor-pointer"
       >
-        <option value="">— Emplacement vide —</option>
+        <option value="">{emptyLabel}</option>
         {BUILD_OPTIONS.map((b) => (
           <option key={b.id} value={b.id} disabled={disabledIds.includes(b.id)}>
             {b.name}
@@ -64,7 +116,7 @@ function SlotSelector({
 // Relic Card
 // ---------------------------------------------------------------------------
 
-function RelicCard({ relic }: { relic: RelicRecommendation }) {
+function RelicCard({ relic, recommendedLabel }: { relic: RelicRecommendation; recommendedLabel: string }) {
   return (
     <div className="bg-abyss-100/60 border border-border rounded-lg p-4">
       <div className="flex items-start gap-3">
@@ -78,7 +130,7 @@ function RelicCard({ relic }: { relic: RelicRecommendation }) {
           <p className="text-xs font-body text-gray-400 mt-1">{relic.description}</p>
           <div className="mt-3 flex items-center gap-2">
             <span className="text-[10px] font-data uppercase tracking-wider text-gray-500">
-              Recommandé à :
+              {recommendedLabel}
             </span>
             <span className="text-sm font-data font-semibold text-theme-light">
               {relic.recommendedName}
@@ -97,7 +149,7 @@ function RelicCard({ relic }: { relic: RelicRecommendation }) {
 // Conflict Alert
 // ---------------------------------------------------------------------------
 
-function ConflictAlert({ conflict }: { conflict: LootConflict }) {
+function ConflictAlert({ conflict, t }: { conflict: LootConflict; t: (typeof PAGE_TEXT)[keyof typeof PAGE_TEXT] }) {
   const isCritical = conflict.severity === "critical";
   return (
     <div
@@ -122,17 +174,17 @@ function ConflictAlert({ conflict }: { conflict: LootConflict }) {
             </h4>
             {isCritical && (
               <span className="text-[9px] font-data uppercase px-1.5 py-0.5 rounded bg-blood/30 text-blood-light tracking-wider">
-                Critique
+                {t.critical}
               </span>
             )}
           </div>
           <p className="text-xs font-body text-gray-300 mt-1.5">{conflict.description}</p>
           <div className="mt-2 text-[10px] font-data text-gray-500">
-            Builds concernés : {conflict.builds.join(", ")}
+            {t.buildsInvolved} {conflict.builds.join(", ")}
           </div>
           <div className="mt-3 bg-abyss/40 rounded p-3 border border-border/50">
             <span className="text-[10px] font-data uppercase tracking-wider text-theme-muted">
-              Résolution :
+              {t.resolution}
             </span>
             <p className="text-xs font-body text-gray-300 mt-1 leading-relaxed">
               {conflict.resolution}
@@ -149,6 +201,10 @@ function ConflictAlert({ conflict }: { conflict: LootConflict }) {
 // ---------------------------------------------------------------------------
 
 export default function GroupePage() {
+  const pathname = usePathname();
+  const lang = extractLang(pathname);
+  const t = lang === "en" ? PAGE_TEXT.en : PAGE_TEXT.fr;
+
   const party = useAppStore((s) => s.party);
   const setMainBuild = useAppStore((s) => s.setMainBuild);
   const setCompanion = useAppStore((s) => s.setCompanion);
@@ -174,14 +230,13 @@ export default function GroupePage() {
       {/* Header */}
       <div className="text-center">
         <h1 className="font-heading text-4xl text-gradient-gold uppercase tracking-wide">
-          Le Conseil de Guerre
+          {t.title}
         </h1>
         <p className="font-heading text-lg text-theme/80 mt-1 tracking-wider uppercase">
-          Synergie &amp; Répartition
+          {t.subtitle}
         </p>
         <p className="text-sm font-body text-gray-400 mt-3 max-w-xl mx-auto leading-relaxed">
-          Composez votre groupe de 4 et découvrez instantanément comment répartir
-          les reliques uniques du jeu et quels conflits de butin anticiper.
+          {t.description}
         </p>
         <div className="mx-auto mt-4 w-32 h-px bg-gradient-to-r from-transparent via-theme/50 to-transparent" />
       </div>
@@ -189,32 +244,36 @@ export default function GroupePage() {
       {/* Party Selectors */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <SlotSelector
-          label="Personnage Principal"
+          label={t.mainChar}
           icon="👑"
           value={party.main}
           onChange={(id) => setMainBuild(id)}
           disabledIds={disabledFor(party.main)}
+          emptyLabel={t.emptySlot}
         />
         <SlotSelector
-          label="Compagnon 1"
+          label={`${t.companion} 1`}
           icon="🗡️"
           value={party.comp1}
           onChange={(id) => setCompanion("comp1" as CompanionSlot, id || null)}
           disabledIds={disabledFor(party.comp1)}
+          emptyLabel={t.emptySlot}
         />
         <SlotSelector
-          label="Compagnon 2"
+          label={`${t.companion} 2`}
           icon="🛡️"
           value={party.comp2}
           onChange={(id) => setCompanion("comp2" as CompanionSlot, id || null)}
           disabledIds={disabledFor(party.comp2)}
+          emptyLabel={t.emptySlot}
         />
         <SlotSelector
-          label="Compagnon 3"
+          label={`${t.companion} 3`}
           icon="🔮"
           value={party.comp3}
           onChange={(id) => setCompanion("comp3" as CompanionSlot, id || null)}
           disabledIds={disabledFor(party.comp3)}
+          emptyLabel={t.emptySlot}
         />
       </div>
 
@@ -222,11 +281,11 @@ export default function GroupePage() {
       <div className="text-center">
         {!hasAnalysis ? (
           <p className="text-sm font-data text-gray-500 italic">
-            Sélectionnez au moins 2 personnages pour activer l&apos;analyse de groupe.
+            {t.selectHint}
           </p>
         ) : (
           <p className="text-sm font-data text-theme/70">
-            {selectedIds.length}/4 membres sélectionnés — Analyse active
+            {selectedIds.length}/4 {t.membersSelected}
           </p>
         )}
       </div>
@@ -242,16 +301,16 @@ export default function GroupePage() {
               </span>
               <div>
                 <h2 className="font-heading text-xl text-gradient-gold uppercase tracking-wide">
-                  La Matrice des Reliques
+                  {t.relicsTitle}
                 </h2>
                 <p className="text-xs font-data text-gray-500 mt-0.5">
-                  Stats permanentes — Qui reçoit quoi ?
+                  {t.relicsSub}
                 </p>
               </div>
             </div>
             <div className="grid grid-cols-1 gap-4">
               {relics.map((r) => (
-                <RelicCard key={r.relic} relic={r} />
+                <RelicCard key={r.relic} relic={r} recommendedLabel={t.recommendedTo} />
               ))}
             </div>
           </section>
@@ -264,10 +323,10 @@ export default function GroupePage() {
               </span>
               <div>
                 <h2 className="font-heading text-xl text-gradient-gold uppercase tracking-wide">
-                  Alerte de Conflits de Butin
+                  {t.conflictsTitle}
                 </h2>
                 <p className="text-xs font-data text-gray-500 mt-0.5">
-                  Objets uniques convoités par plusieurs membres
+                  {t.conflictsSub}
                 </p>
               </div>
             </div>
@@ -277,13 +336,13 @@ export default function GroupePage() {
                   ✅
                 </span>
                 <p className="text-sm font-data text-emerald-400">
-                  Aucun conflit de butin détecté. Cette composition est optimale !
+                  {t.noConflicts}
                 </p>
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-4">
                 {conflicts.map((c) => (
-                  <ConflictAlert key={c.title} conflict={c} />
+                  <ConflictAlert key={c.title} conflict={c} t={t} />
                 ))}
               </div>
             )}

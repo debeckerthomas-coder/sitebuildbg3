@@ -68,7 +68,7 @@ export function Failsafe({ slot, buildId }: FailsafeProps) {
             {slot.replace("_", " ")} — Best Available
           </p>
           <p className="text-sm font-display text-gold-light tracking-wide mt-0.5">
-            {item?.name ?? resolvedItemId}
+            {item?.name.fr ?? resolvedItemId}
           </p>
         </div>
       </div>

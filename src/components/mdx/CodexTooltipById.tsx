@@ -143,7 +143,7 @@ export function CodexTooltipById({ id, text, children }: CodexTooltipByIdProps) 
       icon={iconUrl}
       rarity={entry.rarity}
       description={entry.description}
-      flavourText={item?.flavourText}
+      flavourText={item?.flavourText?.fr}
       stats={entry.stats}
       tags={entry.tags}
     >

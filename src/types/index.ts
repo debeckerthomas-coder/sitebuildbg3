@@ -159,16 +159,21 @@ export interface ItemPassive {
   readonly damageRider?: DamageRider;
 }
 
+export interface I18nText {
+  readonly fr: string;
+  readonly en: string;
+}
+
 export interface Item {
   readonly id: string;
-  readonly name: string;
+  readonly name: I18nText;
   readonly icon: string; // path to icon asset
   readonly rarity: Rarity;
   readonly slot: ItemSlot;
-  readonly description: string;
-  readonly flavourText?: string;
+  readonly description: I18nText;
+  readonly flavourText?: I18nText;
   readonly act: Act;
-  readonly location: string; // where to find it
+  readonly location: I18nText; // where to find it
   readonly requirements?: string;
   readonly armourClass?: number;
   readonly passives: readonly ItemPassive[];

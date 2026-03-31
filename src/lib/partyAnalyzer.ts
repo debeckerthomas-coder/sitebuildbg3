@@ -38,7 +38,7 @@ function getItemBilingualName(itemId: string): { fr: string; en: string } {
   }
   const unified = getUnifiedItem(itemId);
   if (unified) {
-    return { fr: unified.name, en: unified.name };
+    return { fr: unified.name.fr, en: unified.name.en };
   }
   return { fr: itemId, en: itemId };
 }

@@ -9,13 +9,18 @@ import type { Rarity, ItemSlot, Act, BG3Class, BG3Subclass } from "./index";
 // 1. Item — Modèle unifié (compatible avec les deux sources existantes)
 // ---------------------------------------------------------------------------
 
+export interface I18nText {
+  readonly fr: string;
+  readonly en: string;
+}
+
 export interface UnifiedItem {
   readonly id: string;
-  readonly name: string;
-  readonly description: string;
+  readonly name: I18nText;
+  readonly description: I18nText;
   readonly rarity: Rarity;
   readonly icon: string;
-  readonly acquisition: string;
+  readonly acquisition: I18nText;
   readonly act: Act;
   readonly slot?: ItemSlot;
   readonly tags?: readonly string[];

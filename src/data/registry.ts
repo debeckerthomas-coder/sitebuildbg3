@@ -14,7 +14,7 @@ import { itemsBilingualV2 } from "@/data/arsenal";
 function buildItemIndex(): Map<string, UnifiedItem> {
   const index = new Map<string, UnifiedItem>();
 
-  // Source 1 : ITEMS (typed items avec mécaniques)
+  // Source 1 : ITEMS (typed items avec mécaniques — désormais bilingues)
   for (const [key, item] of Object.entries(ITEMS)) {
     index.set(key, {
       id: item.id,
@@ -30,16 +30,15 @@ function buildItemIndex(): Map<string, UnifiedItem> {
   }
 
   // Source 2 : Arsenal bilingue (items pas encore dans ITEMS)
-  // TODO: Refactor UnifiedItem to accept {fr, en} objects for full bilingual support
   for (const item of itemsBilingualV2) {
     if (!index.has(item.id)) {
       index.set(item.id, {
         id: item.id,
-        name: item.name.fr,
-        description: item.description.fr,
+        name: item.name,
+        description: item.description,
         rarity: item.rarity,
         icon: item.icon ?? "",
-        acquisition: item.acquisition?.fr ?? item.location.fr,
+        acquisition: item.acquisition ?? item.location,
         act: item.act,
       });
     }

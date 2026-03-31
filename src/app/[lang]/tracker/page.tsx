@@ -238,7 +238,7 @@ export default function TrackerPage() {
                     {item.icon ? (
                       <img
                         src={item.icon}
-                        alt={item.name}
+                        alt={item.name[lang]}
                         width={36}
                         height={36}
                         className="w-9 h-9 rounded-md border border-gray-700 object-cover shrink-0"
@@ -253,7 +253,7 @@ export default function TrackerPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
                         <span className={`text-sm font-data font-bold ${isCollected ? "text-gray-500 line-through" : rarityClass.split(" ")[0]}`}>
-                          {item.name}
+                          {item.name[lang]}
                         </span>
                         {!item.isCore && (
                           <span className="text-[9px] font-data uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#1c2133] border border-gray-700 text-gray-500">
@@ -267,7 +267,7 @@ export default function TrackerPage() {
                         )}
                       </div>
                       <p className="text-xs text-gray-500 mt-0.5 truncate">
-                        {item.acquisition || (lang === "fr" ? "Localisation inconnue" : "Unknown location")}
+                        {item.acquisition[lang] || (lang === "fr" ? "Localisation inconnue" : "Unknown location")}
                       </p>
                       {item.claimedBy.length > 0 && (
                         <p className="text-[10px] text-gray-600 mt-0.5">

@@ -48,12 +48,12 @@ export function BuildEquipment({ buildId, lang = "fr" }: BuildEquipmentProps) {
         {build.coreItemsFull.map((item) => (
           <ItemDetailCard
             key={item.id}
-            name={item.name}
+            name={item.name[l]}
             rarity={item.rarity}
             type={getSlotLabel(item.slot, l)}
-            description={item.description}
+            description={item.description[l]}
             icon={item.icon}
-            acquisition={item.acquisition}
+            acquisition={item.acquisition[l]}
             itemId={item.id}
             lang={l}
           />
@@ -69,12 +69,12 @@ export function BuildEquipment({ buildId, lang = "fr" }: BuildEquipmentProps) {
             {build.alternativeItemsFull.map((item) => (
               <ItemDetailCard
                 key={item.id}
-                name={item.name}
+                name={item.name[l]}
                 rarity={item.rarity}
                 type={getSlotLabel(item.slot, l)}
-                description={item.description}
+                description={item.description[l]}
                 icon={item.icon}
-                acquisition={item.acquisition}
+                acquisition={item.acquisition[l]}
                 itemId={item.id}
                 lang={l}
               />

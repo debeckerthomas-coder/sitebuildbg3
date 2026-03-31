@@ -1,18 +1,36 @@
 import type { Metadata } from "next";
+import type { Locale } from "@/dictionaries";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getWalkthrough } from "@/lib/mdx";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
-export const metadata: Metadata = {
-  title: "Acte 2 : Les Terres Maudites & L'Apôtre de Myrkul | BG3 Honor Companion",
-  description: "Guide complet Mode Honneur pour les Terres Maudites. Gestion de la lumière, Balthazar, et le combat le plus dangereux du jeu.",
-};
+const META = {
+  fr: {
+    title: "Acte 2 : Les Terres Maudites & L'Apôtre de Myrkul | BG3 Honor Companion",
+    description: "Guide complet Mode Honneur pour les Terres Maudites. Gestion de la lumière, Balthazar, et le combat le plus dangereux du jeu.",
+  },
+  en: {
+    title: "Act 2: The Shadow-Cursed Lands & The Apostle of Myrkul | BG3 Honor Companion",
+    description: "Complete Honour Mode guide for the Shadow-Cursed Lands. Light management, Balthazar, and the most dangerous fight in the game.",
+  },
+} as const;
 
-export default function Acte2Page() {
+interface PageProps {
+  params: Promise<{ lang: Locale }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const t = lang === "en" ? META.en : META.fr;
+  return { title: t.title, description: t.description };
+}
+
+export default async function Acte2Page({ params }: PageProps) {
+  const { lang } = await params;
   let walkthrough;
   try {
-    walkthrough = getWalkthrough("acte-2");
+    walkthrough = getWalkthrough("acte-2", lang);
   } catch {
     notFound();
   }

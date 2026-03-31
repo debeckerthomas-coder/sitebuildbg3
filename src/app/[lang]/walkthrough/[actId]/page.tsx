@@ -10,20 +10,28 @@ import { mdxComponents } from "@/components/mdx/MDXComponents";
 import { FloatingTOC } from "@/components/ui/FloatingTOC";
 import type { Metadata } from "next";
 
+import type { Locale } from "@/dictionaries";
+
 interface PageProps {
-  params: Promise<{ actId: string }>;
+  params: Promise<{ actId: string; lang: Locale }>;
 }
 
 export function generateStaticParams() {
-  return getWalkthroughSlugs().map((slug) => ({ actId: slug }));
+  const frSlugs = getWalkthroughSlugs("fr");
+  const enSlugs = getWalkthroughSlugs("en");
+  const allSlugs = [...new Set([...frSlugs, ...enSlugs])];
+  return allSlugs.flatMap((slug) => [
+    { lang: "fr", actId: slug },
+    { lang: "en", actId: slug },
+  ]);
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { actId } = await params;
+  const { actId, lang } = await params;
 
   let walkthrough;
   try {
-    walkthrough = getWalkthrough(actId);
+    walkthrough = getWalkthrough(actId, lang);
   } catch {
     return { title: "Guide introuvable | BG3 Honor Companion" };
   }
@@ -43,11 +51,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function WalkthroughPage({ params }: PageProps) {
-  const { actId } = await params;
+  const { actId, lang } = await params;
 
   let walkthrough;
   try {
-    walkthrough = getWalkthrough(actId);
+    walkthrough = getWalkthrough(actId, lang);
   } catch {
     notFound();
   }

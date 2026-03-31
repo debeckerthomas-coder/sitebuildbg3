@@ -1,18 +1,36 @@
 import type { Metadata } from "next";
+import type { Locale } from "@/dictionaries";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getWalkthrough } from "@/lib/mdx";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
-export const metadata: Metadata = {
-  title: "Acte 1 : La Route Pacifique — Niveaux 1 à 4 | BG3 Honor Companion",
-  description: "Atteignez le Niveau 4 sans lancer les dés. La fondation de toute run Mode Honneur réussie.",
-};
+const META = {
+  fr: {
+    title: "Acte 1 : La Route Pacifique — Niveaux 1 à 4 | BG3 Honor Companion",
+    description: "Atteignez le Niveau 4 sans lancer les dés. La fondation de toute run Mode Honneur réussie.",
+  },
+  en: {
+    title: "Act 1: The Peaceful Route — Levels 1 to 4 | BG3 Honor Companion",
+    description: "Reach Level 4 without rolling the dice. The foundation of every successful Honour Mode run.",
+  },
+} as const;
 
-export default function Acte1Page() {
+interface PageProps {
+  params: Promise<{ lang: Locale }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const t = lang === "en" ? META.en : META.fr;
+  return { title: t.title, description: t.description };
+}
+
+export default async function Acte1Page({ params }: PageProps) {
+  const { lang } = await params;
   let walkthrough;
   try {
-    walkthrough = getWalkthrough("acte-1");
+    walkthrough = getWalkthrough("acte-1", lang);
   } catch {
     notFound();
   }

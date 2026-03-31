@@ -1,18 +1,36 @@
 import type { Metadata } from "next";
+import type { Locale } from "@/dictionaries";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getWalkthrough } from "@/lib/mdx";
 import { mdxComponents } from "@/components/mdx/MDXComponents";
 
-export const metadata: Metadata = {
-  title: "Acte 3 : La Porte de Baldur & Les Élus | BG3 Honor Companion",
-  description: "L'Endgame Mode Honneur. Trois Élus, un Archidiable, et le Cerveau Vénérable. Aucune marge d'erreur.",
-};
+const META = {
+  fr: {
+    title: "Acte 3 : La Porte de Baldur & Les Élus | BG3 Honor Companion",
+    description: "L'Endgame Mode Honneur. Trois Élus, un Archidiable, et le Cerveau Vénérable. Aucune marge d'erreur.",
+  },
+  en: {
+    title: "Act 3: Baldur's Gate & The Chosen | BG3 Honor Companion",
+    description: "The Honour Mode Endgame. Three Chosen, an Archdevil, and the Elder Brain. No margin for error.",
+  },
+} as const;
 
-export default function Acte3Page() {
+interface PageProps {
+  params: Promise<{ lang: Locale }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  const t = lang === "en" ? META.en : META.fr;
+  return { title: t.title, description: t.description };
+}
+
+export default async function Acte3Page({ params }: PageProps) {
+  const { lang } = await params;
   let walkthrough;
   try {
-    walkthrough = getWalkthrough("acte-3");
+    walkthrough = getWalkthrough("acte-3", lang);
   } catch {
     notFound();
   }

@@ -20,6 +20,20 @@ interface ToolCard {
 
 const TOOLS: readonly ToolCard[] = [
   {
+    href: "/planner",
+    icon: "🔮",
+    title: "Le Planificateur",
+    description:
+      "Planifiez votre groupe idéal, vos builds et votre progression. L'outil stratégique ultime pour le Mode Honneur.",
+  },
+  {
+    href: "/tracker",
+    icon: "📜",
+    title: "La Liste de Courses",
+    description:
+      "Suivez les objets essentiels à récupérer acte par acte. Ne manquez plus jamais un équipement clé.",
+  },
+  {
     href: "/outils/groupe",
     icon: "👥",
     title: "Le Conseil de Guerre",

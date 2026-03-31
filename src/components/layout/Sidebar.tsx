@@ -37,14 +37,7 @@ const NAV_ITEMS_FR: readonly NavItem[] = [
       { label: "Acte 3 (Endgame)", href: "/walkthrough/acte-3", icon: "🏰" },
     ],
   },
-  {
-    label: "Tous les Outils", icon: "🔧", href: "/outils",
-    children: [
-      { label: "Planificateur", href: "/planner", icon: "🔮", badge: "New" },
-      { label: "Liste de Courses", href: "/tracker", icon: "📜", badge: "New" },
-      { label: "Calculateur de Dégâts", href: "/outils/calculateur", icon: "🧮" },
-    ],
-  },
+  { label: "Tous les Outils", icon: "🔧", href: "/outils" },
 ];
 
 const NAV_ITEMS_EN: readonly NavItem[] = [
@@ -61,14 +54,7 @@ const NAV_ITEMS_EN: readonly NavItem[] = [
       { label: "Act 3 (Endgame)", href: "/walkthrough/acte-3", icon: "🏰" },
     ],
   },
-  {
-    label: "All Tools", icon: "🔧", href: "/outils",
-    children: [
-      { label: "Party Planner", href: "/planner", icon: "🔮", badge: "New" },
-      { label: "Loot Tracker", href: "/tracker", icon: "📜", badge: "New" },
-      { label: "Damage Calculator", href: "/outils/calculateur", icon: "🧮" },
-    ],
-  },
+  { label: "All Tools", icon: "🔧", href: "/outils" },
 ];
 
 const NAV_BY_LANG: Record<string, readonly NavItem[]> = { fr: NAV_ITEMS_FR, en: NAV_ITEMS_EN };

@@ -32,6 +32,7 @@ import { BuildTimeline } from "./BuildTimeline";
 import { CoachAlert } from "./CoachAlert";
 import { LevelingSelector } from "./LevelingSelector";
 import { MDXCheckbox } from "./MDXCheckbox";
+import { MDXTable, MDXThead, MDXTh, MDXTr, MDXTd } from "./MDXTable";
 import type { MDXComponentMap } from "@/types";
 
 /**
@@ -54,6 +55,11 @@ import type { MDXComponentMap } from "@/types";
 export const mdxComponents: MDXComponentMap & Record<string, React.ComponentType<any>> = {
   // Native HTML overrides — style markdown-generated elements
   input: MDXCheckbox,
+  table: MDXTable,
+  thead: MDXThead,
+  th: MDXTh,
+  tr: MDXTr,
+  td: MDXTd,
   BossCard,
   ItemTooltip,
   SpellTooltip,

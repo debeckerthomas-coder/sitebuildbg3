@@ -2,8 +2,7 @@
 
 // ============================================================================
 // IconWithFallback — Displays an icon with rarity-colored border.
-// On error (404), shows a gradient fallback with the item's initial.
-// Uses next/image for automatic caching & optimization of bg3.wiki icons.
+// On error (404), shows a styled inline SVG placeholder (never a broken image).
 // ============================================================================
 
 import { useState } from "react";
@@ -27,6 +26,49 @@ interface IconWithFallbackProps {
   readonly size?: number;
 }
 
+/** Styled inline fallback — crossed swords icon in gold */
+function FallbackPlaceholder({ size, alt }: { size: number; alt: string }) {
+  return (
+    <div
+      className="flex items-center justify-center bg-[#171b29] w-full h-full"
+      role="img"
+      aria-label={alt}
+    >
+      <svg
+        viewBox="0 0 48 48"
+        fill="none"
+        style={{ width: size * 0.55, height: size * 0.55 }}
+      >
+        {/* Crossed swords */}
+        <path
+          d="M12 6L36 42M36 6L12 42"
+          stroke="#d4af37"
+          strokeWidth="2"
+          strokeLinecap="round"
+          opacity="0.6"
+        />
+        {/* Sword guards */}
+        <path
+          d="M8 14h8M32 14h8M8 34h8M32 34h8"
+          stroke="#d4af37"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          opacity="0.4"
+        />
+        {/* Center diamond */}
+        <path
+          d="M24 18L30 24L24 30L18 24Z"
+          stroke="#d4af37"
+          strokeWidth="1.5"
+          fill="#d4af37"
+          fillOpacity="0.15"
+          opacity="0.7"
+        />
+      </svg>
+    </div>
+  );
+}
+
 export function IconWithFallback({
   src,
   alt,
@@ -43,17 +85,8 @@ export function IconWithFallback({
       <div
         className={`rounded-md border-2 ${borderClass} shrink-0 overflow-hidden ${className}`}
         style={{ width: size, height: size }}
-        role="img"
-        aria-label={alt}
       >
-        <Image
-          src="/assets/fallback-loot.svg"
-          alt={alt}
-          width={size}
-          height={size}
-          className="object-contain"
-          unoptimized
-        />
+        <FallbackPlaceholder size={size} alt={alt} />
       </div>
     );
   }

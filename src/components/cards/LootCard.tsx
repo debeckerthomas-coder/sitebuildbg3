@@ -209,15 +209,25 @@ export function LootCard({ item }: LootCardProps) {
                           bg-abyss/80 flex items-center justify-center overflow-hidden
                           transition-all duration-300 group-hover:scale-105`}
             >
-              <Image
-                src={imgError ? "/assets/fallback-loot.svg" : getBg3WikiIconUrl(item.wikiName)}
-                alt={item.name}
-                width={96}
-                height={96}
-                className="relative z-10 w-full h-full object-contain p-1"
-                onError={() => setImgError(true)}
-                unoptimized
-              />
+              {imgError ? (
+                <div className="flex items-center justify-center bg-[#171b29] border border-[#2a3048] w-full h-full rounded-lg">
+                  <svg viewBox="0 0 48 48" fill="none" className="w-10 h-10">
+                    <path d="M12 6L36 42M36 6L12 42" stroke="#d4af37" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+                    <path d="M8 14h8M32 14h8M8 34h8M32 34h8" stroke="#d4af37" strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
+                    <path d="M24 18L30 24L24 30L18 24Z" stroke="#d4af37" strokeWidth="1.5" fill="#d4af37" fillOpacity="0.15" opacity="0.7" />
+                  </svg>
+                </div>
+              ) : (
+                <Image
+                  src={getBg3WikiIconUrl(item.wikiName)}
+                  alt={item.name}
+                  width={96}
+                  height={96}
+                  className="relative z-10 w-full h-full object-contain p-1"
+                  onError={() => setImgError(true)}
+                  unoptimized
+                />
+              )}
             </div>
           </div>
 

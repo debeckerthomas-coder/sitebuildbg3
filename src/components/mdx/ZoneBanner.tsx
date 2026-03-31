@@ -2,6 +2,7 @@
 // ZoneBanner — Full-width zone separator for walkthrough MDX content
 // Usage: <ZoneBanner title="Le Bosquet d'Émeraude" subtitle="Sanctuaire des Druides" />
 // Usage with image: <ZoneBanner title="..." image="/assets/banners/emerald-grove.webp" />
+// Falls back to a default immersive banner if no specific zone image is found.
 // ============================================================================
 
 interface ZoneBannerProps {
@@ -25,26 +26,25 @@ const ZONE_IMAGES: Record<string, string> = {
   "Baldur's Gate": "/assets/banners/baldurs-gate.webp",
 };
 
+/** Default fallback background for zones without a specific image */
+const DEFAULT_ZONE_IMAGE = "/assets/banners/default-zone.svg";
+
 export function ZoneBanner({ title, subtitle, image }: ZoneBannerProps) {
-  const bgImage = image ?? ZONE_IMAGES[title];
+  const bgImage = image ?? ZONE_IMAGES[title] ?? DEFAULT_ZONE_IMAGE;
 
   return (
     <div
       className="relative border-y border-gold/50 py-8 my-10 -mx-4 px-4 text-center overflow-hidden bg-black/80"
     >
-      {/* Background image layer */}
-      {bgImage && (
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${bgImage})` }}
-          aria-hidden="true"
-        />
-      )}
+      {/* Background image layer — always present (specific or default) */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${bgImage})` }}
+        aria-hidden="true"
+      />
 
       {/* Dark overlay — guarantees text readability over any image */}
-      {bgImage && (
-        <div className="absolute inset-0 bg-[#111520]/70" aria-hidden="true" />
-      )}
+      <div className="absolute inset-0 bg-black/70" aria-hidden="true" />
 
       {/* Decorative gold line accents */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent z-10" />

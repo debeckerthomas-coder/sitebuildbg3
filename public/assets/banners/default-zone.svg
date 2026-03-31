@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.08"/>
+      <stop offset="60%" stop-color="#1a1f2e" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0a0c13" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111520"/>
+      <stop offset="50%" stop-color="#1a1f2e"/>
+      <stop offset="100%" stop-color="#0a0c13"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="400" fill="url(#fade)"/>
+  <rect width="1200" height="400" fill="url(#glow)"/>
+  <!-- Subtle atmospheric elements -->
+  <circle cx="200" cy="150" r="80" fill="#d4af37" opacity="0.02"/>
+  <circle cx="900" cy="250" r="120" fill="#d4af37" opacity="0.015"/>
+  <circle cx="600" cy="200" r="150" fill="#d4af37" opacity="0.025"/>
+  <!-- Faint horizontal lines for texture -->
+  <line x1="100" y1="180" x2="1100" y2="180" stroke="#d4af37" stroke-width="0.5" opacity="0.06"/>
+  <line x1="200" y1="220" x2="1000" y2="220" stroke="#d4af37" stroke-width="0.3" opacity="0.04"/>
+</svg>

@@ -85,14 +85,11 @@ export function ItemDetailCard({
               onError={() => setImgError(true)}
             />
           ) : (
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[#2a3048] bg-[#1c2133]">
-              <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5 text-gray-600">
-                <path
-                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinejoin="round"
-                />
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-[#2a3048] bg-[#171b29]">
+              <svg viewBox="0 0 48 48" fill="none" className="h-7 w-7">
+                <path d="M12 6L36 42M36 6L12 42" stroke="#d4af37" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+                <path d="M8 14h8M32 14h8M8 34h8M32 34h8" stroke="#d4af37" strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
+                <path d="M24 18L30 24L24 30L18 24Z" stroke="#d4af37" strokeWidth="1.5" fill="#d4af37" fillOpacity="0.15" opacity="0.7" />
               </svg>
             </div>
           )}

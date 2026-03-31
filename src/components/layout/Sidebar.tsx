@@ -38,7 +38,7 @@ const NAV_ITEMS_FR: readonly NavItem[] = [
     ],
   },
   {
-    label: "Atelier", icon: "🔧",
+    label: "Outils", icon: "🔧",
     children: [
       { label: "Tous les Outils", href: "/outils", icon: "🔧" },
       { label: "Planificateur", href: "/planner", icon: "🔮", badge: "New" },
@@ -63,7 +63,7 @@ const NAV_ITEMS_EN: readonly NavItem[] = [
     ],
   },
   {
-    label: "Workshop", icon: "🔧",
+    label: "Tools", icon: "🔧",
     children: [
       { label: "All Tools", href: "/outils", icon: "🔧" },
       { label: "Party Planner", href: "/planner", icon: "🔮", badge: "New" },

@@ -38,9 +38,8 @@ const NAV_ITEMS_FR: readonly NavItem[] = [
     ],
   },
   {
-    label: "Outils", icon: "🔧",
+    label: "Tous les Outils", icon: "🔧", href: "/outils",
     children: [
-      { label: "Tous les Outils", href: "/outils", icon: "🔧" },
       { label: "Planificateur", href: "/planner", icon: "🔮", badge: "New" },
       { label: "Liste de Courses", href: "/tracker", icon: "📜", badge: "New" },
       { label: "Calculateur de Dégâts", href: "/outils/calculateur", icon: "🧮" },
@@ -63,9 +62,8 @@ const NAV_ITEMS_EN: readonly NavItem[] = [
     ],
   },
   {
-    label: "Tools", icon: "🔧",
+    label: "All Tools", icon: "🔧", href: "/outils",
     children: [
-      { label: "All Tools", href: "/outils", icon: "🔧" },
       { label: "Party Planner", href: "/planner", icon: "🔮", badge: "New" },
       { label: "Loot Tracker", href: "/tracker", icon: "📜", badge: "New" },
       { label: "Damage Calculator", href: "/outils/calculateur", icon: "🧮" },
@@ -175,36 +173,58 @@ function NavGroup({
   // Group with children
   return (
     <div>
-      <button
-        onClick={() => {
-          if (isCollapsed) {
-            // In collapsed mode, toggle open and let the parent handle expansion
-            setIsOpen(!isOpen);
-          } else {
-            setIsOpen(!isOpen);
-          }
-        }}
-        title={isCollapsed ? item.label : undefined}
+      <div
         className={`
-          w-full flex items-center gap-3 rounded-card text-sm font-data transition-all duration-200
+          flex items-center gap-3 rounded-card text-sm font-data transition-all duration-200
           ${isCollapsed ? "justify-center px-2 py-2.5" : "px-3 py-2.5"}
           ${isActive ? "text-theme" : "text-gray-400 hover:text-gray-200 hover:bg-surface-raised"}
         `}
       >
-        <span className="text-base shrink-0" aria-hidden>{item.icon}</span>
+        {/* If the parent has an href, the icon+label are a link; otherwise a toggle button */}
+        {item.href ? (
+          <Link
+            href={item.href}
+            onClick={onNavigate}
+            title={isCollapsed ? item.label : undefined}
+            className="flex items-center gap-3 flex-1 min-w-0"
+          >
+            <span className="text-base shrink-0" aria-hidden>{item.icon}</span>
+            {!isCollapsed && <span className="flex-1 text-left truncate">{item.label}</span>}
+          </Link>
+        ) : (
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            title={isCollapsed ? item.label : undefined}
+            className="flex items-center gap-3 flex-1 min-w-0 text-left"
+          >
+            <span className="text-base shrink-0" aria-hidden>{item.icon}</span>
+            {!isCollapsed && <span className="flex-1 truncate">{item.label}</span>}
+          </button>
+        )}
+        {/* Chevron toggle — always present to expand/collapse children */}
         {!isCollapsed && (
-          <>
-            <span className="flex-1 text-left truncate">{item.label}</span>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="shrink-0 p-0.5 rounded hover:bg-surface-raised transition-colors"
+            aria-label={isOpen ? "Collapse" : "Expand"}
+          >
             <motion.span
               animate={{ rotate: isOpen ? 180 : 0 }}
               transition={{ duration: 0.2 }}
-              className="text-xs text-gray-500"
+              className="text-xs text-gray-500 block"
             >
               ▼
             </motion.span>
-          </>
+          </button>
         )}
-      </button>
+        {isCollapsed && (
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="sr-only"
+            aria-label={isOpen ? "Collapse" : "Expand"}
+          />
+        )}
+      </div>
 
       <AnimatePresence>
         {isOpen && item.children && !isCollapsed && (

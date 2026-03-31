@@ -1,11 +1,12 @@
 "use client";
 
 // ============================================================================
-// SingleStepTracker — Simple checkbox persisted via zustand
+// SingleStepTracker — Simple checkbox persisted via useProgressStore (localStorage)
 // Usage: <SingleStepTracker stepId="moine_feat" label="Prendre Bagarreur" />
 // ============================================================================
 
-import { useAppStore } from "@/store";
+import { useState, useEffect } from "react";
+import { useProgressStore } from "@/store/useProgressStore";
 import { Checkbox } from "@/components/ui-system";
 
 interface SingleStepTrackerProps {
@@ -14,21 +15,21 @@ interface SingleStepTrackerProps {
 }
 
 export function SingleStepTracker({ stepId, label }: SingleStepTrackerProps) {
-  const activeRunId = useAppStore((s) => s.activeRunId);
-  const runs = useAppStore((s) => s.runs);
-  const updateRunChecklist = useAppStore((s) => s.updateRunChecklist);
+  const [isMounted, setIsMounted] = useState(false);
+  const checked = useProgressStore((s) => s.checkedItems[stepId] ?? false);
+  const toggle = useProgressStore((s) => s.toggleItem);
 
-  const activeRun = runs.find((r) => r.id === activeRunId);
-  const checked = activeRun?.checklist?.[stepId] ?? false;
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const isChecked = isMounted && checked;
 
   return (
     <div className="my-3 rounded-xl border border-border bg-surface-raised px-4 py-3 hover:border-gold/30 transition-colors">
       <Checkbox
-        checked={checked}
-        onCheckedChange={(val) => {
-          if (activeRunId) updateRunChecklist(activeRunId, stepId, val);
-        }}
-        disabled={!activeRunId}
+        checked={isChecked}
+        onCheckedChange={() => toggle(stepId)}
       >
         {label}
       </Checkbox>

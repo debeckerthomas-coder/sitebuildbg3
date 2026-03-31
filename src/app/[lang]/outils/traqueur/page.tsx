@@ -7,7 +7,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import * as Checkbox from "@radix-ui/react-checkbox";
+import { Checkbox } from "@/components/ui-system";
 import { TRACKER_ACTS, type TrackerItem, type TrackerAct } from "@/data/tracker";
 
 // ---------------------------------------------------------------------------
@@ -29,35 +29,6 @@ function saveChecklist(key: string, state: Record<string, boolean>) {
   } catch {
     /* quota exceeded — ignore */
   }
-}
-
-// ---------------------------------------------------------------------------
-// Checkmark icon (animated SVG)
-// ---------------------------------------------------------------------------
-
-function CheckIcon() {
-  return (
-    <motion.svg
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 500, damping: 25 }}
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-    >
-      <motion.path
-        d="M2 6L5 9L10 3"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 0.3, delay: 0.1 }}
-      />
-    </motion.svg>
-  );
 }
 
 // ---------------------------------------------------------------------------
@@ -84,19 +55,11 @@ function ItemRow({
         checked ? "bg-theme/5" : "hover:bg-theme/10"
       }`}
     >
-      <Checkbox.Root
+      <Checkbox
         checked={checked}
-        onCheckedChange={(v) => onToggle(v === true)}
-        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-all duration-200 ${
-          checked
-            ? "border-theme bg-theme/20 text-theme"
-            : "border-theme/30 hover:border-theme/60"
-        }`}
-      >
-        <Checkbox.Indicator>
-          <CheckIcon />
-        </Checkbox.Indicator>
-      </Checkbox.Root>
+        onCheckedChange={(v) => onToggle(v)}
+        strikethrough={false}
+      />
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">

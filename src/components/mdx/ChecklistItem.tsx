@@ -27,7 +27,7 @@ export function ChecklistItem({ id, children }: ChecklistItemProps) {
   const isChecked = isMounted && checked;
 
   return (
-    <div className="my-3 rounded-lg p-3 transition-all hover:bg-white/5">
+    <div className="my-3 rounded-xl border border-border bg-surface-raised px-4 py-3 hover:border-gold/30 transition-colors">
       <Checkbox
         checked={isChecked}
         onCheckedChange={() => toggle(id)}

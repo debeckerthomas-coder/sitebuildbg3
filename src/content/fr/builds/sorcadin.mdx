@@ -15,13 +15,13 @@ description: "L'Égide Incandescente. Paladin Vengeance / Ensorceleur Draconique
 
 *(6 Paladin du Serment de Vengeance / 6 Ensorceleur Draconique)*
 
-Le "Sorcadin" est le parangon de la survie et du "Burst" (dégâts instantanés) en Mode Honneur. La synergie est évidente : le Paladin a besoin d'emplacements de sorts pour utiliser son <CodexTooltipById id="divine_smite" text="Châtiment Divin" />, et l'Ensorceleur en possède à revendre. En allant chercher le niveau 6 de Paladin, vous débloquez l'une des capacités les plus brisées du jeu de rôle : l'*Aura de Protection*, qui ajoute votre modificateur de Charisme à tous les jets de sauvegarde de votre équipe.
+Le Sorcadin est le tank le plus abusé du Mode Honneur, et c'est pas même close. Le concept est stupidement simple : le Paladin a besoin de slots pour son <CodexTooltipById id="divine_smite" text="Châtiment Divin" />, l'Ensorceleur en a à revendre — on fusionne les deux et on obtient un crime de guerre ambulant. Mais le vrai truc broken, c'est l'*Aura de Protection* au niveau 6 de Paladin : votre Charisme s'ajoute à TOUS les jets de sauvegarde de toute l'équipe. C'est le passif le plus pété du jeu, sans discussion.
 
 ---
 
 ## 1. Création du Personnage & Statistiques
 
-Contrairement au Bardadin qui joue sur la Dextérité, le Sorcadin porte une armure lourde et manie des armes à deux mains massives.
+Là où le Bardadin joue en finesse avec la DEX, le Sorcadin y va au bourrin : armure lourde, épée à deux mains énorme, et il marche droit sur l'ennemi.
 
 - **Race Optimale :** Demi-Orc (Pour l'Attaque Sauvage et l'Endurance Implacable) ou Zariel Tieffelin.
 - **Historique :** Noble ou Soldat.
@@ -39,7 +39,7 @@ Contrairement au Bardadin qui joue sur la Dextérité, le Sorcadin porte une arm
 
 ## 2. Le Leveling (Niveau 1 à 12)
 
-Il est crucial de commencer par le Paladin pour obtenir la maîtrise des Armures Lourdes et des Armes de Guerre.
+Commencez Paladin, pas le choix. Vous avez besoin de la maîtrise Armures Lourdes + Armes de Guerre dès le niveau 1.
 
 <ChecklistTracker checklistId="leveling_sorcadin">
 
@@ -62,7 +62,7 @@ Il est crucial de commencer par le Paladin pour obtenir la maîtrise des Armures
 
 ## 3. L'Équipement "Best in Slot" (BiS)
 
-Vous êtes le rempart de l'équipe. Votre équipement doit refléter cette domination physique.
+Vous êtes le mur de l'équipe. Votre équipement doit faire regretter aux ennemis de vous avoir ciblé.
 
 <EmergencyMatrix title="L'Armurerie du Colosse" severity="info">
   - **L'Arme Ultime (Acte 3) :** <CodexTooltipById id="giantslayer" text="Tueur de Géants de Balduran" /> (Sous-sols du Dracosire). Double votre modificateur de Force aux dégâts et vous permet de grandir.
@@ -80,12 +80,12 @@ Vous êtes le rempart de l'équipe. Votre équipement doit refléter cette domin
 
 ## 4. La Boucle de la Mort (Rotation de Combat)
 
-Là où un Paladin classique doit choisir entre utiliser son tour pour faire un sort de contrôle OU attaquer, le Sorcadin fait les deux.
+Un Paladin classique doit choisir : sort de contrôle OU attaque. Le Sorcadin fait les deux et nuke le combat entier.
 
-1. **L'Ouverture (Action Bonus) :** Utilisez votre Métamagie *Sort Accéléré* pour lancer <CodexTooltipById id="hold_person" text="Immobilisation de Personne" /> (ou *Immobilisation de Monstre*) sur la cible prioritaire.
-2. **Le Jugement (Action Principale) :** Avancez sur la cible paralysée. Sur une cible paralysée, TOUTES les attaques de mêlée qui touchent sont des **Coups Critiques garantis**.
-3. **L'Anéantissement :** Frappez deux fois. Comme c'est un critique assuré, utilisez l'interface de Réaction pour lâcher vos *Châtiments Divins* de plus haut niveau.
-4. **Le Cleave (Action Bonus Gratuite) :** Le don *Maître des Armes Lourdes* stipule que si vous faites un critique ou tuez un ennemi, vous gagnez une attaque supplémentaire en Action Bonus (si vous n'avez pas utilisé Sort Accéléré ce tour-ci, c'est pour le Tour 2).
+1. **Action Bonus — verrouillez la cible :** Sort Accéléré → <CodexTooltipById id="hold_person" text="Immobilisation de Personne" /> (ou de Monstre). La cible est paralysée.
+2. **Action Principale — exécutez :** Avancez. Sur une cible paralysée, TOUTES les attaques au corps-à-corps qui touchent sont des **crits garantis**. Vous avancez, vous frappez.
+3. **Le spike de dégâts :** Les deux coups critiquent. L'interface de Réaction pop. Vous lâchez vos *Châtiments Divins* de plus haut niveau dans les deux. Les dégâts sont obscènes.
+4. **Le bonus kill :** Maître des Armes Lourdes proc sur crit ou kill — attaque bonus gratuite. Si vous n'avez pas Accéléré ce tour, gardez-le pour le Tour 2.
 
 <CombatLogSimulator
   baseDice="2d6"

@@ -15,13 +15,13 @@ description: "Le Maestro du Châtiment Divin. Barde du Collège des Épées / Pa
 
 *(10 Barde du Collège des Épées / 2 Paladin)*
 
-Le "Bardadin" (aussi appelé Barde des Épées à Châtiment) est l'un des builds de mêlée les plus terrifiants du jeu. Contrairement au Paladin pur qui s'essouffle vite par manque d'emplacements de sorts, le Barde de niveau 10 lui offre une réserve magique gigantesque. Vous pouvez utiliser une *Floriture Tranchante* pour frapper deux ennemis en même temps, et déclencher un <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> de niveau 4 sur **chacune** des cibles simultanément.
+Le Bardadin est l'un des builds mêlée les plus pétés de BG3. Le Paladin pur manque de slots ? Le Barde niveau 10 en a une tonne. La combo est filthy : *Floriture Tranchante* cleave deux ennemis d'un coup, et vous proc un <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> niveau 4 sur **chaque** cible en même temps. Deux Châtiments, une action. Au revoir tout le monde.
 
 ---
 
 ## 1. Création du Personnage & Statistiques
 
-Pour maximiser l'efficacité de vos armes de corps-à-corps et de vos sorts, nous allons nous baser sur la Dextérité et le Charisme, en utilisant des armes "Finesse".
+On stack DEX et CHA, on prend des armes Finesse, et on laisse les stats faire le boulot.
 
 - **Race Optimale :** Demi-Orc (Le passif d'Attaque Sauvage rajoute un dé de dégâts sur chaque coup critique, parfait pour les Châtiments) ou Zariel Tieffelin (Châtiments gratuits).
 - **Historique :** Charlatan ou Artiste.
@@ -39,7 +39,7 @@ Pour maximiser l'efficacité de vos armes de corps-à-corps et de vos sorts, nou
 
 ## 2. Le Leveling (Niveau 1 à 12)
 
-Le début de partie se joue comme un Barde classique. Le véritable carnage commence au niveau 8.
+Au début vous êtes juste un Barde avec une épée. Puis vous tapez le niveau 8, vous dip Paladin, et le carnage commence.
 
 <ChecklistTracker checklistId="leveling_bardadin">
 
@@ -54,7 +54,7 @@ Le début de partie se joue comme un Barde classique. Le véritable carnage comm
 
 ## 3. L'Équipement "Best in Slot" (BiS)
 
-Ce build utilise la même synergie d'accessoires que le Barde Contrôleur, mais adaptée pour le corps-à-corps.
+Même moteur d'accessoires que le Barde Contrôleur, mais au lieu de sniper depuis le fond, vous êtes dans la face de l'ennemi.
 
 <EmergencyMatrix title="Le Kit du Duelliste Divin" severity="info">
   - **TÊTE (Acte 2) :** <CodexTooltipById id="helmet_arcane_acuity" text="Casque d'Acuité Arcanique" />. Frapper au corps-à-corps augmente le DD de vos sorts de +2 par coup.
@@ -76,13 +76,14 @@ Ce build utilise la même synergie d'accessoires que le Barde Contrôleur, mais 
 
 ## 4. La Boucle de la Mort (Rotation de Combat)
 
-Le Bardadin est capable d'anéantir n'importe quel boss et de paralyser ses sbires dans le même tour.
+Vous nuke le boss ET vous lockez les adds dans le même tour. C'est dégoûtant.
 
-1. **L'Ouverture :** Utilisez votre Action Principale pour faire une *Floriture Tranchante (Corps-à-corps)*. Si deux ennemis sont côte à côte, vous les frappez tous les deux.
-2. **La Décharge Divine :** Sur l'écran de réaction, appliquez un <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> de niveau 4 sur la première cible, et un autre sur la deuxième. (Oui, c'est légal).
-3. **Le Buff :** Vos attaques de mêlée ont chargé votre *<Rule term="casque_acuite">Casque d'Acuité Arcanique</Rule>*. Vos sorts ont maintenant un taux de réussite de 100%.
-4. **Le Contrôle ou l'Exécution (Action Bonus) :** - *Option A :* Utilisez l'*<Rule term="anneau_gredin">Anneau du Gredin Mystique</Rule>* pour lancer <CodexTooltipById id="hold_monster" text="Immobilisation de Monstre" /> sur le boss survivant.
-   - *Option B :* Si vous utilisez la Prérogative du Duelliste, faites une attaque supplémentaire au corps-à-corps pour l'achever avec un autre Châtiment Divin.
+1. **Action Principale — cleave :** *Floriture Tranchante* au corps-à-corps. Deux ennemis côte à côte ? Vous tapez les deux.
+2. **Châtiment x2 :** L'écran de Réaction pop. Vous lâchez un <CodexTooltipById id="divine_smite" text="Châtiment Divin" /> niveau 4 sur la première cible, un autre sur la deuxième. Oui c'est légal. Oui c'est aussi broken que ça en a l'air.
+3. **L'Acuité stack :** Vos attaques mêlée ont chargé le *<Rule term="casque_acuite">Casque d'Acuité Arcanique</Rule>*. Votre DD de sorts est maintenant au plafond — 100% de taux de réussite.
+4. **Action Bonus — finissez ou gelez :**
+   - *Option A :* L'*<Rule term="anneau_gredin">Anneau du Gredin Mystique</Rule>* vous permet de lancer <CodexTooltipById id="hold_monster" text="Immobilisation de Monstre" /> en Action Bonus. Le boss survivant est paralysé.
+   - *Option B :* Prérogative du Duelliste = une attaque gratuite. Un Châtiment de plus. Un kill de plus.
 
 <CombatLogSimulator
   baseDice="1d8"

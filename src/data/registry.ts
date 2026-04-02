@@ -89,7 +89,7 @@ export const buildRegistry: Record<string, UnifiedBuild> = {
     powerSpikes: [
       { level: 3, description: "Traqueur Sombre activé — Dread Ambusher donne une attaque bonus Tour 1 + bonus initiative" },
       { level: 5, description: "Attaque Supplémentaire + Rogue 1 — Sneak Attack commence à empiler" },
-      { level: 8, description: "Assassin 3 — Assassinat garanti (crit auto sur ennemis Surpris) + Don Alerte (+5 init)" },
+      { level: 8, description: "Assassin 3 — Assassinat garanti (auto-hit + auto-crit sur ennemis Surpris, tous les dés doublés) + Don Alerte (+5 init)" },
       { level: 11, description: "Fighter 3 Champion — Crit sur 19-20 + Action Surge = burst massif Tour 1" },
     ],
   },

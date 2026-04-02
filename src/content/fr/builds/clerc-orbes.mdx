@@ -15,13 +15,13 @@ description: "L'Aura d'Aveuglement. Ensorceleur Tempête / Clerc Lumière — ca
 
 *(1 Ensorceleur de la Tempête / 11 Clerc du Domaine de la Lumière)*
 
-Le build "Radiating Orb" n'est pas là pour faire les plus gros dégâts du jeu, mais pour **casser les mathématiques des boss**. Chaque dégât radiant que vous infligez applique des charges d'"Orbe d'Irradiation" en zone. Chaque charge inflige un malus de -1 aux jets d'attaque de l'ennemi. En un seul tour, vous pouvez appliquer 10 charges sur un boss, le rendant incapable de toucher votre équipe.
+Le build Orbes d'Irradiation ne tue pas les boss — il les rend complètement inutiles. Chaque fois que vous infligez des dégâts radiants, vous stackez des "Orbes d'Irradiation" sur les ennemis proches. Chaque stack = -1 à leurs jets d'attaque. En un tour vous pouvez claquer 10 stacks sur un boss, et d'un coup il ne touche plus rien. Votre équipe devient intouchable. C'est le cheese support ultime.
 
 ---
 
 ## 1. Création du Personnage & Statistiques
 
-Nous commençons avec un niveau d'Ensorceleur pour une raison purement d'optimisation (Min-Max) : cela nous donne la maîtrise des jets de sauvegarde de Constitution (crucial pour maintenir la concentration sur nos sorts) et l'accès au sort *Bouclier*.
+Le dip Ensorceleur est du pur min-max : maîtrise des JdS de Constitution (pour ne jamais perdre vos Gardiens Spirituels) et accès au sort *Bouclier*. Un seul niveau, une valeur énorme.
 
 - **Race Optimale :** Demi-Elfe (Bois ou Haut) pour le mouvement bonus ou l'immunité au sommeil, ou Duergar (pour l'invisibilité à volonté).
 - **Historique :** Acolyte ou Sage.
@@ -39,11 +39,11 @@ Nous commençons avec un niveau d'Ensorceleur pour une raison purement d'optimis
 
 ## 2. Le Leveling (Niveau 1 à 12)
 
-Votre rôle change drastiquement à partir du niveau 6 (Niveau 5 de Clerc) quand vous débloquez le sort *Gardiens Spirituels*. Vous devenez une "tondeuse à gazon" divine.
+Avant le niveau 6 vous êtes un Clerc normal. Après le niveau 6 (Clerc 5), vous débloquez *Gardiens Spirituels* et vous devenez une tondeuse divine qui déchiquète tout dans un rayon de 3m.
 
 <ChecklistTracker checklistId="leveling_lightcleric">
 
-- **Niveau 1 : Ensorceleur (Lignée de la Tempête).** Pourquoi Tempête ? Pour le repositionnement. Lancer un sort de niveau 1 ou plus vous permet de voler sur 3m (10ft) en Action Bonus sans provoquer d'attaque d'opportunité (Magie Tempétueuse). Ce n'est pas un vol complet, mais un petit bond utile pour ajuster votre position. Prenez le sort <CodexTooltipById id="shield_spell" text="Bouclier" /> et <CodexTooltipById id="projectile_magique" text="Projectile Magique" />.
+- **Niveau 1 : Ensorceleur (Lignée de la Tempête).** Pourquoi Tempête ? Pour le repositionnement gratuit. Lancer un sort de niveau 1+ vous permet de faire un bond de 3m en Action Bonus sans provoquer d'attaque d'opportunité (Magie Tempétueuse). C'est pas un vol complet, mais c'est gratuit et ça vous sauve la vie. Prenez <CodexTooltipById id="shield_spell" text="Bouclier" /> et <CodexTooltipById id="projectile_magique" text="Projectile Magique" />.
 - **Niveaux 2 à 12 : Clerc (Domaine de la Lumière).** Le Domaine de la Lumière donne accès à *Illumination de l'Aube* (une AoE radiante massive) et à la *Lueur Protectrice* (réaction pour imposer un désavantage à une attaque ennemie).
 - **Niveau 5 (Clerc 4) :** Prenez le don **Mage de Guerre** (War Caster). Combiné à votre maîtrise de la Constitution, vous ne perdrez pratiquement jamais votre concentration sur *Gardiens Spirituels*.
 - **Niveau 9 (Clerc 8) :** Prenez le don **Amélioration de Caractéristique** (+2 Sagesse).
@@ -55,7 +55,7 @@ Votre rôle change drastiquement à partir du niveau 6 (Niveau 5 de Clerc) quand
 
 ## 3. L'Équipement "Best in Slot" (BiS)
 
-Ce build repose **entièrement** sur un set d'équipement précis. Si vous ratez ces objets, le build ne fonctionne pas.
+Ce build vit ou meurt par son équipement. Ratez un seul de ces objets et tout s'effondre — ne les skip pas.
 
 <EmergencyMatrix title="Le Set d'Irradiation (À NE SURTOUT PAS RATER)" severity="lethal">
   - **L'Armure (Acte 1) :** <CodexTooltipById id="luminous_armor" text="Armure Lumineuse" /> (Avant-poste Sélunite en Ombreterre, salle secrète). Crée une onde de choc d'Orbes d'Irradiation chaque fois que vous infligez des dégâts radiants.
@@ -78,12 +78,12 @@ Ce build repose **entièrement** sur un set d'équipement précis. Si vous ratez
 
 ## 4. La Boucle de la Mort (Rotation de Combat)
 
-Votre stratégie n'est pas de tuer les ennemis un par un, mais de vous jeter au milieu de la mêlée pour castrer leur potentiel offensif.
+Vous ne sniperiez pas depuis le fond. Vous foncez droit dans le blob ennemi et vous rendez tout le monde inutile.
 
-1. **Tour 1 - Préparation :** Utilisez votre Action pour lancer *Gardiens Spirituels* (en choisissant l'option Radiante, évidemment).
-2. **Le Vol de la Tondeuse :** Grâce à votre niveau d'Ensorceleur Tempête, l'incantation vous permet de vous envoler en Action Bonus. Volez à travers les lignes ennemies.
-3. **L'Effet Domino :** Chaque ennemi touché par les Gardiens prend des dégâts. L'<Rule term="armure_lumineuse">Armure Lumineuse</Rule> s'active, créant une onde d'Orbes. Les Gants s'activent. L'Anneau s'active. Un simple passage inflige entre 4 et 8 tours d'Orbes d'Irradiation en zone (entre -4 et -8 à leurs jets d'attaque).
-4. **Tour 2 - Le Flash :** Utilisez votre Conduit Divin *Illumination de l'Aube*. C'est un rayon de 9 mètres qui ignore le couvert. Chaque ennemi touché reçoit une nouvelle explosion d'Orbes. Le combat est mathématiquement gagné, ils ne feront plus que des Échecs Critiques.
+1. **Tour 1 — Gardiens up :** Lancez *Gardiens Spirituels* (Radiant, évidemment). C'est votre tondeuse.
+2. **Hop dedans :** Magie Tempétueuse proc — bond de 3m en Action Bonus, pas d'attaque d'opportunité. Foncez au centre du pack, puis marchez le reste.
+3. **La réaction en chaîne :** Chaque ennemi dans l'aura prend des dégâts radiants. L'<Rule term="armure_lumineuse">Armure Lumineuse</Rule> proc → vague d'Orbes. Les Gants proc → encore des Orbes. L'Anneau proc → toujours plus d'Orbes. Un seul passage = 4 à 8 stacks d'Orbes sur tout ce qui est à côté (c'est -4 à -8 sur leurs jets d'attaque).
+4. **Tour 2 — finissez-les :** *Illumination de l'Aube* — rayon de 9m, ignore le couvert, plus de dégâts radiants, plus de stacks d'Orbes. Le combat est mathématiquement gagné. Ils ne peuvent littéralement plus vous toucher.
 
 <CombatLogSimulator
   baseDice="3d8"

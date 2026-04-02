@@ -8,13 +8,13 @@ description: "Elemental Annihilation. Storm Sorcerer / Tempest Cleric — 160 gu
 
 *(10 Storm Sorcerer / 2 Tempest Domain Cleric)*
 
-The "Storm Sorcerer Nuke" relies on a devastating mathematical interaction. In BG3, the "Wet" status doubles Lightning and Cold damage taken. The Tempest Domain Cleric, through its Channel Divinity, allows you to skip the Damage Roll entirely and apply the maximum result instead. The result? A Chain Lightning that hits for 160 guaranteed damage on 4 targets simultaneously.
+The "Storm Nuke" abuses a disgusting damage interaction that Larian never patched. In BG3, the "Wet" status doubles Lightning damage taken. The Tempest Cleric's Channel Divinity lets you skip the dice roll entirely and deal max damage instead. Stack these two together and you get a Chain Lightning that hits for **160 guaranteed damage on 4 targets at once**. No RNG. No counterplay. Just instant deletion.
 
 ---
 
 ## 1. Character Creation & Stats
 
-We start as Sorcerer to gain proficiency in Constitution Saving Throws (to avoid losing Concentration on spells like <CodexTooltipById id="haste" text="Haste" />).
+Start Sorcerer for CON save proficiency — you cannot afford to drop Concentration on <CodexTooltipById id="haste" text="Haste" /> or you're toast.
 
 - **Optimal Race:** Half-Elf or Human (for shield proficiency if you are not wearing heavy armour), or Blue/Lightning Dragonborn (for thematic resistance).
 - **Background:** Charlatan or Noble.
@@ -32,11 +32,11 @@ We start as Sorcerer to gain proficiency in Constitution Saving Throws (to avoid
 
 ## 2. Leveling (Level 1 to 12)
 
-The build takes a little while to come online, but becomes an absolute steamroller starting at level 7.
+The early levels are rough — you're basically a wet noodle until level 7. Then you press the nuke button and the game stops being fair.
 
 <ChecklistTracker checklistId="leveling_stormsorc">
 
-- **Level 1: Sorcerer (Storm Sorcery).** You gain the ability to fly as a Bonus Action after casting a spell, granting you unparalleled mobility.
+- **Level 1: Sorcerer (Storm Sorcery).** After casting a spell of 1st Level or higher, you can fly 3m (10ft) as a Bonus Action without provoking Opportunity Attacks (Tempestuous Magic). It's a short repositioning hop, not full flight — but it's free and it keeps you alive.
 - **Levels 2 to 3: Cleric (Tempest Domain 1 & 2).** The immediate multiclass. You gain heavy armour proficiency and, most importantly, at Cleric level 2, **Destructive Wrath** (Channel Divinity): instead of rolling dice for a Lightning spell, you deal the maximum possible damage.
 - **Levels 4 to 12: Sorcerer (Levels 2 to 10).** Return to Sorcerer for the rest of the progression.
 - **Overall Level 5 (Sorcerer 3):** Unlock **Metamagic**. Take *Quickened Spell* to cast a spell as a Bonus Action, and *Twinned Spell*.
@@ -49,7 +49,7 @@ The build takes a little while to come online, but becomes an absolute steamroll
 
 ## 3. Best in Slot (BiS) Equipment
 
-To deal apocalyptic damage, you need items that raise your spell save DC and grant you free castings.
+Your gear checklist is simple: stack spell save DC and get free casts. Every free Chain Lightning is another board wipe.
 
 <EmergencyMatrix title="The Sceptre of the Lightning God" severity="lethal">
   - **Main Weapon (Act 3):** <CodexTooltipById id="markoheshkir" text="Markoheshkir" /> (Ramazith's Tower, Vault). This legendary staff grants you the "Kereska's Favour" buff (Lightning). It lets you cast <CodexTooltipById id="chain_lightning" text="Chain Lightning" /> for free once per Short Rest!
@@ -71,12 +71,12 @@ To deal apocalyptic damage, you need items that raise your spell save DC and gra
 
 ## 4. The Death Loop (Combat Rotation)
 
-The objective is to set the stage with water, then press the nuclear button.
+Step 1: get them wet. Step 2: press the nuke button. Step 3: there is no step 3, they're all dead.
 
-1. **Turn 1 - The Setup (Action):** Cast *Create Water* or throw a water bottle/barrel onto the group of enemies. They are now "Wet" (Vulnerable to Lightning).
-2. **The Trigger (Bonus Action):** Use your Metamagic *Quickened Spell* to cast <CodexTooltipById id="chain_lightning" text="Chain Lightning" /> (or *Call Lightning* / *Lightning Bolt* if you are not level 12).
-3. **Judgment Day (Reaction):** The game asks if you want to use your *Destructive Wrath*. Say YES.
-4. **Mathematical Breakdown:** Chain Lightning deals 10d8 damage. Destructive Wrath locks the roll to 80. The Wet status multiplies by 2. **160 instant damage** to the primary target AND to three nearby targets. The fight is over.
+1. **Action — Soak everything:** *Create Water* or throw a water bottle/barrel on the pack. Everyone gets the "Wet" status (vulnerable to Lightning — damage doubled).
+2. **Bonus Action — Nuke:** Quickened Spell into <CodexTooltipById id="chain_lightning" text="Chain Lightning" /> (or *Call Lightning* / *Lightning Bolt* pre-12).
+3. **Reaction — Max it:** The game asks if you want to use *Destructive Wrath*. You slam YES.
+4. **The math:** Chain Lightning = 10d8. Destructive Wrath = max roll = 80. Wet = double damage = **160 instant damage** on the primary AND three nearby targets. Fight's over before anyone else acts.
 
 <CombatLogSimulator
   baseDice="10d8"

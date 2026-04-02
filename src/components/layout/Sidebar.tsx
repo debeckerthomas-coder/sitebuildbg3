@@ -312,8 +312,8 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
 // ---------------------------------------------------------------------------
 
 const FOOTER_TEXT = {
-  fr: { version: "BG3 Honor Companion v0.1", subtitle: "Mode Honneur \u2014 Aucun droit \u00e0 l\u2019erreur" },
-  en: { version: "BG3 Honor Companion v0.1", subtitle: "Honour Mode \u2014 No margin for error" },
+  fr: { version: "BG3 Honour Companion v0.1", subtitle: "Mode Honneur \u2014 Aucun droit \u00e0 l\u2019erreur" },
+  en: { version: "BG3 Honour Companion v0.1", subtitle: "Honour Mode \u2014 No margin for error" },
 } as const;
 
 function NavContent({

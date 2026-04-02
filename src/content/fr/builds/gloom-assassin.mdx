@@ -1,11 +1,11 @@
 ---
 title: "Le Gloom Assassin — Guide Complet"
 buildId: gloom_assassin
-description: "La Terreur de l'Ombre. Rôdeur Traqueur des Ténèbres / Roublard Assassin / Guerrier Champion — 6 critiques automatiques garantis au Tour 1."
+description: "La Terreur de l'Ombre. Rôdeur Traqueur des Ténèbres / Roublard Assassin / Guerrier Champion — 6 touches automatiques garanties au Tour 1."
 ---
 
 <QuickDecision
-  bestFor="Élimination de boss au Tour 1 : 6 critiques automatiques garantis."
+  bestFor="Élimination de boss au Tour 1 : 6 touches automatiques garanties."
   avoidIf="Vous n'aimez pas préparer la furtivité avant chaque combat."
   risk="Élevé si la Surprise échoue — aucun plan B défensif."
   powerSpike="Niveau 8 (Assassin + Arc à Cordes de Titan)."
@@ -15,7 +15,7 @@ description: "La Terreur de l'Ombre. Rôdeur Traqueur des Ténèbres / Roublard 
 
 *(5 Rôdeur Traqueur des Ténèbres / 4 Roublard Assassin / 3 Guerrier Champion)*
 
-Le "Gloom Assassin" est l'incarnation de la létalité au Tour 1. Ce build exploite la mécanique de "Surprise" de Baldur's Gate 3. Si vous attaquez un ennemi en furtivité, vous déclenchez un round de surprise. La sous-classe Assassin réinitialise votre action au début du combat et garantit que TOUTES vos attaques contre une cible surprise sont des **Coups Critiques**. Ajoutez à cela les attaques gratuites du Traqueur des Ténèbres et le Sursaut d'Activité du Guerrier, et vous effacez le boss de la carte avant qu'il ne joue.
+Le "Gloom Assassin" est l'incarnation de la létalité au Tour 1. Ce build exploite la mécanique de "Surprise" de Baldur's Gate 3. Si vous attaquez un ennemi en furtivité, vous déclenchez un round de surprise. La sous-classe Assassin réinitialise votre action au début du combat et garantit que TOUTES vos attaques contre une cible surprise **touchent automatiquement**. Ajoutez à cela les attaques gratuites du Traqueur des Ténèbres et le Sursaut d'Activité du Guerrier, et vous effacez le boss de la carte avant qu'il ne joue.
 
 ---
 
@@ -49,7 +49,7 @@ Le build est opérationnel et mortel dès le niveau 4, et devient inarrêtable a
 - **Niveau 4 :** Don **Tireur d'Élite** (Sharpshooter) pour +10 dégâts par flèche.
 - **Niveau 5 :** Attaque Supplémentaire et le sort *Passage Sans Trace*.
 - **Niveaux 6 à 9 : Roublard (1 à 4).** Multiclassage en Roublard pour l'Assassin.
-- **Niveau 8 global (Roublard 3) :** Sous-classe **Assassin**. C'est le cœur du build. Avantage contre les ennemis qui n'ont pas encore joué, et critiques automatiques sur les ennemis surpris.
+- **Niveau 8 global (Roublard 3) :** Sous-classe **Assassin**. C'est le cœur du build. Avantage contre les ennemis qui n'ont pas encore joué, et touches automatiques sur les ennemis surpris.
 - **Niveau 9 global (Roublard 4) :** Don **Amélioration de Caractéristique** (+2 Dextérité) ou **Alerte** (pour être absolument certain de jouer en premier).
 - **Niveaux 10 à 12 : Guerrier (1 à 3).** Multiclassage final pour le Sursaut d'Activité.
 - **Niveau 11 (Guerrier 2) :** **Sursaut d'Activité** (Action Surge) pour une action principale supplémentaire.
@@ -90,10 +90,10 @@ Il est vital de comprendre comment déclencher la "Surprise". Vous devez attaque
    - *Action Bonus :* Si vous utilisez des flèches spéciales (Flèche de Slaying, etc.), enduisez votre arme de poison.
    - *Sursaut d'Activité :* Activez-le pour gagner une nouvelle Action.
    - *Action 2 :* Tirez encore deux flèches.
-4. **Le Bilan Mathématique :** Vous avez tiré 6 flèches au Tour 1 (en comptant l'amorce). La cible est surprise, donc **ces 6 flèches sont des Coups Critiques automatiques**. Le tout avec le bonus de Tireur d'Élite (+10 par flèche) et la double stat de l'Arc du Titan (+9 par flèche). Absolument rien n'y survit.
+4. **Le Bilan Mathématique :** Vous avez tiré 6 flèches au Tour 1 (en comptant l'amorce). La cible est surprise, donc **ces 6 flèches touchent automatiquement** (elles ne peuvent pas rater). Le tout avec le bonus de Tireur d'Élite (+10 par flèche) et la double stat de l'Arc du Titan (+9 par flèche). Absolument rien n'y survit.
 
 <CombatLogSimulator
   baseDice="1d8"
   statModifier="9"
-  extraDamage={[{source: "Tireur d'Élite", value: 10}, {source: "Frappe Redoutable", dice: "1d8"}, {source: "Assassin (Critique Automatique)", dice: "2d8"}]}
+  extraDamage={[{source: "Tireur d'Élite", value: 10}, {source: "Frappe Redoutable", dice: "1d8"}, {source: "Assassin (Touche Automatique)", dice: "0"}]}
 />

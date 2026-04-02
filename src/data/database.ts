@@ -86,7 +86,7 @@ export const CODEX: Record<string, CodexEntry> = {
     type: "objet",
     rarity: "legendary",
     description:
-      "Régénère 2 PV au début de chaque tour. Confère +1 à la CA et aux jets de sauvegarde. Empêche les coups critiques contre le porteur.",
+      "Régénère 2 PV au début de chaque tour. Confère +1 à la CA et aux jets de sauvegarde. Empêche les coups critiques et les étourdissements contre le porteur.",
     stats: [
       { label: "CA", value: "+1" },
       { label: "Sauvegardes", value: "+1" },
@@ -120,7 +120,7 @@ export const CODEX: Record<string, CodexEntry> = {
     type: "objet",
     rarity: "very_rare",
     description:
-      "Fléau légendaire forgé par Dammon à partir de fer infernal. Inflige des dégâts de feu supplémentaires et ralentit les ennemis.",
+      "Fléau très rare forgé par Dammon à partir de fer infernal. Inflige des dégâts de feu supplémentaires et ralentit les ennemis.",
     stats: [
       { label: "Dégâts", value: "1d8+2 contondants + 1d6 feu" },
       { label: "Enchantement", value: "+2" },
@@ -137,10 +137,10 @@ export const CODEX: Record<string, CodexEntry> = {
     type: "objet",
     rarity: "legendary",
     description:
-      "Armure lourde légendaire. Réduit tous les dégâts de 2, inflige des dégâts de feu aux attaquants en mêlée. Le porteur ne peut pas être Brûlé. Réussite automatique aux JdS contre les sorts de niveau 3 ou moins.",
+      "Armure lourde légendaire. Réduit tous les dégâts de 3, inflige des dégâts de feu aux attaquants en mêlée. Le porteur ne peut pas être Brûlé. Réussite automatique aux JdS contre les sorts de niveau 3 ou moins.",
     stats: [
       { label: "CA", value: "21" },
-      { label: "Réduction", value: "-2 à tous les dégâts" },
+      { label: "Réduction", value: "-3 à tous les dégâts" },
       { label: "Résistance", value: "Feu" },
       { label: "Passif", value: "Contre-attaque de feu en mêlée" },
       { label: "Localisation", value: "Maison de l'Espoir — vaincre Raphaël" },
@@ -584,11 +584,11 @@ export const CODEX: Record<string, CodexEntry> = {
     type: "objet",
     rarity: "very_rare",
     description:
-      "Gants qui confèrent +2 aux jets d'attaque et de dégâts avec les armes. Achetables chez Dammon à la Forge des Neuf (s'il a survécu).",
+      "Gants qui confèrent +2 aux jets d'attaque et de dégâts avec les armes. Trouvables dans les Chambres Funéraires de la Ville Basse.",
     stats: [
       { label: "Bonus attaque", value: "+2" },
       { label: "Bonus dégâts", value: "+2" },
-      { label: "Source", value: "Dammon — Forge des Neuf (Acte 3)" },
+      { label: "Source", value: "Chambres Funéraires — Ville Basse (Acte 3)" },
     ],
     iconUrl: "/assets/icons/legacy_masters.webp",
     tags: ["gants", "très-rare", "acte-3", "dégâts"],

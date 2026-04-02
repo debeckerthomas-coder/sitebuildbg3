@@ -43,8 +43,8 @@ export const ITEMS: Record<string, Item> = {
     rarity: "very_rare",
     slot: "main_hand",
     description: {
-      fr: "Un fléau légendaire forgé par Dammon à partir de fer infernal. Inflige des dégâts de feu bonus et ralentit les ennemis.",
-      en: "A legendary flail forged by Dammon from Infernal Iron. Deals bonus fire damage and slows enemies.",
+      fr: "Un fléau très rare forgé par Dammon à partir de fer infernal. Inflige des dégâts de feu bonus et ralentit les ennemis.",
+      en: "A very rare flail forged by Dammon from Infernal Iron. Deals bonus fire damage and slows enemies.",
     },
     act: 2,
     location: {
@@ -115,8 +115,8 @@ export const ITEMS: Record<string, Item> = {
     rarity: "legendary",
     slot: "helmet",
     description: {
-      fr: "Soigne 2 PV au début de chaque tour. Confère +1 à la CA et aux Jets de Sauvegarde. Empêche les Coups Critiques contre le porteur.",
-      en: "Heals 2 HP at the start of each turn. Grants +1 to AC and Saving Throws. Prevents Critical Hits against the wearer.",
+      fr: "Soigne 2 PV au début de chaque tour. Confère +1 à la CA et aux Jets de Sauvegarde. Empêche les Coups Critiques et les Étourdissements contre le porteur.",
+      en: "Heals 2 HP at the start of each turn. Grants +1 to AC and Saving Throws. Prevents Critical Hits and Stun against the wearer.",
     },
     act: 3,
     location: {

@@ -92,7 +92,7 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
       act3: ["Markoheshkir (via multiclasse Magicien)", "Robe de Tisseur de Sorts", "Anneau de Protection"],
     },
     failsafes: [
-      { missingItem: "Casque d'Acuité Arcanique", fallbackItem: "Bandeau d'Abjuration (+2 DD)", condition: "Si Grymforge n'est pas complété" },
+      { missingItem: "Casque d'Acuité Arcanique", fallbackItem: "Diadème de Synergie Arcanique (Crèche Y'llek)", condition: "Si Grymforge n'est pas complété" },
       { missingItem: "Markoheshkir", fallbackItem: "Bâton de Frappe de Sort +2", condition: "Si la Tour de Ramazith n'est pas complétée" },
     ],
   },
@@ -266,7 +266,7 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
     classes: "5 Rôdeur Traqueur Sombre / 4 Roublard Assassin / 3 Guerrier Maître de Guerre",
     coreRole: "Élimination Surprise Tour 1",
     keyMechanic:
-      "Initiative de Traqueur Sombre (Avantage au Tour 1 si pas vu) + Assassinat du Roublard (critique garanti contre les ennemis Surpris) + Surge d'Action du Guerrier. Au Tour 1 : 4-5 attaques, toutes en critique garanti, avec Attaque Sournoise empilée. Un boss peut perdre 50-80% de ses PV avant de jouer.",
+      "Initiative de Traqueur Sombre (attaque bonus + bonus initiative Tour 1) + Assassinat du Roublard (les attaques touchent automatiquement les ennemis Surpris + Avantage sur ceux qui n'ont pas encore joué) + Surge d'Action du Guerrier. Au Tour 1 : 4-5 attaques avec Avantage, plus Attaque Sournoise empilée. Un boss peut perdre 40-60% de ses PV avant de jouer.",
     stats: { STR: 10, DEX: 17, CON: 14, INT: 8, WIS: 14, CHA: 10 },
     featProgression: [
       { level: 4, feat: "Tireur d'Élite (Sharpshooter)", reason: "+10 dégâts à distance. Critique garanti compense le -5 au toucher." },
@@ -279,7 +279,7 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
       act3: ["Arbalète Lourde de Gontr Mael", "Armure de Cuir Clouté +3", "Gants de Précision"],
     },
     failsafes: [
-      { missingItem: "Arbalète Lourde de Gontr Mael", fallbackItem: "Arc Long de la Garde Sombre +2", condition: "Si la Forge des Neuf n'est pas complétée" },
+      { missingItem: "Arbalète Lourde de Gontr Mael", fallbackItem: "Ne'er Misser (arbalète de main, Roah Moonglow)", condition: "Si la Fonderie de la Garde d'Acier n'est pas complétée" },
       { missingItem: "Cape d'Ombre", fallbackItem: "Cape de Protection +1", condition: "Si le marchand de l'Ombre n'est pas trouvé" },
     ],
   },

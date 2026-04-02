@@ -71,8 +71,8 @@ export const CHECKLIST_ITEMS: readonly ChecklistItem[] = [
   },
   {
     id: "defeat_netherbrain",
-    label: "Vaincre le Cerveau Primordial",
-    description: "La bataille finale. Utilisez les Pierres du Néant pour dominer ou détruire le Cerveau Ancien.",
+    label: "Vaincre le Cerveau Primitif",
+    description: "La bataille finale. Utilisez les Pierres du Néant pour dominer ou détruire le Cerveau Primitif.",
     act: 3,
     category: "boss",
   },

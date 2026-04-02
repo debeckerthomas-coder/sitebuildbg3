@@ -1,14 +1,14 @@
 ---
 title: "The Gloom Assassin — Complete Guide"
 buildId: gloom_assassin
-description: "The Terror of Shadows. Gloom Stalker Ranger / Assassin Rogue / Champion Fighter — 6 guaranteed automatic criticals on Turn 1."
+description: "The Terror of Shadows. Gloom Stalker Ranger / Assassin Rogue / Champion Fighter — 6 guaranteed auto-hits on Turn 1."
 ---
 
 # The Gloom Assassin: The Terror of Shadows
 
 *(5 Gloom Stalker Ranger / 4 Assassin Rogue / 3 Champion Fighter)*
 
-The "Gloom Assassin" is the incarnation of Turn 1 lethality. This build exploits the "Surprise" mechanic in Baldur's Gate 3. If you attack an enemy while stealthed, you trigger a surprise round. The Assassin subclass resets your action at the start of combat and guarantees that ALL your attacks against a surprised target are **Critical Hits**. Add to that the free attacks from Gloom Stalker and Action Surge from the Fighter, and you erase the boss from the map before they ever get to play.
+The "Gloom Assassin" is the incarnation of Turn 1 lethality. This build exploits the "Surprise" mechanic in Baldur's Gate 3. If you attack an enemy while stealthed, you trigger a surprise round. The Assassin subclass resets your action at the start of combat and guarantees that ALL your attacks against a surprised target **automatically hit**. Add to that the free attacks from Gloom Stalker and Action Surge from the Fighter, and you erase the boss from the map before they ever get to play.
 
 ---
 
@@ -42,7 +42,7 @@ The build is operational and deadly from level 4, and becomes unstoppable at lev
 - **Level 4:** **Sharpshooter** feat for +10 damage per arrow.
 - **Level 5:** Extra Attack and the *Pass Without Trace* spell.
 - **Levels 6 to 9: Rogue (1 to 4).** Multiclass into Rogue for Assassin.
-- **Overall Level 8 (Rogue 3):** **Assassin** subclass. This is the heart of the build. Advantage against enemies who have not yet acted, and automatic criticals on surprised enemies.
+- **Overall Level 8 (Rogue 3):** **Assassin** subclass. This is the heart of the build. Advantage against enemies who have not yet acted, and automatic hits on surprised enemies.
 - **Overall Level 9 (Rogue 4):** **Ability Score Improvement** feat (+2 Dexterity) or **Alert** (to be absolutely certain you go first).
 - **Levels 10 to 12: Fighter (1 to 3).** Final multiclass for Action Surge.
 - **Level 11 (Fighter 2):** **Action Surge** for an additional main action.
@@ -86,10 +86,10 @@ It is vital to understand how to trigger "Surprise." You must attack while crouc
    - *Bonus Action:* If using special arrows (Arrow of Slaying, etc.), coat your weapon with poison.
    - *Action Surge:* Activate it to gain a new Action.
    - *Action 2:* Fire two more arrows.
-4. **The Mathematical Breakdown:** You fired 6 arrows on Turn 1 (counting the setup shot). The target is surprised, so **all 6 arrows are automatic Critical Hits**. All of this with the Sharpshooter bonus (+10 per arrow) and the Titanstring Bow's dual stat (+9 per arrow). Absolutely nothing survives this.
+4. **The Mathematical Breakdown:** You fired 6 arrows on Turn 1 (counting the setup shot). The target is surprised, so **all 6 arrows automatically hit** (they cannot miss). All of this with the Sharpshooter bonus (+10 per arrow) and the Titanstring Bow's dual stat (+9 per arrow). Absolutely nothing survives this.
 
 <CombatLogSimulator
   baseDice="1d8"
   statModifier="9"
-  extraDamage={[{source: "Tireur d'Élite", value: 10}, {source: "Frappe Redoutable", dice: "1d8"}, {source: "Assassin (Critique Automatique)", dice: "2d8"}]}
+  extraDamage={[{source: "Tireur d'Élite", value: 10}, {source: "Frappe Redoutable", dice: "1d8"}, {source: "Assassin (Auto-Hit)", dice: "0"}]}
 />

@@ -1,3 +1,6 @@
+# astro
+.astro/
+
 # dependencies
 /node_modules
 /.pnp

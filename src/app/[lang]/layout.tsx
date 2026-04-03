@@ -42,7 +42,10 @@ export default async function LangLayout({
           <div className="flex items-center gap-2">
             <HeaderBuildSelector />
             <GlobalSearch />
-            <LanguageSwitcher />
+            {/* Hidden on mobile — language switcher lives in mobile sidebar instead */}
+            <div className="hidden lg:block">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
       </header>

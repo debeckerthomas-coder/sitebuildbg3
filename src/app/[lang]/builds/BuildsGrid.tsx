@@ -7,10 +7,75 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useParams } from "next/navigation";
 import { getAllBuildsTierS, type BuildTierS } from "@/data/builds/tier-s";
 
 // ---------------------------------------------------------------------------
-// Class icon SVGs (inline, no external deps)
+// UI translations for the grid
+// ---------------------------------------------------------------------------
+
+const GRID_TEXT = {
+  fr: {
+    fullGuide: "Guide Complet",
+    details: "Détails",
+    hide: "Masquer",
+    featProgression: "Progression des Dons",
+    level: "Niv.",
+    bestInSlot: "Équipement Best-in-Slot",
+    act1: "Acte 1",
+    act2: "Acte 2",
+    act3: "Acte 3",
+    failsafes: "Failsafes (Plans B)",
+    ifMissed: "Si manqué",
+    alternative: "Alternative",
+  },
+  en: {
+    fullGuide: "Full Guide",
+    details: "Details",
+    hide: "Hide",
+    featProgression: "Feat Progression",
+    level: "Lvl",
+    bestInSlot: "Best-in-Slot Gear",
+    act1: "Act 1",
+    act2: "Act 2",
+    act3: "Act 3",
+    failsafes: "Failsafes (Plan B)",
+    ifMissed: "If missed",
+    alternative: "Alternative",
+  },
+} as const;
+
+// ---------------------------------------------------------------------------
+// Role colors & short labels (bilingual)
+// ---------------------------------------------------------------------------
+
+const ROLE_CONFIG: Record<string, { color: string; short: string }> = {
+  // French roles
+  "Tueur de Boss Monocible": { color: "text-blood-light bg-blood/20 border-blood/30", short: "Boss Killer" },
+  "DPS Distance & Contrôle de Foule": { color: "text-purple-400 bg-purple-500/15 border-purple-500/30", short: "Contrôle" },
+  "Dégâts à Distance & Prône": { color: "text-orange-400 bg-orange-500/15 border-orange-500/30", short: "Lanceur" },
+  "Soutien & Debuff Radiant": { color: "text-yellow-400 bg-yellow-500/15 border-yellow-500/30", short: "Soutien" },
+  "Dégâts Magiques AoE Maximum": { color: "text-blue-400 bg-blue-500/15 border-blue-500/30", short: "Nuke AoE" },
+  "DPS Burst & Support Polyvalent": { color: "text-gold bg-gold/15 border-gold/30", short: "Burst DPS" },
+  "Tank Burst avec Aura de Protection": { color: "text-green-400 bg-green-500/15 border-green-500/30", short: "Tank Burst" },
+  "Tank Burst SAD (Charisme)": { color: "text-emerald-400 bg-emerald-500/15 border-emerald-500/30", short: "Tank SAD" },
+  "DPS Magique Soutenu à Distance": { color: "text-red-400 bg-red-500/15 border-red-500/30", short: "DPS Feu" },
+  "Élimination Surprise Tour 1": { color: "text-gray-300 bg-gray-500/15 border-gray-500/30", short: "Alpha Strike" },
+  // English roles
+  "Single-Target Boss Killer": { color: "text-blood-light bg-blood/20 border-blood/30", short: "Boss Killer" },
+  "Ranged DPS & Crowd Control": { color: "text-purple-400 bg-purple-500/15 border-purple-500/30", short: "Control" },
+  "Ranged Damage & Prone": { color: "text-orange-400 bg-orange-500/15 border-orange-500/30", short: "Thrower" },
+  "Support & Radiant Debuff": { color: "text-yellow-400 bg-yellow-500/15 border-yellow-500/30", short: "Support" },
+  "Maximum AoE Magic Damage": { color: "text-blue-400 bg-blue-500/15 border-blue-500/30", short: "AoE Nuke" },
+  "Burst DPS & Versatile Support": { color: "text-gold bg-gold/15 border-gold/30", short: "Burst DPS" },
+  "Burst Tank with Aura of Protection": { color: "text-green-400 bg-green-500/15 border-green-500/30", short: "Burst Tank" },
+  "SAD Burst Tank (Charisma)": { color: "text-emerald-400 bg-emerald-500/15 border-emerald-500/30", short: "SAD Tank" },
+  "Sustained Ranged Magic DPS": { color: "text-red-400 bg-red-500/15 border-red-500/30", short: "Fire DPS" },
+  "Turn 1 Surprise Elimination": { color: "text-gray-300 bg-gray-500/15 border-gray-500/30", short: "Alpha Strike" },
+};
+
+// ---------------------------------------------------------------------------
+// Class icon SVGs (inline, no external deps) — matches both FR and EN class names
 // ---------------------------------------------------------------------------
 
 const CLASS_ICONS: Record<string, React.ReactNode> = {
@@ -97,47 +162,29 @@ const CLASS_ICONS: Record<string, React.ReactNode> = {
 
 function getClassIcon(classes: string): React.ReactNode {
   const lower = classes.toLowerCase();
-  if (lower.includes("moine")) return CLASS_ICONS.monk;
-  if (lower.includes("barde") && lower.includes("paladin")) return CLASS_ICONS.paladin;
-  if (lower.includes("barde")) return CLASS_ICONS.bard;
-  if (lower.includes("barbare")) return CLASS_ICONS.barbarian;
-  if (lower.includes("clerc")) return CLASS_ICONS.cleric;
-  if (lower.includes("ensorceleur") && lower.includes("clerc")) return CLASS_ICONS.sorcerer;
-  if (lower.includes("ensorceleur") && lower.includes("occultiste")) return CLASS_ICONS.sorcerer;
-  if (lower.includes("ensorceleur")) return CLASS_ICONS.sorcerer;
-  if (lower.includes("paladin") && lower.includes("ensorceleur")) return CLASS_ICONS.paladin;
-  if (lower.includes("paladin") && lower.includes("occultiste")) return CLASS_ICONS.warlock;
+  // French names
+  if (lower.includes("moine") || lower.includes("monk")) return CLASS_ICONS.monk;
+  if ((lower.includes("barde") || lower.includes("bard")) && lower.includes("paladin")) return CLASS_ICONS.paladin;
+  if (lower.includes("barde") || lower.includes("bard")) return CLASS_ICONS.bard;
+  if (lower.includes("barbare") || lower.includes("barbarian")) return CLASS_ICONS.barbarian;
+  if (lower.includes("clerc") || lower.includes("cleric")) return CLASS_ICONS.cleric;
+  if (lower.includes("ensorceleur") || lower.includes("sorcerer")) return CLASS_ICONS.sorcerer;
   if (lower.includes("paladin")) return CLASS_ICONS.paladin;
-  if (lower.includes("rôdeur")) return CLASS_ICONS.ranger;
-  if (lower.includes("occultiste")) return CLASS_ICONS.warlock;
-  if (lower.includes("guerrier")) return CLASS_ICONS.fighter;
+  if (lower.includes("rôdeur") || lower.includes("ranger")) return CLASS_ICONS.ranger;
+  if (lower.includes("roublard") || lower.includes("rogue")) return CLASS_ICONS.rogue;
+  if (lower.includes("occultiste") || lower.includes("warlock")) return CLASS_ICONS.warlock;
+  if (lower.includes("guerrier") || lower.includes("fighter")) return CLASS_ICONS.fighter;
   return CLASS_ICONS.fighter;
 }
-
-// ---------------------------------------------------------------------------
-// Role colors & short labels
-// ---------------------------------------------------------------------------
-
-const ROLE_CONFIG: Record<string, { color: string; short: string }> = {
-  "Tueur de Boss Monocible": { color: "text-blood-light bg-blood/20 border-blood/30", short: "Boss Killer" },
-  "DPS Distance & Contrôle de Foule": { color: "text-purple-400 bg-purple-500/15 border-purple-500/30", short: "Contrôle" },
-  "Dégâts à Distance & Prône": { color: "text-orange-400 bg-orange-500/15 border-orange-500/30", short: "Lanceur" },
-  "Soutien & Debuff Radiant": { color: "text-yellow-400 bg-yellow-500/15 border-yellow-500/30", short: "Soutien" },
-  "Dégâts Magiques AoE Maximum": { color: "text-blue-400 bg-blue-500/15 border-blue-500/30", short: "Nuke AoE" },
-  "DPS Burst & Support Polyvalent": { color: "text-gold bg-gold/15 border-gold/30", short: "Burst DPS" },
-  "Tank Burst avec Aura de Protection": { color: "text-green-400 bg-green-500/15 border-green-500/30", short: "Tank Burst" },
-  "Tank Burst SAD (Charisme)": { color: "text-emerald-400 bg-emerald-500/15 border-emerald-500/30", short: "Tank SAD" },
-  "DPS Magique Soutenu à Distance": { color: "text-red-400 bg-red-500/15 border-red-500/30", short: "DPS Feu" },
-  "Élimination Surprise Tour 1": { color: "text-gray-300 bg-gray-500/15 border-gray-500/30", short: "Alpha Strike" },
-};
 
 // ---------------------------------------------------------------------------
 // Premium Build Card
 // ---------------------------------------------------------------------------
 
-function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
+function BuildCard({ build, index, lang }: { build: BuildTierS; index: number; lang: string }) {
   const [expanded, setExpanded] = useState(false);
   const role = ROLE_CONFIG[build.coreRole] ?? { color: "text-gray-400 bg-gray-500/15 border-gray-500/30", short: build.coreRole };
+  const t = lang === "en" ? GRID_TEXT.en : GRID_TEXT.fr;
 
   return (
     <motion.article
@@ -210,13 +257,13 @@ function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
       {/* Action buttons */}
       <div className="px-5 pb-4 flex gap-2">
         <Link
-          href={`/builds/${build.id}`}
+          href={`/${lang}/builds/${build.id}`}
           className="flex-1 text-center py-2.5 text-xs font-display tracking-wide rounded-lg
                      bg-gradient-to-r from-gold/20 to-gold/10 border border-gold/30
                      text-gold hover:from-gold/30 hover:to-gold/20 hover:border-gold/50
                      transition-all duration-200 uppercase"
         >
-          Guide Complet
+          {t.fullGuide}
         </Link>
         <button
           onClick={() => setExpanded(!expanded)}
@@ -224,7 +271,7 @@ function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
                      border border-border/50 hover:border-gold/30
                      transition-all duration-200 uppercase tracking-wider"
         >
-          {expanded ? "Masquer" : "Détails"}
+          {expanded ? t.hide : t.details}
         </button>
       </div>
 
@@ -242,13 +289,13 @@ function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
               {/* Feats */}
               <div>
                 <p className="text-[10px] font-data text-gold/60 uppercase tracking-widest mb-2">
-                  Progression des Dons
+                  {t.featProgression}
                 </p>
                 <div className="space-y-1.5">
                   {build.featProgression.map((feat) => (
                     <div key={feat.level} className="flex gap-2 items-start">
                       <span className="text-[10px] font-data text-gold bg-gold/10 rounded px-1.5 py-0.5 shrink-0">
-                        Niv.{feat.level}
+                        {t.level}{feat.level}
                       </span>
                       <div>
                         <span className="text-xs font-data text-gray-300">{feat.feat}</span>
@@ -262,12 +309,12 @@ function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
               {/* Best in Slot */}
               <div>
                 <p className="text-[10px] font-data text-gold/60 uppercase tracking-widest mb-2">
-                  Équipement Best-in-Slot
+                  {t.bestInSlot}
                 </p>
                 {(["act1", "act2", "act3"] as const).map((act) => (
                   <div key={act} className="mb-2">
                     <p className="text-[10px] font-data text-gold-muted uppercase mb-0.5">
-                      {act === "act1" ? "Acte 1" : act === "act2" ? "Acte 2" : "Acte 3"}
+                      {t[act]}
                     </p>
                     <div className="flex flex-wrap gap-1">
                       {build.bestInSlot[act].map((item) => (
@@ -287,16 +334,16 @@ function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
               {build.failsafes.length > 0 && (
                 <div>
                   <p className="text-[10px] font-data text-gold/60 uppercase tracking-widest mb-2">
-                    Failsafes (Plans B)
+                    {t.failsafes}
                   </p>
                   <div className="space-y-1.5">
                     {build.failsafes.map((fs) => (
                       <div key={fs.missingItem} className="bg-blood/5 rounded-lg px-3 py-2 border border-blood/20">
                         <p className="text-[10px] font-data text-blood-light">
-                          Si manqué : <span className="text-gray-400">{fs.missingItem}</span>
+                          {t.ifMissed} : <span className="text-gray-400">{fs.missingItem}</span>
                         </p>
                         <p className="text-[10px] font-data text-gold">
-                          Alternative : <span className="text-gray-400">{fs.fallbackItem}</span>
+                          {t.alternative} : <span className="text-gray-400">{fs.fallbackItem}</span>
                         </p>
                       </div>
                     ))}
@@ -319,12 +366,14 @@ function BuildCard({ build, index }: { build: BuildTierS; index: number }) {
 // ---------------------------------------------------------------------------
 
 export function BuildsGrid() {
-  const builds = getAllBuildsTierS();
+  const params = useParams();
+  const lang = (params?.lang as string) ?? "fr";
+  const builds = getAllBuildsTierS(lang);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {builds.map((build, i) => (
-        <BuildCard key={build.id} build={build} index={i} />
+        <BuildCard key={build.id} build={build} index={i} lang={lang} />
       ))}
     </div>
   );

@@ -1,6 +1,6 @@
 // ============================================================================
-// COMPENDIUM DES 9 BUILDS TIER S — Mode Honneur BG3
-// Theorycraft vérifié, données réelles, français intégral
+// COMPENDIUM DES 10 BUILDS TIER S — Mode Honneur BG3
+// Theorycraft vérifié, données réelles, bilingue FR/EN
 // ============================================================================
 
 // ---------------------------------------------------------------------------
@@ -21,6 +21,29 @@ export interface BuildTierS {
     readonly WIS: number;
     readonly CHA: number;
   };
+  readonly featProgression: readonly {
+    readonly level: number;
+    readonly feat: string;
+    readonly reason: string;
+  }[];
+  readonly bestInSlot: {
+    readonly act1: readonly string[];
+    readonly act2: readonly string[];
+    readonly act3: readonly string[];
+  };
+  readonly failsafes: readonly {
+    readonly missingItem: string;
+    readonly fallbackItem: string;
+    readonly condition: string;
+  }[];
+}
+
+/** Localized text fields for a build */
+interface BuildLocalizedText {
+  readonly name: string;
+  readonly classes: string;
+  readonly coreRole: string;
+  readonly keyMechanic: string;
   readonly featProgression: readonly {
     readonly level: number;
     readonly feat: string;
@@ -313,16 +336,240 @@ export const BUILDS_TIER_S: readonly BuildTierS[] = [
 ];
 
 // ---------------------------------------------------------------------------
+// English translations keyed by build id
+// ---------------------------------------------------------------------------
+
+const BUILDS_EN: Record<string, BuildLocalizedText> = {
+  moine_bagarreur: {
+    name: "Tavern Brawler Monk",
+    classes: "8 Open Hand Monk / 4 Thief Rogue",
+    coreRole: "Single-Target Boss Killer",
+    keyMechanic:
+      "Hill Giant Strength Elixir (STR 21) + Tavern Brawler feat (double STR mod to unarmed attack & damage rolls). Monk bonus attacks + Thief extra bonus action = 5-6 attacks per turn.",
+    featProgression: [
+      { level: 4, feat: "Tavern Brawler", reason: "Doubles STR modifier on unarmed attack and damage rolls. The core of the build." },
+      { level: 8, feat: "Alert", reason: "+5 initiative. With BG3's d4 system, nearly guaranteed to act first." },
+      { level: 12, feat: "+2 Wisdom (18→20)", reason: "Increases DC of Monk abilities (Open Hand Technique, Stunning Strike)." },
+    ],
+    bestInSlot: {
+      act1: ["Gloves of Dexterity (STR 23 if stolen)", "Headband of Intellect", "Hill Giant Strength Elixir"],
+      act2: ["Gloves of the Growling Underdog (+1d4 non-lethal)", "Boots of Speed", "Cloak of Protection +1"],
+      act3: ["Gloves of Dexterity (STR 23)", "Helldusk Helmet", "Amulet of Greater Health"],
+    },
+    failsafes: [
+      { missingItem: "Gloves of Dexterity", fallbackItem: "Hill Giant Strength Elixir (STR 21)", condition: "If gloves weren't stolen from the Grove basement" },
+      { missingItem: "Helldusk Helmet", fallbackItem: "Helm of Balduran", condition: "If Ansur is not defeated" },
+    ],
+  },
+  barde_controleur: {
+    name: "Controller Bard",
+    classes: "10 College of Swords Bard / 1 Fighter / 1 Wizard",
+    coreRole: "Ranged DPS & Crowd Control",
+    keyMechanic:
+      "Arcane Acuity Helmet + Mystic Scoundrel Ring. Every control spell applies Arcane Acuity (-1 save per stack, up to -7). After 2 turns, enemies auto-fail all saving throws.",
+    featProgression: [
+      { level: 4, feat: "+1 CHA (17→18) + Performer", reason: "Increases control spell DC. Performer for RP flavour." },
+      { level: 8, feat: "War Caster", reason: "Guaranteed Concentration with CHA bonus to Concentration saves." },
+      { level: 12, feat: "+2 CHA (18→20)", reason: "DC 18 on all control spells." },
+    ],
+    bestInSlot: {
+      act1: ["Arcane Acuity Helmet (Grymforge)", "Rapier +1", "Wooden Shield"],
+      act2: ["Mystic Scoundrel Ring", "Mithral Armour", "Wand of the Shepherd"],
+      act3: ["Markoheshkir (via Wizard multiclass)", "Robe of the Weave", "Ring of Protection"],
+    },
+    failsafes: [
+      { missingItem: "Arcane Acuity Helmet", fallbackItem: "Diadem of Arcane Synergy (Crèche Y'llek)", condition: "If Grymforge is not completed" },
+      { missingItem: "Markoheshkir", fallbackItem: "Staff of Spell Power +2", condition: "If Ramazith's Tower is not completed" },
+    ],
+  },
+  throwzerker: {
+    name: "Throwzerker",
+    classes: "5 Berserker Barbarian / 4 Thief Rogue / 3 Champion Fighter",
+    coreRole: "Ranged Damage & Prone",
+    keyMechanic:
+      "Tavern Brawler + Berserker Rage + Thief bonus action. Throws returning weapons (Nyrulna, Returning Pike +2) from high ground for gravity-doubled damage. 4-5 throws per turn with double bonus action.",
+    featProgression: [
+      { level: 4, feat: "Tavern Brawler", reason: "Doubles STR mod on throw attack AND damage rolls." },
+      { level: 8, feat: "+2 STR (17→19)", reason: "Directly increases throw damage." },
+      { level: 12, feat: "+2 STR (19→20)", reason: "STR 20 = +5 doubled by Tavern Brawler = +10 throw damage." },
+    ],
+    bestInSlot: {
+      act1: ["Returning Pike +1", "Gloves of Throwing", "Hill Giant Strength Elixir"],
+      act2: ["Returning Pike +2 (Dammon)", "Medium Armour +2", "Thief's Cloak"],
+      act3: ["Nyrulna (Legendary Trident)", "Helldusk Armour", "Gloves of Dexterity (STR 23)"],
+    },
+    failsafes: [
+      { missingItem: "Nyrulna", fallbackItem: "Returning Pike +2", condition: "If Akabi's Circus is not completed" },
+      { missingItem: "Helldusk Armour", fallbackItem: "Adamantine Splint Armour", condition: "If Raphael is not defeated" },
+    ],
+  },
+  clerc_irradiation: {
+    name: "Radiating Orb Cleric",
+    classes: "11 Light Domain Cleric / 1 Storm Sorcerer",
+    coreRole: "Support & Radiant Debuff",
+    keyMechanic:
+      "Stacking Radiating Orbs via Luminous Armour to blind enemies. Spirit Guardians + Radiance of the Dawn apply Blindness in AoE. A blinded enemy has Disadvantage on everything — permanent control through radiant damage.",
+    featProgression: [
+      { level: 4, feat: "+1 WIS (17→18) + Resilient (CON)", reason: "Increases spell DC. Resilient CON for Concentration saves." },
+      { level: 8, feat: "+2 WIS (18→20)", reason: "DC 18 for all Cleric spells." },
+      { level: 12, feat: "War Caster", reason: "Near-unbreakable Concentration with WIS 20 + Resilient CON + War Caster." },
+    ],
+    bestInSlot: {
+      act1: ["Mace +1", "Adamantine Shield (Grymforge)", "Chain Mail"],
+      act2: ["The Blood of Lathander", "Devotee's Shield", "Mithral Medium Armour"],
+      act3: ["The Blood of Lathander", "Shield of Lathander +3", "Robe of the Weave"],
+    },
+    failsafes: [
+      { missingItem: "The Blood of Lathander", fallbackItem: "Radiant Mace +2 (Act 3 Merchants)", condition: "If the Rosymorn Monastery puzzle is not solved" },
+    ],
+  },
+  nuke_tempete: {
+    name: "Storm Nuke",
+    classes: "10 Storm Sorcerer / 2 Tempest Domain Cleric",
+    coreRole: "Maximum AoE Magic Damage",
+    keyMechanic:
+      "Create Water + Lightning Bolt + Destructive Wrath = Maximized Lightning Damage doubled. Destructive Wrath (Tempest) maximizes lightning/thunder dice 1×/short rest. Wetting enemy with Create Water = lightning vulnerability (×2). An upcast Call Lightning deals 60+ damage in one spell.",
+    featProgression: [
+      { level: 4, feat: "Elemental Adept (Lightning)", reason: "Lightning resistance + 1d4 bonus lightning on spells." },
+      { level: 8, feat: "+2 CHA (17→19)", reason: "Increases Draconic damage and spell DC." },
+      { level: 12, feat: "+2 CHA (19→20)", reason: "Maximum damage and spell DC." },
+    ],
+    bestInSlot: {
+      act1: ["Staff of Thunder and Lightning (Grove)", "Ring of Protection", "Mage Armour (spell)"],
+      act2: ["Sparkswall", "Robe of Elemental Supremacy", "Amulet of Resilience (CON)"],
+      act3: ["Markoheshkir (Lightning mode)", "Robe of the Weave", "Ring of the Elements"],
+    },
+    failsafes: [
+      { missingItem: "Markoheshkir", fallbackItem: "Staff of Thunder and Lightning +2", condition: "If Ramazith's Tower is not completed" },
+    ],
+  },
+  bardadin: {
+    name: "Bardadin — God of Smite",
+    classes: "10 College of Swords Bard / 2 Paladin",
+    coreRole: "Burst DPS & Versatile Support",
+    keyMechanic:
+      "Multi-attacks with Blade Flourishes (Bard Extra Attack at 6) + Divine Smites with high-level Bard spell slots. A crit with Flourish + level 5 Divine Smite = 100+ damage in one hit. Bardic Inspiration supports the whole party.",
+    featProgression: [
+      { level: 4, feat: "Great Weapon Master (GWM)", reason: "+10 damage per attack. Bard compensates the -5 with defensive Flourishes." },
+      { level: 8, feat: "+2 CHA (17→19)", reason: "Increases spell slots and Bardic Inspiration." },
+      { level: 12, feat: "+2 CHA (19→20)", reason: "DC 18 for Bard spells + optimal Smites." },
+    ],
+    bestInSlot: {
+      act1: ["Everburn Blade", "Chain Mail", "Shield (optional)"],
+      act2: ["Shar's Spear of Evening +2", "Mithral Plate Armour", "Amulet of the Devout"],
+      act3: ["Balduran's Giantslayer", "Helldusk Armour", "Helm of Balduran"],
+    },
+    failsafes: [
+      { missingItem: "Balduran's Giantslayer", fallbackItem: "Sword of Chaos +3", condition: "If Ansur is not defeated" },
+      { missingItem: "Helldusk Armour", fallbackItem: "Plate Armour +2 (Dammon)", condition: "If Raphael is not defeated" },
+    ],
+  },
+  sorcadin: {
+    name: "Sorcadin",
+    classes: "6 Oath of Vengeance Paladin / 6 Draconic Sorcerer",
+    coreRole: "Burst Tank with Aura of Protection",
+    keyMechanic:
+      "Paladin 6 Aura of Protection (+CHA to saves for all allies within 3m) + Metamagic (Quickened Spell) to cast an attack spell AND Divine Smite in the same turn. Vow of Enmity (permanent Advantage on one target) guarantees crits to double Smite dice.",
+    featProgression: [
+      { level: 4, feat: "Great Weapon Master (GWM)", reason: "+10 damage. Vow of Enmity Advantage compensates the -5." },
+      { level: 8, feat: "+2 CHA (17→19)", reason: "Aura of Protection +4. More Smite damage." },
+      { level: 12, feat: "+2 CHA (19→20)", reason: "Aura +5. DC 18 for Sorcerer spells." },
+    ],
+    bestInSlot: {
+      act1: ["Everburn Blade", "Heavy Armour +1", "Amulet of the Devout"],
+      act2: ["Flail of Ages (Dammon)", "Plate Armour", "Cloak of Protection"],
+      act3: ["Balduran's Giantslayer", "Helldusk Armour", "Helm of Balduran"],
+    },
+    failsafes: [
+      { missingItem: "Flail of Ages", fallbackItem: "Mace +2 (Act 2 Merchant)", condition: "If Dammon died in Act 1" },
+      { missingItem: "Balduran's Giantslayer", fallbackItem: "Halberd of Vigilance", condition: "If Ansur is not defeated" },
+    ],
+  },
+  fire_sorlock: {
+    name: "Fire Sorlock",
+    classes: "11 Draconic Sorcerer (Fire) / 1 Fiend Warlock",
+    coreRole: "Sustained Ranged Magic DPS",
+    keyMechanic:
+      "Upcast Scorching Ray + Acuity Hat + Metamagic (Quickened Spell). Each ray adds +CHA damage (Draconic Fire) and hits separately → Arcane Acuity on each hit. Eldritch Blast as a free cantrip between paid spells for unlimited DPS.",
+    featProgression: [
+      { level: 4, feat: "Elemental Adept (Fire)", reason: "Fire resistance + 1d4 fire bonus. Perfect synergy with Draconic Fire." },
+      { level: 8, feat: "+2 CHA (17→19)", reason: "+4 per ray of Scorching Ray. On 8 rays = +32 damage per turn." },
+      { level: 12, feat: "+2 CHA (19→20)", reason: "+5 per ray = +40 damage per turn on upcast Scorching Ray." },
+    ],
+    bestInSlot: {
+      act1: ["Circlet of Fire (fire damage +2)", "Staff of Flames", "Mage Armour (spell)"],
+      act2: ["Hat of Arcane Acuity", "Robe of the Fire Weaver", "Mystic Scoundrel Ring"],
+      act3: ["Markoheshkir (Fire mode)", "Robe of the Weave", "Ring of Infernal Elements"],
+    },
+    failsafes: [
+      { missingItem: "Hat of Arcane Acuity", fallbackItem: "Arcane Acuity Helmet (Grymforge)", condition: "Same item, alternate name depending on version" },
+      { missingItem: "Markoheshkir", fallbackItem: "Staff of Flames +2", condition: "If Ramazith's Tower is not completed" },
+    ],
+  },
+  gloom_assassin: {
+    name: "Gloom Assassin — Alpha Strike",
+    classes: "5 Gloom Stalker Ranger / 4 Assassin Rogue / 3 Battle Master Fighter",
+    coreRole: "Turn 1 Surprise Elimination",
+    keyMechanic:
+      "Gloom Stalker initiative (bonus attack + initiative bonus Turn 1) + Rogue Assassinate (attacks auto-hit Surprised enemies + Advantage on those who haven't acted yet) + Fighter Action Surge. Turn 1: 4-5 attacks with Advantage, plus stacked Sneak Attack. A boss can lose 40-60% HP before acting.",
+    featProgression: [
+      { level: 4, feat: "Sharpshooter", reason: "+10 ranged damage. Guaranteed crit compensates the -5 to hit." },
+      { level: 8, feat: "Alert", reason: "+5 initiative = guaranteed to act first. Essential for triggering Assassinate." },
+      { level: 12, feat: "+2 DEX (17→19)", reason: "Increases base hit and damage." },
+    ],
+    bestInSlot: {
+      act1: ["Shortbow +1", "Studded Leather +1", "Arrows +1"],
+      act2: ["Bow of the Preemptive Strike (+3 initiative)", "Stealthy Leather +2", "Cloak of Shadows"],
+      act3: ["Gontr Mael (Heavy Crossbow)", "Studded Leather +3", "Gloves of Precision"],
+    },
+    failsafes: [
+      { missingItem: "Gontr Mael", fallbackItem: "Ne'er Misser (hand crossbow, Roah Moonglow)", condition: "If the Steel Watch Foundry is not completed" },
+      { missingItem: "Cloak of Shadows", fallbackItem: "Cloak of Protection +1", condition: "If the Shadow merchant is not found" },
+    ],
+  },
+  lockadin: {
+    name: "Lockadin",
+    classes: "7 Oathbreaker Paladin / 5 Pact of the Blade Warlock",
+    coreRole: "SAD Burst Tank (Charisma)",
+    keyMechanic:
+      "Triple Charisma to damage: Pact of the Blade (CHA to attack/damage) + Aura of Hate (CHA to melee damage) + Arcane Synergy (CHA to weapon damage). Warlock slots recharge on Short Rest, providing unlimited Divine Smites.",
+    featProgression: [
+      { level: 4, feat: "+2 Charisma (17→19)", reason: "Simultaneously increases damage, Aura of Protection, and spell DC." },
+      { level: 8, feat: "+2 Charisma (19→20)", reason: "CHA 20 = +5 tripled to damage (+15 per hit), Aura of Protection +5 for the whole team." },
+      { level: 12, feat: "War Caster", reason: "Guaranteed Concentration on Hex and control spells with CHA bonus to saves." },
+    ],
+    bestInSlot: {
+      act1: ["Everburn Blade", "Heavy Armour +1", "Shield of Faith (spell)"],
+      act2: ["Halberd of Vigilance", "Mithral Plate Armour", "Diadem of Arcane Synergy"],
+      act3: ["Sword of Chaos", "Armour of Persistence", "Risky Ring", "Legacy of the Masters"],
+    },
+    failsafes: [
+      { missingItem: "Sword of Chaos", fallbackItem: "Halberd of Vigilance", condition: "If the Murder Tribunal is not completed in Act 3" },
+      { missingItem: "Armour of Persistence", fallbackItem: "Helldusk Armour (defeat Raphael)", condition: "If Dammon is dead" },
+    ],
+  },
+};
+
+// ---------------------------------------------------------------------------
 // API d'accès
 // ---------------------------------------------------------------------------
 
 /** Alias demandé par l'architecture — même référence que BUILDS_TIER_S */
 export const tierSBuilds: readonly BuildTierS[] = BUILDS_TIER_S;
 
-export function getBuildTierS(id: string): BuildTierS | undefined {
-  return BUILDS_TIER_S.find((b) => b.id === id);
+export function getBuildTierS(id: string, lang: string = "fr"): BuildTierS | undefined {
+  const base = BUILDS_TIER_S.find((b) => b.id === id);
+  if (!base || lang !== "en") return base;
+  const en = BUILDS_EN[id];
+  if (!en) return base;
+  return { ...base, ...en };
 }
 
-export function getAllBuildsTierS(): readonly BuildTierS[] {
-  return BUILDS_TIER_S;
+export function getAllBuildsTierS(lang: string = "fr"): readonly BuildTierS[] {
+  if (lang !== "en") return BUILDS_TIER_S;
+  return BUILDS_TIER_S.map((build) => {
+    const en = BUILDS_EN[build.id];
+    if (!en) return build;
+    return { ...build, ...en };
+  });
 }

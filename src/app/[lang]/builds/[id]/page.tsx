@@ -86,7 +86,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id, lang } = await params;
-  const build = getBuildTierS(id);
+  const build = getBuildTierS(id, lang);
   const t = lang === "en" ? PAGE_TEXT.en : PAGE_TEXT.fr;
   if (!build) return { title: t.notFound };
 
@@ -135,7 +135,7 @@ function StatBadge({ stat, value }: { stat: string; value: number }) {
 
 export default async function BuildPage({ params }: PageProps) {
   const { id, lang } = await params;
-  const build = getBuildTierS(id);
+  const build = getBuildTierS(id, lang);
   if (!build) notFound();
   const t = lang === "en" ? PAGE_TEXT.en : PAGE_TEXT.fr;
 

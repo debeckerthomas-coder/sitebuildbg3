@@ -9,6 +9,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { BuildSelector } from "@/components/ui/BuildSelector";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { Badge } from "@/components/ui-system";
 
 // ---------------------------------------------------------------------------
@@ -447,6 +448,11 @@ export function Sidebar() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="lg:hidden fixed top-14 left-0 bottom-0 z-50 w-72 bg-surface border-r border-border overflow-y-auto scrollbar-thin"
             >
+              {/* Language switcher for mobile */}
+              <div className="px-4 pt-3 pb-1 border-b border-border/50 flex items-center justify-between">
+                <span className="text-[10px] font-data uppercase tracking-widest text-gray-500">Language</span>
+                <LanguageSwitcher />
+              </div>
               <NavContent onNavigate={() => setMobileOpen(false)} />
             </motion.aside>
           </>

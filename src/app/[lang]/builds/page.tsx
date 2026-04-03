@@ -2,10 +2,18 @@ import type { Metadata } from "next";
 import type { Locale } from "@/dictionaries";
 import { BuildsGrid } from "./BuildsGrid";
 
-export const metadata: Metadata = {
-  title: "Tier List — 10 Builds Tier S | BG3 Honor Companion",
-  description: "Les 10 builds Tier S du Mode Honneur de Baldur's Gate 3. Theorycraft vérifié, équipement Best-in-Slot, failsafes.",
-};
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { lang } = await params;
+  return lang === "en"
+    ? {
+        title: "Tier List — 10 Tier S Builds | BG3 Honor Companion",
+        description: "The 10 Tier S builds for Baldur's Gate 3 Honour Mode. Verified theorycraft, Best-in-Slot gear, failsafes.",
+      }
+    : {
+        title: "Tier List — 10 Builds Tier S | BG3 Honor Companion",
+        description: "Les 10 builds Tier S du Mode Honneur de Baldur's Gate 3. Theorycraft vérifié, équipement Best-in-Slot, failsafes.",
+      };
+}
 
 const PAGE_TEXT = {
   fr: {
